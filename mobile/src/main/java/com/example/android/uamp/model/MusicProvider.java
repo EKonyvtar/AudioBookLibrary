@@ -55,6 +55,7 @@ public class MusicProvider {
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
     private final ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
 
+    //TODO: Favourite albums too
     private final Set<String> mFavoriteTracks;
 
     enum State {
