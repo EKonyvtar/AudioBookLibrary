@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Utility class to get a list of MusicTrack's based on a server-side JSON
+ * Utility class to get a list of available tracks based on a server-side JSON
  * configuration.
  */
 public class RemoteJSONSource implements MusicProviderSource {
@@ -72,8 +72,8 @@ public class RemoteJSONSource implements MusicProviderSource {
             }
             return tracks.iterator();
         } catch (JSONException e) {
-            LogHelper.e(TAG, e, "Could not retrieve music list");
-            throw new RuntimeException("Could not retrieve music list", e);
+            LogHelper.e(TAG, e, "Could not retrieve track list");
+            throw new RuntimeException("Could not retrieve track list", e);
         }
     }
 
@@ -88,7 +88,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
         int duration = json.getInt(JSON_DURATION) * 1000; // ms
 
-        LogHelper.d(TAG, "Found music track: ", json);
+        LogHelper.d(TAG, "Loaded tracks: ", json);
 
         // Media is stored relative to JSON file
         if (!source.startsWith("http")) {
