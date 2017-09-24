@@ -66,9 +66,8 @@ public class RemoteJSONSource implements MusicProviderSource {
                 JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
 
                 if (jsonTracks != null) {
-                    for (int j = 0; j < jsonTracks.length(); j++) {
+                    for (int j = 0; j < jsonTracks.length(); j++)
                         tracks.add(buildFromJSON(jsonTracks.getJSONObject(j), path));
-                    }
                 }
             }
             return tracks.iterator();
@@ -132,7 +131,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         try {
             URLConnection urlConnection = new URL(urlString).openConnection();
             reader = new BufferedReader(new InputStreamReader(
-                    urlConnection.getInputStream(), "iso-8859-1"));
+                    urlConnection.getInputStream(), "utf-8"));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
