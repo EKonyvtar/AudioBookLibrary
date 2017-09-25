@@ -55,6 +55,8 @@ public class MusicProvider {
 
     // Categorized caches for music track data:
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
+    private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByWriter;
+    private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByAlphabet;
     private final ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
 
     //TODO: Favourite albums too
@@ -75,7 +77,11 @@ public class MusicProvider {
     }
     public MusicProvider(MusicProviderSource source) {
         mSource = source;
+
         mMusicListByGenre = new ConcurrentHashMap<>();
+        mMusicListByWriter = new ConcurrentHashMap<>();
+        mMusicListByAlphabet = new ConcurrentHashMap<>();
+
         mMusicListById = new ConcurrentHashMap<>();
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
@@ -86,15 +92,35 @@ public class MusicProvider {
      * @return genres
      */
     public Iterable<String> getGenres() {
-        if (mCurrentState != State.INITIALIZED) {
-            return Collections.emptyList();
-        }
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mMusicListByGenre.keySet();
     }
 
     /**
+     * Get an iterator over the list of Writers
+     *
+     * @return genres
+     */
+    public Iterable<String> getWriter() {
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+        return mMusicListByWriter.keySet();
+    }
+
+    /**
+     * Get an iterator over the list of Writers
+     *
+     * @return genres
+     */
+    public Iterable<String> getAlphabet() {
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+        return mMusicListByAlphabet.keySet();
+    }
+
+
+    /**
      * Get an iterator over a shuffled collection of all songs
      */
+    //TODO: remove shuffle
     public Iterable<MediaMetadataCompat> getShuffledMusic() {
         if (mCurrentState != State.INITIALIZED) {
             return Collections.emptyList();
@@ -107,6 +133,7 @@ public class MusicProvider {
         return shuffled;
     }
 
+    //region Public_Category_Getter
     /**
      * Get music tracks of the given genre
      *
@@ -117,6 +144,29 @@ public class MusicProvider {
         }
         return mMusicListByGenre.get(genre);
     }
+
+    /**
+     * Get music tracks of the given writer
+     *
+     */
+    public Iterable<MediaMetadataCompat> getMusicsByWriter(String writer) {
+        if (mCurrentState != State.INITIALIZED || !mMusicListByGenre.containsKey(writer)) {
+            return Collections.emptyList();
+        }
+        return mMusicListByGenre.get(writer);
+    }
+
+    /**
+     * Get music tracks of the given alphabet char
+     *
+     */
+    public Iterable<MediaMetadataCompat> getMusicsByAlphabet(String alphabet) {
+        if (mCurrentState != State.INITIALIZED || !mMusicListByGenre.containsKey(alphabet)) {
+            return Collections.emptyList();
+        }
+        return mMusicListByGenre.get(alphabet);
+    }
+    //endregion;
 
     /**
      * Very basic implementation of a search that filter music tracks with title containing
@@ -241,6 +291,7 @@ public class MusicProvider {
         }.execute();
     }
 
+    //region BUILD_TYPELISTS
     private synchronized void buildListsByGenre() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newMusicListByGenre = new ConcurrentHashMap<>();
 
@@ -256,6 +307,23 @@ public class MusicProvider {
         mMusicListByGenre = newMusicListByGenre;
     }
 
+    private synchronized ConcurrentMap<String, List<MediaMetadataCompat>> BuildValueList(String metadata) {
+        ConcurrentMap<String, List<MediaMetadataCompat>> newListByMetadata = new ConcurrentHashMap<>();
+
+        for (MutableMediaMetadata m : mMusicListById.values()) {
+            String metaValue = m.metadata.getString(metadata);
+            List<MediaMetadataCompat> list = newListByMetadata.get(metaValue);
+            if (list == null) {
+                list = new ArrayList<>();
+                newListByMetadata.put(metaValue, list);
+            }
+            list.add(m.metadata);
+        }
+        return newListByMetadata;
+    }
+    //endregion
+
+    // Load MediaData from mSource
     private synchronized void retrieveMedia() {
         try {
             if (mCurrentState == State.NON_INITIALIZED) {
@@ -267,7 +335,9 @@ public class MusicProvider {
                     String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
                     mMusicListById.put(musicId, new MutableMediaMetadata(musicId, item));
                 }
-                buildListsByGenre();
+                //buildListsByGenre();
+                mMusicListByGenre = BuildValueList(MediaMetadataCompat.METADATA_KEY_GENRE);
+                mMusicListByWriter = BuildValueList(MediaMetadataCompat.METADATA_KEY_WRITER);
                 mCurrentState = State.INITIALIZED;
             }
         } finally {
@@ -280,6 +350,7 @@ public class MusicProvider {
     }
 
 
+    // Hierarchy browser
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
         List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
@@ -305,12 +376,32 @@ public class MusicProvider {
             for (MediaMetadataCompat metadata : getMusicsByGenre(genre)) {
                 mediaItems.add(createMediaItem(metadata));
             }
-        } else {
+        }
+
+        // Open all Writers Items
+        else if (MEDIA_ID_MUSICS_BY_WRITER.equals(mediaId)) {
+            for (String writer : getWriter()) {
+                mediaItems.add(createBrowsableMediaItemForWriter(writer, resources));
+            }
+        }
+        // Open a specific Genre
+        else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_WRITER)) {
+            String writer = MediaIDHelper.getHierarchy(mediaId)[1];
+            for (MediaMetadataCompat metadata : getMusicsByWriter(writer)) {
+                mediaItems.add(createMediaItem(metadata));
+            }
+        }
+
+
+        // Can't open media
+        else {
             LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
         }
+
         return mediaItems;
     }
 
+    //region ROOT_HANDLERS
     private MediaBrowserCompat.MediaItem createGenreBrowsableMediaItemForRoot(Resources resources) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(MEDIA_ID_MUSICS_BY_GENRE)
@@ -358,6 +449,8 @@ public class MusicProvider {
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
+
+    //endregion;
 
     private MediaBrowserCompat.MediaItem createMediaItem(MediaMetadataCompat metadata) {
         // Since mediaMetadata fields are immutable, we need to create a copy, so we
