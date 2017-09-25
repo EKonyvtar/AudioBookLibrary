@@ -72,10 +72,10 @@ public class MediaIDHelper {
 
     private static boolean isValidCategory(String category) {
         return category == null ||
-                (
-                    category.indexOf(CATEGORY_SEPARATOR) < 0 &&
-                    category.indexOf(LEAF_SEPARATOR) < 0
-                );
+            (
+                category.indexOf(CATEGORY_SEPARATOR) < 0 &&
+                category.indexOf(LEAF_SEPARATOR) < 0
+            );
     }
 
     /**
