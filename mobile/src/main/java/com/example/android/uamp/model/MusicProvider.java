@@ -57,9 +57,11 @@ public class MusicProvider {
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByWriter;
 
-    private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
     private final ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
+    private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+    private ConcurrentMap<String, String> mEbookListByWriter;
+    private ConcurrentMap<String, String> mEbookListByGenre;
 
     //TODO: Favourite albums too
     private final Set<String> mFavoriteTracks;
@@ -84,6 +86,9 @@ public class MusicProvider {
         mTrackListById = new ConcurrentHashMap<>();
         mEbookList = new ConcurrentHashMap<>();
 
+        mEbookListByWriter = new ConcurrentHashMap<>();
+        mEbookListByGenre = new ConcurrentHashMap<>();
+
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
 
@@ -105,7 +110,7 @@ public class MusicProvider {
      */
     public Iterable<String> getGenres() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        return mMusicListByGenre.keySet();
+        return mEbookListByGenre.keySet();
     }
 
     /**
@@ -113,9 +118,9 @@ public class MusicProvider {
      *
      * @return genres
      */
-    public Iterable<String> getWriter() {
+    public Iterable<String> getWriters() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        return mMusicListByWriter.keySet();
+        return mEbookListByWriter.keySet();
     }
 
     /**
@@ -403,7 +408,7 @@ public class MusicProvider {
 
         // Open all Writers Items
         else if (MEDIA_ID_MUSICS_BY_WRITER.equals(mediaId)) {
-            for (String writer : getWriter()) {
+            for (String writer : getWriters()) {
                 mediaItems.add(createBrowsableMediaItemForGenre(writer, resources));
             }
         }
