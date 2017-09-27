@@ -58,7 +58,7 @@ public class MusicProvider {
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByWriter;
 
     private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
-    private final ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
+    private final ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
 
     //TODO: Favourite albums too
@@ -81,7 +81,7 @@ public class MusicProvider {
         mMusicListByGenre = new ConcurrentHashMap<>();
         mMusicListByWriter = new ConcurrentHashMap<>();
 
-        mMusicListById = new ConcurrentHashMap<>();
+        mTrackListById = new ConcurrentHashMap<>();
         mEbookList = new ConcurrentHashMap<>();
 
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
@@ -126,8 +126,8 @@ public class MusicProvider {
         if (mCurrentState != State.INITIALIZED) {
             return Collections.emptyList();
         }
-        List<MediaMetadataCompat> shuffled = new ArrayList<>(mMusicListById.size());
-        for (MutableMediaMetadata mutableMetadata: mMusicListById.values()) {
+        List<MediaMetadataCompat> shuffled = new ArrayList<>(mTrackListById.size());
+        for (MutableMediaMetadata mutableMetadata: mTrackListById.values()) {
             shuffled.add(mutableMetadata.metadata);
         }
         Collections.shuffle(shuffled);
@@ -201,7 +201,7 @@ public class MusicProvider {
         }
         ArrayList<MediaMetadataCompat> result = new ArrayList<>();
         query = query.toLowerCase(Locale.US);
-        for (MutableMediaMetadata track : mMusicListById.values()) {
+        for (MutableMediaMetadata track : mTrackListById.values()) {
             if (track.metadata.getString(metadataField).toLowerCase(Locale.US)
                 .contains(query)) {
                 result.add(track.metadata);
@@ -217,7 +217,7 @@ public class MusicProvider {
      * @param musicId The unique, non-hierarchical music ID.
      */
     public MediaMetadataCompat getMusic(String musicId) {
-        return mMusicListById.containsKey(musicId) ? mMusicListById.get(musicId).metadata : null;
+        return mTrackListById.containsKey(musicId) ? mTrackListById.get(musicId).metadata : null;
     }
 
     public synchronized void updateMusicArt(String musicId, Bitmap albumArt, Bitmap icon) {
@@ -235,7 +235,7 @@ public class MusicProvider {
 
                 .build();
 
-        MutableMediaMetadata mutableMetadata = mMusicListById.get(musicId);
+        MutableMediaMetadata mutableMetadata = mTrackListById.get(musicId);
         if (mutableMetadata == null) {
             throw new IllegalStateException("Unexpected error: Inconsistent data structures in " +
                     "MusicProvider");
@@ -295,7 +295,7 @@ public class MusicProvider {
     private synchronized void buildAlbum() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newAlbumList = new ConcurrentHashMap<>();
 
-        for (MutableMediaMetadata m : mMusicListById.values()) {
+        for (MutableMediaMetadata m : mTrackListById.values()) {
             String album = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
             List<MediaMetadataCompat> list = newAlbumList.get(album);
             if (list == null) {
@@ -309,7 +309,7 @@ public class MusicProvider {
     private synchronized void buildListsByGenre() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newMusicListByGenre = new ConcurrentHashMap<>();
 
-        for (MutableMediaMetadata m : mMusicListById.values()) {
+        for (MutableMediaMetadata m : mTrackListById.values()) {
             String genre = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
             List<MediaMetadataCompat> list = newMusicListByGenre.get(genre);
             if (list == null) {
@@ -324,7 +324,7 @@ public class MusicProvider {
     private synchronized void BuildValueList(String metadata) {
         ConcurrentMap<String, List<MediaMetadataCompat>> newListByMetadata = new ConcurrentHashMap<>();
 
-        for (MutableMediaMetadata m : mMusicListById.values()) {
+        for (MutableMediaMetadata m : mTrackListById.values()) {
             String metaValue = m.metadata.getString(metadata);
             List<MediaMetadataCompat> list = newListByMetadata.get(metaValue);
             if (list == null) {
@@ -355,7 +355,7 @@ public class MusicProvider {
                 while (tracks.hasNext()) {
                     MediaMetadataCompat item = tracks.next();
                     String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
-                    mMusicListById.put(musicId, new MutableMediaMetadata(musicId, item));
+                    mTrackListById.put(musicId, new MutableMediaMetadata(musicId, item));
                 }
                 buildAlbum();
                 buildListsByGenre();
