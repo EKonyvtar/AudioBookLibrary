@@ -26,8 +26,7 @@ import com.example.android.uamp.model.MusicProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_SEARCH;
+import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_TRACKS_BY_SEARCH;
 
 /**
  * Utility class to help on queue related tasks.
@@ -55,10 +54,10 @@ public class QueueHelper {
 
         Iterable<MediaMetadataCompat> tracks = null;
         // This sample only supports genre and by_search category types.
-        /*if (categoryType.equals(MEDIA_ID_MUSICS_BY_GENRE)) {
+        /*if (categoryType.equals(MEDIA_ID_BY_GENRE)) {
             tracks = musicProvider.getEbooksByGenre(categoryValue);
         } else*/
-        if (categoryType.equals(MEDIA_ID_MUSICS_BY_SEARCH)) {
+        if (categoryType.equals(MEDIA_ID_TRACKS_BY_SEARCH)) {
             tracks = musicProvider.searchMusicBySongTitle(categoryValue);
         }
 
@@ -110,7 +109,7 @@ public class QueueHelper {
             result = musicProvider.searchMusicBySongTitle(query);
         }
 
-        return convertToQueue(result, MEDIA_ID_MUSICS_BY_SEARCH, query);
+        return convertToQueue(result, MEDIA_ID_TRACKS_BY_SEARCH, query);
     }
 
 
@@ -180,7 +179,7 @@ public class QueueHelper {
         }
         LogHelper.d(TAG, "getRandomQueue: result.size=", result.size());
 
-        return convertToQueue(result, MEDIA_ID_MUSICS_BY_SEARCH, "random");
+        return convertToQueue(result, MEDIA_ID_TRACKS_BY_SEARCH, "random");
     }
 
     public static boolean isIndexPlayable(int index, List<MediaSessionCompat.QueueItem> queue) {

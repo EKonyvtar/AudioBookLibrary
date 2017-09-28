@@ -118,10 +118,10 @@ public class QueueManagerTest {
         String genre1 = genres.next();
         String genre2 = genres.next();
         List<MediaSessionCompat.QueueItem> queueGenre1 = QueueHelper.getPlayingQueue(
-                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE, genre1),
+                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_GENRE, genre1),
                 provider);
         List<MediaSessionCompat.QueueItem> queueGenre2 = QueueHelper.getPlayingQueue(
-                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE, genre2),
+                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_GENRE, genre2),
                 provider);
 
         // set the current queue
@@ -251,7 +251,7 @@ public class QueueManagerTest {
         String genre = provider.getGenres().iterator().next();
         MediaMetadataCompat metadata = provider.getEbooksByGenre(genre).iterator().next();
         String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
-                metadata.getDescription().getMediaId(), MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE,
+                metadata.getDescription().getMediaId(), MediaIDHelper.MEDIA_ID_BY_GENRE,
                 genre);
 
         // set a queue from the hierarchyAwareMediaID. It should contain all music with the same

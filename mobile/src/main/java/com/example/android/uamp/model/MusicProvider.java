@@ -37,9 +37,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_TRACKS_BY_EBOOK;
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_WRITER;
+import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
+import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
 import static com.example.android.uamp.utils.MediaIDHelper.createMediaID;
 
@@ -58,6 +58,7 @@ public class MusicProvider {
 
     private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
     private ConcurrentMap<String, List<String>> mEbookListByGenre;
+    private ConcurrentMap<String, List<String>> mEbookListByWriter;
 
     //TODO: Favourite albums too
     private final Set<String> mFavoriteTracks;
@@ -80,6 +81,7 @@ public class MusicProvider {
         mEbookList = new ConcurrentHashMap<>();
 
         mEbookListByGenre = new ConcurrentHashMap<>();
+        mEbookListByWriter = new ConcurrentHashMap<>();
 
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
@@ -105,19 +107,16 @@ public class MusicProvider {
         return mEbookListByGenre.keySet();
     }
 
-/*
-    */
-/**
+    /*
      * Get an iterator over the list of Writers
      *
      * @return genres
-     *//*
+    */
 
     public Iterable<String> getWriters() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mEbookListByWriter.keySet();
     }
-*/
 
     /**
      * Get an iterator over a shuffled collection of all songs
@@ -135,7 +134,7 @@ public class MusicProvider {
         return shuffled;
     }
 
-    //region Public_Category_Getter
+    //region EBOOK_GETTERS
     /**
      * Get music tracks of the given genre
      *
@@ -147,20 +146,15 @@ public class MusicProvider {
         return mEbookListByGenre.get(genre);
     }
 
-/*
-    */
-/**
-     * Get music tracks of the given writer
-     *
-     *//*
-
-    public Iterable<MediaMetadataCompat> getMusicsByWriter(String writer) {
-        if (mCurrentState != State.INITIALIZED || !mMusicListByGenre.containsKey(writer)) {
+    /**
+     * Get ebooks by a given writer
+     */
+    public Iterable<String> getEbooksByWriter(String writer) {
+        if (mCurrentState != State.INITIALIZED || !mEbookListByWriter.containsKey(writer)) {
             return Collections.emptyList();
         }
-        return mMusicListByGenre.get(writer);
+        return mEbookListByWriter.get(writer);
     }
-*/
 
     /**
      * Get tracks of the given ebook
@@ -338,10 +332,10 @@ public class MusicProvider {
                 mEbookListByGenre = newListByMetadata;
                 break;
             }
-            //case MediaMetadataCompat.METADATA_KEY_WRITER: {
-            //    mMusicListByWriter = newListByMetadata;
-            //    break;
-            //}
+            case MediaMetadataCompat.METADATA_KEY_ARTIST: {
+                mEbookListByWriter = newListByMetadata;
+                break;
+            }
         }
     }
     //endregion
@@ -361,7 +355,8 @@ public class MusicProvider {
                 buildAlbumList();
 
                 BuildValueList(MediaMetadataCompat.METADATA_KEY_GENRE);
-                //BuildValueList(MediaMetadataCompat.METADATA_KEY_WRITER);
+                BuildValueList(MediaMetadataCompat.METADATA_KEY_ARTIST);
+
                 mCurrentState = State.INITIALIZED;
             }
         } finally {
@@ -384,70 +379,73 @@ public class MusicProvider {
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
             // Add Genres
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_MUSICS_BY_GENRE,
+            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_GENRE,
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
 
             // Add writers
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_MUSICS_BY_WRITER,
+            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_WRITER,
                     resources.getString(R.string.browse_writer),
                     resources.getString(R.string.browse_writer_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
 
             // Add EBooks
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_TRACKS_BY_EBOOK,
+            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_EBOOK,
                     resources.getString(R.string.browse_ebook),
                     resources.getString(R.string.browse_ebook_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
         }
 
         // List all Genre Items
-        else if (MEDIA_ID_MUSICS_BY_GENRE.equals(mediaId)) {
+        else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
             for (String genre : getGenres()) {
-                //mediaItems.add(createBrowsableMediaItemForGenre(genre, resources));
                 mediaItems.add(createBrowsableMediaItem(
-                        createMediaID(null, MEDIA_ID_MUSICS_BY_GENRE, genre),
+                        createMediaID(null, MEDIA_ID_BY_GENRE, genre),
                         genre,
                         resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
                         Uri.EMPTY));
             }
         }
         // List ebooks in a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_GENRE)) {
+        else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
             String genre = MediaIDHelper.getHierarchy(mediaId)[1];
             for (String ebook : getEbooksByGenre(genre)) {
                 mediaItems.add(createBrowsableMediaItem(
-                        createMediaID(null, MEDIA_ID_TRACKS_BY_EBOOK, ebook),
+                        createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
                         ebook,
                         resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
                         Uri.EMPTY));
             }
         }
 
-       /* // Open all Writers Items
-        else if (MEDIA_ID_MUSICS_BY_WRITER.equals(mediaId)) {
+        // List Writers
+        else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
             for (String writer : getWriters()) {
                 mediaItems.add(createBrowsableMediaItemForGenre(writer, resources));
             }
         }
         // Open a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_WRITER)) {
+        else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
             String writer = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (MediaMetadataCompat metadata : getMusicsByWriter(writer)) {
-                mediaItems.add(createMediaItem(metadata));
+            for (String ebook: getEbooksByWriter(writer)) {
+                mediaItems.add(createBrowsableMediaItem(
+                        createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
+                        ebook,
+                        resources.getString(R.string.browse_musics_by_genre_subtitle, writer),
+                        Uri.EMPTY));
             }
-        }*/
+        }
 
 
         // List all EBooks Items
-        else if (MEDIA_ID_TRACKS_BY_EBOOK.equals(mediaId)) {
+        else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
             for (String ebook : getEbooks()) {
                 mediaItems.add(createBrowsableEbookItem(ebook, resources));
             }
         }
         // Open a specific Ebook
-        else if (mediaId.startsWith(MEDIA_ID_TRACKS_BY_EBOOK)) {
+        else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
             String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
             for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
                 mediaItems.add(createMediaItem(metadata));
@@ -478,7 +476,7 @@ public class MusicProvider {
     private MediaBrowserCompat.MediaItem createBrowsableMediaItemForGenre(String genre,
                                                                     Resources resources) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                .setMediaId(createMediaID(null, MEDIA_ID_MUSICS_BY_GENRE, genre))
+                .setMediaId(createMediaID(null, MEDIA_ID_BY_GENRE, genre))
                 .setTitle(genre)
                 .setSubtitle(resources.getString(
                         R.string.browse_musics_by_genre_subtitle, genre))
@@ -490,7 +488,7 @@ public class MusicProvider {
     private MediaBrowserCompat.MediaItem createBrowsableEbookItem(String ebook,
                                                                           Resources resources) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                .setMediaId(createMediaID(null, MEDIA_ID_TRACKS_BY_EBOOK, ebook))
+                .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
                 .setSubtitle(resources.getString(
                         R.string.browse_musics_by_genre_subtitle, ebook)) //TODO: add Writer
@@ -507,7 +505,7 @@ public class MusicProvider {
         // on where the music was selected from (by artist, by genre, random, etc)
         String genre = metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
         String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
-                metadata.getDescription().getMediaId(), MEDIA_ID_MUSICS_BY_GENRE, genre);
+                metadata.getDescription().getMediaId(), MEDIA_ID_BY_GENRE, genre);
         MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
                 .build();
