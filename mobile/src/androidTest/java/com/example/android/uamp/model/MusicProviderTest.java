@@ -133,7 +133,7 @@ public class MusicProviderTest {
     public void testSearchMusicByArtist() throws Exception {
         int count = 0;
         for (MediaMetadataCompat metadata : provider.searchMusicByArtist("Joe")) {
-            String title = metadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
+            String title = metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER);
             assertTrue(title.contains("Joe"));
             count++;
         }

@@ -191,7 +191,7 @@ public class MusicProvider {
      *
      */
     public Iterable<MediaMetadataCompat> searchMusicByArtist(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_ARTIST, query);
+        return searchMusic(MediaMetadataCompat.METADATA_KEY_WRITER, query);
     }
 
     Iterable<MediaMetadataCompat> searchMusic(String metadataField, String query) {
@@ -332,7 +332,7 @@ public class MusicProvider {
                 mEbookListByGenre = newListByMetadata;
                 break;
             }
-            case MediaMetadataCompat.METADATA_KEY_ARTIST: {
+            case MediaMetadataCompat.METADATA_KEY_WRITER: {
                 mEbookListByWriter = newListByMetadata;
                 break;
             }
@@ -355,7 +355,7 @@ public class MusicProvider {
                 buildAlbumList();
 
                 BuildValueList(MediaMetadataCompat.METADATA_KEY_GENRE);
-                BuildValueList(MediaMetadataCompat.METADATA_KEY_ARTIST);
+                BuildValueList(MediaMetadataCompat.METADATA_KEY_WRITER);
 
                 mCurrentState = State.INITIALIZED;
             }
