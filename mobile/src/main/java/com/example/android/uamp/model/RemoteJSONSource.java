@@ -46,8 +46,8 @@ public class RemoteJSONSource implements MusicProviderSource {
 
     private static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
-    private static final String JSON_ALBUM = "album";
-    private static final String JSON_ARTIST = "artist";
+    private static final String JSON_EBOOK = "album";
+    private static final String JSON_WRITER = "artist";
     private static final String JSON_GENRE = "genre";
     private static final String JSON_SOURCE = "source";
     private static final String JSON_IMAGE = "image";
@@ -79,8 +79,8 @@ public class RemoteJSONSource implements MusicProviderSource {
 
     private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
         String title = json.getString(JSON_TITLE);
-        String album = json.getString(JSON_ALBUM);
-        String artist = json.getString(JSON_ARTIST);
+        String ebook = json.getString(JSON_EBOOK);
+        String writer = json.getString(JSON_WRITER);
         String genre = json.getString(JSON_GENRE);
         String source = json.getString(JSON_SOURCE);
         String iconUrl = json.getString(JSON_IMAGE);
@@ -109,8 +109,8 @@ public class RemoteJSONSource implements MusicProviderSource {
         return new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, id)
                 .putString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE, source)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, album)
-                .putString(MediaMetadataCompat.METADATA_KEY_WRITER, artist)
+                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, ebook)
+                .putString(MediaMetadataCompat.METADATA_KEY_WRITER, writer)
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration)
                 .putString(MediaMetadataCompat.METADATA_KEY_GENRE, genre)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, iconUrl)
