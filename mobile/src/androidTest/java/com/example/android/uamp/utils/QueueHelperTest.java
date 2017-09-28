@@ -128,7 +128,7 @@ public class QueueHelperTest {
         for (MediaSessionCompat.QueueItem item : queue) {
             String musicId = MediaIDHelper.extractMusicIDFromMediaID(item.getDescription().getMediaId());
             MediaMetadataCompat metadata = provider.getMusic(musicId);
-            assertTrue(metadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST).contains("Joe"));
+            assertTrue(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER).contains("Joe"));
         }
     }
 
