@@ -26,8 +26,8 @@
     <string name="browse_writer">Writers</string>
     <string name="browse_writer_subtitle">Browse writers</string>
 
-    <string name="browse_alphabetical">Alphabetical</string>
-    <string name="browse_alphabetical_subtitle">Browse all titles</string>
+    <string name="browse_ebook">Alphabetical</string>
+    <string name="browse_ebook_subtitle">Browse all titles</string>
 
     <string name="browse_musics_by_genre_subtitle">%1$s tracks</string>
     <string name="random_queue_title">Random titles</string>

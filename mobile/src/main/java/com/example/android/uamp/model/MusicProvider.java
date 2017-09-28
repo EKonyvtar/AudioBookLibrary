@@ -387,9 +387,23 @@ public class MusicProvider {
         }
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
-            mediaItems.add(createGenreBrowsableMediaItemForRoot(resources));
-            mediaItems.add(createWriterBrowsableMediaItemForRoot(resources));
-            mediaItems.add(createEbookBrowsableMediaItemForRoot(resources));
+            // Add Genres
+            mediaItems.add(createBrowsableMediaItemForRoot(MEDIA_ID_MUSICS_BY_GENRE,
+                    resources.getString(R.string.browse_genres),
+                    resources.getString(R.string.browse_genre_subtitle),
+                    Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
+
+            // Add writers
+            mediaItems.add(createBrowsableMediaItemForRoot(MEDIA_ID_MUSICS_BY_WRITER,
+                    resources.getString(R.string.browse_writer),
+                    resources.getString(R.string.browse_writer_subtitle),
+                    Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
+
+            // Add EBooks
+            mediaItems.add(createBrowsableMediaItemForRoot(MEDIA_ID_TRACKS_BY_EBOOK,
+                    resources.getString(R.string.browse_ebook),
+                    resources.getString(R.string.browse_ebook_subtitle),
+                    Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
         }
 
         // Open all Genre Items
@@ -435,7 +449,6 @@ public class MusicProvider {
             }
         }
 
-
         // Can't open media
         else {
             LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
@@ -445,37 +458,13 @@ public class MusicProvider {
     }
 
     //region ROOT_HANDLERS
-    private MediaBrowserCompat.MediaItem createGenreBrowsableMediaItemForRoot(Resources resources) {
+    private MediaBrowserCompat.MediaItem createBrowsableMediaItemForRoot(
+            String mediaId, String title, String subtitle, Uri iconUri) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                .setMediaId(MEDIA_ID_MUSICS_BY_GENRE)
-                .setTitle(resources.getString(R.string.browse_genres))
-                .setSubtitle(resources.getString(R.string.browse_genre_subtitle))
-                .setIconUri(Uri.parse("android.resource://" +
-                        "com.example.android.uamp/drawable/ic_by_genre"))
-                .build();
-        return new MediaBrowserCompat.MediaItem(description,
-                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
-    }
-
-    private MediaBrowserCompat.MediaItem createWriterBrowsableMediaItemForRoot(Resources resources) {
-        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                .setMediaId(MEDIA_ID_MUSICS_BY_WRITER)
-                .setTitle(resources.getString(R.string.browse_writer))
-                .setSubtitle(resources.getString(R.string.browse_writer_subtitle))
-                .setIconUri(Uri.parse("android.resource://" +
-                        "com.example.android.uamp/drawable/ic_by_genre"))
-                .build();
-        return new MediaBrowserCompat.MediaItem(description,
-                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
-    }
-
-    private MediaBrowserCompat.MediaItem createEbookBrowsableMediaItemForRoot(Resources resources) {
-        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                .setMediaId(MEDIA_ID_TRACKS_BY_EBOOK)
-                .setTitle(resources.getString(R.string.browse_alphabetical))
-                .setSubtitle(resources.getString(R.string.browse_alphabetical_subtitle))
-                .setIconUri(Uri.parse("android.resource://" +
-                        "com.example.android.uamp/drawable/ic_by_genre"))
+                .setMediaId(mediaId)
+                .setTitle(title)
+                .setSubtitle(subtitle)
+                .setIconUri(iconUri)
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
