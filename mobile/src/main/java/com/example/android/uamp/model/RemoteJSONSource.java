@@ -16,6 +16,9 @@
 
 package com.example.android.uamp.model;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.android.uamp.utils.LogHelper;
@@ -36,15 +39,14 @@ import java.util.Iterator;
  * Utility class to get a list of available tracks based on a server-side JSON
  * configuration.
  */
-public class RemoteJSONSource implements MusicProviderSource {
+public class RemoteJSONSource extends Activity implements MusicProviderSource {
 
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
     protected static final String CATALOG_URL =
             "https://s3.amazonaws.com/murati/ekonyvtar_offline.json";
-        //"http://storage.googleapis.com/automotive-media/music.json";
 
-    private static final String JSON_MUSIC = "music";
+    protected static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
     private static final String JSON_EBOOK = "album";
     private static final String JSON_WRITER = "artist";
@@ -60,7 +62,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         try {
             int slashPos = CATALOG_URL.lastIndexOf('/');
             String path = CATALOG_URL.substring(0, slashPos + 1);
-            JSONObject jsonObj = fetchJSONFromUrl(CATALOG_URL);
+            JSONObject jsonObj = fetchJSON(CATALOG_URL);
             ArrayList<MediaMetadataCompat> tracks = new ArrayList<>();
             if (jsonObj != null) {
                 JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
@@ -77,7 +79,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         }
     }
 
-    private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
+    protected MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
         String title = json.getString(JSON_TITLE);
         String ebook = json.getString(JSON_EBOOK);
         String writer = json.getString(JSON_WRITER);
@@ -126,7 +128,7 @@ public class RemoteJSONSource implements MusicProviderSource {
      *
      * @return result JSONObject containing the parsed representation.
      */
-    private JSONObject fetchJSONFromUrl(String urlString) throws JSONException {
+    private JSONObject fetchJSON(String urlString) throws JSONException {
         BufferedReader reader = null;
         try {
             URLConnection urlConnection = new URL(urlString).openConnection();

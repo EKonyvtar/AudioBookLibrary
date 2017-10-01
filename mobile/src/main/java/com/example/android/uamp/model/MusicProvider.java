@@ -16,6 +16,7 @@
 
 package com.example.android.uamp.model;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -71,10 +72,11 @@ public class MusicProvider {
         void onMusicCatalogReady(boolean success);
     }
 
-    public MusicProvider() {
-        this(new RemoteJSONSource());
+    public MusicProvider(Context c) {
+        //this(new RemoteJSONSource());
+        this(new OfflineJSONSource(c),c);
     }
-    public MusicProvider(MusicProviderSource source) {
+    public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
 
         mTrackListById = new ConcurrentHashMap<>();
