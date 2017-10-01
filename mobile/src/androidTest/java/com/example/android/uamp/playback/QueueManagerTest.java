@@ -249,9 +249,9 @@ public class QueueManagerTest {
         // get the first music of the first genre and build a hierarchy-aware version of its
         // mediaId
         String genre = provider.getGenres().iterator().next();
-        MediaMetadataCompat metadata = provider.getEbooksByGenre(genre).iterator().next();
+        String metadata = provider.getEbooksByGenre(genre).iterator().next();
         String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
-                metadata.getDescription().getMediaId(), MediaIDHelper.MEDIA_ID_BY_GENRE,
+                metadata,
                 genre);
 
         // set a queue from the hierarchyAwareMediaID. It should contain all music with the same
@@ -260,7 +260,7 @@ public class QueueManagerTest {
 
         // count all songs with the same genre
         int count = 0;
-        for (MediaMetadataCompat m: provider.getEbooksByGenre(genre)) {
+        for (String m: provider.getEbooksByGenre(genre)) {
             count++;
         }
 
