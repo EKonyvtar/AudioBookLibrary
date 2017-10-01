@@ -86,41 +86,23 @@ public class MusicProvider {
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
 
-    /**
-     * Get an iterator over the list of genres
-     *
-     * @return genres
-     */
+
+    //region BROWSABLE_ITEM GENERATORS
     public Iterable<String> getEbooks() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mEbookList.keySet();
     }
 
-
-    /**
-     * Get an iterator over the list of genres
-     *
-     * @return genres
-     */
     public Iterable<String> getGenres() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mEbookListByGenre.keySet();
     }
-
-    /*
-     * Get an iterator over the list of Writers
-     *
-     * @return genres
-    */
 
     public Iterable<String> getWriters() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mEbookListByWriter.keySet();
     }
 
-    /**
-     * Get an iterator over a shuffled collection of all songs
-     */
     //TODO: remove shuffle
     public Iterable<MediaMetadataCompat> getShuffledMusic() {
         if (mCurrentState != State.INITIALIZED) {
@@ -133,12 +115,9 @@ public class MusicProvider {
         Collections.shuffle(shuffled);
         return shuffled;
     }
+    //endregion
 
     //region EBOOK_GETTERS
-    /**
-     * Get music tracks of the given genre
-     *
-     */
     public Iterable<String> getEbooksByGenre(String genre) {
         if (mCurrentState != State.INITIALIZED || !mEbookListByGenre.containsKey(genre)) {
             return Collections.emptyList();
@@ -146,9 +125,6 @@ public class MusicProvider {
         return mEbookListByGenre.get(genre);
     }
 
-    /**
-     * Get ebooks by a given writer
-     */
     public Iterable<String> getEbooksByWriter(String writer) {
         if (mCurrentState != State.INITIALIZED || !mEbookListByWriter.containsKey(writer)) {
             return Collections.emptyList();
@@ -156,9 +132,6 @@ public class MusicProvider {
         return mEbookListByWriter.get(writer);
     }
 
-    /**
-     * Get tracks of the given ebook
-     */
     public Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
         if (mCurrentState != State.INITIALIZED || !mEbookList.containsKey(ebook)) {
             return Collections.emptyList();
@@ -167,6 +140,7 @@ public class MusicProvider {
     }
     //endregion;
 
+    //region SEARCH_FUNCTIONS
     /**
      * Very basic implementation of a search that filter music tracks with title containing
      * the given query.
@@ -208,7 +182,7 @@ public class MusicProvider {
         }
         return result;
     }
-
+    //endregion
 
     /**
      * Return the MediaMetadataCompat for the given musicID.
@@ -338,7 +312,6 @@ public class MusicProvider {
             }
         }
     }
-    //endregion
 
     // Load MediaData from mSource
     private synchronized void retrieveMedia() {
@@ -367,9 +340,10 @@ public class MusicProvider {
             }
         }
     }
+    //endregion
 
 
-    // Hierarchy browser
+    //region Hierarchy browser
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
         List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
@@ -463,8 +437,9 @@ public class MusicProvider {
 
         return mediaItems;
     }
+    //endregion
 
-    //region ROOT_HANDLERS
+    //region BROWSABLE_ITEMS
     private MediaBrowserCompat.MediaItem createBrowsableMediaItem(
             String mediaId, String title, String subtitle, Uri iconUri) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()

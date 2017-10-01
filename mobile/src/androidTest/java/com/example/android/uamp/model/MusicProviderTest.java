@@ -81,8 +81,8 @@ public class MusicProviderTest {
     @Test
     public void testGetMusicsByGenre() throws Exception {
         int count = 0;
-        for (MediaMetadataCompat metadata: provider.getEbooksByGenre("Genre 1")) {
-            String genre = metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+        for (String metadata: provider.getEbooksByGenre("Genre 1")) {
+            String genre = metadata;
             assertEquals("Genre 1", genre);
             count++;
         }

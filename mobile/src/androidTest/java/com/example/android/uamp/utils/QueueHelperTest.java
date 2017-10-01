@@ -64,13 +64,13 @@ public class QueueHelperTest {
 
     @Test
     public void testGetPlayingQueueForSelectedPlayableMedia() throws Exception {
-        MediaMetadataCompat selectedMusic = provider.getEbooksByGenre("Genre 1").iterator().next();
-        String selectedGenre = selectedMusic.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+        String selectedMusic = provider.getEbooksByGenre("Genre 1").iterator().next();
+        String selectedGenre = selectedMusic;
 
         assertEquals("Genre 1", selectedGenre);
 
         String mediaId = MediaIDHelper.createMediaID(
-                selectedMusic.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID),
+                selectedMusic,
                 MediaIDHelper.MEDIA_ID_BY_GENRE, selectedGenre);
 
         List<MediaSessionCompat.QueueItem> queue = QueueHelper.getPlayingQueue(mediaId, provider);
