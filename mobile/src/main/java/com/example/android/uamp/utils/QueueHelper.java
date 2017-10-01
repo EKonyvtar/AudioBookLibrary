@@ -26,6 +26,7 @@ import com.example.android.uamp.model.MusicProvider;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_TRACKS_BY_SEARCH;
 
 /**
@@ -53,11 +54,12 @@ public class QueueHelper {
         LogHelper.d(TAG, "Creating playing queue for ", categoryType, ",  ", categoryValue);
 
         Iterable<MediaMetadataCompat> tracks = null;
-        // This sample only supports genre and by_search category types.
-        /*if (categoryType.equals(MEDIA_ID_BY_GENRE)) {
-            tracks = musicProvider.getEbooksByGenre(categoryValue);
-        } else*/
-        if (categoryType.equals(MEDIA_ID_TRACKS_BY_SEARCH)) {
+
+        if (categoryType.equals(MEDIA_ID_BY_EBOOK)) {
+            tracks = musicProvider.getTracksByEbook(categoryValue);
+        }
+
+        else if (categoryType.equals(MEDIA_ID_TRACKS_BY_SEARCH)) {
             tracks = musicProvider.searchMusicBySongTitle(categoryValue);
         }
 
