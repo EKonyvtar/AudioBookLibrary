@@ -31,6 +31,7 @@ import com.example.android.uamp.utils.MediaIDHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -38,6 +39,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
@@ -270,6 +272,7 @@ public class MusicProvider {
     private synchronized void buildAlbumList() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newAlbumList = new ConcurrentHashMap<>();
 
+        // Add tracks to ebook
         for (MutableMediaMetadata m : mTrackListById.values()) {
             String album = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
             List<MediaMetadataCompat> list = newAlbumList.get(album);
@@ -278,6 +281,19 @@ public class MusicProvider {
                 newAlbumList.put(album, list);
             }
             list.add(m.metadata);
+        }
+
+        //Sort Individual ebooks by track numbers
+        for (List<MediaMetadataCompat> album: newAlbumList.values()) {
+            //MediaMetadataCompat[] sortedOrder = album.toArray(new MediaMetadataCompat[album.size()]);
+            java.util.Collections.sort(album, new Comparator<MediaMetadataCompat>(){
+                @Override
+                public int compare(final MediaMetadataCompat lhs,MediaMetadataCompat rhs) {
+                    if (lhs.getLong(METADATA_KEY_TRACK_NUMBER) < rhs.getLong(METADATA_KEY_TRACK_NUMBER))
+                        return -1;
+                    return 1;
+                }
+            });
         }
         mEbookList = newAlbumList;
     }
