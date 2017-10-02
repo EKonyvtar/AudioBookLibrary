@@ -44,7 +44,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
     protected static final String CATALOG_URL =
-            "https://s3.amazonaws.com/murati/ekonyvtar_offline.json";
+            "https://s3.amazonaws.com/murati/ekonyvtar_remote.json";
 
     protected static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
