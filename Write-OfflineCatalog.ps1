@@ -6,7 +6,7 @@ param (
 
 $catalog = @()
 $audioBooks = Invoke-RestMethod $CatalogUrl |
-Select -First 2
+Select-Object -First 2
 
 foreach ($book in $audioBooks) {
 	$ebookObject = New-Object psobject -Property @{
@@ -28,7 +28,7 @@ foreach ($book in $audioBooks) {
 		$ebookObject.album = $book.fullTitle.Split(':')[1].Trim()
 		$ebookObject.artist = $book.fullTitle.Split(':')[0].Trim()
 	}
-	$trackUrl = "http://oszkapi-dev.azurewebsites.net/api/audiobooks/$($book.id)"
+	$trackUrl = "$CatalogUrl/$($book.id)"
 	$ebookObject.site = $trackUrl
 	$ebookObject
 
@@ -40,18 +40,13 @@ foreach ($book in $audioBooks) {
 		$trackObject.title = $t.title
 		$trackObject.source = $t.fileUrl
 		$trackObject.trackNumber = $trackNumber
-		$trackObject.totalTrackCount = $trackDeatils.tracks | Measure-Object | Select -Expand Count
+		$trackObject.totalTrackCount = $trackDeatils.tracks | Measure-Object | Select-Object -Expand Count
 		$catalog += $trackObject
 		$trackObject
 	}
-	#Read-Host "More?"
-	break;
 }
 
-$offline_catalog = New-object psobject -Property @{music=$catalog}
-#$offline_catalog
-
-$offline_catalog_json = $offline_catalog | ConvertTo-Json -Depth 2
+$offline_catalog_json = New-object psobject -Property @{music=$catalog} | ConvertTo-Json -Depth 2
 $offline_catalog_json
 
 Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
