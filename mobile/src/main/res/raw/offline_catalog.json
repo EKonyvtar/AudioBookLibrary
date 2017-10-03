@@ -1,54 +1,64 @@
-{
-  "music" : [
-  { "title" : "Hangos katalóguscédula",
-    "album" : "Ábel a rengetegben",
-    "artist" : "Tamási Áron",
-    "genre" : "Novella",
-    "source" : "http://mek.oszk.hu/02900/02965/mp3/952aa00.mp3",
-    "image" : "http://mek.oszk.hu/02900/02965/borito.jpg",
-    "trackNumber" : 1,
-    "totalTrackCount" : 5,
-    "duration" : 193,
-    "site" : ""
-  },{ "title" : "2. fejezet",
-    "album" : "Ábel a rengetegben",
-    "artist" : "Tamási Áron",
-    "genre" : "Novella",
-    "source" : "http://mek.oszk.hu/02900/02965/mp3/952af03.mp3",
-    "image" : "http://mek.oszk.hu/02900/02965/borito.jpg",
-    "trackNumber" : 3,
-    "totalTrackCount" : 5,
-    "duration" : 193,
-    "site" : ""
-  },{ "title" : "1. fejezet",
-    "album" : "Ábel a rengetegben",
-    "artist" : "Tamási Áron",
-    "genre" : "Novella",
-    "source" : "http://mek.oszk.hu/02900/02965/mp3/952af02.mp3",
-    "image" : "http://mek.oszk.hu/02900/02965/borito.jpg",
-    "trackNumber" : 2,
-    "totalTrackCount" : 5,
-    "duration" : 193,
-    "site" : ""
-  },{ "title" : "3. fejezet",
-    "album" : "Ábel a rengetegben",
-    "artist" : "Tamási Áron",
-    "genre" : "Novella",
-    "source" : "http://mek.oszk.hu/02900/02965/mp3/952af04.mp3",
-    "image" : "http://mek.oszk.hu/02900/02965/borito.jpg",
-    "trackNumber" : 4,
-    "totalTrackCount" : 5,
-    "duration" : 193,
-    "site" : ""
-  },{ "title" : "4. fejezet",
-    "album" : "Ábel a rengetegben",
-    "artist" : "Tamási Áron",
-    "genre" : "Novella",
-    "source" : "http://mek.oszk.hu/02900/02965/mp3/952af05.mp3",
-    "image" : "http://mek.oszk.hu/02900/02965/borito.jpg",
-    "trackNumber" : 5,
-    "totalTrackCount" : 5,
-    "duration" : 193,
-    "site" : ""
-  }
-]}
+﻿{
+  "music": [
+    {
+      "trackNumber": 1,
+      "source": "http://mek.oszk.hu/02900/02965/mp3/952aa00.mp3",
+      "artist": "Tamási Áron",
+      "title": "Hangos katalóguscédula",
+      "totalTrackCount": 5,
+      "duration": 200,
+      "image": "http://mek.oszk.hu/02900/02965/borito.jpg",
+      "site": "http://oszkapi-dev.azurewebsites.net/api/audiobooks/02965",
+      "genre": "Novella",
+      "album": "Ábel a rengetegben"
+    },
+    {
+      "trackNumber": 2,
+      "source": "http://mek.oszk.hu/02900/02965/mp3/952af01.mp3",
+      "artist": "Tamási Áron",
+      "title": "1. fejezet",
+      "totalTrackCount": 5,
+      "duration": 200,
+      "image": "http://mek.oszk.hu/02900/02965/borito.jpg",
+      "site": "http://oszkapi-dev.azurewebsites.net/api/audiobooks/02965",
+      "genre": "Novella",
+      "album": "Ábel a rengetegben"
+    },
+    {
+      "trackNumber": 3,
+      "source": "http://mek.oszk.hu/02900/02965/mp3/952af02.mp3",
+      "artist": "Tamási Áron",
+      "title": "2. fejezet",
+      "totalTrackCount": 5,
+      "duration": 200,
+      "image": "http://mek.oszk.hu/02900/02965/borito.jpg",
+      "site": "http://oszkapi-dev.azurewebsites.net/api/audiobooks/02965",
+      "genre": "Novella",
+      "album": "Ábel a rengetegben"
+    },
+    {
+      "trackNumber": 4,
+      "source": "http://mek.oszk.hu/02900/02965/mp3/952af03.mp3",
+      "artist": "Tamási Áron",
+      "title": "3. fejezet",
+      "totalTrackCount": 5,
+      "duration": 200,
+      "image": "http://mek.oszk.hu/02900/02965/borito.jpg",
+      "site": "http://oszkapi-dev.azurewebsites.net/api/audiobooks/02965",
+      "genre": "Novella",
+      "album": "Ábel a rengetegben"
+    },
+    {
+      "trackNumber": 5,
+      "source": "http://mek.oszk.hu/02900/02965/mp3/952af04.mp3",
+      "artist": "Tamási Áron",
+      "title": "4. fejezet",
+      "totalTrackCount": 5,
+      "duration": 200,
+      "image": "http://mek.oszk.hu/02900/02965/borito.jpg",
+      "site": "http://oszkapi-dev.azurewebsites.net/api/audiobooks/02965",
+      "genre": "Novella",
+      "album": "Ábel a rengetegben"
+    }
+  ]
+}

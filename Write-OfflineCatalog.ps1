@@ -1,11 +1,11 @@
 [CmdletBinding()]
 param (
-	$url = 'http://oszkapi-dev.azurewebsites.net/api/audiobooks',
-	$file = './source.json'
+	[string]$CatalogUrl = 'http://oszkapi-dev.azurewebsites.net/api/audiobooks',
+	[string]$File = './mobile/src/main/res/raw/offline_catalog.json'
 )
 
 $catalog = @()
-$audioBooks = Invoke-RestMethod $url |
+$audioBooks = Invoke-RestMethod $CatalogUrl |
 Select -First 2
 
 foreach ($book in $audioBooks) {
@@ -51,8 +51,8 @@ foreach ($book in $audioBooks) {
 $offline_catalog = New-object psobject -Property @{music=$catalog}
 #$offline_catalog
 
-$offline_catalog_json = $offline_catalog | ConvertTo-Json -Depth 3
+$offline_catalog_json = $offline_catalog | ConvertTo-Json -Depth 2
 $offline_catalog_json
 
-#Set-Content -Path $file -Value $offline_catalog_json -Force
+Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
 
