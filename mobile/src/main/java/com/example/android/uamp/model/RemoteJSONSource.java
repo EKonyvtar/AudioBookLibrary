@@ -68,8 +68,11 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
                 JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
 
                 if (jsonTracks != null) {
-                    for (int j = 0; j < jsonTracks.length(); j++)
-                        tracks.add(buildFromJSON(jsonTracks.getJSONObject(j), path));
+                    for (int j = 0; j < jsonTracks.length(); j++) {
+                        MediaMetadataCompat media = buildFromJSON(jsonTracks.getJSONObject(j), path);
+                        if (media != null)
+                            tracks.add(media);
+                    }
                 }
             }
             return tracks.iterator();
@@ -108,6 +111,15 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // the session metadata can be accessed by notification listeners. This is done in this
         // sample for convenience only.
         //noinspection ResourceType
+
+        // Skip faulty ones
+        if (writer == null || ebook == null  || title == null ||
+                writer.trim().length()* ebook.trim().length() * title.trim().length() == 0
+        ) {
+            LogHelper.e(TAG, "Error processing JSON: " + json.toString());
+            return null;
+        }
+
         return new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, id)
                 .putString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE, source)

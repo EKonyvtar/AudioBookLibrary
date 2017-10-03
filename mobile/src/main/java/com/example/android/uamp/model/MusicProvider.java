@@ -30,12 +30,15 @@ import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -104,7 +107,9 @@ public class MusicProvider {
 
     public Iterable<String> getWriters() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        return mEbookListByWriter.keySet();
+        TreeSet<String> sortedWriters = new TreeSet<String>();
+        sortedWriters.addAll(mEbookListByWriter.keySet());
+        return sortedWriters;
     }
 
     //TODO: remove shuffle
@@ -350,6 +355,8 @@ public class MusicProvider {
 
                 mCurrentState = State.INITIALIZED;
             }
+        } catch (Exception e) {
+            LogHelper.e(e.getMessage());
         } finally {
             if (mCurrentState != State.INITIALIZED) {
                 // Something bad happened, so we reset state to NON_INITIALIZED to allow
