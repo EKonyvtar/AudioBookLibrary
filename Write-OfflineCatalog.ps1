@@ -41,9 +41,18 @@ foreach ($book in $audioBooks) {
 		$trackObject.source = $t.fileUrl
 		$trackObject.trackNumber = $trackNumber
 		$trackObject.totalTrackCount = $trackDeatils.tracks | Measure-Object | Select -Expand Count
+		$catalog += $trackObject
 		$trackObject
 	}
-	Read-Host "More?"
+	#Read-Host "More?"
+	break;
 }
 
+$offline_catalog = New-object psobject -Property @{music=$catalog}
+#$offline_catalog
+
+$offline_catalog_json = $offline_catalog | ConvertTo-Json -Depth 3
+$offline_catalog_json
+
+#Set-Content -Path $file -Value $offline_catalog_json -Force
 
