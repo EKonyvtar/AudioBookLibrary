@@ -97,7 +97,9 @@ public class MusicProvider {
     //region BROWSABLE_ITEM GENERATORS
     public Iterable<String> getEbooks() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        return mEbookList.keySet();
+        TreeSet<String> sorted = new TreeSet<String>();
+        sorted.addAll(mEbookList.keySet());
+        return sorted;
     }
 
     public Iterable<String> getGenres() {
@@ -107,9 +109,9 @@ public class MusicProvider {
 
     public Iterable<String> getWriters() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sortedWriters = new TreeSet<String>();
-        sortedWriters.addAll(mEbookListByWriter.keySet());
-        return sortedWriters;
+        TreeSet<String> sorted = new TreeSet<String>();
+        sorted.addAll(mEbookListByWriter.keySet());
+        return sorted;
     }
 
     //TODO: remove shuffle
