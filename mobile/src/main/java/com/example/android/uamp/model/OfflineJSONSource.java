@@ -72,8 +72,11 @@ public class OfflineJSONSource extends RemoteJSONSource {
                 JSONArray jsonTracks = jsonObj.getJSONArray(super.JSON_MUSIC);
 
                 if (jsonTracks != null) {
-                    for (int j = 0; j < jsonTracks.length(); j++)
-                        tracks.add(super.buildFromJSON(jsonTracks.getJSONObject(j), path));
+                    for (int j = 0; j < jsonTracks.length(); j++) {
+                        MediaMetadataCompat media = buildFromJSON(jsonTracks.getJSONObject(j), path);
+                        if (media != null)
+                            tracks.add(media);
+                    }
                 }
             }
             return tracks.iterator();
