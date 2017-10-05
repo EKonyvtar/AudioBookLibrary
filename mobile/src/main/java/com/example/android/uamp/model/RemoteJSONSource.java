@@ -17,8 +17,6 @@
 package com.example.android.uamp.model;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.android.uamp.utils.LogHelper;
@@ -47,8 +45,8 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
             "https://s3.amazonaws.com/murati/ekonyvtar_remote.json";
 
     protected static final String JSON_MUSIC = "music";
-    private static final String JSON_TITLE = "title";
-    private static final String JSON_EBOOK = "album";
+    private static final String JSON_TRACK_TITLE = "title";
+    private static final String JSON_EBOOK_TITLE = "album";
     private static final String JSON_WRITER = "artist";
     private static final String JSON_GENRE = "genre";
     private static final String JSON_SOURCE = "source";
@@ -83,13 +81,16 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     }
 
     protected MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
-        String title = json.getString(JSON_TITLE);
-        String ebook = json.getString(JSON_EBOOK);
         String writer = json.getString(JSON_WRITER);
+        String ebook = json.getString(JSON_EBOOK_TITLE);
+
+        String title = json.getString(JSON_TRACK_TITLE);
+        int trackNumber = json.getInt(JSON_TRACK_NUMBER);
+
         String genre = json.getString(JSON_GENRE);
         String source = json.getString(JSON_SOURCE);
         String iconUrl = json.getString(JSON_IMAGE);
-        int trackNumber = json.getInt(JSON_TRACK_NUMBER);
+
         int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
         int duration = json.getInt(JSON_DURATION) * 1000; // ms
 
