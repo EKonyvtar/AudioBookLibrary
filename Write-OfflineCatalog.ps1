@@ -30,8 +30,9 @@ foreach ($book in $audioBooks) {
 	}
 	$trackUrl = "$CatalogUrl/$($book.id)"
 	$ebookObject.site = $trackUrl
-	$ebookObject
+	Write-Host "Processing $($book.fullTitle).." -ForegroundColor Magenta
 
+    $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
 	$trackNumber = 0
 	foreach ($t in $trackDeatils.tracks) {
@@ -41,13 +42,20 @@ foreach ($book in $audioBooks) {
 		$trackObject.source = $t.fileUrl
 		$trackObject.trackNumber = $trackNumber
 		$trackObject.totalTrackCount = $trackDeatils.tracks | Measure-Object | Select-Object -Expand Count
+
+        if ($t | Get-Member lengthTotalSeconds) {
+            $trackObject.duration = $t.lengthTotalSeconds
+        }
 		$catalog += $trackObject
 		$trackObject
+	}
+	if ($trackNumber -eq 0) {
+		Write-Error "No tracks found for $($t.title) on $trackUrl"
 	}
 }
 
 $offline_catalog_json = New-object psobject -Property @{music=$catalog} | ConvertTo-Json -Depth 2
 $offline_catalog_json
 
-Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
+Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding Unicode
 
