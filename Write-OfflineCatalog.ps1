@@ -60,5 +60,5 @@ foreach ($book in $audioBooks) {
 $offline_catalog_json = New-object psobject -Property @{music=$catalog} | ConvertTo-Json -Depth 2
 $offline_catalog_json
 
-Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding Unicode
+Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
 
