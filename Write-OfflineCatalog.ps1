@@ -31,6 +31,7 @@ foreach ($book in $audioBooks) {
 	$trackUrl = "$CatalogUrl/$($book.id)"
 	$ebookObject.site = $trackUrl
 	Write-Host "Processing $($book.fullTitle).." -ForegroundColor Magenta
+    Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
     $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
