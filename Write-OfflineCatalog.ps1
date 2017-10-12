@@ -4,6 +4,8 @@ param (
 	[string]$File = './mobile/src/main/res/raw/offline_catalog.json'
 )
 
+cd $PSScriptRoot
+
 $catalog = @()
 $audioBooks = Invoke-RestMethod $CatalogUrl |
 Select-Object -First 2
