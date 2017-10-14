@@ -102,25 +102,31 @@ public class MusicProvider {
         return sorted;
     }
 
-    public Collection<MediaBrowserCompat.MediaItem> getGenres2() {
+    public Collection<MediaBrowserCompat.MediaItem> getBrowsableCategory(
+            ConcurrentMap<String, List<String>> categoryList,
+            String mediaIdCategory,
+            Uri imageUri,
+            Resources resources)
+    {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sortedGenres = new TreeSet<String>();
-        sortedGenres.addAll(mEbookListByGenre.keySet());
+        TreeSet<String> sortedCategoryList = new TreeSet<String>();
+        sortedCategoryList.addAll(categoryList.keySet());
 
         List<MediaBrowserCompat.MediaItem> genreList = new ArrayList<MediaBrowserCompat.MediaItem>();
-        for (String genre:mEbookListByGenre.keySet()) {
+        for (String categoryName: categoryList.keySet()) {
             try {
                 MediaBrowserCompat.MediaItem browsableGenre = createBrowsableMediaItem(
-                        createMediaID(null, MEDIA_ID_BY_GENRE, genre),
-                        genre,
-                        String.format("%1$s titles", mEbookListByGenre.get(genre).size()), //TODO: change to resource
-                        Uri.EMPTY);
+                        createMediaID(null, mediaIdCategory, categoryName),
+                        categoryName,
+                        String.format(
+                                resources.getString(R.string.browse_title_count),
+                                String.valueOf(categoryList.get(categoryName).size())),
+                        imageUri);
                 genreList.add(browsableGenre);
             } catch (Exception e) {
                 //TODO: log
             }
         }
-
         return genreList;
     }
 
@@ -417,14 +423,14 @@ public class MusicProvider {
 
         // List all Genre Items
         else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
-//            for (String genre : getGenres()) {
-//                mediaItems.add(createBrowsableMediaItem(
-//                    createMediaID(null, MEDIA_ID_BY_GENRE, genre),
-//                    genre,
-//                    "", //resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
-//                    Uri.EMPTY));
-//            }
-            mediaItems.addAll(getGenres2());
+            mediaItems.addAll(
+                    getBrowsableCategory(
+                            mEbookListByGenre,
+                            MEDIA_ID_BY_GENRE,
+                            Uri.EMPTY,
+                            resources
+                    )
+            );
         }
         // List ebooks in a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
