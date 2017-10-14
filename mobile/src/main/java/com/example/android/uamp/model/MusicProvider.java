@@ -293,19 +293,24 @@ public class MusicProvider {
 
         for (MutableMediaMetadata m : mTrackListById.values()) {
             // Get Key
-            String metaValue = m.metadata.getString(metadata);
+            String metaValueString = m.metadata.getString(metadata);
 
-            // Get List by Key
-            List<String> list = newListByMetadata.get(metaValue);
-            if (list == null) {
-                list = new ArrayList<>();
-                newListByMetadata.put(metaValue, list);
-            }
+            for (String mv :metaValueString.split(",")) {
+                //TODO: Client resource translations
+                //TODO: Capitalize
+                String key = mv.replaceAll("\\(.*\\)","");
+                // Get List by Key
+                List<String> list = newListByMetadata.get(key);
+                if (list == null) {
+                    list = new ArrayList<>();
+                    newListByMetadata.put(key, list);
+                }
 
-            // Add ebook by key
-            String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-            if (!list.contains(ebook)) {
-                list.add(ebook);
+                // Add ebook by key
+                String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+                if (!list.contains(ebook)) {
+                    list.add(ebook);
+                }
             }
         }
 
