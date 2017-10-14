@@ -113,7 +113,7 @@ public class MusicProvider {
         sortedCategoryList.addAll(categoryMap.keySet());
 
         List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
-        for (String categoryName: categoryMap.keySet()) {
+        for (String categoryName: sortedCategoryList) {
             try {
                 MediaBrowserCompat.MediaItem browsableCategory = createBrowsableMediaItem(
                         createMediaID(null, mediaIdCategory, categoryName),
@@ -448,7 +448,7 @@ public class MusicProvider {
                     )
             );
         }
-        
+
         // Open a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
             String writer = MediaIDHelper.getHierarchy(mediaId)[1];
