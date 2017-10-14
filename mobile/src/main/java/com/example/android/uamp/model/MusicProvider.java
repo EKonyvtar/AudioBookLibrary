@@ -362,19 +362,19 @@ public class MusicProvider {
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
             // Add Genres
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_GENRE,
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
 
             // Add writers
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_WRITER,
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
                     resources.getString(R.string.browse_writer),
                     resources.getString(R.string.browse_writer_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
 
             // Add EBooks
-            mediaItems.add(createBrowsableMediaItem(MEDIA_ID_BY_EBOOK,
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                     resources.getString(R.string.browse_ebook),
                     resources.getString(R.string.browse_ebook_subtitle),
                     Uri.parse("android.resource://com.example.android.uamp/drawable/ic_by_genre")));
@@ -383,7 +383,7 @@ public class MusicProvider {
         // List all Genre Items
         else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
             mediaItems.addAll(
-                    createBrowsableCategoryList(
+                    createGroupList(
                             mEbookListByGenre,
                             MEDIA_ID_BY_GENRE,
                             Uri.EMPTY,
@@ -395,7 +395,7 @@ public class MusicProvider {
         else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
             String genre = MediaIDHelper.getHierarchy(mediaId)[1];
             for (String ebook : getEbooksByGenre(genre)) {
-                mediaItems.add(createBrowsableMediaItem(
+                mediaItems.add(createGroupItem(
                     createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
                     ebook,
                     resources.getString(R.string.browse_track_count, genre),
@@ -406,7 +406,7 @@ public class MusicProvider {
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
             mediaItems.addAll(
-                    createBrowsableCategoryList(
+                    createGroupList(
                             mEbookListByWriter,
                             MEDIA_ID_BY_WRITER,
                             Uri.EMPTY,
@@ -419,7 +419,7 @@ public class MusicProvider {
         else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
             String writer = MediaIDHelper.getHierarchy(mediaId)[1];
             for (String ebook: getEbooksByWriter(writer)) {
-                mediaItems.add(createBrowsableMediaItem(
+                mediaItems.add(createGroupItem(
                     createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
                     ebook,
                     resources.getString(R.string.browse_track_count, writer),
@@ -434,7 +434,7 @@ public class MusicProvider {
             TreeSet<String> sortedEbookTitles = new TreeSet<String>();
             sortedEbookTitles.addAll(mEbookList.keySet());
             for (String ebook : sortedEbookTitles) {
-                mediaItems.add(createBrowsableEbookItem(ebook, resources));
+                mediaItems.add(createEbookItem(ebook, resources));
             }
         }
 
@@ -442,7 +442,7 @@ public class MusicProvider {
         else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
             String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
             for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
-                mediaItems.add(createMediaItem(metadata));
+                mediaItems.add(createTrackItem(metadata));
             }
         }
 
@@ -456,7 +456,7 @@ public class MusicProvider {
     //endregion
 
     //region BROWSABLE_ITEMS
-    private Collection<MediaBrowserCompat.MediaItem> createBrowsableCategoryList(
+    private Collection<MediaBrowserCompat.MediaItem> createGroupList(
             ConcurrentMap<String, List<String>> categoryMap,
             String mediaIdCategory,
             Uri imageUri,
@@ -469,7 +469,7 @@ public class MusicProvider {
         List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
         for (String categoryName: sortedCategoryList) {
             try {
-                MediaBrowserCompat.MediaItem browsableCategory = createBrowsableMediaItem(
+                MediaBrowserCompat.MediaItem browsableCategory = createGroupItem(
                         createMediaID(null, mediaIdCategory, categoryName),
                         categoryName,
                         String.format(
@@ -484,7 +484,7 @@ public class MusicProvider {
         return categoryList;
     }
 
-    private MediaBrowserCompat.MediaItem createBrowsableMediaItem(
+    private MediaBrowserCompat.MediaItem createGroupItem(
             String mediaId, String title, String subtitle, Uri iconUri) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(mediaId)
@@ -496,7 +496,7 @@ public class MusicProvider {
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
 
-    private MediaBrowserCompat.MediaItem createBrowsableEbookItem(
+    private MediaBrowserCompat.MediaItem createEbookItem(
             String ebook,
             Resources resources)
     {
@@ -512,7 +512,7 @@ public class MusicProvider {
     }
     //endregion;
 
-    private MediaBrowserCompat.MediaItem createMediaItem(MediaMetadataCompat metadata) {
+    private MediaBrowserCompat.MediaItem createTrackItem(MediaMetadataCompat metadata) {
         // Since mediaMetadata fields are immutable, we need to create a copy, so we
         // can set a hierarchy-aware mediaID. We will need to know the media hierarchy
         // when we get a onPlayFromMusicID call, so we can create the proper queue based
