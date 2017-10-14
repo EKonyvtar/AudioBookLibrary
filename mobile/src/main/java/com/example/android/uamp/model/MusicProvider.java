@@ -16,6 +16,7 @@
 
 package com.example.android.uamp.model;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -402,6 +403,14 @@ public class MusicProvider {
 
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
+            int writerIcon = R.drawable.ic_by_genre;
+            /*
+            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                                    "://" + resources.getResourcePackageName(writerIcon)
+                                    + '/' + resources.getResourceTypeName(writerIcon)
+                                    + '/' + resources.getResourceEntryName(writerIcon))
+             */
+
             mediaItems.addAll(
                     createGroupList(
                             mEbookListByWriter,
@@ -496,6 +505,8 @@ public class MusicProvider {
                 .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
                 .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
+                //TODO: Fix Album art
+                .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
