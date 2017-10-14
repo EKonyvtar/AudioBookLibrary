@@ -24,7 +24,6 @@ import android.os.AsyncTask;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.util.Log;
 
 import com.example.android.uamp.R;
 import com.example.android.uamp.utils.LogHelper;
@@ -59,15 +58,16 @@ public class MusicProvider {
 
     private MusicProviderSource mSource;
 
-    // Categorized caches for music track data:
+    // Categorized caches for ebook track data:
     private final ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
+    // Ebook cache
     private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+
+    // Category caches
     private ConcurrentMap<String, List<String>> mEbookListByGenre;
     private ConcurrentMap<String, List<String>> mEbookListByWriter;
-
-    //TODO: Favourite albums too
-    private final Set<String> mFavoriteTracks;
+    private final Set<String> mFavoriteEbooks; //TODO: Favourite ebooks too
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
@@ -90,7 +90,7 @@ public class MusicProvider {
         mEbookListByGenre = new ConcurrentHashMap<>();
         mEbookListByWriter = new ConcurrentHashMap<>();
 
-        mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
+        mFavoriteEbooks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
 
 
@@ -103,38 +103,31 @@ public class MusicProvider {
     }
 
     public Collection<MediaBrowserCompat.MediaItem> getBrowsableCategory(
-            ConcurrentMap<String, List<String>> categoryList,
+            ConcurrentMap<String, List<String>> categoryMap,
             String mediaIdCategory,
             Uri imageUri,
             Resources resources)
     {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         TreeSet<String> sortedCategoryList = new TreeSet<String>();
-        sortedCategoryList.addAll(categoryList.keySet());
+        sortedCategoryList.addAll(categoryMap.keySet());
 
-        List<MediaBrowserCompat.MediaItem> genreList = new ArrayList<MediaBrowserCompat.MediaItem>();
-        for (String categoryName: categoryList.keySet()) {
+        List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
+        for (String categoryName: categoryMap.keySet()) {
             try {
-                MediaBrowserCompat.MediaItem browsableGenre = createBrowsableMediaItem(
+                MediaBrowserCompat.MediaItem browsableCategory = createBrowsableMediaItem(
                         createMediaID(null, mediaIdCategory, categoryName),
                         categoryName,
                         String.format(
                                 resources.getString(R.string.browse_title_count),
-                                String.valueOf(categoryList.get(categoryName).size())),
+                                String.valueOf(categoryMap.get(categoryName).size())),
                         imageUri);
-                genreList.add(browsableGenre);
+                categoryList.add(browsableCategory);
             } catch (Exception e) {
                 //TODO: log
             }
         }
-        return genreList;
-    }
-
-    public Iterable<String> getWriters() {
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sorted = new TreeSet<String>();
-        sorted.addAll(mEbookListByWriter.keySet());
-        return sorted;
+        return categoryList;
     }
 
     //TODO: remove shuffle
@@ -253,9 +246,9 @@ public class MusicProvider {
 
     public void setFavorite(String musicId, boolean favorite) {
         if (favorite) {
-            mFavoriteTracks.add(musicId);
+            mFavoriteEbooks.add(musicId);
         } else {
-            mFavoriteTracks.remove(musicId);
+            mFavoriteEbooks.remove(musicId);
         }
     }
 
@@ -264,7 +257,7 @@ public class MusicProvider {
     }
 
     public boolean isFavorite(String musicId) {
-        return mFavoriteTracks.contains(musicId);
+        return mFavoriteEbooks.contains(musicId);
     }
 
     /**
@@ -446,14 +439,16 @@ public class MusicProvider {
 
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            for (String writer : getWriters()) {
-                mediaItems.add(createBrowsableMediaItem(
-                    createMediaID(null, MEDIA_ID_BY_WRITER, writer),
-                    writer,
-                    resources.getString(R.string.browse_track_count, writer),
-                    Uri.EMPTY));
-            }
+            mediaItems.addAll(
+                    getBrowsableCategory(
+                            mEbookListByWriter,
+                            MEDIA_ID_BY_WRITER,
+                            Uri.EMPTY,
+                            resources
+                    )
+            );
         }
+        
         // Open a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
             String writer = MediaIDHelper.getHierarchy(mediaId)[1];
