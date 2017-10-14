@@ -356,6 +356,8 @@ public class MusicProvider {
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
         List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+
         if (!MediaIDHelper.isBrowseable(mediaId)) {
             return mediaItems;
         }
@@ -394,13 +396,8 @@ public class MusicProvider {
         // List ebooks in a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
             String genre = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook : getEbooksByGenre(genre)) {
-                mediaItems.add(createGroupItem(
-                    createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
-                    ebook,
-                    resources.getString(R.string.browse_track_count, genre),
-                    Uri.EMPTY));
-            }
+            for (String ebook : getEbooksByGenre(genre))
+                mediaItems.add(createEbookItem(ebook, resources));
         }
 
         // List Writers
@@ -418,19 +415,12 @@ public class MusicProvider {
         // Open a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
             String writer = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook: getEbooksByWriter(writer)) {
-                mediaItems.add(createGroupItem(
-                    createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
-                    ebook,
-                    resources.getString(R.string.browse_track_count, writer),
-                    Uri.EMPTY));
-            }
+            for (String ebook: getEbooksByWriter(writer))
+                mediaItems.add(createEbookItem(ebook, resources));
         }
-
 
         // List all EBooks Items
         else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
-            if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
             TreeSet<String> sortedEbookTitles = new TreeSet<String>();
             sortedEbookTitles.addAll(mEbookList.keySet());
             for (String ebook : sortedEbookTitles) {

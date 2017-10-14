@@ -31,7 +31,7 @@
     <string name="browse_ebook_subtitle">Browse all titles</string>
 
     <string name="browse_track_count">%1$s tracks</string>
-    <string name="browse_title_count">%1$s titles</string>
+    <string name="browse_title_count">%1$s books</string>
 
     <string name="random_queue_title">Random titles</string>
     <string name="error_no_connection">Cannot connect to server. Please, check your Internet connectivity.</string>
