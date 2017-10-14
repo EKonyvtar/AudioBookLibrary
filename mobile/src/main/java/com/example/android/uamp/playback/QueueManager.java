@@ -139,7 +139,7 @@ public class QueueManager {
         }
         if (!canReuseQueue) {
             //TODO: fix to ebook title
-            String queueTitle = mResources.getString(R.string.browse_musics_by_genre_subtitle,
+            String queueTitle = mResources.getString(R.string.browse_track_count,
                     MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaId));
             //TODO: fix queue clear for new ebooks
             setCurrentQueue(queueTitle,
