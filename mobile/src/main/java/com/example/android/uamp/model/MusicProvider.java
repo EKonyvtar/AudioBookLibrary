@@ -95,40 +95,6 @@ public class MusicProvider {
 
 
     //region BROWSABLE_ITEM GENERATORS
-    public Iterable<String> getEbooks() {
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sorted = new TreeSet<String>();
-        sorted.addAll(mEbookList.keySet());
-        return sorted;
-    }
-
-    public Collection<MediaBrowserCompat.MediaItem> getBrowsableCategory(
-            ConcurrentMap<String, List<String>> categoryMap,
-            String mediaIdCategory,
-            Uri imageUri,
-            Resources resources)
-    {
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sortedCategoryList = new TreeSet<String>();
-        sortedCategoryList.addAll(categoryMap.keySet());
-
-        List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
-        for (String categoryName: sortedCategoryList) {
-            try {
-                MediaBrowserCompat.MediaItem browsableCategory = createBrowsableMediaItem(
-                        createMediaID(null, mediaIdCategory, categoryName),
-                        categoryName,
-                        String.format(
-                                resources.getString(R.string.browse_title_count),
-                                String.valueOf(categoryMap.get(categoryName).size())),
-                        imageUri);
-                categoryList.add(browsableCategory);
-            } catch (Exception e) {
-                //TODO: log
-            }
-        }
-        return categoryList;
-    }
 
     //TODO: remove shuffle
     public Iterable<MediaMetadataCompat> getShuffledMusic() {
@@ -417,7 +383,7 @@ public class MusicProvider {
         // List all Genre Items
         else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
             mediaItems.addAll(
-                    getBrowsableCategory(
+                    createBrowsableCategoryList(
                             mEbookListByGenre,
                             MEDIA_ID_BY_GENRE,
                             Uri.EMPTY,
@@ -440,7 +406,7 @@ public class MusicProvider {
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
             mediaItems.addAll(
-                    getBrowsableCategory(
+                    createBrowsableCategoryList(
                             mEbookListByWriter,
                             MEDIA_ID_BY_WRITER,
                             Uri.EMPTY,
@@ -464,11 +430,15 @@ public class MusicProvider {
 
         // List all EBooks Items
         else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
-            for (String ebook : getEbooks()) {
+            if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+            TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+            sortedEbookTitles.addAll(mEbookList.keySet());
+            for (String ebook : sortedEbookTitles) {
                 mediaItems.add(createBrowsableEbookItem(ebook, resources));
             }
         }
-        // Open a specific Ebook
+
+        // Open a specific Ebook for direct play
         else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
             String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
             for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
@@ -486,6 +456,34 @@ public class MusicProvider {
     //endregion
 
     //region BROWSABLE_ITEMS
+    private Collection<MediaBrowserCompat.MediaItem> createBrowsableCategoryList(
+            ConcurrentMap<String, List<String>> categoryMap,
+            String mediaIdCategory,
+            Uri imageUri,
+            Resources resources)
+    {
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+        TreeSet<String> sortedCategoryList = new TreeSet<String>();
+        sortedCategoryList.addAll(categoryMap.keySet());
+
+        List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
+        for (String categoryName: sortedCategoryList) {
+            try {
+                MediaBrowserCompat.MediaItem browsableCategory = createBrowsableMediaItem(
+                        createMediaID(null, mediaIdCategory, categoryName),
+                        categoryName,
+                        String.format(
+                                resources.getString(R.string.browse_title_count),
+                                String.valueOf(categoryMap.get(categoryName).size())),
+                        imageUri);
+                categoryList.add(browsableCategory);
+            } catch (Exception e) {
+                //TODO: log
+            }
+        }
+        return categoryList;
+    }
+
     private MediaBrowserCompat.MediaItem createBrowsableMediaItem(
             String mediaId, String title, String subtitle, Uri iconUri) {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
@@ -498,13 +496,16 @@ public class MusicProvider {
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
 
-    private MediaBrowserCompat.MediaItem createBrowsableEbookItem(String ebook,
-                                                                          Resources resources) {
+    private MediaBrowserCompat.MediaItem createBrowsableEbookItem(
+            String ebook,
+            Resources resources)
+    {
+        MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
+
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
-                .setSubtitle(resources.getString(
-                        R.string.browse_track_count, ebook)) //TODO: add Writer
+                .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
