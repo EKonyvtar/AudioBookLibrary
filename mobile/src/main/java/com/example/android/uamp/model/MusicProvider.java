@@ -102,11 +102,6 @@ public class MusicProvider {
         return sorted;
     }
 
-    public Iterable<String> getGenres() {
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        return mEbookListByGenre.keySet();
-    }
-
     public Collection<MediaBrowserCompat.MediaItem> getGenres2() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         TreeSet<String> sortedGenres = new TreeSet<String>();
