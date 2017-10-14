@@ -17,6 +17,7 @@ package com.example.android.uamp.playback;
 
 import android.support.annotation.NonNull;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.test.mock.MockResources;
@@ -76,6 +77,7 @@ public class QueueManagerTest {
             public String getString(int id) throws NotFoundException {
                 return "";
             }
+
             @NonNull
             @Override
             public String getString(int id, Object... formatArgs) throws NotFoundException {
@@ -109,30 +111,6 @@ public class QueueManagerTest {
                     }
                 });
     }
-
-    @Test
-    public void testIsSameBrowsingCategory() throws Exception {
-        QueueManager queueManager = createQueueManagerWithValidation(null, -1, null);
-
-        Iterator<String> genres = provider.getGenres().iterator();
-        String genre1 = genres.next();
-        String genre2 = genres.next();
-        List<MediaSessionCompat.QueueItem> queueGenre1 = QueueHelper.getPlayingQueue(
-                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_GENRE, genre1),
-                provider);
-        List<MediaSessionCompat.QueueItem> queueGenre2 = QueueHelper.getPlayingQueue(
-                MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_GENRE, genre2),
-                provider);
-
-        // set the current queue
-        queueManager.setCurrentQueue("Queue genre 1", queueGenre1);
-
-        // the current music cannot be of same browsing category as one with genre 2
-        assertFalse(queueManager.isSameBrowsingCategory(queueGenre2.get(0).getDescription().getMediaId()));
-
-        // the current music needs to be of same browsing category as one with genre 1
-        assertTrue(queueManager.isSameBrowsingCategory(queueGenre1.get(0).getDescription().getMediaId()));
-   }
 
     @Test
     public void testSetValidQueueItem() throws Exception {
@@ -239,42 +217,6 @@ public class QueueManagerTest {
         for (int i=0; i < queueManager.getCurrentQueueSize(); i++) {
             MediaSessionCompat.QueueItem item = queueManager.getCurrentMusic();
             assertTrue(item.getDescription().getTitle().toString().contains("Romantic"));
-            queueManager.skipQueuePosition(1);
-        }
-    }
-
-    @Test
-    public void testSetQueueFromMusic() throws Exception {
-        QueueManager queueManager = createQueueManagerWithValidation(null, -1, null);
-        // get the first music of the first genre and build a hierarchy-aware version of its
-        // mediaId
-        String genre = provider.getGenres().iterator().next();
-        String metadata = provider.getEbooksByGenre(genre).iterator().next();
-        String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
-                metadata,
-                genre);
-
-        // set a queue from the hierarchyAwareMediaID. It should contain all music with the same
-        // genre
-        queueManager.setQueueFromMusic(hierarchyAwareMediaID);
-
-        // count all songs with the same genre
-        int count = 0;
-        for (String m: provider.getEbooksByGenre(genre)) {
-            count++;
-        }
-
-        // check if size matches
-        assertEquals(count, queueManager.getCurrentQueueSize());
-
-        // Now check if all songs in current queue have the expected genre:
-        for (int i=0; i < queueManager.getCurrentQueueSize(); i++) {
-            MediaSessionCompat.QueueItem item = queueManager.getCurrentMusic();
-            String musicId = MediaIDHelper.extractMusicIDFromMediaID(
-                    item.getDescription().getMediaId());
-            String itemGenre = provider.getMusic(musicId).getString(
-                    MediaMetadataCompat.METADATA_KEY_GENRE);
-            assertEquals(genre, itemGenre);
             queueManager.skipQueuePosition(1);
         }
     }

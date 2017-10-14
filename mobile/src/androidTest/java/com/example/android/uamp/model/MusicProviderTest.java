@@ -67,10 +67,10 @@ public class MusicProviderTest {
 
     @Test
     public void testGetGenres() throws Exception {
-        Iterable<String> genres = provider.getGenres();
+        Iterable<MediaBrowserCompat.MediaItem> genres = provider.getGenres2();
         ArrayList<String> list = new ArrayList<>();
-        for (String genre: genres) {
-            list.add(genre);
+        for (MediaBrowserCompat.MediaItem genre: genres) {
+            list.add(genre.toString());
         }
         assertEquals(2, list.size());
 
@@ -202,9 +202,10 @@ public class MusicProviderTest {
 
         // test level 2 (list of genres)
         int genreCount = 0;
-        for (String ignored : provider.getGenres()) {
+        for (MediaBrowserCompat.MediaItem ignored : provider.getGenres2()) {
             genreCount++;
         }
+
         List<MediaBrowserCompat.MediaItem> level2 = provider.getChildren(
                 level1.get(0).getMediaId(), resources);
         assertEquals(genreCount, level2.size());
