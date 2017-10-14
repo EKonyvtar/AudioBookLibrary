@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
+import android.util.Log;
 
 import com.example.android.uamp.R;
 import com.example.android.uamp.utils.LogHelper;
@@ -37,7 +38,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -105,6 +105,30 @@ public class MusicProvider {
     public Iterable<String> getGenres() {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
         return mEbookListByGenre.keySet();
+    }
+
+    public Collection<MediaBrowserCompat.MediaItem> getGenres2() {
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+        TreeSet<String> sortedGenres = new TreeSet<String>();
+        sortedGenres.addAll(mEbookListByGenre.keySet());
+
+        List<MediaBrowserCompat.MediaItem> genreList = new ArrayList<MediaBrowserCompat.MediaItem>();
+
+        //TODO validate sorting
+        for (String genre:mEbookListByGenre.keySet()) {
+            try {
+                MediaBrowserCompat.MediaItem browsableGenre = createBrowsableMediaItem(
+                        createMediaID(null, MEDIA_ID_BY_GENRE, genre),
+                        genre,
+                        String.format("%1$s titles", mEbookListByGenre.get(genre).size()), //TODO: change to resource
+                        Uri.EMPTY);
+                genreList.add(browsableGenre);
+            } catch (Exception e) {
+                //TODO: log
+            }
+        }
+
+        return genreList;
     }
 
     public Iterable<String> getWriters() {
@@ -400,13 +424,14 @@ public class MusicProvider {
 
         // List all Genre Items
         else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
-            for (String genre : getGenres()) {
-                mediaItems.add(createBrowsableMediaItem(
-                    createMediaID(null, MEDIA_ID_BY_GENRE, genre),
-                    genre,
-                    resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
-                    Uri.EMPTY));
-            }
+//            for (String genre : getGenres()) {
+//                mediaItems.add(createBrowsableMediaItem(
+//                    createMediaID(null, MEDIA_ID_BY_GENRE, genre),
+//                    genre,
+//                    "", //resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
+//                    Uri.EMPTY));
+//            }
+            mediaItems.addAll(getGenres2());
         }
         // List ebooks in a specific Genre
         else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
@@ -415,7 +440,7 @@ public class MusicProvider {
                 mediaItems.add(createBrowsableMediaItem(
                     createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
                     ebook,
-                    resources.getString(R.string.browse_musics_by_genre_subtitle, genre),
+                    resources.getString(R.string.browse_track_count, genre),
                     Uri.EMPTY));
             }
         }
@@ -426,7 +451,7 @@ public class MusicProvider {
                 mediaItems.add(createBrowsableMediaItem(
                     createMediaID(null, MEDIA_ID_BY_WRITER, writer),
                     writer,
-                    resources.getString(R.string.browse_musics_by_genre_subtitle, writer),
+                    resources.getString(R.string.browse_track_count, writer),
                     Uri.EMPTY));
             }
         }
@@ -437,7 +462,7 @@ public class MusicProvider {
                 mediaItems.add(createBrowsableMediaItem(
                     createMediaID(null, MEDIA_ID_BY_EBOOK, ebook),
                     ebook,
-                    resources.getString(R.string.browse_musics_by_genre_subtitle, writer),
+                    resources.getString(R.string.browse_track_count, writer),
                     Uri.EMPTY));
             }
         }
@@ -485,7 +510,7 @@ public class MusicProvider {
                 .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
                 .setSubtitle(resources.getString(
-                        R.string.browse_musics_by_genre_subtitle, ebook)) //TODO: add Writer
+                        R.string.browse_track_count, ebook)) //TODO: add Writer
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);

@@ -18,6 +18,7 @@
 
     <string name="app_name">E-Könyvtár Audio</string>
     <string name="favorite">Favorite</string>
+
     <string name="error_no_metadata">Unable to retrieve metadata</string>
 
     <string name="browse_genres">Genres</string>
@@ -29,7 +30,9 @@
     <string name="browse_ebook">Alphabetical</string>
     <string name="browse_ebook_subtitle">Browse all titles</string>
 
-    <string name="browse_musics_by_genre_subtitle">%1$s tracks</string>
+    <string name="browse_track_count">%1$s tracks</string>
+    <string name="browse_title_count">%1$s titles</string>
+
     <string name="random_queue_title">Random titles</string>
     <string name="error_no_connection">Cannot connect to server. Please, check your Internet connectivity.</string>
     <string name="error_loading_media">Error Loading Media</string>
