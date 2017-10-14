@@ -108,8 +108,6 @@ public class MusicProvider {
         sortedGenres.addAll(mEbookListByGenre.keySet());
 
         List<MediaBrowserCompat.MediaItem> genreList = new ArrayList<MediaBrowserCompat.MediaItem>();
-
-        //TODO validate sorting
         for (String genre:mEbookListByGenre.keySet()) {
             try {
                 MediaBrowserCompat.MediaItem browsableGenre = createBrowsableMediaItem(
