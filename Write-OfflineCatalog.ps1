@@ -20,7 +20,7 @@ foreach ($book in $audioBooks) {
 		source=''
 		trackNumber=0
 		totalTrackCount=0
-		duration=200
+		duration=0
 		site=''
 	}
 
@@ -35,8 +35,16 @@ foreach ($book in $audioBooks) {
 	Write-Host "Processing $($book.fullTitle).." -ForegroundColor Magenta
     Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
+    # Get Audiobook details
     $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
+
+    # Override Genre
+    if ($trackDeatils | Get-Member type) {
+        $ebookObject.genre = [string]::Join(',',($trackDeatils.type | where { $_ -notmatch 'hang'}))
+    }
+
+    # Populate tracks
 	$trackNumber = 0
 	foreach ($t in $trackDeatils.tracks) {
 		$trackNumber++
@@ -49,6 +57,7 @@ foreach ($book in $audioBooks) {
         if ($t | Get-Member lengthTotalSeconds) {
             $trackObject.duration = $t.lengthTotalSeconds
         }
+
 		$catalog += $trackObject
 		$trackObject
 	}
