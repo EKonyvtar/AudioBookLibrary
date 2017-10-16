@@ -39,6 +39,9 @@ foreach ($book in $audioBooks) {
     $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
 
+    # Override Author
+    if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
+
     # Override Genre
     if ($trackDeatils | Get-Member type) {
         $ebookObject.genre = [string]::Join(',',($trackDeatils.type | where { $_ -notmatch 'hang'}))
