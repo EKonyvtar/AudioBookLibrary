@@ -296,7 +296,6 @@ public class MusicProvider {
 
             for (String mv :metaValueString.split(",")) {
                 //TODO: Client resource translations
-                //TODO: Capitalize
                 String key = mv.replaceAll("\\(.*\\)","");
                 // Get List by Key
                 List<String> list = newListByMetadata.get(key);
