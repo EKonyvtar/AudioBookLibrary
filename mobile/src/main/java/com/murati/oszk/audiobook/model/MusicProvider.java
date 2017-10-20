@@ -28,6 +28,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.TextHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -297,6 +298,7 @@ public class MusicProvider {
             for (String mv :metaValueString.split(",")) {
                 //TODO: Client resource translations
                 String key = mv.replaceAll("\\(.*\\)","");
+                key = TextHelper.Capitalize(key);
                 // Get List by Key
                 List<String> list = newListByMetadata.get(key);
                 if (list == null) {
