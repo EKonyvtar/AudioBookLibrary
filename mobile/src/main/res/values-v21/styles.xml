@@ -17,9 +17,9 @@
         </style>
 
         <style name="UAmpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-                <item name="colorPrimary">#ffff5722</item>
-                <item name="colorPrimaryDark">#ffbf360c</item>
-                <item name="colorAccent">#ffff5722</item>
+                <item name="colorPrimary">#BE0224</item>
+                <item name="colorPrimaryDark">#A40123</item>
+                <item name="colorAccent">#C00035</item>
                 <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
                 <item name="android:statusBarColor">@android:color/transparent</item>
                 <item name="android:windowDrawsSystemBarBackgrounds">true</item>
