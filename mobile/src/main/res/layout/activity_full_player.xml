@@ -21,19 +21,21 @@ limitations under the License.
     android:background="@android:color/black"
     android:fitsSystemWindows="true">
 
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/background_image_str" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/fullscreen_bg_gradient" >
+
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="180dp"
+            android:contentDescription="@string/background_image_str"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/line1"
