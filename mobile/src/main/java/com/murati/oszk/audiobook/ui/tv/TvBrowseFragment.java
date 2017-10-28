@@ -32,13 +32,11 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.murati.oszk.audiobook.R;
-import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.utils.LogHelper;
-import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.QueueHelper;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -61,7 +59,7 @@ import static android.support.v4.media.MediaBrowserCompat.MediaItem;
  * it is not the same.
  * <p/>
  * <p/>
- * It uses a {@link android.support.v4.media.MediaBrowserCompat} to connect to the {@link MusicService}.
+ * It uses a {@link android.support.v4.media.MediaBrowserCompat} to connect to the {@link com.murati.oszk.audiobook.MusicService}.
  * Once connected, the fragment subscribes to get the children of level 1 and then, for each
  * children, it adds a ListRow and subscribes for its children, which, when received, are
  * added to the ListRow. These items (like "Rock"), when clicked, will open a
@@ -88,7 +86,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
         @Override
         public void onMetadataChanged(MediaMetadataCompat metadata) {
             if (metadata != null) {
-                MediaControllerCompat mediaController = getActivity().getSupportMediaController();
+                MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
                 long activeQueueId;
                 if (mediaController.getPlaybackState() == null) {
                     activeQueueId = MediaSessionCompat.QueueItem.UNKNOWN_ID;
@@ -103,7 +101,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
         @Override
         public void onQueueChanged(List<MediaSessionCompat.QueueItem> queue) {
             // queue has changed somehow
-            MediaControllerCompat mediaController = getActivity().getSupportMediaController();
+            MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
 
             long activeQueueId;
             if (mediaController.getPlaybackState() == null) {
@@ -117,19 +115,21 @@ public class TvBrowseFragment extends BrowseSupportFragment {
     };
 
     private void updateNowPlayingList(List<MediaSessionCompat.QueueItem> queue, long activeQueueId) {
-        mListRowAdapter.clear();
-        if (activeQueueId != MediaSessionCompat.QueueItem.UNKNOWN_ID) {
-            Iterator<MediaSessionCompat.QueueItem> iterator = queue.iterator();
-            while (iterator.hasNext()) {
-                MediaSessionCompat.QueueItem queueItem = iterator.next();
-                if (activeQueueId != queueItem.getQueueId()) {
-                    iterator.remove();
-                } else {
-                    break;
+        if (mListRowAdapter != null) {
+            mListRowAdapter.clear();
+            if (activeQueueId != MediaSessionCompat.QueueItem.UNKNOWN_ID) {
+                Iterator<MediaSessionCompat.QueueItem> iterator = queue.iterator();
+                while (iterator.hasNext()) {
+                    MediaSessionCompat.QueueItem queueItem = iterator.next();
+                    if (activeQueueId != queueItem.getQueueId()) {
+                        iterator.remove();
+                    } else {
+                        break;
+                    }
                 }
             }
+            mListRowAdapter.addAll(0, queue);
         }
-        mListRowAdapter.addAll(0, queue);
     }
 
     private final MediaBrowserCompat.SubscriptionCallback mSubscriptionCallback =
@@ -140,7 +140,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
                                              @NonNull List<MediaBrowserCompat.MediaItem> children) {
 
                     mRowsAdapter.clear();
-                    CardPresenter cardPresenter = new CardPresenter();
+                    CardPresenter cardPresenter = new CardPresenter(getActivity());
 
                     for (int i = 0; i < children.size(); i++) {
                         MediaBrowserCompat.MediaItem item = children.get(i);
@@ -159,7 +159,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
                         }
                     }
 
-                    MediaControllerCompat mediaController = getActivity().getSupportMediaController();
+                    MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
 
                     if (mediaController.getQueue() != null
                             && !mediaController.getQueue().isEmpty()) {
@@ -253,21 +253,11 @@ public class TvBrowseFragment extends BrowseSupportFragment {
 
                 } else if (clickedItem instanceof MediaSessionCompat.QueueItem) {
                     MediaSessionCompat.QueueItem item = (MediaSessionCompat.QueueItem) clickedItem;
-                    MediaControllerCompat mediaController = getActivity()
-                            .getSupportMediaController();
+                    MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
 
-                    // if clicked media item is not already playing, call skipToQueueItem to play it
-                    if (mediaController != null && mediaController.getMetadata() != null) {
-                        String currentPlaying = mediaController.getMetadata()
-                                .getDescription().getMediaId();
-                        String itemMusicId = MediaIDHelper
-                                .extractMusicIDFromMediaID(item.getDescription().getMediaId());
-                        if (!TextUtils.equals(currentPlaying, itemMusicId)) {
-                            mediaController.getTransportControls()
-                                    .skipToQueueItem(item.getQueueId());
-                        }
-                    } else {
-                        mediaController.getTransportControls().skipToQueueItem(item.getQueueId());
+                    if (!QueueHelper.isQueueItemPlaying(getActivity(), item)) {
+                        mediaController.getTransportControls()
+                                .skipToQueueItem(item.getQueueId());
                     }
 
                     Intent intent = new Intent(getActivity(), TvPlaybackActivity.class);
@@ -307,7 +297,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
             }
             mSubscribedMediaIds.clear();
         }
-        MediaControllerCompat mediaController = getActivity().getSupportMediaController();
+        MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
         if (mediaController != null) {
             mediaController.unregisterCallback(mMediaControllerCallback);
         }
@@ -331,7 +321,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
         subscribeToMediaId(mediaId, mSubscriptionCallback);
 
         // Add MediaController callback so we can redraw the list when metadata changes:
-        MediaControllerCompat mediaController = getActivity().getSupportMediaController();
+        MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(getActivity());
         if (mediaController != null) {
             mediaController.registerCallback(mMediaControllerCallback);
         }
