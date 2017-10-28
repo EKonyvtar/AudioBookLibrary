@@ -16,7 +16,7 @@
   -->
 <resources>
 
-    <string name="app_name">E-Könyvtár Audio</string>
+    <string name="app_name">E-Könyvtár Audibooks</string>
     <string name="favorite">Favorite</string>
 
     <string name="error_no_metadata">Unable to retrieve metadata</string>
@@ -54,7 +54,7 @@
     <string name="open_content_drawer">Open the main menu</string>
     <string name="close_content_drawer">Close the main menu</string>
     <string name="placeholder_message">This is a placeholder for your application code.</string>
-    <string name="drawer_allmusic_title">All Music</string>
+    <string name="drawer_allmusic_title">All AudioBook</string>
     <string name="drawer_playlists_title">Playlists</string>
     <string name="now_playing">Now Playing</string>
     <string name="background_image_str">Background image for album art</string>
