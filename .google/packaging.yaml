@@ -5,11 +5,11 @@
 ---
 status:       PUBLISHED
 technologies: [Android, Android Auto, Google Cast, Android Wear, Android TV]
-categories:   [Getting Started, Media, UI]
+categories:   [MEK, Audiobook, Player]
 languages:    [Java]
 solutions:    [Mobile]
 
-github:       googlesamples/android-UniversalMusicPlayer
+github:       muratiakos/EKonyvtarAudio
 
 level:        INTERMEDIATE
 
