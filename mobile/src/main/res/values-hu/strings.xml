@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">E-Könyvtár Audio</string>
+    <string name="app_name">E-Könyvtár Hangoskönyvek</string>
     <string name="favorite">Kedvencek</string>
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
     <string name="browse_genres">Kategóriák</string>
@@ -29,7 +29,7 @@
     <string name="open_content_drawer">Főmenü megnyitása</string>
     <string name="close_content_drawer">Főmenü bezárása</string>
     <string name="placeholder_message">További tartalom...</string>
-    <string name="drawer_allmusic_title">Minden Könyv</string>
+    <string name="drawer_allmusic_title">Minden Hangoskönyv</string>
     <string name="drawer_playlists_title">Lejátszási lista</string>
     <string name="now_playing">Most hallgat</string>
     <string name="background_image_str">Hangoskönyv borítója</string>
