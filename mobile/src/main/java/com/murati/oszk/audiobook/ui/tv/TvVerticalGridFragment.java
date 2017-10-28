@@ -62,7 +62,7 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
         gridPresenter.setNumberOfColumns(NUM_COLUMNS);
         setGridPresenter(gridPresenter);
 
-        mAdapter = new ArrayObjectAdapter(new CardPresenter());
+        mAdapter = new ArrayObjectAdapter(new CardPresenter(getActivity()));
         setAdapter(mAdapter);
         setOnItemViewClickedListener(new ItemViewClickedListener());
     }
@@ -115,23 +115,14 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
         public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item,
                                   RowPresenter.ViewHolder rowViewHolder, Row row) {
 
-            MediaControllerCompat controller = getActivity().getSupportMediaController();
+            MediaControllerCompat controller = MediaControllerCompat.getMediaController(getActivity());
             if (controller == null) {
                 return;
             }
             MediaControllerCompat.TransportControls controls = controller.getTransportControls();
             MediaBrowserCompat.MediaItem mediaItem = (MediaBrowserCompat.MediaItem) item;
 
-            // if clicked media item is not already playing, call skipToQueueItem to play it
-            if (controller != null && controller.getMetadata() != null) {
-                String currentPlaying = controller.getMetadata()
-                        .getDescription().getMediaId();
-                String itemMusicId = MediaIDHelper
-                        .extractMusicIDFromMediaID(mediaItem.getMediaId());
-                if (!TextUtils.equals(currentPlaying, itemMusicId)) {
-                    controls.playFromMediaId(mediaItem.getMediaId(), null);
-                }
-            } else {
+            if (!MediaIDHelper.isMediaItemPlaying(getActivity(), mediaItem)) {
                 controls.playFromMediaId(mediaItem.getMediaId(), null);
             }
 
