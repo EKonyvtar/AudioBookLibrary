@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">E-Könyvtár Hangoskönyvek</string>
+    <string name="app_name">Hangoskönyvek</string>
     <string name="favorite">Kedvencek</string>
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
     <string name="browse_genres">Kategóriák</string>
@@ -42,4 +42,5 @@
     <string name="label_play">Lejátszás</string>
     <string name="label_previous">Előző</string>
     <string name="label_next">Következő</string>
+    <string name="search_title">Keresés</string>
 </resources>
