@@ -16,6 +16,15 @@
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/search"
+        app:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_search_icon"
+        android:title="@string/search_title"
+        android:visible="true"
+        app:showAsAction="always" />
+
     <item
             android:id="@+id/media_route_menu_item"
             android:title="@string/media_route_menu_title"
