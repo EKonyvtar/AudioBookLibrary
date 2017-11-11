@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hangoskönyvek</string>
+    <string name="app_name">Hangoskönyvtár</string>
     <string name="favorite">Kedvencek</string>
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
     <string name="browse_genres">Kategóriák</string>
@@ -43,4 +43,6 @@
     <string name="label_previous">Előző</string>
     <string name="label_next">Következő</string>
     <string name="search_title">Keresés</string>
+    <string name="app_label">Hangoskönyvek</string>
+    <string name="search_hint">Hangoskönyvek keresése</string>
 </resources>
