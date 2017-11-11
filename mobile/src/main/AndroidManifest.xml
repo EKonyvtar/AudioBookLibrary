@@ -53,9 +53,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <!-- Use this intent filter to get voice searches, like "Play The Beatles" -->
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+            <!-- Use this intent filter to get voice searches, like "Play Ábel a rengetegben" -->
             <intent-filter>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
