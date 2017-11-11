@@ -73,4 +73,3 @@ $offline_catalog_json = New-object psobject -Property @{music=$catalog} | Conver
 $offline_catalog_json
 
 Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
-
