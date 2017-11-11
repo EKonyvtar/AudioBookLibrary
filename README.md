@@ -1,7 +1,7 @@
 E-Könyvtár AudioBook
 ====================
 
-This project is an AudioBook listener for the National Library of Hungary for
+This project is an AudioBook listener for the National Library of Hungary (MEK) for
 Android phones, tablets, Android Auto, Android Wear, Android TV and Google Cast devices.
 The source code is based on Android Universal Music Player:
  - https://github.com/googlesamples/android-UniversalMusicPlayer
@@ -9,8 +9,7 @@ The source code is based on Android Universal Music Player:
 
 Pre-requisites
 --------------
-
-- Android SDK v17
+- Android SDK v26
 
 
 License
