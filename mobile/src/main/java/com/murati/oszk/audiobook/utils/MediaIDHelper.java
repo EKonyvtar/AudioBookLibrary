@@ -34,7 +34,7 @@ public class MediaIDHelper {
     public static final String MEDIA_ID_BY_GENRE = "__BY_GENRE__";
     public static final String MEDIA_ID_BY_WRITER = "__BY_WRITER__";
     public static final String MEDIA_ID_BY_EBOOK = "__BY_EBOOK__";
-    public static final String MEDIA_ID_TRACKS_BY_SEARCH = "__BY_SEARCH__";
+    public static final String MEDIA_ID_BY_SEARCH = "__BY_SEARCH__";
 
     private static final char CATEGORY_SEPARATOR = '/';
     private static final char LEAF_SEPARATOR = '|';
@@ -124,7 +124,8 @@ public class MediaIDHelper {
     }
 
     public static boolean isBrowseable(@NonNull String mediaID) {
-        return mediaID.indexOf(LEAF_SEPARATOR) < 0;
+        return mediaID.indexOf(LEAF_SEPARATOR) < 0 ||
+          mediaID.indexOf(MEDIA_ID_BY_SEARCH) == 0;
     }
 
     public static String getParentMediaID(@NonNull String mediaID) {
