@@ -96,13 +96,17 @@ public class MusicPlayerActivity extends BaseActivity
     @Override
     public void setToolbarTitle(CharSequence title) {
         LogHelper.d(TAG, "Setting toolbar title to ", title);
-        if (SearchQuery == null) {
-          title = getString(R.string.app_name);
-        } else {
 
-          title = String.format("%s '%s'", getString(R.string.search_title), SearchQuery);
+      if (title == null) {
+        if (mSearchParams != null) {
+          title = String.format("%s '%s'", getString(R.string.search_title),
+            mSearchParams.getString(SearchManager.QUERY));
+        } else {
+          title = getString(R.string.app_name);
         }
-        setTitle(title);
+      }
+
+      setTitle(title);
     }
 
     @Override
@@ -125,11 +129,6 @@ public class MusicPlayerActivity extends BaseActivity
 
     protected void initializeFromParams(Bundle savedInstanceState, Intent intent) {
       String mediaId = null;
-      // check if we were started from a "Play XYZ" voice search. If so, we save the extras
-      // (which contain the query details) in a parameter, so we can reuse it later, when the
-      // MediaSession is connected.
-
-      //TODO: Break player intents
 
       String action = intent.getAction();
       if (action != null) {
