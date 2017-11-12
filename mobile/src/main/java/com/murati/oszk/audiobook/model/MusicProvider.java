@@ -147,36 +147,24 @@ public class MusicProvider {
     query = query.toLowerCase(Locale.US);
 
     for (MutableMediaMetadata track: mTrackListById.values() ) {
-      String fields =
-        track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM) + "|" +
-        track.metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE) + "|" +
-        track.metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER) + "|" +
-        track.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+      String title = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+      if (!sortedEbookTitles.contains(title)) {
+        String search_fields =
+          track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
 
-
-      if (fields.toLowerCase(Locale.US).contains(query)) {
-        String title = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-        if (!sortedEbookTitles.contains(title))
+        if (search_fields.toLowerCase(Locale.US).contains(query)) {
           sortedEbookTitles.add(title);
+        }
       }
     }
 
     return sortedEbookTitles;
   }
 
-  Iterable<MediaMetadataCompat> searchTracks(String metadataField, String query) {
-    if (mCurrentState != State.INITIALIZED) {
-      return Collections.emptyList();
-    }
-    ArrayList<MediaMetadataCompat> result = new ArrayList<>();
-    query = query.toLowerCase(Locale.US);
-    for (MutableMediaMetadata track : mTrackListById.values()) {
-      if (track.metadata.getString(metadataField).toLowerCase(Locale.US).contains(query)) {
-        result.add(track.metadata);
-      }
-    }
-    return result;
-  }
+
     //endregion
 
     /**
