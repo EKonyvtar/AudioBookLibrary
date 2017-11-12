@@ -45,6 +45,7 @@ import java.util.concurrent.ConcurrentMap;
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.createMediaID;
@@ -132,50 +133,29 @@ public class MusicProvider {
         }
         return mEbookList.get(ebook);
     }
-    //endregion;
 
-    //region SEARCH_FUNCTIONS
-    /**
-     * Very basic implementation of a search that filter music tracks with title containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicBySongTitle(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_TITLE, query);
+  public Iterable<String> getEbooksByQueryString(String query) {
+    if (mCurrentState != State.INITIALIZED) {
+      return Collections.emptyList();
     }
 
-    /**
-     * Very basic implementation of a search that filter music tracks with album containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicByAlbum(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_ALBUM, query);
-    }
+    Iterable<MediaMetadataCompat> tracks = searchTracks(MediaMetadataCompat.METADATA_KEY_ALBUM, query);
+    return mEbookListByWriter.get(query);
+  }
 
-    /**
-     * Very basic implementation of a search that filter music tracks with artist containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicByArtist(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_WRITER, query);
+  Iterable<MediaMetadataCompat> searchTracks(String metadataField, String query) {
+    if (mCurrentState != State.INITIALIZED) {
+      return Collections.emptyList();
     }
-
-    Iterable<MediaMetadataCompat> searchMusic(String metadataField, String query) {
-        if (mCurrentState != State.INITIALIZED) {
-            return Collections.emptyList();
-        }
-        ArrayList<MediaMetadataCompat> result = new ArrayList<>();
-        query = query.toLowerCase(Locale.US);
-        for (MutableMediaMetadata track : mTrackListById.values()) {
-            if (track.metadata.getString(metadataField).toLowerCase(Locale.US)
-                .contains(query)) {
-                result.add(track.metadata);
-            }
-        }
-        return result;
+    ArrayList<MediaMetadataCompat> result = new ArrayList<>();
+    query = query.toLowerCase(Locale.US);
+    for (MutableMediaMetadata track : mTrackListById.values()) {
+      if (track.metadata.getString(metadataField).toLowerCase(Locale.US).contains(query)) {
+        result.add(track.metadata);
+      }
     }
+    return result;
+  }
     //endregion
 
     /**
@@ -386,6 +366,16 @@ public class MusicProvider {
                     resources.getString(R.string.browse_ebook),
                     resources.getString(R.string.browse_ebook_subtitle),
                     Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+        }
+
+        // List ebooks by Search Keyword
+        else if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
+          String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
+          TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+          sortedEbookTitles.addAll(mEbookList.keySet());
+          for (String ebook : sortedEbookTitles) {
+            mediaItems.add(createEbookItem(ebook, resources));
+          }
         }
 
         // List all Genre Items
