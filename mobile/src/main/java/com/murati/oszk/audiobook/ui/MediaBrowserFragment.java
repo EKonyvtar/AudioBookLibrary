@@ -17,6 +17,7 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -285,6 +286,10 @@ public class MediaBrowserFragment extends Fragment {
         if (MediaIDHelper.MEDIA_ID_ROOT.equals(mMediaId)) {
             mMediaFragmentListener.setToolbarTitle(null);
             return;
+        }
+        else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_SEARCH)) {
+          mMediaFragmentListener.setToolbarTitle(null);
+          return;
         }
 
         MediaBrowserCompat mediaBrowser = mMediaFragmentListener.getMediaBrowser();
