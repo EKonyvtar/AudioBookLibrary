@@ -21,7 +21,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -31,14 +30,12 @@ import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
@@ -172,12 +169,12 @@ public class MusicProvider {
      *
      * @param musicId The unique, non-hierarchical music ID.
      */
-    public MediaMetadataCompat getMusic(String musicId) {
+    public MediaMetadataCompat getTrack(String musicId) {
         return mTrackListById.containsKey(musicId) ? mTrackListById.get(musicId).metadata : null;
     }
 
-    public synchronized void updateMusicArt(String musicId, Bitmap albumArt, Bitmap icon) {
-        MediaMetadataCompat metadata = getMusic(musicId);
+    public synchronized void updateTrackArt(String musicId, Bitmap albumArt, Bitmap icon) {
+        MediaMetadataCompat metadata = getTrack(musicId);
         metadata = new MediaMetadataCompat.Builder(metadata)
 
                 // set high resolution bitmap in METADATA_KEY_ALBUM_ART. This is used, for

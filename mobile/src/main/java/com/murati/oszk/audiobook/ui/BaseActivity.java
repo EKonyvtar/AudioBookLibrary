@@ -48,7 +48,6 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
 
     private MediaBrowserCompat mMediaBrowser;
     private PlaybackControlsFragment mControlsFragment;
-    public String SearchQuery;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,7 +121,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
             // SearchManager.QUERY is the key that a dsfdsSearchManager will use to send a query string
             // to an Activity.
             String query = intent.getStringExtra(SearchManager.QUERY);
-            SearchQuery = query;
+            //SearchQuery = query;
 
             // We need to create a bundle containing the query string to send along to the
             // LoaderManager, which will be handling querying the database and returning results.
