@@ -359,20 +359,20 @@ public class MusicProvider {
             mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
-                    //resources.getDrawable(R.drawable.ic_by_genre).
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_by_genre)));
+                    //resources.getDrawable(R.drawable.ic_browse_by_writer).
+                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_genre)));
 
             // Add writers
             mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
                     resources.getString(R.string.browse_writer),
                     resources.getString(R.string.browse_writer_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_writer)));
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                     resources.getString(R.string.browse_ebook),
                     resources.getString(R.string.browse_ebook_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_list)));
         }
 
         // Search ebooks by Query String
@@ -403,7 +403,7 @@ public class MusicProvider {
 
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            int writerIcon = R.drawable.ic_by_genre;
+            int writerIcon = R.drawable.ic_browse_by_writer;
             /*
             Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
                                     "://" + resources.getResourcePackageName(writerIcon)
