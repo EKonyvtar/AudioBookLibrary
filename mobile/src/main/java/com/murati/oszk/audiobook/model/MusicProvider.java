@@ -360,7 +360,7 @@ public class MusicProvider {
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
                     //resources.getDrawable(R.drawable.ic_by_genre).
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_by_genre)));
 
             // Add writers
             mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
