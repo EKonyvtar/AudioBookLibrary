@@ -34,6 +34,7 @@ import android.widget.TextView;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.squareup.picasso.Picasso;
 
 public class MediaItemViewHolder {
 
@@ -82,14 +83,22 @@ public class MediaItemViewHolder {
         // new state.
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
-            Drawable drawable = getDrawableByState(activity, state);
-            if (drawable != null) {
-                holder.mImageView.setImageDrawable(drawable);
-                holder.mImageView.setVisibility(View.VISIBLE);
-            } else {
-                holder.mImageView.setVisibility(View.GONE);
-            }
-            convertView.setTag(R.id.tag_mediaitem_state_cache, state);
+          Drawable drawable = null;
+
+          if (MediaIDHelper.isBrowseable(item.getMediaId())) {
+            drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_by_genre);
+            DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
+          } else {
+            drawable = getDrawableByState(activity, state);
+          }
+
+          if (drawable != null) {
+            holder.mImageView.setImageDrawable(drawable);
+            holder.mImageView.setVisibility(View.VISIBLE);
+          } else {
+            holder.mImageView.setVisibility(View.GONE);
+          }
+          convertView.setTag(R.id.tag_mediaitem_state_cache, state);
         }
 
         return convertView;
@@ -124,6 +133,7 @@ public class MediaItemViewHolder {
                         R.drawable.ic_equalizer1_white_36dp);
                 DrawableCompat.setTintList(playDrawable, sColorStatePlaying);
                 return playDrawable;
+            case STATE_NONE:
             default:
                 return null;
         }
