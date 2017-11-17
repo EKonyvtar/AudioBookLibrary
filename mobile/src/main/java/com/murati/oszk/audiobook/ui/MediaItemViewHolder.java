@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
@@ -34,7 +35,9 @@ import android.widget.TextView;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
-import com.squareup.picasso.Picasso;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class MediaItemViewHolder {
 
@@ -86,8 +89,17 @@ public class MediaItemViewHolder {
           Drawable drawable = null;
 
           if (MediaIDHelper.isBrowseable(item.getMediaId())) {
-            drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_by_genre);
-            DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
+            try {
+              // Load URI for the item
+              Uri imageUri = item.getDescription().getIconUri();
+              InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
+              drawable = Drawable.createFromStream(inputStream, imageUri.toString());
+            } catch (FileNotFoundException e) {
+              // Defautl to IC_genre
+              drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
+              DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
+            }
+
           } else {
             drawable = getDrawableByState(activity, state);
           }
