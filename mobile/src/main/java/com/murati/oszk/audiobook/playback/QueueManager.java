@@ -185,7 +185,7 @@ public class QueueManager {
         }
         final String musicId = MediaIDHelper.extractMusicIDFromMediaID(
                 currentMusic.getDescription().getMediaId());
-        MediaMetadataCompat metadata = mMusicProvider.getMusic(musicId);
+        MediaMetadataCompat metadata = mMusicProvider.getTrack(musicId);
         if (metadata == null) {
             throw new IllegalArgumentException("Invalid musicId " + musicId);
         }
@@ -200,7 +200,7 @@ public class QueueManager {
             AlbumArtCache.getInstance().fetch(albumUri, new AlbumArtCache.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                    mMusicProvider.updateMusicArt(musicId, bitmap, icon);
+                    mMusicProvider.updateTrackArt(musicId, bitmap, icon);
 
                     // If we are still playing the same music, notify the listeners:
                     MediaSessionCompat.QueueItem currentMusic = getCurrentMusic();
@@ -210,7 +210,7 @@ public class QueueManager {
                     String currentPlayingId = MediaIDHelper.extractMusicIDFromMediaID(
                             currentMusic.getDescription().getMediaId());
                     if (musicId.equals(currentPlayingId)) {
-                        mListener.onMetadataChanged(mMusicProvider.getMusic(currentPlayingId));
+                        mListener.onMetadataChanged(mMusicProvider.getTrack(currentPlayingId));
                     }
                 }
             });

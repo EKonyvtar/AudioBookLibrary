@@ -15,10 +15,19 @@
   limitations under the License.
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto" >
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:configChanges="locale">
+
     <item
-            android:id="@+id/media_route_menu_item"
-            android:title="@string/media_route_menu_title"
-            app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
-            app:showAsAction="always"/>
+        android:id="@+id/search"
+        android:title="@string/search_title"
+        android:icon="@drawable/ic_search_icon"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/media_route_menu_item"
+        android:title="@string/media_route_menu_title"
+        app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
+        app:showAsAction="always"/>
 </menu>

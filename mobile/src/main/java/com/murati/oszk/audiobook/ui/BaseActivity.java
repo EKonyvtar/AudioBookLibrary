@@ -16,7 +16,10 @@
 package com.murati.oszk.audiobook.ui;
 
 import android.app.ActivityManager;
+import android.app.SearchManager;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,9 +30,12 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.view.Menu;
+import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
@@ -49,6 +55,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         super.onCreate(savedInstanceState);
 
         LogHelper.d(TAG, "Activity onCreate");
+        //LanguageHelper.setDefaultAppLocale(this);
 
         if (Build.VERSION.SDK_INT >= 21) {
             // Since our app icon has the same color as colorPrimary, our entry in the Recent Apps
@@ -66,6 +73,10 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         // this can be done, for example by sharing the session token directly.
         mMediaBrowser = new MediaBrowserCompat(this,
             new ComponentName(this, MusicService.class), mConnectionCallback, null);
+
+        if (getIntent() != null) {
+            handleIntent(getIntent());
+        }
     }
 
     @Override
@@ -93,6 +104,52 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
             controllerCompat.unregisterCallback(mMediaControllerCallback);
         }
         mMediaBrowser.disconnect();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    /**
+     * Assuming this activity was started with a new intent, process the incoming information and
+     * react accordingly.
+     * @param intent
+     */
+    private void handleIntent(Intent intent) {
+        // Special processing of the incoming intent only occurs if the if the action specified
+        // by the intent is ACTION_SEARCH.
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            // SearchManager.QUERY is the key that a dsfdsSearchManager will use to send a query string
+            // to an Activity.
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //SearchQuery = query;
+
+            // We need to create a bundle containing the query string to send along to the
+            // LoaderManager, which will be handling querying the database and returning results.
+            Bundle bundle = new Bundle();
+            //bundle.putString(QUERY_KEY, query);
+
+            //ContactablesLoaderCallbacks loaderCallbacks = new ContactablesLoaderCallbacks(this);
+
+            // Start the loader with the new query, and an object that will handle all callbacks.
+            //getLoaderManager().restartLoader(CONTACT_QUERY_LOADER, bundle, loaderCallbacks);
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 
     @Override

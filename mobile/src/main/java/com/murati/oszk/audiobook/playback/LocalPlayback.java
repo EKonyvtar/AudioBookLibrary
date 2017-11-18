@@ -197,7 +197,7 @@ public final class LocalPlayback implements Playback {
         if (mediaHasChanged || mExoPlayer == null) {
             releaseResources(false); // release everything except the player
             MediaMetadataCompat track =
-                    mMusicProvider.getMusic(
+                    mMusicProvider.getTrack(
                             MediaIDHelper.extractMusicIDFromMediaID(
                                     item.getDescription().getMediaId()));
 
