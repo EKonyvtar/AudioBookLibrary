@@ -355,18 +355,18 @@ public class MusicProvider {
         }
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
+            // Add writers
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
+              resources.getString(R.string.browse_writer),
+              resources.getString(R.string.browse_writer_subtitle),
+              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_writer)));
+
             // Add Genres
             mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
                     //resources.getDrawable(R.drawable.ic_browse_by_writer).
                     Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_genre)));
-
-            // Add writers
-            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
-                    resources.getString(R.string.browse_writer),
-                    resources.getString(R.string.browse_writer_subtitle),
-              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_writer)));
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
