@@ -35,6 +35,7 @@ import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
@@ -54,6 +55,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         super.onCreate(savedInstanceState);
 
         LogHelper.d(TAG, "Activity onCreate");
+        //LanguageHelper.setDefaultAppLocale(this);
 
         if (Build.VERSION.SDK_INT >= 21) {
             // Since our app icon has the same color as colorPrimary, our entry in the Recent Apps
