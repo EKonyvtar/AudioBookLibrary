@@ -26,6 +26,7 @@ import android.text.TextUtils;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 /**
  * Main activity for the music player.
@@ -51,7 +52,7 @@ public class MusicPlayerActivity extends BaseActivity
     public static final String EXTRA_CURRENT_MEDIA_DESCRIPTION =
         "com.murati.oszk.audiobook.CURRENT_MEDIA_DESCRIPTION";
 
-    private Bundle mVoiceSearchParams;
+    private Bundle mSearchParams;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,10 +96,17 @@ public class MusicPlayerActivity extends BaseActivity
     @Override
     public void setToolbarTitle(CharSequence title) {
         LogHelper.d(TAG, "Setting toolbar title to ", title);
-        if (title == null) {
-            title = getString(R.string.app_name);
+
+      if (title == null) {
+        if (mSearchParams != null) {
+          title = String.format("%s '%s'", getString(R.string.search_title),
+            mSearchParams.getString(SearchManager.QUERY));
+        } else {
+          title = getString(R.string.app_name);
         }
-        setTitle(title);
+      }
+
+      setTitle(title);
     }
 
     @Override
@@ -120,22 +128,29 @@ public class MusicPlayerActivity extends BaseActivity
     }
 
     protected void initializeFromParams(Bundle savedInstanceState, Intent intent) {
-        String mediaId = null;
-        // check if we were started from a "Play XYZ" voice search. If so, we save the extras
-        // (which contain the query details) in a parameter, so we can reuse it later, when the
-        // MediaSession is connected.
-        if (intent.getAction() != null
-            && intent.getAction().equals(MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH)) {
-            mVoiceSearchParams = intent.getExtras();
-            LogHelper.d(TAG, "Starting from voice search query=",
-                mVoiceSearchParams.getString(SearchManager.QUERY));
-        } else {
-            if (savedInstanceState != null) {
-                // If there is a saved media ID, use it
-                mediaId = savedInstanceState.getString(SAVED_MEDIA_ID);
-            }
+      String mediaId = null;
+
+      String action = intent.getAction();
+      if (action != null) {
+        switch (action) {
+          case Intent.ACTION_SEARCH:
+          case MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH:
+            LogHelper.d(TAG, "Starting Search Handler");
+            mSearchParams = intent.getExtras();
+
+            mediaId = MediaIDHelper.createMediaID(mSearchParams.getString(SearchManager.QUERY),
+              MediaIDHelper.MEDIA_ID_BY_SEARCH);
+
+            LogHelper.d(TAG, "Search query=", mediaId);
+            break;
         }
-        navigateToBrowser(mediaId);
+      } else {
+        if (savedInstanceState != null) {
+          // If there is a saved media ID, use it
+          mediaId = savedInstanceState.getString(SAVED_MEDIA_ID);
+        }
+      }
+      navigateToBrowser(mediaId);
     }
 
     private void navigateToBrowser(String mediaId) {
@@ -173,15 +188,18 @@ public class MusicPlayerActivity extends BaseActivity
 
     @Override
     protected void onMediaControllerConnected() {
-        if (mVoiceSearchParams != null) {
-            // If there is a bootstrap parameter to start from a search query, we
-            // send it to the media session and set it to null, so it won't play again
-            // when the activity is stopped/started or recreated:
-            String query = mVoiceSearchParams.getString(SearchManager.QUERY);
-            MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
-                    .playFromSearch(query, mVoiceSearchParams);
-            mVoiceSearchParams = null;
-        }
-        getBrowseFragment().onConnected();
+
+      /*
+      if (mSearchParams != null) {
+        // If there is a bootstrap parameter to start from a search query, we
+        // send it to the media session and set it to null, so it won't play again
+        // when the activity is stopped/started or recreated:
+        String query = mSearchParams.getString(SearchManager.QUERY);
+        MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
+                .playFromSearch(query, mSearchParams);
+        mSearchParams = null;
+      }*/
+
+      getBrowseFragment().onConnected();
     }
 }

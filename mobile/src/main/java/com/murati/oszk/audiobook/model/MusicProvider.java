@@ -45,6 +45,7 @@ import java.util.concurrent.ConcurrentMap;
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.createMediaID;
@@ -132,50 +133,35 @@ public class MusicProvider {
         }
         return mEbookList.get(ebook);
     }
-    //endregion;
 
-    //region SEARCH_FUNCTIONS
-    /**
-     * Very basic implementation of a search that filter music tracks with title containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicBySongTitle(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_TITLE, query);
+  public Iterable<String> getEbooksByQueryString(String query) {
+    if (mCurrentState != State.INITIALIZED) {
+      return Collections.emptyList();
     }
 
-    /**
-     * Very basic implementation of a search that filter music tracks with album containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicByAlbum(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_ALBUM, query);
-    }
+    TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+    //TODO: Handle accents
+    query = query.toLowerCase(Locale.US);
 
-    /**
-     * Very basic implementation of a search that filter music tracks with artist containing
-     * the given query.
-     *
-     */
-    public Iterable<MediaMetadataCompat> searchMusicByArtist(String query) {
-        return searchMusic(MediaMetadataCompat.METADATA_KEY_WRITER, query);
-    }
+    for (MutableMediaMetadata track: mTrackListById.values() ) {
+      String title = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+      if (!sortedEbookTitles.contains(title)) {
+        String search_fields =
+          track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER) + "|" +
+            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
 
-    Iterable<MediaMetadataCompat> searchMusic(String metadataField, String query) {
-        if (mCurrentState != State.INITIALIZED) {
-            return Collections.emptyList();
+        if (search_fields.toLowerCase(Locale.US).contains(query)) {
+          sortedEbookTitles.add(title);
         }
-        ArrayList<MediaMetadataCompat> result = new ArrayList<>();
-        query = query.toLowerCase(Locale.US);
-        for (MutableMediaMetadata track : mTrackListById.values()) {
-            if (track.metadata.getString(metadataField).toLowerCase(Locale.US)
-                .contains(query)) {
-                result.add(track.metadata);
-            }
-        }
-        return result;
+      }
     }
+
+    return sortedEbookTitles;
+  }
+
+
     //endregion
 
     /**
@@ -183,12 +169,12 @@ public class MusicProvider {
      *
      * @param musicId The unique, non-hierarchical music ID.
      */
-    public MediaMetadataCompat getMusic(String musicId) {
+    public MediaMetadataCompat getTrack(String musicId) {
         return mTrackListById.containsKey(musicId) ? mTrackListById.get(musicId).metadata : null;
     }
 
-    public synchronized void updateMusicArt(String musicId, Bitmap albumArt, Bitmap icon) {
-        MediaMetadataCompat metadata = getMusic(musicId);
+    public synchronized void updateTrackArt(String musicId, Bitmap albumArt, Bitmap icon) {
+        MediaMetadataCompat metadata = getTrack(musicId);
         metadata = new MediaMetadataCompat.Builder(metadata)
 
                 // set high resolution bitmap in METADATA_KEY_ALBUM_ART. This is used, for
@@ -369,23 +355,32 @@ public class MusicProvider {
         }
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
+            // Add writers
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
+              resources.getString(R.string.browse_writer),
+              resources.getString(R.string.browse_writer_subtitle),
+              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_writer)));
+
             // Add Genres
             mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                     resources.getString(R.string.browse_genres),
                     resources.getString(R.string.browse_genre_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
-
-            // Add writers
-            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
-                    resources.getString(R.string.browse_writer),
-                    resources.getString(R.string.browse_writer_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+                    //resources.getDrawable(R.drawable.ic_browse_by_writer).
+                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_genre)));
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                     resources.getString(R.string.browse_ebook),
                     resources.getString(R.string.browse_ebook_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/drawable/ic_by_genre")));
+              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_list)));
+        }
+
+        // Search ebooks by Query String
+        else if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
+          String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
+          for (String ebook : getEbooksByQueryString(search_query)) {
+            mediaItems.add(createEbookItem(ebook, resources));
+          }
         }
 
         // List all Genre Items
@@ -408,7 +403,7 @@ public class MusicProvider {
 
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            int writerIcon = R.drawable.ic_by_genre;
+            int writerIcon = R.drawable.ic_browse_by_writer;
             /*
             Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
                                     "://" + resources.getResourcePackageName(writerIcon)

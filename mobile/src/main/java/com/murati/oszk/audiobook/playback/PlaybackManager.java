@@ -362,6 +362,8 @@ public class PlaybackManager implements Playback.Callback {
         public void onPlayFromSearch(final String query, final Bundle extras) {
             LogHelper.d(TAG, "playFromSearch  query=", query, " extras=", extras);
 
+            if (query != null ) return;
+
             mPlayback.setState(PlaybackStateCompat.STATE_CONNECTING);
             mMusicProvider.retrieveMediaAsync(new MusicProvider.Callback() {
                 @Override

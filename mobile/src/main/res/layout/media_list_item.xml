@@ -41,13 +41,13 @@
 
         <TextView
             android:id="@+id/title"
-            tools:text="The Best Music EVAH1111 FOREVER YOUNG I'M AWESOME!!!11^H^H"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?android:attr/textColorPrimary"/>
+            android:textColor="?android:attr/textColorPrimary"
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/description"

@@ -17,6 +17,8 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.ActivityOptions;
 import android.app.FragmentManager;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -203,6 +206,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
 
+        // Cast Menuitem
         if (mCastContext != null) {
             mMediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(getApplicationContext(),
                     menu, R.id.media_route_menu_item);
