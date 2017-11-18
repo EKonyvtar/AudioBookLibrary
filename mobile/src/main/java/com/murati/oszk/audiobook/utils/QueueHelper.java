@@ -59,8 +59,8 @@ public class QueueHelper {
             tracks = musicProvider.getTracksByEbook(categoryValue);
         }
 
-        else if (categoryType.equals(MediaIDHelper.MEDIA_ID_TRACKS_BY_SEARCH)) {
-            tracks = musicProvider.searchMusicBySongTitle(categoryValue);
+        else if (categoryType.equals(MediaIDHelper.MEDIA_ID_BY_SEARCH)) {
+            //tracks = musicProvider.searchMusicBySongTitle(categoryValue);
         }
 
         if (tracks == null) {
@@ -89,15 +89,15 @@ public class QueueHelper {
 
         Iterable<MediaMetadataCompat> result = null;
         if (params.isAlbumFocus) {
-            result = musicProvider.searchMusicByAlbum(params.album);
+            //result = musicProvider.searchMusicByAlbum(params.album);
         }
         /*else if (params.isGenreFocus) {
             result = musicProvider.getEbooksByGenre(params.genre);
         }*/
         else if (params.isArtistFocus) {
-            result = musicProvider.searchMusicByArtist(params.artist);
+            //result = musicProvider.searchMusicByArtist(params.artist);
         } else if (params.isSongFocus) {
-            result = musicProvider.searchMusicBySongTitle(params.song);
+            //result = musicProvider.searchMusicBySongTitle(params.song);
         }
 
         // If there was no results using media focus parameter, we do an unstructured query.
@@ -108,10 +108,10 @@ public class QueueHelper {
         if (params.isUnstructured || result == null || !result.iterator().hasNext()) {
             // To keep it simple for this example, we do unstructured searches on the
             // song title only. A real world application could search on other fields as well.
-            result = musicProvider.searchMusicBySongTitle(query);
+            //result = musicProvider.searchMusicBySongTitle(query);
         }
 
-        return convertToQueue(result, MediaIDHelper.MEDIA_ID_TRACKS_BY_SEARCH, query);
+        return convertToQueue(result, MediaIDHelper.MEDIA_ID_BY_SEARCH, query);
     }
 
 
@@ -181,7 +181,7 @@ public class QueueHelper {
         }
         LogHelper.d(TAG, "getRandomQueue: result.size=", result.size());
 
-        return convertToQueue(result, MediaIDHelper.MEDIA_ID_TRACKS_BY_SEARCH, "random");
+        return convertToQueue(result, MediaIDHelper.MEDIA_ID_BY_SEARCH, "random");
     }
 
     public static boolean isIndexPlayable(int index, List<MediaSessionCompat.QueueItem> queue) {

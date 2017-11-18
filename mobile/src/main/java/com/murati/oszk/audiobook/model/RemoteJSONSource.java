@@ -113,26 +113,37 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // sample for convenience only.
         //noinspection ResourceType
 
-        // Skip faulty ones
-        if (writer == null || ebook == null  || title == null ||
-                writer.trim().length()* ebook.trim().length() * title.trim().length() == 0
+      // Skip faulty ones
+      if (ebook == null  || title == null ||
+        ebook.trim().length() * title.trim().length() == 0
         ) {
-            LogHelper.e(TAG, "Error processing JSON: " + json.toString());
-            return null;
-        }
+        LogHelper.e(TAG, "Error processing JSON: " + json.toString());
+        return null;
+      }
 
-        return new MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, id)
-                .putString(CUSTOM_METADATA_TRACK_SOURCE, source)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, ebook)
-                .putString(MediaMetadataCompat.METADATA_KEY_WRITER, writer)
-                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration)
-                .putString(MediaMetadataCompat.METADATA_KEY_GENRE, genre)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, iconUrl)
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
-                .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, trackNumber)
-                .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount)
-                .build();
+      // Fix writer
+      if (writer == null || writer.trim().length() == 0) {
+        if (title.contains(":")) {
+          writer = title.split(":",1)[0];
+        } else {
+          writer = "Ismeretlen szerző"; //TODO: resource
+        }
+      }
+
+
+
+      return new MediaMetadataCompat.Builder()
+              .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, id)
+              .putString(CUSTOM_METADATA_TRACK_SOURCE, source)
+              .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, ebook)
+              .putString(MediaMetadataCompat.METADATA_KEY_WRITER, writer)
+              .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration)
+              .putString(MediaMetadataCompat.METADATA_KEY_GENRE, genre)
+              .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, iconUrl)
+              .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+              .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, trackNumber)
+              .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount)
+              .build();
     }
 
     /**

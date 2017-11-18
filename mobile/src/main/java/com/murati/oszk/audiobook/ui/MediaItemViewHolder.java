@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
@@ -34,6 +35,9 @@ import android.widget.TextView;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class MediaItemViewHolder {
 
@@ -82,14 +86,31 @@ public class MediaItemViewHolder {
         // new state.
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
-            Drawable drawable = getDrawableByState(activity, state);
-            if (drawable != null) {
-                holder.mImageView.setImageDrawable(drawable);
-                holder.mImageView.setVisibility(View.VISIBLE);
-            } else {
-                holder.mImageView.setVisibility(View.GONE);
+          Drawable drawable = null;
+
+          if (MediaIDHelper.isBrowseable(item.getMediaId())) {
+            try {
+              // Load URI for the item
+              Uri imageUri = item.getDescription().getIconUri();
+              InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
+              drawable = Drawable.createFromStream(inputStream, imageUri.toString());
+            } catch (FileNotFoundException e) {
+              // Defautl to IC_genre
+              drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
+              DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
             }
-            convertView.setTag(R.id.tag_mediaitem_state_cache, state);
+
+          } else {
+            drawable = getDrawableByState(activity, state);
+          }
+
+          if (drawable != null) {
+            holder.mImageView.setImageDrawable(drawable);
+            holder.mImageView.setVisibility(View.VISIBLE);
+          } else {
+            holder.mImageView.setVisibility(View.GONE);
+          }
+          convertView.setTag(R.id.tag_mediaitem_state_cache, state);
         }
 
         return convertView;
@@ -124,6 +145,7 @@ public class MediaItemViewHolder {
                         R.drawable.ic_equalizer1_white_36dp);
                 DrawableCompat.setTintList(playDrawable, sColorStatePlaying);
                 return playDrawable;
+            case STATE_NONE:
             default:
                 return null;
         }
