@@ -45,6 +45,7 @@ import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -101,8 +102,13 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 switch (mItemToOpenWhenDrawerCloses) {
                     case R.id.navigation_allmusic:
                         activityClass = MusicPlayerActivity.class;
+                        extras.putString(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
                         break;
                     case R.id.navigation_playlists:
+                        activityClass = MusicPlayerActivity.class;
+                        extras.putString(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
+                        break;
+                    case R.id.navigation_settings:
                         activityClass = PlaceholderActivity.class;
                         break;
                 }
