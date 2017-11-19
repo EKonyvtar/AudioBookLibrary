@@ -30,11 +30,15 @@ import java.util.Arrays;
 public class MediaIDHelper {
 
     // Media IDs used on browseable items of MediaBrowser
+    public static final String EXTRA_MEDIA_ID_KEY = "MEDIA_ID";
+
     public static final String MEDIA_ID_ROOT = "__ROOT__";
     public static final String MEDIA_ID_BY_GENRE = "__BY_GENRE__";
     public static final String MEDIA_ID_BY_WRITER = "__BY_WRITER__";
     public static final String MEDIA_ID_BY_EBOOK = "__BY_EBOOK__";
     public static final String MEDIA_ID_BY_SEARCH = "__BY_SEARCH__";
+    public static final String MEDIA_ID_BY_QUEUE = "__BY_QUEUE__";
+    public static final String MEDIA_ID_BY_FAVORITES = "__BY_FAVORITES__";
 
     private static final char CATEGORY_SEPARATOR = '/';
     private static final char LEAF_SEPARATOR = '|';
@@ -115,7 +119,7 @@ public class MediaIDHelper {
         return mediaID.split(String.valueOf(CATEGORY_SEPARATOR));
     }
 
-    public static String extractBrowseCategoryValueFromMediaID(@NonNull String mediaID) {
+    public static String getCategoryValueFromMediaID(@NonNull String mediaID) {
         String[] hierarchy = getHierarchy(mediaID);
         if (hierarchy.length == 2) {
             return hierarchy[1];

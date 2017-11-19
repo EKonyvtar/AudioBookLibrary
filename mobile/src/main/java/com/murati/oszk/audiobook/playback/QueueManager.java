@@ -64,7 +64,7 @@ public class QueueManager {
 
     public boolean isSameBrowsingCategory(@NonNull String mediaId) {
         String[] newBrowseHierarchy = MediaIDHelper.getHierarchy(mediaId);
-        MediaSessionCompat.QueueItem current = getCurrentMusic();
+        MediaSessionCompat.QueueItem current = getCurrentTrack();
         if (current == null) {
             return false;
         }
@@ -120,13 +120,9 @@ public class QueueManager {
         return queue != null && !queue.isEmpty();
     }
 
-    public void setRandomQueue() {
-        setCurrentQueue(mResources.getString(R.string.random_queue_title),
-                QueueHelper.getRandomQueue(mMusicProvider));
-    }
-
-    public void setQueueFromMusic(String mediaId) {
-        LogHelper.d(TAG, "setQueueFromMusic", mediaId);
+    public void setQueueFromTrack(String mediaId) {
+        LogHelper.d(TAG, "setQueueFromTrack", mediaId);
+        MusicProvider.currentEBook = MediaIDHelper.getParentMediaID(mediaId);
 
         // The mediaId used here is not the unique musicId. This one comes from the
         // MediaBrowser, and is actually a "hierarchy-aware mediaID": a concatenation of
@@ -140,7 +136,7 @@ public class QueueManager {
         if (!canReuseQueue) {
             //TODO: fix to ebook title
             String queueTitle = mResources.getString(R.string.browse_track_count,
-                    MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaId));
+                    MediaIDHelper.getCategoryValueFromMediaID(mediaId));
             //TODO: fix queue clear for new ebooks
             setCurrentQueue(queueTitle,
                     QueueHelper.getPlayingQueue(mediaId, mMusicProvider), mediaId);
@@ -148,7 +144,7 @@ public class QueueManager {
         updateMetadata();
     }
 
-    public MediaSessionCompat.QueueItem getCurrentMusic() {
+    public MediaSessionCompat.QueueItem getCurrentTrack() {
         if (!QueueHelper.isIndexPlayable(mCurrentIndex, mPlayingQueue)) {
             return null;
         }
@@ -178,7 +174,7 @@ public class QueueManager {
     }
 
     public void updateMetadata() {
-        MediaSessionCompat.QueueItem currentMusic = getCurrentMusic();
+        MediaSessionCompat.QueueItem currentMusic = getCurrentTrack();
         if (currentMusic == null) {
             mListener.onMetadataRetrieveError();
             return;
@@ -203,7 +199,7 @@ public class QueueManager {
                     mMusicProvider.updateTrackArt(musicId, bitmap, icon);
 
                     // If we are still playing the same music, notify the listeners:
-                    MediaSessionCompat.QueueItem currentMusic = getCurrentMusic();
+                    MediaSessionCompat.QueueItem currentMusic = getCurrentTrack();
                     if (currentMusic == null) {
                         return;
                     }

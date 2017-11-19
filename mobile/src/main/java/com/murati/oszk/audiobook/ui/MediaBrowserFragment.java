@@ -292,6 +292,7 @@ public class MediaBrowserFragment extends Fragment {
           return;
         }
         /*
+        //TODO: fix title
         else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_GENRE)) {
           mMediaFragmentListener.setToolbarTitle(resources.getString(R.string.browse_genres));
           return;

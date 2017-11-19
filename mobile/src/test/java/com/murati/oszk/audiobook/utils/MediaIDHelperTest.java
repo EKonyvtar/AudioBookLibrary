@@ -34,21 +34,21 @@ public class MediaIDHelperTest {
     @Test
     public void testNormalMediaIDStructure() throws Exception {
         String mediaID = MediaIDHelper.createMediaID("784343", "BY_GENRE", "Classic 70's");
-        assertEquals("Classic 70's", MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaID));
+        assertEquals("Classic 70's", MediaIDHelper.getCategoryValueFromMediaID(mediaID));
         assertEquals("784343", MediaIDHelper.extractMusicIDFromMediaID(mediaID));
     }
 
     @Test
     public void testSpecialSymbolsMediaIDStructure() throws Exception {
         String mediaID = MediaIDHelper.createMediaID("78A_88|X/3", "BY_GENRE", "Classic 70's");
-        assertEquals("Classic 70's", MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaID));
+        assertEquals("Classic 70's", MediaIDHelper.getCategoryValueFromMediaID(mediaID));
         assertEquals("78A_88|X/3", MediaIDHelper.extractMusicIDFromMediaID(mediaID));
     }
 
     @Test
     public void testNullMediaIDStructure() throws Exception {
         String mediaID = MediaIDHelper.createMediaID(null, "BY_GENRE", "Classic 70's");
-        assertEquals("Classic 70's", MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaID));
+        assertEquals("Classic 70's", MediaIDHelper.getCategoryValueFromMediaID(mediaID));
         assertNull(MediaIDHelper.extractMusicIDFromMediaID(mediaID));
     }
 
@@ -60,7 +60,7 @@ public class MediaIDHelperTest {
     @Test
     public void testCreateBrowseCategoryMediaID() throws Exception {
         String browseMediaID = MediaIDHelper.createMediaID(null, "BY_GENRE", "Rock & Roll");
-        assertEquals("Rock & Roll", MediaIDHelper.extractBrowseCategoryValueFromMediaID(browseMediaID));
+        assertEquals("Rock & Roll", MediaIDHelper.getCategoryValueFromMediaID(browseMediaID));
         String[] categories = MediaIDHelper.getHierarchy(browseMediaID);
         assertArrayEquals(categories, new String[]{"BY_GENRE", "Rock & Roll"});
     }
