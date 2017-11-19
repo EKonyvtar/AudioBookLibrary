@@ -17,6 +17,7 @@ package com.murati.oszk.audiobook.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -80,4 +81,9 @@ public class BitmapHelper {
             }
         }
     }
+
+  public static BitmapDrawable fetchAndRescaleBitmapDrawable(String uri, int width, int height)
+    throws IOException {
+    return new BitmapDrawable(fetchAndRescaleBitmap(uri, width, height));
+  }
 }
