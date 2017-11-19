@@ -113,22 +113,27 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // sample for convenience only.
         //noinspection ResourceType
 
-      // Skip faulty ones
-      if (ebook == null  || title == null ||
-        ebook.trim().length() * title.trim().length() == 0
+        // Skip faulty ones
+        if (ebook == null  || title == null ||
+            ebook.trim().length() * title.trim().length() == 0
         ) {
-        LogHelper.e(TAG, "Error processing JSON: " + json.toString());
-        return null;
-      }
-
-      // Fix writer
-      if (writer == null || writer.trim().length() == 0) {
-        if (title.contains(":")) {
-          writer = title.split(":",1)[0];
-        } else {
-          writer = "Ismeretlen szerző"; //TODO: resource
+            LogHelper.e(TAG, "Error processing JSON: " + json.toString());
+            return null;
         }
-      }
+
+        // Fix writer
+        if (writer == null || writer.trim().length() == 0) {
+            if (title.contains(":")) {
+                writer = title.split(":",1)[0];
+            } else {
+                writer = "Ismeretlen szerző"; //TODO: resource
+            }
+        }
+
+        //Fix title TODO: Strip from API
+        ebook = ebook.replace("&quot;","");
+        ebook = ebook.replace("\"","");
+
 
 
 
