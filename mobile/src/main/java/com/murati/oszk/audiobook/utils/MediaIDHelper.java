@@ -30,7 +30,7 @@ import java.util.Arrays;
 public class MediaIDHelper {
 
     // Media IDs used on browseable items of MediaBrowser
-    public static final String EXTRA_MEDIA_ID_KEY = "MEDIA_ID";
+    public static final String EXTRA_MEDIA_ID_KEY = "com.murati.oszk.audiobook.MEDIA_ID";
 
     public static final String MEDIA_ID_ROOT = "__ROOT__";
     public static final String MEDIA_ID_BY_GENRE = "__BY_GENRE__";
