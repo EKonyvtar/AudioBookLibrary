@@ -38,7 +38,6 @@ public class MusicPlayerActivity extends BaseActivity
         implements MediaBrowserFragment.MediaFragmentListener {
 
     private static final String TAG = LogHelper.makeLogTag(MusicPlayerActivity.class);
-    private static final String SAVED_MEDIA_ID="com.murati.oszk.audiobook.MEDIA_ID";
     private static final String FRAGMENT_TAG = "uamp_list_container";
 
     public static final String EXTRA_START_FULLSCREEN =
@@ -74,7 +73,7 @@ public class MusicPlayerActivity extends BaseActivity
     protected void onSaveInstanceState(Bundle outState) {
         String mediaId = getMediaId();
         if (mediaId != null) {
-            outState.putString(SAVED_MEDIA_ID, mediaId);
+            outState.putString(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
         }
         super.onSaveInstanceState(outState);
     }
@@ -131,6 +130,8 @@ public class MusicPlayerActivity extends BaseActivity
       String mediaId = null;
 
       String action = intent.getAction();
+      Bundle extras = intent.getExtras();
+
       if (action != null) {
         switch (action) {
           case Intent.ACTION_SEARCH:
@@ -147,7 +148,15 @@ public class MusicPlayerActivity extends BaseActivity
       } else {
         if (savedInstanceState != null) {
           // If there is a saved media ID, use it
-          mediaId = savedInstanceState.getString(SAVED_MEDIA_ID);
+          mediaId = savedInstanceState.getString(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
+        }
+
+        //Open passed one
+        if (extras != null) {
+            String extraMediaId = extras.getString(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
+            if (extraMediaId != null) {
+                mediaId = extraMediaId;
+            }
         }
       }
       navigateToBrowser(mediaId);
