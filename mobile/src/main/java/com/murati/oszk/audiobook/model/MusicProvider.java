@@ -352,10 +352,9 @@ public class MusicProvider {
 
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
 
-        // Swap Queue to current
-        if (currentEBook != null && mediaId.equals(MEDIA_ID_BY_QUEUE)) {
-
-        }
+        // Swap mediaId from queue to current eBook
+        if (mediaId.equals(MEDIA_ID_BY_QUEUE))
+            mediaId = currentEBook;
 
         if (!MediaIDHelper.isBrowseable(mediaId)) {
             return mediaItems;
