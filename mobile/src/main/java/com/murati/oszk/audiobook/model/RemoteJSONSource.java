@@ -133,6 +133,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         //Fix title TODO: Strip from API
         ebook = ebook.replace("&quot;","");
         ebook = ebook.replace("\"","");
+        title = title.replace("&quot;","\"");
 
 
 
