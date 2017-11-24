@@ -56,7 +56,7 @@
     <string name="action_listen">Hallgastás</string>
     <string name="open_content_drawer">Főmenü megnyitása</string>
     <string name="close_content_drawer">Főmenü bezárása</string>
-    <string name="placeholder_message">További tartalom...</string>
+    <string name="placeholder_message">Fejlesztés alatt - Hamarosan ...</string>
 
     <string name="now_playing">Most hallgat</string>
     <string name="background_image_str">Hangoskönyv borítója</string>
