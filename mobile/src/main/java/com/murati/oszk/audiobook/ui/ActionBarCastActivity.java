@@ -95,25 +95,27 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         public void onDrawerClosed(View drawerView) {
             if (mDrawerToggle != null) mDrawerToggle.onDrawerClosed(drawerView);
             if (mItemToOpenWhenDrawerCloses >= 0) {
-                Bundle extras = ActivityOptions.makeCustomAnimation(
+                Bundle bundle = ActivityOptions.makeCustomAnimation(
                     ActionBarCastActivity.this, R.anim.fade_in, R.anim.fade_out).toBundle();
 
-                Class activityClass = null;
+                Intent intent = null;
                 switch (mItemToOpenWhenDrawerCloses) {
                     case R.id.navigation_allmusic:
-                        activityClass = MusicPlayerActivity.class;
-                        extras.putString(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
+                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
                         break;
                     case R.id.navigation_playlists:
-                        activityClass = MusicPlayerActivity.class;
-                        extras.putString(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
+                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
                         break;
                     case R.id.navigation_settings:
-                        activityClass = PlaceholderActivity.class;
+                        intent = new Intent(ActionBarCastActivity.this, PlaceholderActivity.class);
                         break;
                 }
-                if (activityClass != null) {
-                    startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                if (intent != null) {
+                    startActivity(intent, bundle);
                     finish();
                 }
             }

@@ -356,7 +356,7 @@ public class MusicProvider {
         if (mediaId.equals(MEDIA_ID_BY_QUEUE))
             mediaId = currentEBook;
 
-        if (!MediaIDHelper.isBrowseable(mediaId)) {
+        if (mediaId == null || !MediaIDHelper.isBrowseable(mediaId)) {
             return mediaItems;
         }
 
