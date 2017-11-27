@@ -144,19 +144,21 @@ public class MusicPlayerActivity extends BaseActivity
 
             LogHelper.d(TAG, "Search query=", mediaId);
             break;
+
+          case Intent.ACTION_VIEW:
+              if (extras != null)
+                  mediaId = extras.getString(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
+              LogHelper.d(TAG, "MediaId fetched=", mediaId);
+              break;
+
+          case Intent.ACTION_MAIN:
+          default:
+              break;
         }
       } else {
         if (savedInstanceState != null) {
           // If there is a saved media ID, use it
           mediaId = savedInstanceState.getString(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
-        }
-
-        //Open passed one
-        if (extras != null) {
-            String extraMediaId = extras.getString(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
-            if (extraMediaId != null) {
-                mediaId = extraMediaId;
-            }
         }
       }
       navigateToBrowser(mediaId);
