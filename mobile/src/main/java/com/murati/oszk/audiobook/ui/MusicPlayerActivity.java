@@ -94,18 +94,43 @@ public class MusicPlayerActivity extends BaseActivity
 
     @Override
     public void setToolbarTitle(CharSequence title) {
-        LogHelper.d(TAG, "Setting toolbar title to ", title);
+        LogHelper.d(TAG, "Setting toolbar title for mediaItem", title);
+        String mediaItem = title.toString();
 
-      if (title == null) {
-        if (mSearchParams != null) {
-          title = String.format("%s '%s'", getString(R.string.search_title),
-            mSearchParams.getString(SearchManager.QUERY));
-        } else {
-          title = getString(R.string.app_name);
+        // Empty or Root items
+        if (mediaItem == null || MediaIDHelper.MEDIA_ID_ROOT.equals(mediaItem)) {
+            title = getString(R.string.app_name);
         }
-      }
 
-      setTitle(title);
+        // Search results
+        else if (mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_SEARCH)) {
+            title = String.format("%s '%s'", getString(R.string.search_title),
+                mSearchParams.getString(SearchManager.QUERY));
+        }
+
+        // List by top level categories
+        else if (MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(mediaItem))
+            title = getString(R.string.browse_queue);
+        else if (MediaIDHelper.MEDIA_ID_BY_WRITER.equals(mediaItem))
+            title = getString(R.string.browse_writer);
+        else if (MediaIDHelper.MEDIA_ID_BY_GENRE.equals(mediaItem))
+            title = getString(R.string.browse_genres);
+        else if (MediaIDHelper.MEDIA_ID_BY_EBOOK.equals(mediaItem))
+            title = getString(R.string.browse_ebook);
+
+        else if (
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_WRITER) ||
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_GENRE) ||
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK)
+            )
+            title = MediaIDHelper.getCategoryValueFromMediaID(mediaItem);
+
+        //Anything else
+        else {
+            LogHelper.d(TAG, "Unregistered mediaItem, passing title over", title);
+        }
+
+        setTitle(title);
     }
 
     @Override
