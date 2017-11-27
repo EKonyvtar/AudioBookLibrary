@@ -26,14 +26,18 @@
     <string name="favorite">Kedvencek</string>
 
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
+
+    <!-- Main categories and titles for those -->
     <string name="browse_genres">Kategóriák</string>
     <string name="browse_genre_subtitle">Könyvek kategóriák alapján</string>
+
     <string name="browse_writer">Szerzők</string>
     <string name="browse_writer_subtitle">Könyvek szerzőik alapján</string>
+
     <string name="browse_ebook">Könyvek</string>
     <string name="browse_ebook_subtitle">Böngészés ABC rendben</string>
 
-    <string name="browse_queue">Most játszott</string>
+    <string name="browse_queue">Lejátszási lista</string>
     <string name="browse_queue_subtitle">Aktuális könyv lejátszás alatt</string>
 
     <string name="browse_track_count">%1$s fájl</string>

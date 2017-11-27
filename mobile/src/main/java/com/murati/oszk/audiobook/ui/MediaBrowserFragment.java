@@ -283,32 +283,8 @@ public class MediaBrowserFragment extends Fragment {
     }
 
     private void updateTitle() {
-        if (MediaIDHelper.MEDIA_ID_ROOT.equals(mMediaId)) {
-            mMediaFragmentListener.setToolbarTitle(null);
-            return;
-        }
-        else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_SEARCH)) {
-          mMediaFragmentListener.setToolbarTitle(null);
-          return;
-        }
+        mMediaFragmentListener.setToolbarTitle(mMediaId);
         /*
-        //TODO: fix title
-        else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_GENRE)) {
-          mMediaFragmentListener.setToolbarTitle(resources.getString(R.string.browse_genres));
-          return;
-        }
-
-        else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_WRITER)) {
-          mMediaFragmentListener.setToolbarTitle(resources.getString(R.string.browse_writer));
-          return;
-        }
-
-        else if (mMediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK)) {
-          mMediaFragmentListener.setToolbarTitle(resources.getString(R.string.browse_ebook));
-          return;
-        }
-        */
-
         MediaBrowserCompat mediaBrowser = mMediaFragmentListener.getMediaBrowser();
         mediaBrowser.getItem(mMediaId, new MediaBrowserCompat.ItemCallback() {
             @Override
@@ -317,6 +293,7 @@ public class MediaBrowserFragment extends Fragment {
                         item.getDescription().getTitle());
             }
         });
+        */
     }
 
     // An adapter for showing the list of browsed MediaItem's
