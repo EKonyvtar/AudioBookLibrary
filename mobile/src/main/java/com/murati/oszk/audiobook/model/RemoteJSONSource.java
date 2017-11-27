@@ -124,7 +124,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // Fix writer
         if (writer == null || writer.trim().length() == 0) {
             if (title.contains(":")) {
-                writer = title.split(":",1)[0];
+                writer = title.split(":")[0];
             } else {
                 writer = "Ismeretlen szerző"; //TODO: resource
             }
