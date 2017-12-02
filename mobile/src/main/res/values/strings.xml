@@ -23,6 +23,9 @@
     <string name="drawer_allmusic_title">Hangoskönyvek</string>
     <string name="drawer_playlists_title">Lejátszási lista</string>
     <string name="drawer_settings_title">Beállítások</string>
+    <string name="drawer_feedback_title">Visszajelzés küldése</string>
+    <string name="drawer_about_title">Névjegy</string>
+
     <string name="favorite">Kedvencek</string>
 
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
@@ -76,4 +79,15 @@
     <string name="search_title">Keresés</string>
     <string name="app_label">Hangoskönyvek</string>
     <string name="search_hint">Hangoskönyvek keresése</string>
+
+    <string name="about_content">
+        A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
+        (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
+        \n\n
+        Az alkalmazás fejlesztése ugyanakkor semmilyen módon nem áll kapcsolatban az
+        Országos Széchényi Könyvtár projektjeivel és az esetleges szoftver hibákért
+        a szervezet nem tartozik felelősséggel.
+        \n\n
+        Az alkalmazást fejlesztette: Muráti Ákos
+    </string>
 </resources>

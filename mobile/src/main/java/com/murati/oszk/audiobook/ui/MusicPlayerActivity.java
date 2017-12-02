@@ -203,7 +203,7 @@ public class MusicPlayerActivity extends BaseActivity
             transaction.replace(R.id.container, fragment, FRAGMENT_TAG);
             // If this is not the top level media (root), we add it to the fragment back stack,
             // so that actionbar toggle and Back will work appropriately:
-            if (mediaId != null) {
+            if (mediaId != null) { // && !MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(mediaId)) {
                 transaction.addToBackStack(null);
             }
             transaction.commit();

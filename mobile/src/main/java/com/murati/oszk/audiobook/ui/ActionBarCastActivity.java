@@ -17,8 +17,6 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.ActivityOptions;
 import android.app.FragmentManager;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -34,7 +32,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -111,7 +108,12 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
                         break;
                     case R.id.navigation_settings:
-                        intent = new Intent(ActionBarCastActivity.this, PlaceholderActivity.class);
+                        intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
+                        break;
+                    case R.id.navigation_feedback:
+                        break;
+                    case R.id.navigation_about:
+                        intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
                         break;
                 }
                 if (intent != null) {
@@ -307,7 +309,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 });
         if (MusicPlayerActivity.class.isAssignableFrom(getClass())) {
             navigationView.setCheckedItem(R.id.navigation_allmusic);
-        } else if (PlaceholderActivity.class.isAssignableFrom(getClass())) {
+        } else if (SettingsActivity.class.isAssignableFrom(getClass())) {
             navigationView.setCheckedItem(R.id.navigation_playlists);
         }
     }
