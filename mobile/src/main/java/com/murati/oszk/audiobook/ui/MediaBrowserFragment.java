@@ -58,6 +58,7 @@ public class MediaBrowserFragment extends Fragment {
 
     private static final String TAG = LogHelper.makeLogTag(MediaBrowserFragment.class);
 
+    //TODO: cleanup with helper
     private static final String ARG_MEDIA_ID = "media_id";
 
     private BrowseAdapter mBrowserAdapter;
