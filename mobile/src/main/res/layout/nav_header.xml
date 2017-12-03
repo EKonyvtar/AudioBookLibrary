@@ -24,6 +24,14 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="116dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar_container"
+        android:padding="18px"
+        android:src="@drawable/ic_launcher" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
