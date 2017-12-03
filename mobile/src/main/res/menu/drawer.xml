@@ -20,11 +20,11 @@
         <item
             android:id="@+id/navigation_allmusic"
             android:checked="true"
-            android:icon="@drawable/ic_allmusic_black_24dp"
+            android:icon="@drawable/ic_navigation_books"
             android:title="@string/drawer_allmusic_title"/>
         <item
             android:id="@+id/navigation_playlists"
-            android:icon="@drawable/ic_playlist_music_black_24dp"
+            android:icon="@drawable/ic_navigate_current"
             android:title="@string/drawer_playlists_title"/>
         <!-- <item
             android:id="@+id/navigation_settings"
