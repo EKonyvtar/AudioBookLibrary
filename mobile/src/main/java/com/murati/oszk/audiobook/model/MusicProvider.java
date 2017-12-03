@@ -400,12 +400,12 @@ public class MusicProvider {
         // List all Genre Items
         else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
             mediaItems.addAll(
-                    createGroupList(
-                            mEbookListByGenre,
-                            MEDIA_ID_BY_GENRE,
-                            Uri.EMPTY,
-                            resources
-                    )
+                createGroupList(
+                    mEbookListByGenre,
+                    MEDIA_ID_BY_GENRE,
+                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
+                    resources
+                )
             );
         }
         // List ebooks in a specific Genre
@@ -417,21 +417,13 @@ public class MusicProvider {
 
         // List Writers
         else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            int writerIcon = R.drawable.ic_browse_by_writer;
-            /*
-            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
-                                    "://" + resources.getResourcePackageName(writerIcon)
-                                    + '/' + resources.getResourceTypeName(writerIcon)
-                                    + '/' + resources.getResourceEntryName(writerIcon))
-             */
-
             mediaItems.addAll(
-                    createGroupList(
-                            mEbookListByWriter,
-                            MEDIA_ID_BY_WRITER,
-                            Uri.EMPTY,
-                            resources
-                    )
+                createGroupList(
+                    mEbookListByWriter,
+                    MEDIA_ID_BY_WRITER,
+                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
+                    resources
+                )
             );
         }
 
@@ -520,7 +512,8 @@ public class MusicProvider {
                 .setTitle(ebook)
                 .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
                 //TODO: Fix Album art
-                .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
+                //Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
+                .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigation_books))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
