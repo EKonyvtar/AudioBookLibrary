@@ -18,6 +18,7 @@ package com.murati.oszk.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.BitmapShader;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 import java.io.FileNotFoundException;
@@ -92,9 +94,11 @@ public class MediaItemViewHolder {
             try {
               // Load URI for the item
               Uri imageUri = item.getDescription().getIconUri();
-              InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
-              drawable = Drawable.createFromStream(inputStream, imageUri.toString());
-            } catch (FileNotFoundException e) {
+              int icDrawable = BitmapHelper.convertDrawabletoUri(imageUri);
+              drawable = ContextCompat.getDrawable(activity.getBaseContext(), icDrawable);
+              //InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
+              //drawable = Drawable.createFromStream(inputStream, imageUri.toString());
+            } catch (Exception e) {
               // Defautl to IC_genre
               drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
               DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
