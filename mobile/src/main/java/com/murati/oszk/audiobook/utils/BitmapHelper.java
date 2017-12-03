@@ -116,7 +116,16 @@ public class BitmapHelper {
       return null;
   }
 
-  public static Uri convertDrawabletoUri(int resourceId) {
-      return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
-  }
+    public static Uri convertDrawabletoUri(int resourceId) {
+        return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
+    }
+
+    public static int convertDrawabletoUri(Uri resourceUri) {
+        if (resourceUri != null) {
+            String packagePart = String.format("android.resource://%s/", packageName);
+            String resourceIdStr = resourceUri.toString().replace(packagePart, "");
+            return Integer.parseInt(resourceIdStr);
+        }
+        return R.drawable.ic_browse_default;
+    }
 }
