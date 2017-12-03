@@ -116,7 +116,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         //startActivity(intent);
 
                         String appPackageName = getPackageName();
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+appPackageName));
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+appPackageName));
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         break;
                     case R.id.navigation_about:
