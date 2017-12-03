@@ -94,7 +94,7 @@ public class MediaItemViewHolder {
             try {
               // Load URI for the item
               Uri imageUri = item.getDescription().getIconUri();
-              int icDrawable = BitmapHelper.convertDrawabletoUri(imageUri);
+              int icDrawable = BitmapHelper.convertDrawableUritoResourceId(imageUri);
               drawable = ContextCompat.getDrawable(activity.getBaseContext(), icDrawable);
               //InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
               //drawable = Drawable.createFromStream(inputStream, imageUri.toString());
