@@ -18,9 +18,11 @@ package com.murati.oszk.audiobook.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.murati.oszk.audiobook.AlbumArtCache;
+import com.murati.oszk.audiobook.R;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -30,6 +32,7 @@ import java.net.URL;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
+    private static final String packageName = "com.murati.oszk.audiobook";
 
     // Max read limit that we allow our input stream to mark/reset.
     private static final int MAX_READ_LIMIT_PER_IMG = 1024 * 1024;
@@ -111,5 +114,9 @@ public class BitmapHelper {
           );
       }
       return null;
+  }
+
+  public static Uri convertDrawabletoUri(int resourceId) {
+      return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
   }
 }

@@ -26,6 +26,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
@@ -363,33 +364,29 @@ public class MusicProvider {
         if (MEDIA_ID_ROOT.equals(mediaId)) {
             // Add writers
             mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
-              resources.getString(R.string.browse_writer),
-              resources.getString(R.string.browse_writer_subtitle),
-              Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_writer)));
+                resources.getString(R.string.browse_writer),
+                resources.getString(R.string.browse_writer_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer)));
 
             // Add Genres
             mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
-                    resources.getString(R.string.browse_genres),
-                    resources.getString(R.string.browse_genre_subtitle),
-                    //resources.getDrawable(R.drawable.ic_browse_by_writer).
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_genre)));
+                resources.getString(R.string.browse_genres),
+                resources.getString(R.string.browse_genre_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list)));
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                 resources.getString(R.string.browse_ebook),
-                 resources.getString(R.string.browse_ebook_subtitle),
-                 Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.ic_browse_by_list)));
-
+                resources.getString(R.string.browse_ebook_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigation_books)));
 
             // Show Current playing
             if (currentEBook != null) {
                 mediaItems.add(createGroupItem(currentEBook,
                     MediaIDHelper.getCategoryValueFromMediaID(currentEBook),
                     resources.getString(R.string.browse_queue_subtitle),
-                    Uri.parse("android.resource://com.murati.oszk.audiobook/" + R.drawable.uamp_ic_play_arrow_white_48dp)));
+                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
             }
-
-
         }
 
         // Search ebooks by Query String
