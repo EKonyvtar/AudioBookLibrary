@@ -19,6 +19,7 @@ import android.app.ActivityOptions;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -107,10 +108,16 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
                         break;
-                    case R.id.navigation_settings:
-                        intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
-                        break;
+                    //case R.id.navigation_settings:
+                    //    intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
+                    //    break;
                     case R.id.navigation_feedback:
+                        //intent = new Intent(Intent.ACTION_APP_ERROR);
+                        //startActivity(intent);
+
+                        String appPackageName = getPackageName();
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+appPackageName));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         break;
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
