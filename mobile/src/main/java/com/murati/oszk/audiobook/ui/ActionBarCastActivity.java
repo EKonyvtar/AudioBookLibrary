@@ -15,6 +15,7 @@
  */
 package com.murati.oszk.audiobook.ui;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -251,6 +252,20 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawers();
             return;
         }
+
+        String mediaId = null;
+        if (this.getClass() == MusicPlayerActivity.class) {
+            MusicPlayerActivity musicPlayerActivity = (MusicPlayerActivity)this;
+            mediaId = musicPlayerActivity.getMediaId();
+            if (mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_SEARCH)) {
+                Intent home = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                home.setAction(Intent.ACTION_VIEW);
+                home.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
+                startActivity(home);
+                return;
+            }
+        }
+
         // Otherwise, it may return to the previous fragment stack
         FragmentManager fragmentManager = getFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 0) {
