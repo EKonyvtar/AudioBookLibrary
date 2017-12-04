@@ -378,7 +378,7 @@ public class MusicProvider {
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                 resources.getString(R.string.browse_ebook),
                 resources.getString(R.string.browse_ebook_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigation_books)));
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books)));
 
             // Show Current playing
             if (currentEBook != null) {
@@ -513,7 +513,7 @@ public class MusicProvider {
                 .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
                 //TODO: Fix Album art
                 //Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
-                .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigation_books))
+                .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);

@@ -126,6 +126,6 @@ public class BitmapHelper {
             String resourceIdStr = resourceUri.toString().replace(packagePart, "");
             return Integer.parseInt(resourceIdStr);
         }
-        return R.drawable.ic_navigation_books;
+        return R.drawable.ic_navigate_books;
     }
 }
