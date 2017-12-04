@@ -16,10 +16,13 @@
 package com.murati.oszk.audiobook.ui;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.murati.oszk.audiobook.R;
 
@@ -35,6 +38,11 @@ public class AboutActivity extends BaseActivity {
         setContentView(R.layout.activity_about);
         initializeToolbar();
 
+        // Version info
+        final TextView versionText = findViewById(R.id.version);
+        versionText.setText(getVersion());
+
+        // Button
         final Button button = findViewById(R.id.murati);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -45,5 +53,13 @@ public class AboutActivity extends BaseActivity {
         });
     }
 
-
+    public String getVersion() {
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            //TODO: capture log
+        }
+        return "";
+    }
 }
