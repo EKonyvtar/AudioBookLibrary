@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
@@ -45,7 +46,10 @@ import android.widget.Toast;
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -85,6 +89,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private String mCurrentArtUrl;
     private final Handler mHandler = new Handler();
     private MediaBrowserCompat mMediaBrowser;
+    private MediaDescriptionCompat mMediaItem;
 
     private final Runnable mUpdateProgressTask = new Runnable() {
         @Override
@@ -157,7 +162,15 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mFavoriteButton = (FloatingActionButton)findViewById(R.id.favorite_button);
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Favorite", Toast.LENGTH_LONG).show();
+                //TODO: fix for current
+                String ebook = MediaIDHelper.getCategoryValueFromMediaID(MusicProvider.currentEBook);
+                boolean isFavorite = FavoritesHelper.toggleBook(ebook);
+
+                if (isFavorite) mFavoriteButton.setImageResource(R.drawable.ic_star_on);
+                else  mFavoriteButton.setImageResource(R.drawable.ic_star_off);
+
+                //TODO resource
+                Toast.makeText(getBaseContext(), "Favorite " + ebook, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -350,8 +363,14 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             return;
         }
         LogHelper.d(TAG, "updateMediaDescription called ");
+        mMediaItem = description;
+
         mLine1.setText(description.getTitle());
         mLine2.setText(description.getSubtitle());
+
+        mFavoriteButton.setVisibility(VISIBLE);
+        mDownloadButton.setVisibility(INVISIBLE);
+
         fetchImageAsync(description);
     }
 
