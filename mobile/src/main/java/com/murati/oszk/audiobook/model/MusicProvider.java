@@ -27,6 +27,7 @@ import android.support.v4.media.MediaMetadataCompat;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
@@ -446,6 +447,13 @@ public class MusicProvider {
             TreeSet<String> sortedEbookTitles = new TreeSet<String>();
             sortedEbookTitles.addAll(mEbookList.keySet());
             for (String ebook : sortedEbookTitles) {
+                mediaItems.add(createEbookItem(ebook, resources));
+            }
+        }
+
+        // List all Favorites
+        else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
+            for (String ebook : FavoritesHelper.getFavorites()) {
                 mediaItems.add(createEbookItem(ebook, resources));
             }
         }
