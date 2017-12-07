@@ -2,6 +2,7 @@ package com.murati.oszk.audiobook;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.widget.Toast;
 
 /**
  * Created by akos.murati on 7/12/2017.
@@ -9,6 +10,7 @@ import android.content.Intent;
 
 public class DownloadIntentService extends IntentService {
 
+    private Intent initiator;
     /**
      * A constructor is required, and must call the super IntentService(String)
      * constructor with a name for the worker thread.
@@ -28,6 +30,8 @@ public class DownloadIntentService extends IntentService {
         // For our sample, we just sleep for 5 seconds.
         try {
             Thread.sleep(5000);
+            Toast.makeText(null, "Done", Toast.LENGTH_LONG);
+
         } catch (InterruptedException e) {
             // Restore interrupt status.
             Thread.currentThread().interrupt();
