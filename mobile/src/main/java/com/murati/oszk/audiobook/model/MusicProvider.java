@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
+import android.util.Log;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
@@ -87,6 +88,14 @@ public class MusicProvider {
     public MusicProvider(Context c) {
         //this(new RemoteJSONSource());
         this(new OfflineJSONSource(c),c);
+
+        //TODO: new thread for favorites
+        try {
+            FavoritesHelper.setContext(c);
+            FavoritesHelper.loadFavorites();
+        } catch (Exception e){
+            Log.e(TAG, e.getMessage());
+        }
     }
     public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
