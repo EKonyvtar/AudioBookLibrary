@@ -17,9 +17,9 @@
 <resources>
 
     <style name="UAmpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#228dff</item>
-        <item name="colorPrimaryDark">#61b4d7</item>
-        <item name="colorAccent">#71ccda</item>
+        <item name="colorPrimary">@color/default_primary</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
+        <item name="colorAccent">@color/default_accent</item>
         <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
     </style>
 
@@ -31,15 +31,15 @@
              - Notification icon badge tinting
              - Overview “now playing” icon tinting
          -->
-        <item name="colorPrimaryDark">#0c63bf</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
 
         <!-- colorAccent is used in Android Auto for:
              - Spinner
              - progress bar
              - floating action button background (Play/Pause in media apps)
          -->
-        <item name="colorAccent">@color/bt_accent</item>
-        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/default_accent</item>
+        <item name="colorPrimary">@color/default_primary</item>
     </style>
 
     <style name="WearTheme" parent="UAmpAppTheme">
@@ -47,7 +47,7 @@
              - Card background on media browse
              - Card background on 4-way media controls
          -->
-        <item name="colorPrimaryDark">#0c5dbf</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
     </style>
 
 

@@ -31,4 +31,10 @@
     <color name="background_gradient_start">#000000</color>
     <color name="background_gradient_end">#DDDDDD</color>
     <color name="default_background">#0096a6</color>
+
+    <!-- Re-enforced color -->
+    <color name="default_primary">#BE0224</color>
+    <color name="default_primary_dark">#A40123</color>
+    <color name="default_accent">#C00035</color>
+
 </resources>

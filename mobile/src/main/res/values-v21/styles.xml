@@ -11,15 +11,15 @@
                 <item name="android:windowAllowReturnTransitionOverlap">true</item>
                 <item name="android:windowAllowEnterTransitionOverlap">false</item>
                 <item name="android:windowContentTransitions">true</item>
-                <item name="android:colorPrimary">@color/tv_branding_dark</item>
-                <item name="android:colorPrimaryDark">@color/tv_branding_dark</item>
-                <item name="android:colorAccent">@color/tv_branding_accent</item>
+                <item name="android:colorPrimary">@color/default_primary</item>
+                <item name="android:colorPrimaryDark">@color/default_primary_dark</item>
+                <item name="android:colorAccent">@color/default_accent</item>
         </style>
 
         <style name="UAmpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-                <item name="colorPrimary">#BE0224</item>
-                <item name="colorPrimaryDark">#A40123</item>
-                <item name="colorAccent">#C00035</item>
+                <item name="colorPrimary">@color/default_primary</item>
+                <item name="colorPrimaryDark">@color/default_primary_dark</item>
+                <item name="colorAccent">@color/default_accent</item>
                 <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
                 <item name="android:statusBarColor">@android:color/transparent</item>
                 <item name="android:windowDrawsSystemBarBackgrounds">true</item>
