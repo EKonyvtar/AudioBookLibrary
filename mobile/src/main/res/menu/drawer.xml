@@ -22,10 +22,17 @@
             android:checked="true"
             android:icon="@drawable/ic_navigate_books"
             android:title="@string/drawer_allmusic_title"/>
+
         <item
             android:id="@+id/navigation_playlists"
             android:icon="@drawable/ic_navigate_current"
             android:title="@string/drawer_playlists_title"/>
+
+        <item
+            android:id="@+id/navigation_favorites"
+            android:icon="@drawable/ic_star_on"
+            android:title="@string/browse_favorites"/>
+
         <!-- <item
             android:id="@+id/navigation_settings"
             android:icon="@drawable/ic_menu_settings"
