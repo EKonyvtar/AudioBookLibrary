@@ -26,6 +26,7 @@ import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.WearHelper;
@@ -158,10 +159,10 @@ public class PlaybackManager implements Playback.Callback {
             return;
         }
         String musicId = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
-        int favoriteIcon = mMusicProvider.isFavorite(musicId) ?
+        int favoriteIcon = FavoritesHelper.isFavorite(musicId) ?
                 R.drawable.ic_star_on : R.drawable.ic_star_off;
         LogHelper.d(TAG, "updatePlaybackState, setting Favorite custom action of music ",
-                musicId, " current favorite=", mMusicProvider.isFavorite(musicId));
+                musicId, " current favorite=", FavoritesHelper.isFavorite(musicId));
         Bundle customActionExtras = new Bundle();
         WearHelper.setShowCustomActionOnWear(customActionExtras, true);
         stateBuilder.addCustomAction(new PlaybackStateCompat.CustomAction.Builder(
@@ -331,7 +332,7 @@ public class PlaybackManager implements Playback.Callback {
                     String mediaId = currentMusic.getDescription().getMediaId();
                     if (mediaId != null) {
                         String musicId = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
-                        mMusicProvider.setFavorite(musicId, !mMusicProvider.isFavorite(musicId));
+                        FavoritesHelper.setFavorite(musicId, !FavoritesHelper.isFavorite(musicId));
                     }
                 }
                 // playback state needs to be updated because the "Favorite" icon on the
