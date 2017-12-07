@@ -165,7 +165,7 @@ public class PlaybackManager implements Playback.Callback {
         Bundle customActionExtras = new Bundle();
         WearHelper.setShowCustomActionOnWear(customActionExtras, true);
         stateBuilder.addCustomAction(new PlaybackStateCompat.CustomAction.Builder(
-                CUSTOM_ACTION_THUMBS_UP, mResources.getString(R.string.favorite), favoriteIcon)
+                CUSTOM_ACTION_THUMBS_UP, mResources.getString(R.string.browse_favorites), favoriteIcon)
                 .setExtras(customActionExtras)
                 .build());
     }

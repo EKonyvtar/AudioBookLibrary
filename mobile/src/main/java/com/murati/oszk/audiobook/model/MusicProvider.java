@@ -45,6 +45,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
@@ -72,7 +73,7 @@ public class MusicProvider {
     // Category caches
     private ConcurrentMap<String, List<String>> mEbookListByGenre;
     private ConcurrentMap<String, List<String>> mEbookListByWriter;
-    private final Set<String> mFavoriteEbooks; //TODO: Favourite ebooks too
+    private final Set<String> mFavoriteEbooks;
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
@@ -379,6 +380,12 @@ public class MusicProvider {
                 resources.getString(R.string.browse_ebook),
                 resources.getString(R.string.browse_ebook_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books)));
+
+            // Add Favorites
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_FAVORITES,
+                resources.getString(R.string.browse_favorites),
+                resources.getString(R.string.browse_favorites_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_star_on)));
 
             // Show Current playing
             if (currentEBook != null) {
