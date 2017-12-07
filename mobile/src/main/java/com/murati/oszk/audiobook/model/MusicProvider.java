@@ -75,7 +75,6 @@ public class MusicProvider {
     // Category caches
     private ConcurrentMap<String, List<String>> mEbookListByGenre;
     private ConcurrentMap<String, List<String>> mEbookListByWriter;
-    private final Set<String> mFavoriteEbooks;
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
@@ -105,8 +104,6 @@ public class MusicProvider {
 
         mEbookListByGenre = new ConcurrentHashMap<>();
         mEbookListByWriter = new ConcurrentHashMap<>();
-
-        mFavoriteEbooks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
 
 
@@ -212,11 +209,9 @@ public class MusicProvider {
     }
 
     public void setFavorite(String musicId, boolean favorite) {
-        if (favorite) {
-            mFavoriteEbooks.add(musicId);
-        } else {
-            mFavoriteEbooks.remove(musicId);
-        }
+        boolean result = FavoritesHelper.toggleBook(musicId);
+        if (result != favorite)
+            FavoritesHelper.toggleBook(musicId);
     }
 
     public boolean isInitialized() {
@@ -224,7 +219,7 @@ public class MusicProvider {
     }
 
     public boolean isFavorite(String musicId) {
-        return mFavoriteEbooks.contains(musicId);
+        return FavoritesHelper.getFavorites().contains(musicId);
     }
 
     /**
