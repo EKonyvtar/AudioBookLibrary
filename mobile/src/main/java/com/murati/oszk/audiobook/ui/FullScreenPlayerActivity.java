@@ -19,11 +19,13 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
@@ -33,10 +35,12 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
@@ -74,6 +78,9 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private Drawable mPauseDrawable;
     private Drawable mPlayDrawable;
     private ImageView mBackgroundImage;
+
+    private FloatingActionButton mFavoriteButton;
+    private FloatingActionButton mDownloadButton;
 
     private String mCurrentArtUrl;
     private final Handler mHandler = new Handler();
@@ -145,6 +152,22 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mLine3 = (TextView) findViewById(R.id.line3);
         mLoading = (ProgressBar) findViewById(R.id.progressBar1);
         mControllers = findViewById(R.id.controllers);
+
+        // Favorite action
+        mFavoriteButton = (FloatingActionButton)findViewById(R.id.favorite_button);
+        mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Favorite", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Download action
+        mDownloadButton = (FloatingActionButton)findViewById(R.id.download_button);
+        mDownloadButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Download", Toast.LENGTH_LONG).show();
+            }
+        });
 
         mSkipNext.setOnClickListener(new View.OnClickListener() {
             @Override
