@@ -23,13 +23,15 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:configChanges="locale"
-    tools:context=".MusicPlayerActivity">
+    tools:context=".ui.MusicPlayerActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/include_toolbar" android:id="@+id/toolbar_container"/>
+        <include
+            layout="@layout/include_toolbar"
+            android:id="@+id/toolbar_container"/>
 
         <FrameLayout
             android:id="@+id/container"

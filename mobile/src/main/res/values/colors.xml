@@ -22,7 +22,7 @@
     <color name="media_item_icon_playing">@color/bt_accent</color>
     <color name="media_item_icon_not_playing">#ccc</color>
     <color name="drawer_header_background">@color/bt_accent</color>
-    <color name="error_message_background">#000dff</color>
+
     <color name="drawer_item_selected_background">#feee</color>
     <color name="drawer_item_tint_color">#ff333333</color>
     <color name="fullscreen_secondary_line_color">#E5CCCCCC</color>
@@ -36,5 +36,7 @@
     <color name="default_primary">#BE0224</color>
     <color name="default_primary_dark">#A40123</color>
     <color name="default_accent">#C00035</color>
+
+    <color name="message_background">#d8fa9995</color>
 
 </resources>
