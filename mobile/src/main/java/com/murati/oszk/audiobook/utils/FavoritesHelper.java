@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.TreeSet;
 
@@ -31,7 +30,17 @@ public class FavoritesHelper {
         return mFavoriteEbooks;
     }
 
-    public static boolean toggleBook(String mediaId) {
+    public static boolean isFavorite(String mediaId) {
+        return FavoritesHelper.getFavorites().contains(mediaId);
+    }
+
+    public static void setFavorite(String mediaId, boolean favorite) {
+        boolean result = FavoritesHelper.toggleFavorite(mediaId);
+        if (result != favorite)
+            FavoritesHelper.toggleFavorite(mediaId);
+    }
+
+    public static boolean toggleFavorite(String mediaId) {
         boolean isFavorite = false;
         if (mFavoriteEbooks.contains(mediaId)) {
             mFavoriteEbooks.remove(mediaId);

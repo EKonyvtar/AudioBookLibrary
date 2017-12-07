@@ -208,18 +208,8 @@ public class MusicProvider {
         mutableMetadata.metadata = metadata;
     }
 
-    public void setFavorite(String musicId, boolean favorite) {
-        boolean result = FavoritesHelper.toggleBook(musicId);
-        if (result != favorite)
-            FavoritesHelper.toggleBook(musicId);
-    }
-
     public boolean isInitialized() {
         return mCurrentState == State.INITIALIZED;
-    }
-
-    public boolean isFavorite(String musicId) {
-        return FavoritesHelper.getFavorites().contains(musicId);
     }
 
     /**
