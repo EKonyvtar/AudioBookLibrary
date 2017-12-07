@@ -80,6 +80,7 @@ limitations under the License.
 
         <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/favorite_button"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/line2"
@@ -90,8 +91,7 @@ limitations under the License.
             app:backgroundTint="@color/default_primary_dark"
             app:fabSize="normal" />
 
-        <android.support.design.widget.FloatingActionButton
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/download_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +99,7 @@ limitations under the License.
             android:layout_alignTop="@+id/favorite_button"
             android:layout_marginEnd="66dp"
             android:src="@drawable/ic_action_download"
+            android:visibility="invisible"
             app:backgroundTint="@color/default_primary_dark"
             app:fabSize="normal" />
 
