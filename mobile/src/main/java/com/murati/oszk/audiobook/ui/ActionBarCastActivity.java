@@ -30,12 +30,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.MediaRouteButton;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
@@ -241,9 +245,37 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
+        //Favorites Toggle
+        if (item != null && item.getItemId() == R.id.option_favorite) {
+            String mediaId = null;
+            if (this.getClass() == MusicPlayerActivity.class) {
+                MusicPlayerActivity musicPlayerActivity = (MusicPlayerActivity) this;
+                mediaId = musicPlayerActivity.getMediaId();
+            }
+
+            if (mediaId != null) {
+                boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
+                String snakeText = "";
+                if (isFavorite) {
+                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
+                    snakeText = getResources().getString(R.string.notification_favorite_added);
+                }
+                else {
+                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
+                    snakeText = getResources().getString(R.string.notification_favorite_removed);
+                }
+
+                Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+            }
+
+            return true;
+        }
+
         // If not handled by drawerToggle, home needs to be handled by returning to previous
         if (item != null && item.getItemId() == android.R.id.home) {
             onBackPressed();

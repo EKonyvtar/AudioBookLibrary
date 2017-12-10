@@ -22,7 +22,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.text.TextUtils;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -196,6 +199,8 @@ public class MusicPlayerActivity extends BaseActivity
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);
         MediaBrowserFragment fragment = getBrowseFragment();
 
+        updateFavoriteButton(mediaId);
+
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
             fragment = new MediaBrowserFragment();
             fragment.setMediaId(mediaId);
@@ -210,6 +215,21 @@ public class MusicPlayerActivity extends BaseActivity
                 transaction.addToBackStack(null);
             }
             transaction.commit();
+        }
+    }
+
+    public void updateFavoriteButton(String mediaId) {
+        int visibility = View.GONE;
+        //ActionMenuItemView menu = (ActionMenuItemView) findViewById(R.id.menu);
+        if (mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/")) {
+            visibility = View.VISIBLE;
+
+            //TODO: load state
+        }
+
+        ActionMenuItemView favoriteMenuItem = (ActionMenuItemView) findViewById(R.id.option_favorite);
+        if (favoriteMenuItem != null) {
+            favoriteMenuItem.setVisibility(visibility);
         }
     }
 
@@ -240,5 +260,6 @@ public class MusicPlayerActivity extends BaseActivity
       }*/
 
       getBrowseFragment().onConnected();
+      updateFavoriteButton(getMediaId());
     }
 }

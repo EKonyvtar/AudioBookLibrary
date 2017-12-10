@@ -30,7 +30,9 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.Menu;
+import android.view.View;
 import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.MusicService;
@@ -140,6 +142,12 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         //getMenuInflater().inflate(R.menu.main, menu);
+
+        //TODO: move this to ActionBar
+        //ActionMenuItemView fav = (ActionMenuItemView)findViewById(R.id.option_favorite);
+        //fav.setVisibility(View.GONE);
+        //menu.findItem(R.id.option_favorite).setVisible(false);
+        //invalidateOptionsMenu();
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
