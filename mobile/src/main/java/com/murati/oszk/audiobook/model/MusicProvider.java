@@ -448,7 +448,11 @@ public class MusicProvider {
         // List all Favorites
         else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
             for (String ebook : FavoritesHelper.getFavorites()) {
-                mediaItems.add(createEbookItem(ebook, resources));
+                try {
+                    mediaItems.add(createEbookItem(ebook, resources));
+                } catch (Exception ex){
+                    //TODO: fix
+                }
             }
         }
 
