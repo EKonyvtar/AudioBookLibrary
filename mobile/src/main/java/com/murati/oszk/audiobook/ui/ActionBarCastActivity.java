@@ -232,7 +232,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
+        //super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
 
         // Cast Menuitem
@@ -241,6 +241,15 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                     menu, R.id.media_route_menu_item);
         }
         return true;
+    }
+
+    private static final String FRAGMENT_TAG = "uamp_list_container";
+    public String getMediaId() {
+        MediaBrowserFragment fragment = (MediaBrowserFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+        if (fragment == null) {
+            return null;
+        }
+        return fragment.getMediaId();
     }
 
     @Override

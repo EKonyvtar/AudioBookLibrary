@@ -24,6 +24,7 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -198,7 +199,6 @@ public class MusicPlayerActivity extends BaseActivity
     private void navigateToBrowser(String mediaId) {
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);
         MediaBrowserFragment fragment = getBrowseFragment();
-
         updateFavoriteButton(mediaId);
 
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
@@ -219,18 +219,32 @@ public class MusicPlayerActivity extends BaseActivity
     }
 
     public void updateFavoriteButton(String mediaId) {
-        int visibility = View.GONE;
-        //ActionMenuItemView menu = (ActionMenuItemView) findViewById(R.id.menu);
-        if (mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/")) {
-            visibility = View.VISIBLE;
+        if (mMenu == null) return;
+        MenuItem mFav = null;
 
-            //TODO: load state
+        boolean shouldBeVisible = (
+            mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/"));
+
+        // Set Favorite Menu visibility
+        try {
+            mFav = mMenu.findItem(R.id.option_favorite);
+            mFav.setVisible(shouldBeVisible);
+        } catch (Exception e) {
+            Log.d(TAG,e.getMessage());
         }
 
-        ActionMenuItemView favoriteMenuItem = (ActionMenuItemView) findViewById(R.id.option_favorite);
+        // Set Favorite icon
+        //invalidateOptionsMenu();
+
+
+
+        //MenuItem fav = (MenuItem) findViewById(R.id.option_favorite);
+        //fav.setVisible(visible);
+
+        /*ActionMenuItemView favoriteMenuItem = (ActionMenuItemView) findViewById(R.id.option_favorite);
         if (favoriteMenuItem != null) {
             favoriteMenuItem.setVisibility(visibility);
-        }
+        }*/
     }
 
     public String getMediaId() {

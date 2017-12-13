@@ -30,6 +30,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.view.menu.ActionMenuItemView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -152,10 +153,11 @@ public class MediaBrowserFragment extends Fragment {
                              Bundle savedInstanceState) {
         LogHelper.d(TAG, "fragment.onCreateView");
 
+        // Update Favoritebutton on backstack navigate
         try {
             ((MusicPlayerActivity)this.getActivity()).updateFavoriteButton(getMediaId());
         } catch (Exception ex) {
-            //TODO
+            Log.e(TAG,ex.getMessage());
         }
 
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
