@@ -49,6 +49,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
 
     private static final String TAG = LogHelper.makeLogTag(BaseActivity.class);
 
+    protected Menu mMenu;
     private MediaBrowserCompat mMediaBrowser;
     private PlaybackControlsFragment mControlsFragment;
 
@@ -157,6 +158,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
+        mMenu = menu;
         return true;
     }
 
