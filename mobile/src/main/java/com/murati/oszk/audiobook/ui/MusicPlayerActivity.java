@@ -22,9 +22,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
@@ -195,6 +200,7 @@ public class MusicPlayerActivity extends BaseActivity
     private void navigateToBrowser(String mediaId) {
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);
         MediaBrowserFragment fragment = getBrowseFragment();
+        updateFavoriteButton(mediaId);
 
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
             fragment = new MediaBrowserFragment();
@@ -210,6 +216,29 @@ public class MusicPlayerActivity extends BaseActivity
                 transaction.addToBackStack(null);
             }
             transaction.commit();
+        }
+    }
+
+    public void updateFavoriteButton(String mediaId) {
+        if (mMenu == null) return;
+        MenuItem mFav = null;
+
+        boolean shouldBeVisible = (
+            mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/"));
+
+        // Set Favorite Menu visibility
+        try {
+            mFav = mMenu.findItem(R.id.option_favorite);
+            mFav.setVisible(shouldBeVisible);
+
+            // Set Favorite icon
+            if (shouldBeVisible && FavoritesHelper.isFavorite(mediaId))
+                mFav.setIcon(R.drawable.ic_star_on);
+            else
+                mFav.setIcon(R.drawable.ic_star_off);
+
+        } catch (Exception e) {
+            Log.d(TAG,e.getMessage());
         }
     }
 
@@ -240,5 +269,6 @@ public class MusicPlayerActivity extends BaseActivity
       }*/
 
       getBrowseFragment().onConnected();
+      updateFavoriteButton(getMediaId());
     }
 }

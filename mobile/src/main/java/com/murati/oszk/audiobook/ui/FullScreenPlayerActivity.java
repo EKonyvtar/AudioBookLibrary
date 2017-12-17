@@ -80,8 +80,8 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private Drawable mPlayDrawable;
     private ImageView mBackgroundImage;
 
-    private FloatingActionButton mFavoriteButton;
-    private FloatingActionButton mDownloadButton;
+    //private FloatingActionButton mFavoriteButton;
+    //private FloatingActionButton mDownloadButton;
 
     private String mCurrentArtUrl;
     private final Handler mHandler = new Handler();
@@ -116,6 +116,10 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             }
         }
     };
+
+    public String getMediaId() {
+        return MusicProvider.currentEBook;
+    }
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallback =
             new MediaBrowserCompat.ConnectionCallback() {
@@ -155,6 +159,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mLoading = (ProgressBar) findViewById(R.id.progressBar1);
         mControllers = findViewById(R.id.controllers);
 
+        /*
         // Favorite action
         mFavoriteButton = (FloatingActionButton)findViewById(R.id.favorite_button);
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +183,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
                 Toast.makeText(getBaseContext(), "Download", Toast.LENGTH_LONG).show();
             }
         });
+        */
 
         mSkipNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -365,8 +371,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mLine1.setText(description.getTitle());
         mLine2.setText(description.getSubtitle());
 
-        mFavoriteButton.setVisibility(VISIBLE);
-        mDownloadButton.setVisibility(INVISIBLE);
+        //mDownloadButton.setVisibility(INVISIBLE);
 
         fetchImageAsync(description);
     }
