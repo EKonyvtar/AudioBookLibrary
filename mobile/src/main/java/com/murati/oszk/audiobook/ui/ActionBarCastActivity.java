@@ -245,6 +245,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
     private static final String FRAGMENT_TAG = "uamp_list_container";
     public String getMediaId() {
+        //TODO: cast by main activity
         MediaBrowserFragment fragment = (MediaBrowserFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (fragment == null) {
             return null;
@@ -262,9 +263,14 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         //Favorites Toggle
         if (item != null && item.getItemId() == R.id.option_favorite) {
             String mediaId = null;
+
             if (this.getClass() == MusicPlayerActivity.class) {
                 MusicPlayerActivity musicPlayerActivity = (MusicPlayerActivity) this;
                 mediaId = musicPlayerActivity.getMediaId();
+            }
+            else if (this.getClass() == FullScreenPlayerActivity.class) {
+                FullScreenPlayerActivity fullPlayer = (FullScreenPlayerActivity) this;
+                mediaId = fullPlayer.getMediaId();
             }
 
             if (mediaId != null) {
