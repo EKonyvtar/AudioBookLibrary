@@ -29,7 +29,10 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.support.v7.view.menu.ActionMenuItemView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -37,6 +40,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -148,6 +152,14 @@ public class MediaBrowserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         LogHelper.d(TAG, "fragment.onCreateView");
+
+        // Update Favoritebutton on backstack navigate
+        try {
+            ((MusicPlayerActivity)this.getActivity()).updateFavoriteButton(getMediaId());
+        } catch (Exception ex) {
+            Log.e(TAG,ex.getMessage());
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
         mErrorView = rootView.findViewById(R.id.playback_error);
@@ -317,5 +329,4 @@ public class MediaBrowserFragment extends Fragment {
         void onMediaItemSelected(MediaBrowserCompat.MediaItem item);
         void setToolbarTitle(CharSequence title);
     }
-
 }
