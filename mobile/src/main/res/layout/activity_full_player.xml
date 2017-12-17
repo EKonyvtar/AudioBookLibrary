@@ -78,6 +78,7 @@ limitations under the License.
             android:shadowRadius="20"
             android:textColor="@color/fullscreen_secondary_line_color" />
 
+        <!--
         <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/favorite_button"
             android:visibility="invisible"
@@ -90,7 +91,9 @@ limitations under the License.
             android:src="@drawable/ic_star_off"
             app:backgroundTint="@color/default_primary_dark"
             app:fabSize="normal" />
+        -->
 
+        <!--
         <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/download_button"
             android:layout_width="wrap_content"
@@ -102,6 +105,7 @@ limitations under the License.
             android:visibility="invisible"
             app:backgroundTint="@color/default_primary_dark"
             app:fabSize="normal" />
+        -->
 
         <LinearLayout
             android:id="@+id/controllers"

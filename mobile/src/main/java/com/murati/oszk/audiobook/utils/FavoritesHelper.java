@@ -81,6 +81,10 @@ public class FavoritesHelper {
         }
     }
 
+    public static void resetFavorites() throws Exception {
+        mFavoriteEbooks  = new TreeSet<String>();
+        saveFavorites();
+    }
 
     public static void loadFavorites() throws Exception {
         TreeSet<String> tempFavoriteEbooks  = new TreeSet<String>();
