@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
@@ -229,22 +230,16 @@ public class MusicPlayerActivity extends BaseActivity
         try {
             mFav = mMenu.findItem(R.id.option_favorite);
             mFav.setVisible(shouldBeVisible);
+
+            // Set Favorite icon
+            if (shouldBeVisible && FavoritesHelper.isFavorite(mediaId))
+                mFav.setIcon(R.drawable.ic_star_on);
+            else
+                mFav.setIcon(R.drawable.ic_star_off);
+
         } catch (Exception e) {
             Log.d(TAG,e.getMessage());
         }
-
-        // Set Favorite icon
-        //invalidateOptionsMenu();
-
-
-
-        //MenuItem fav = (MenuItem) findViewById(R.id.option_favorite);
-        //fav.setVisible(visible);
-
-        /*ActionMenuItemView favoriteMenuItem = (ActionMenuItemView) findViewById(R.id.option_favorite);
-        if (favoriteMenuItem != null) {
-            favoriteMenuItem.setVisibility(visibility);
-        }*/
     }
 
     public String getMediaId() {

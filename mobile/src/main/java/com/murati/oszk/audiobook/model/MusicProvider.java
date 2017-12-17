@@ -54,6 +54,7 @@ import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.createMediaID;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.getCategoryValueFromMediaID;
 
 /**
  * Simple data provider for music tracks. The actual metadata source is delegated to a
@@ -449,9 +450,12 @@ public class MusicProvider {
         else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
             for (String ebook : FavoritesHelper.getFavorites()) {
                 try {
-                    mediaItems.add(createEbookItem(ebook, resources));
+                    if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+                        String title = getCategoryValueFromMediaID(ebook);
+                        mediaItems.add(createEbookItem(title, resources));
+                    }
                 } catch (Exception ex){
-                    //TODO: fix
+                    Log.i(TAG, "Exception listing favorite:"+ebook);
                 }
             }
         }
