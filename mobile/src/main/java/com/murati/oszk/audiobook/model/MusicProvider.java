@@ -107,7 +107,7 @@ public class MusicProvider {
         mEbookListByWriter = new ConcurrentHashMap<>();
     }
 
-    
+
     //region EBOOK_GETTERS
     public Iterable<String> getEbooksByGenre(String genre) {
         if (mCurrentState != State.INITIALIZED || !mEbookListByGenre.containsKey(genre)) {
