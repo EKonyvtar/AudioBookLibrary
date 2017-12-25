@@ -17,7 +17,6 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,10 +28,8 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -40,11 +37,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
-import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 
 import java.util.ArrayList;
@@ -155,7 +150,7 @@ public class MediaBrowserFragment extends Fragment {
 
         // Update Favoritebutton on backstack navigate
         try {
-            ((MusicPlayerActivity)this.getActivity()).updateFavoriteButton(getMediaId());
+            ((MusicPlayerActivity)this.getActivity()).updateBookButtons(getMediaId());
         } catch (Exception ex) {
             Log.e(TAG,ex.getMessage());
         }
