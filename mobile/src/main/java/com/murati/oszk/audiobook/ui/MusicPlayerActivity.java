@@ -122,12 +122,15 @@ public class MusicPlayerActivity extends BaseActivity
             title = getString(R.string.browse_ebook);
         else if (MediaIDHelper.MEDIA_ID_BY_FAVORITES.equals(mediaItem))
             title = getString(R.string.browse_favorites);
+        else if (MediaIDHelper.MEDIA_ID_BY_DOWNLOADS.equals(mediaItem))
+            title = getString(R.string.browse_downloads);
 
         else if (
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_WRITER) ||
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_GENRE) ||
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK) ||
-            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_FAVORITES)
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_FAVORITES) ||
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)
             )
             title = MediaIDHelper.getCategoryValueFromMediaID(mediaItem);
 
