@@ -107,23 +107,7 @@ public class MusicProvider {
         mEbookListByWriter = new ConcurrentHashMap<>();
     }
 
-
-    //region BROWSABLE_ITEM GENERATORS
-
-    //TODO: remove shuffle
-    public Iterable<MediaMetadataCompat> getShuffledMusic() {
-        if (mCurrentState != State.INITIALIZED) {
-            return Collections.emptyList();
-        }
-        List<MediaMetadataCompat> shuffled = new ArrayList<>(mTrackListById.size());
-        for (MutableMediaMetadata mutableMetadata: mTrackListById.values()) {
-            shuffled.add(mutableMetadata.metadata);
-        }
-        Collections.shuffle(shuffled);
-        return shuffled;
-    }
-    //endregion
-
+    
     //region EBOOK_GETTERS
     public Iterable<String> getEbooksByGenre(String genre) {
         if (mCurrentState != State.INITIALIZED || !mEbookListByGenre.containsKey(genre)) {
