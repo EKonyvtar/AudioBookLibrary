@@ -32,6 +32,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.MediaRouteButton;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -260,10 +261,9 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             return true;
         }
 
-        //Favorites Toggle
-        if (item != null && item.getItemId() == R.id.option_favorite) {
-            String mediaId = null;
-
+        //Try to get mediaId
+        String mediaId = null;
+        try {
             if (this.getClass() == MusicPlayerActivity.class) {
                 MusicPlayerActivity musicPlayerActivity = (MusicPlayerActivity) this;
                 mediaId = musicPlayerActivity.getMediaId();
@@ -272,21 +272,35 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 FullScreenPlayerActivity fullPlayer = (FullScreenPlayerActivity) this;
                 mediaId = fullPlayer.getMediaId();
             }
+        } catch (Exception ex) {
+            Log.d(TAG, "Unable to fetch mediaId");
+        }
 
-            if (mediaId != null) {
-                boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
-                String snakeText = "";
-                if (isFavorite) {
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
-                    snakeText = getResources().getString(R.string.notification_favorite_added);
-                }
-                else {
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
-                    snakeText = getResources().getString(R.string.notification_favorite_removed);
-                }
 
-                Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+        //Favorites Toggle
+        if (item != null && mediaId != null &&
+            item.getItemId() == R.id.option_favorite ) {
+
+            boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
+            String snakeText = "";
+            if (isFavorite) {
+                item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
+                snakeText = getResources().getString(R.string.notification_favorite_added);
             }
+            else {
+                item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
+                snakeText = getResources().getString(R.string.notification_favorite_removed);
+            }
+
+            Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+
+            return true;
+        }
+
+        //Download button
+        if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
+
+            Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
 
             return true;
         }

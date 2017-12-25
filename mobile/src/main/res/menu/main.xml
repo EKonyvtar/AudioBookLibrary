@@ -28,16 +28,21 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/media_route_menu_item"
+        android:title="@string/media_route_menu_title"
+        app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/option_favorite"
         android:title="@string/action_favorite"
         android:icon="@drawable/ic_star_off"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/media_route_menu_item"
-        android:title="@string/media_route_menu_title"
-        app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
-        app:showAsAction="always"/>
-
+        android:id="@+id/option_download"
+        android:title="@string/action_download"
+        android:icon="@drawable/ic_action_download"
+        app:showAsAction="always" />
 
 </menu>
