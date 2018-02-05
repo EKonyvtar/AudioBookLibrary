@@ -17,6 +17,7 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.DownloadManager;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -38,6 +39,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
@@ -305,8 +307,16 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         //Download button
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
+            Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
+            //intent.setAction(Intent.ACTION_VIEW);
+            intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
 
+            startService(intent);
             Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
+
+            //Intent i = new Intent();
+            //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+            //startActivity(i);
 
             return true;
         }
