@@ -43,7 +43,7 @@
         android:theme="@style/UAmpAppTheme"
         android:banner="@drawable/banner_tv">
 
-        <service android:name=".ExampleService" />
+        <service android:name=".OfflineBookService"/>
 
         <meta-data
             android:name="com.google.android.gms.car.application"
