@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -44,6 +45,8 @@ import com.murati.oszk.audiobook.utils.NetworkHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * A Fragment that lists all the various browsable queues available
@@ -59,6 +62,7 @@ public class MediaBrowserFragment extends Fragment {
 
     //TODO: cleanup with helper
     private static final String ARG_MEDIA_ID = "media_id";
+    private static ConcurrentMap<String, Parcelable> listState  = new ConcurrentHashMap<>();
 
     private BrowseAdapter mBrowserAdapter;
     private String mMediaId;
@@ -148,9 +152,12 @@ public class MediaBrowserFragment extends Fragment {
                              Bundle savedInstanceState) {
         LogHelper.d(TAG, "fragment.onCreateView");
 
+        //TODO: rething mMediaId in instance context
+        final String mediaId = getMediaId();
+
         // Update Favoritebutton on backstack navigate
         try {
-            ((MusicPlayerActivity)this.getActivity()).updateBookButtons(getMediaId());
+            ((MusicPlayerActivity)this.getActivity()).updateBookButtons(mediaId);
         } catch (Exception ex) {
             Log.e(TAG,ex.getMessage());
         }
@@ -162,17 +169,28 @@ public class MediaBrowserFragment extends Fragment {
 
         mBrowserAdapter = new BrowseAdapter(getActivity());
 
-        ListView listView = (ListView) rootView.findViewById(R.id.list_view);
+        final ListView listView = (ListView) rootView.findViewById(R.id.list_view);
         listView.setAdapter(mBrowserAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 checkForUserVisibleErrors(false);
+                if (mediaId != null) {
+                    Parcelable state = listView.onSaveInstanceState();
+                    if (listState.containsKey(mediaId)) {
+                        ((ConcurrentHashMap) listState).remove(mediaId);
+                    }
+                    ((ConcurrentHashMap) listState).put(mediaId, state);
+                }
                 MediaBrowserCompat.MediaItem item = mBrowserAdapter.getItem(position);
                 mMediaFragmentListener.onMediaItemSelected(item);
             }
         });
 
+        // Restore listViewState if we have previous
+        if (mediaId != null && listState.containsKey(mediaId)) {
+            listView.onRestoreInstanceState(listState.get(mediaId));
+        }
         return rootView;
     }
 
