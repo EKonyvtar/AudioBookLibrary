@@ -27,6 +27,7 @@ package com.murati.oszk.audiobook.playback;
         import android.text.TextUtils;
 
         import com.murati.oszk.audiobook.MusicService;
+        import com.murati.oszk.audiobook.OfflineBookService;
         import com.murati.oszk.audiobook.model.MusicProvider;
         import com.murati.oszk.audiobook.model.MusicProviderSource;
         import com.murati.oszk.audiobook.utils.LogHelper;
@@ -49,6 +50,7 @@ package com.murati.oszk.audiobook.playback;
         import com.google.android.exoplayer2.upstream.DataSource;
         import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
         import com.google.android.exoplayer2.util.Util;
+        import com.murati.oszk.audiobook.utils.OfflineBookHelper;
 
         import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
         import static com.google.android.exoplayer2.C.CONTENT_TYPE_MUSIC;
@@ -201,7 +203,12 @@ public final class LocalPlayback implements Playback {
                             MediaIDHelper.extractMusicIDFromMediaID(
                                     item.getDescription().getMediaId()));
 
+            //TODO: add source
             String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+            if (OfflineBookHelper.isOffline(source)) {
+                source = OfflineBookHelper.getOfflineSource(source);
+            }
+
             if (source != null) {
                 source = source.replaceAll(" ", "%20"); // Escape spaces for URLs
             }
