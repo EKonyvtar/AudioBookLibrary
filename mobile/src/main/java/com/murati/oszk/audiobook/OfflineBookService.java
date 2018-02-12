@@ -10,13 +10,17 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.media.MediaMetadataCompat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
+import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 public class OfflineBookService extends IntentService {
 
@@ -96,6 +100,9 @@ public class OfflineBookService extends IntentService {
         try {
             String action = intent.getAction();
             Bundle extra = intent.getExtras();
+
+            String mediaId = (String)extra.get(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
+
 
             dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(
