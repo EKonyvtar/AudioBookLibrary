@@ -308,8 +308,9 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         //Download button
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
             Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
-            //intent.setAction(Intent.ACTION_VIEW);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
+
 
             startService(intent);
             Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
