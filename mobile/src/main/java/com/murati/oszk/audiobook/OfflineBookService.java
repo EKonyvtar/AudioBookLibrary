@@ -15,14 +15,19 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.model.MusicProviderSource;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.logging.Logger;
 
 public class OfflineBookService extends IntentService {
+
+    private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
 
     private long enqueue;
     private DownloadManager dm;
@@ -98,36 +103,44 @@ public class OfflineBookService extends IntentService {
         // Normally we would do some work here, like download a file.
         // For our sample, we just sleep for 5 seconds.
         try {
+            dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+
             String action = intent.getAction();
             Bundle extra = intent.getExtras();
 
             String mediaId = (String)extra.get(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
 
-
-            dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-            DownloadManager.Request request = new DownloadManager.Request(
-                Uri.parse("http://static.origos.hu/s/img/i/1712/20171201nissan-xtrail-20-dci-teszt5.jpg?w=644&h=429"));
-
-            String filename = "test.png";
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            request.setDescription("Letöltés...");
-            File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            request.setTitle("F:" + downloadDir);
-
-            //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-
-            /*
-            //TODO: replace internal data
-
-            request.setDestinationUri(Uri.fromFile(new File(downloadDir, filename)));
-            //request.addRequestHeader("User-Agent", System.getProperty("http.agent") + " my_app/" + Utils.appVersionNumber());
-            */
-            try {
-                enqueue = dm.enqueue(request);
-            } catch (Exception ex) {
-                //TODO: retyr..
+            if (mediaId == null) {
+                //TODO: notify failiure
+                return;
             }
 
+            Iterable<MediaMetadataCompat> tracks = null;
+            String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
+            Log.d(TAG, "Downloading book: " + book);
+            tracks = MusicProvider.getTracksByEbook(book);
+            int count = 0;
+            for (MediaMetadataCompat track : tracks) {
+                count++;
+                try {
+                    String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+                    Log.d(TAG, "Track " + source);
+                    String filename = String.format("%d.mp3",count);
+
+                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    request.setDescription("Letöltés...");
+                    File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                    request.setTitle(filename);
+                    //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+
+                    request.setDestinationUri(Uri.fromFile(new File(downloadDir, filename)));
+                    //request.addRequestHeader("User-Agent", System.getProperty("http.agent") + " my_app/" + Utils.appVersionNumber());
+                    enqueue = dm.enqueue(request);
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.getMessage());
+                }
+            }
         } catch (Exception e) {
             // Restore interrupt status.
             //TODO: e

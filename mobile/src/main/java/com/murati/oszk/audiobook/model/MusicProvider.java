@@ -71,7 +71,7 @@ public class MusicProvider {
 
     // Ebook cache
     public static String currentEBook = null;
-    private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+    private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
 
     // Category caches
     private ConcurrentMap<String, List<String>> mEbookListByGenre;
@@ -79,7 +79,7 @@ public class MusicProvider {
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
-    private volatile State mCurrentState = State.NON_INITIALIZED;
+    private static volatile State mCurrentState = State.NON_INITIALIZED;
 
     public interface Callback {
         void onMusicCatalogReady(boolean success);
@@ -123,7 +123,7 @@ public class MusicProvider {
         return mEbookListByWriter.get(writer);
     }
 
-    public Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
+    public static Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
         if (mCurrentState != State.INITIALIZED || !mEbookList.containsKey(ebook)) {
             return Collections.emptyList();
         }
