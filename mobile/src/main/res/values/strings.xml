@@ -80,7 +80,7 @@
     <string name="play_pause">Indítás vagy szünet</string>
     <string name="skip_next">Következő</string>
     <string name="skip_prev">Előző</string>
-    <string name="touch_to_cast">Hangoskönyveit TV, ChromeCast vagy más eszközökön is lejátszhatja</string>
+    <string name="touch_to_cast">Hangoskönyveit TV, ChromeCast, Android Auto vagy más eszközökön is lejátszhatja</string>
 
     <string name="home_title">Kezdőlap</string>
     <string name="related_content_header">Hasonló könyvek</string>

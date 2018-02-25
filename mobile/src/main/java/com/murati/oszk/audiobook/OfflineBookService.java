@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.media.MediaMetadataCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -89,8 +90,22 @@ public class OfflineBookService extends IntentService {
 
     @Override
     public void onDestroy() {
-        //super.onDestroy();
-        //unregisterReceiver(receiver);
+        try {
+            unregisterReceiver(receiver);
+        } catch (Exception ex) {
+            Log.d(TAG, ex.getMessage());
+        }
+        super.onDestroy();
+    }
+
+    //Grabbing fileName from sourceUrl
+    public static String getFileName(String source) {
+        String fileName = null;
+        if (!TextUtils.isEmpty(source)) {
+            String[] strings = source.split("/");
+            fileName = strings[strings.length-1];
+        }
+        return fileName;
     }
 
     /**
@@ -117,25 +132,45 @@ public class OfflineBookService extends IntentService {
 
             Iterable<MediaMetadataCompat> tracks = null;
             String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
-            Log.d(TAG, "Downloading book: " + book);
+
+            Log.d(TAG, "Creating folder for " + book);
+            File bookFolder = new File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), book);
+            if (!bookFolder.exists()) bookFolder.mkdirs();
+
+
+            Log.d(TAG, "Tracks");
             tracks = MusicProvider.getTracksByEbook(book);
-            int count = 0;
+
             for (MediaMetadataCompat track : tracks) {
-                count++;
                 try {
                     String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
                     Log.d(TAG, "Track " + source);
-                    String filename = String.format("%d.mp3",count);
+
+                    String filename = getFileName(source);
+                    File file = new File(bookFolder,filename);
+                    if(file.exists()){
+                        Log.d(TAG, source + " is already downloaded");
+                        continue;
+                    }
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
-                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                    request.setDescription("Letöltés...");
-                    File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    request.setTitle(filename);
-                    //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
 
-                    request.setDestinationUri(Uri.fromFile(new File(downloadDir, filename)));
+                    request.setTitle(book + " - " + filename);
+                    request.setDescription(filename);
+                    request.setDestinationUri(Uri.fromFile(new File(bookFolder, filename)));
+
+                    request.setVisibleInDownloadsUi(false);
+                    request.setNotificationVisibility(
+                        DownloadManager.Request.VISIBILITY_VISIBLE
+                    );
+
+                    //TODO: Add download options from new settings
+                    //request.setAllowedOverMetered(false);
+                    //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
                     //request.addRequestHeader("User-Agent", System.getProperty("http.agent") + " my_app/" + Utils.appVersionNumber());
+
+                    //TODO: Set extra for identification
                     enqueue = dm.enqueue(request);
                 } catch (Exception ex) {
                     Log.e(TAG, ex.getMessage());
