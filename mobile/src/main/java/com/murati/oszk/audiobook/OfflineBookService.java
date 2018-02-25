@@ -29,6 +29,9 @@ import java.util.logging.Logger;
 public class OfflineBookService extends IntentService {
 
     private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
+
+    public static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
+
     private static final String OFFLINE_ROOT = "Hangoskonyvek";
 
     private long enqueue;
