@@ -205,6 +205,7 @@ public final class LocalPlayback implements Playback {
 
             //TODO: add source
             String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+
             if (OfflineBookHelper.isOffline(source)) {
                 source = OfflineBookHelper.getOfflineSource(source);
             }

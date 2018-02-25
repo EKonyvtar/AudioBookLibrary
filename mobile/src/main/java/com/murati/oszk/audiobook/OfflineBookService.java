@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 public class OfflineBookService extends IntentService {
 
     private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
+    private static final String OFFLINE_ROOT = "Hangoskonyvek";
 
     private long enqueue;
     private DownloadManager dm;
@@ -108,6 +109,18 @@ public class OfflineBookService extends IntentService {
         return fileName;
     }
 
+    public static File getOfflineSource(String book, String source) {
+        String fileName = getFileName(source);
+        File bookFolder = new File(getDownloadDirectory(), book);
+        return new File(bookFolder, fileName);
+    }
+
+    public static File getDownloadDirectory() {
+        return new File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+            OFFLINE_ROOT);
+    }
+
     /**
      * The IntentService calls this method from the default worker thread with
      * the intent that started the service. When this method returns, IntentService
@@ -134,21 +147,19 @@ public class OfflineBookService extends IntentService {
             String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
 
             Log.d(TAG, "Creating folder for " + book);
-            File bookFolder = new File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), book);
+            File bookFolder = new File(getDownloadDirectory(), book);
             if (!bookFolder.exists()) bookFolder.mkdirs();
-
 
             Log.d(TAG, "Tracks");
             tracks = MusicProvider.getTracksByEbook(book);
-
+            int count = 0;
             for (MediaMetadataCompat track : tracks) {
+                count++;
                 try {
                     String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
                     Log.d(TAG, "Track " + source);
 
-                    String filename = getFileName(source);
-                    File file = new File(bookFolder,filename);
+                    File file = getOfflineSource(book, source);
                     if(file.exists()){
                         Log.d(TAG, source + " is already downloaded");
                         continue;
@@ -156,9 +167,9 @@ public class OfflineBookService extends IntentService {
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
 
-                    request.setTitle(book + " - " + filename);
-                    request.setDescription(filename);
-                    request.setDestinationUri(Uri.fromFile(new File(bookFolder, filename)));
+                    request.setTitle(String.format("%s (%d)", book, count));
+                    request.setDescription(file.getPath());
+                    request.setDestinationUri(Uri.fromFile(file));
 
                     request.setVisibleInDownloadsUi(false);
                     request.setNotificationVisibility(
