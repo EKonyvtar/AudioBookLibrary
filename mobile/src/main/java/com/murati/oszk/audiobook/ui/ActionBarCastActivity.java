@@ -301,7 +301,6 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
-            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -348,18 +347,18 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 return true;
             }
 
+            //The app is permissioned, proceeding with the book download
             Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
 
-
             startService(intent);
             Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
 
+            //TODO: Downloads page visible
             //Intent i = new Intent();
             //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
             //startActivity(i);
-
             return true;
         }
 
