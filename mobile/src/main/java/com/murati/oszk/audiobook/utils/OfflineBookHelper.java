@@ -1,5 +1,6 @@
 package com.murati.oszk.audiobook.utils;
 
+import android.Manifest;
 import android.content.Context;
 import android.util.Log;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class OfflineBookHelper {
     private static final String TAG = LogHelper.makeLogTag(OfflineBookHelper.class);
+    public static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
 
     private static Context mContext;
 

@@ -15,17 +15,21 @@
  */
 package com.murati.oszk.audiobook.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.DownloadManager;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -52,6 +56,7 @@ import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.OfflineBookHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -262,10 +267,41 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         return fragment.getMediaId();
     }
 
+    // https://developer.android.com/training/permissions/requesting.html#java
+    public boolean isPermissionGranted() {
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            }
+
+            ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                OfflineBookHelper.PERMISSION_WRITE_EXTERNAL_STORAGE);
+
+            // PERMISSION_WRITE_EXTERNAL_STORAGE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+
+        } else {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
+            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -307,6 +343,11 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         //Download button
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
+            if (!isPermissionGranted()) {
+                Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
             Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
