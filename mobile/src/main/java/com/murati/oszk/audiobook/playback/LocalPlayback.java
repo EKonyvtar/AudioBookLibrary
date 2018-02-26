@@ -203,18 +203,7 @@ public final class LocalPlayback implements Playback {
                             MediaIDHelper.extractMusicIDFromMediaID(
                                     item.getDescription().getMediaId()));
 
-            //TODO: add source
-            String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-            String book track.getS
-            String offlineSource = OfflineBookService.getOfflineSource(book, source);
-
-            if (offlineSource != null) {
-                source = OfflineBookHelper.getOfflineSource(source);
-            }
-
-            if (source != null) {
-                source = source.replaceAll(" ", "%20"); // Escape spaces for URLs
-            }
+            String source = OfflineBookService.getTrackSource(track);
 
             if (mExoPlayer == null) {
                 mExoPlayer =
