@@ -118,6 +118,25 @@ public class OfflineBookService extends IntentService {
         return new File(bookFolder, fileName);
     }
 
+    public static String getTrackSource(MediaMetadataCompat track) {
+
+        // Prepare original source as a URL
+        String onlineSource = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+        if (onlineSource != null) {
+            onlineSource = onlineSource.replaceAll(" ", "%20"); // Fix spaces for URLs
+        }
+
+        // Check offline version on storage
+        String book = track.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+        File offlineSource = getOfflineSource(book, onlineSource);
+        if (offlineSource.exists()) {
+            Log.d(TAG, onlineSource + " is already downloaded");
+            return offlineSource.getPath();
+        }
+
+        return onlineSource;
+    }
+
     public static File getDownloadDirectory() {
         return new File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),

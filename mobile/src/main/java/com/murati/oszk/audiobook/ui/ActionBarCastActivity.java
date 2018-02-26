@@ -56,7 +56,6 @@ import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
-import com.murati.oszk.audiobook.utils.OfflineBookHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -285,7 +284,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
             ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                OfflineBookHelper.PERMISSION_WRITE_EXTERNAL_STORAGE);
+                OfflineBookService.PERMISSION_WRITE_EXTERNAL_STORAGE);
 
             // PERMISSION_WRITE_EXTERNAL_STORAGE is an
             // app-defined int constant. The callback method gets the

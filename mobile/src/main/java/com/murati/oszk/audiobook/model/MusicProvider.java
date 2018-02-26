@@ -230,6 +230,7 @@ public class MusicProvider {
 
     //region BUILD_TYPELISTS
     private synchronized void buildAlbumList() {
+        //TODO: rename album to ebook
         ConcurrentMap<String, List<MediaMetadataCompat>> newAlbumList = new ConcurrentHashMap<>();
 
         // Add tracks to ebook
