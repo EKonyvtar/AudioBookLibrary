@@ -50,7 +50,6 @@ package com.murati.oszk.audiobook.playback;
         import com.google.android.exoplayer2.upstream.DataSource;
         import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
         import com.google.android.exoplayer2.util.Util;
-        import com.murati.oszk.audiobook.utils.OfflineBookHelper;
 
         import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
         import static com.google.android.exoplayer2.C.CONTENT_TYPE_MUSIC;
