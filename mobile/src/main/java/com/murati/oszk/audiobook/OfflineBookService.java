@@ -22,6 +22,7 @@ import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
@@ -101,6 +102,19 @@ public class OfflineBookService extends IntentService {
         }
         super.onDestroy();
     }
+
+
+    public static List<String> getOfflineBooks() {
+        List<String> offlineList = new ArrayList<String>();
+        File[] files = getDownloadDirectory().listFiles();
+        for (File inFile : files) {
+            if (inFile.isDirectory()) {
+                offlineList.add(inFile.getName());
+            }
+        }
+        return offlineList;
+    }
+
 
     //Grabbing fileName from sourceUrl
     public static String getFileName(String source) {
