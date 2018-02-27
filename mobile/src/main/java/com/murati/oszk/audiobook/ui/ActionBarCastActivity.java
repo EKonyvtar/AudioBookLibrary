@@ -340,6 +340,30 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         }
 
         //Download button
+        //TODO: if not downloaded yet
+        if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
+            if (!isPermissionGranted()) {
+                Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            //The app is permissioned, proceeding with the book download
+            Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
+
+            startService(intent);
+            Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
+
+            //TODO: Downloads page visible
+            //Intent i = new Intent();
+            //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+            //startActivity(i);
+            return true;
+        }
+
+        //Delete button
+        //TODO: only if downloaded
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
             if (!isPermissionGranted()) {
                 Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();

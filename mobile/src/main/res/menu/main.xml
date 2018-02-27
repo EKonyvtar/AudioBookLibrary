@@ -45,4 +45,10 @@
         android:icon="@drawable/ic_action_download"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/option_delete"
+        android:title="@string/action_delete"
+        android:icon="@drawable/ic_action_delete"
+        app:showAsAction="always" />
+
 </menu>

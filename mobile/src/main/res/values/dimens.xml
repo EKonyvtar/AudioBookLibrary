@@ -17,7 +17,7 @@
 <resources>
     <!-- error infobar -->
     <dimen name="error_horizontal_padding">4dp</dimen>
-    <dimen name="error_vertical_padding">16dp</dimen>
+    <dimen name="error_vertical_padding">4dp</dimen>
 
     <!-- playback controls -->
     <dimen name="playback_controls_albumart_horizontal_margin">8dp</dimen>
