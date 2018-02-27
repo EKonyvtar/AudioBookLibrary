@@ -26,6 +26,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -223,17 +224,17 @@ public class MusicPlayerActivity extends BaseActivity
     public void updateBookButtons(String mediaId) {
         if (mMenu == null) return;
 
-        boolean shouldBeVisible = (
+        boolean isValidBook = (
             mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/"));
 
         // Set Favorite Menu visibility
         MenuItem mFavorite = null;
         try {
             mFavorite = mMenu.findItem(R.id.option_favorite);
-            mFavorite.setVisible(shouldBeVisible);
+            mFavorite.setVisible(isValidBook);
 
             // Set Favorite icon
-            if (shouldBeVisible && FavoritesHelper.isFavorite(mediaId))
+            if (isValidBook && FavoritesHelper.isFavorite(mediaId))
                 mFavorite.setIcon(R.drawable.ic_star_on);
             else
                 mFavorite.setIcon(R.drawable.ic_star_off);
@@ -242,11 +243,25 @@ public class MusicPlayerActivity extends BaseActivity
             Log.d(TAG,e.getMessage());
         }
 
-        // Set Download menu visibility
+
+        // Set Download/Delete menu visibility based on offline status
+        boolean isOfflineBook = false;
+        if (isValidBook) {
+            try {
+                isOfflineBook = OfflineBookService.isOfflineBook(mediaId);
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+        }
+
         MenuItem mDownload = null;
+        MenuItem mDelete = null;
         try {
             mDownload = mMenu.findItem(R.id.option_download);
-            mDownload.setVisible(shouldBeVisible);
+            mDownload.setVisible(isValidBook && !isOfflineBook);
+
+            mDelete = mMenu.findItem(R.id.option_delete);
+            mDelete.setVisible(isValidBook && isOfflineBook);
         } catch (Exception e) {
             Log.d(TAG,e.getMessage());
         }

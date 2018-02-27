@@ -61,7 +61,7 @@
     <!-- Download -->
     <string name="action_download">Letöltés</string>
     <string name="notification_download">Letöltés a háttérben</string>
-    <string name="notification_storage_permission_required">Tárhely hozzéférés szükséges a könyvek offline tárolásához</string>
+    <string name="notification_storage_permission_required">Tárhely hozzéférés szükséges a könyvek offline kezeléséhez</string>
 
     <string name="browse_downloads">Letöltések</string>
     <string name="browse_downloads_subtitle">Korábban letöltött hangoskönyvek</string>
