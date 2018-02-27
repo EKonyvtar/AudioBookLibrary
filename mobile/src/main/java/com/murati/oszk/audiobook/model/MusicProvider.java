@@ -368,6 +368,12 @@ public class MusicProvider {
                 resources.getString(R.string.browse_favorites_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_star_on)));
 
+            // Add Offline
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_FAVORITES,
+                resources.getString(R.string.browse_downloads),
+                resources.getString(R.string.browse_downloads_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
+
             // Show Current playing
             if (currentEBook != null) {
                 mediaItems.add(createGroupItem(currentEBook,
