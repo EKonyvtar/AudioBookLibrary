@@ -115,6 +115,23 @@ public class OfflineBookService extends IntentService {
         return offlineList;
     }
 
+    private static File getBookDirectory(String book) {
+        return new File(getDownloadDirectory(), book);
+    }
+
+    public static boolean isOfflineBook(String book) {
+        if (book != null) {
+            book = book.replace(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/","");
+        }
+        File bookFolder = getBookDirectory(book);
+        return bookFolder.exists();
+    }
+
+    public static void removeOfflineBook(String book) {
+        File bookFolder = getBookDirectory(book);
+        bookFolder.delete();
+    }
+
 
     //Grabbing fileName from sourceUrl
     public static String getFileName(String source) {
