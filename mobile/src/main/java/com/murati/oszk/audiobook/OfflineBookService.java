@@ -1,15 +1,20 @@
 package com.murati.oszk.audiobook;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -101,6 +106,36 @@ public class OfflineBookService extends IntentService {
             Log.d(TAG, ex.getMessage());
         }
         super.onDestroy();
+    }
+
+    // https://developer.android.com/training/permissions/requesting.html#java
+    public static boolean isPermissionGranted(Activity activity) {
+        if (ContextCompat.checkSelfPermission(activity,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            }
+
+            ActivityCompat.requestPermissions(activity,
+                new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                OfflineBookService.PERMISSION_WRITE_EXTERNAL_STORAGE);
+
+            // PERMISSION_WRITE_EXTERNAL_STORAGE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+
+        } else {
+            return true;
+        }
+
+        return false;
     }
 
 
