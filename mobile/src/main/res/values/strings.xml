@@ -118,5 +118,6 @@
     </string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
+    <string name="about_button_support">Patreon - támogatói oldal megnyitása</string>
     <string name="about_button_oszk">Oszk - MEK megnyitása</string>
 </resources>
