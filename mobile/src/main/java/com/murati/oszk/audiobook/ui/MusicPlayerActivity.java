@@ -25,6 +25,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
@@ -88,13 +89,18 @@ public class MusicPlayerActivity extends BaseActivity
         if (item.isPlayable()) {
             MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
                     .playFromMediaId(item.getMediaId(), null);
-        } else if (item.isBrowsable()) {
-            //TODO: check perms on opening
-            // if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)) {
-            //    if
-            //} else {
-                navigateToBrowser(item.getMediaId());
-            //}
+        }
+
+        else if (item.isBrowsable()) {
+            // Don't navigate to downloads if permissions are not granted
+            if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)) {
+                if (!OfflineBookService.isPermissionGranted(this)) {
+                    Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            navigateToBrowser(item.getMediaId());
         } else {
             LogHelper.w(TAG, "Ignoring MediaItem that is neither browsable nor playable: ",
                     "mediaId=", item.getMediaId());

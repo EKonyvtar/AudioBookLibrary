@@ -128,6 +128,12 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_downloads:
+
+                        if (!OfflineBookService.isPermissionGranted(ActionBarCastActivity.this)) {
+                            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_DOWNLOADS);
@@ -266,36 +272,6 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         return fragment.getMediaId();
     }
 
-    // https://developer.android.com/training/permissions/requesting.html#java
-    public boolean isPermissionGranted() {
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            }
-
-            ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                OfflineBookService.PERMISSION_WRITE_EXTERNAL_STORAGE);
-
-            // PERMISSION_WRITE_EXTERNAL_STORAGE is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-
-        } else {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -342,7 +318,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         //Download button
         //TODO: if not downloaded yet
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
-            if (!isPermissionGranted()) {
+            if (!OfflineBookService.isPermissionGranted(this)) {
                 Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -363,9 +339,8 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         }
 
         //Delete button
-        //TODO: delete only if downloaded
         if (item != null && mediaId != null && item.getItemId() == R.id.option_delete) {
-            if (!isPermissionGranted()) {
+            if (!OfflineBookService.isPermissionGranted(this)) {
                 Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                 return true;
             }
