@@ -51,6 +51,16 @@ public class AboutActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        // Button
+        final Button patreon = findViewById(R.id.patreon);
+        patreon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.patreon.com/murati"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
     }
 
     public String getVersion() {
