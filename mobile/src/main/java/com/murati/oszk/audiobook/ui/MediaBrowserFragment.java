@@ -152,7 +152,7 @@ public class MediaBrowserFragment extends Fragment {
                              Bundle savedInstanceState) {
         LogHelper.d(TAG, "fragment.onCreateView");
 
-        //TODO: rething mMediaId in instance context
+        //TODO: rethink mMediaId in instance context
         final String mediaId = getMediaId();
 
         // Update Favoritebutton on backstack navigate
