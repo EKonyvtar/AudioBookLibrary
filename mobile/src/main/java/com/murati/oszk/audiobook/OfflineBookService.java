@@ -106,11 +106,15 @@ public class OfflineBookService extends IntentService {
 
     public static List<String> getOfflineBooks() {
         List<String> offlineList = new ArrayList<String>();
-        File[] files = getDownloadDirectory().listFiles();
-        for (File inFile : files) {
-            if (inFile.isDirectory()) {
-                offlineList.add(inFile.getName());
+        try {
+            File[] files = getDownloadDirectory().listFiles();
+            for (File inFile : files) {
+                if (inFile.isDirectory()) {
+                    offlineList.add(inFile.getName());
+                }
             }
+        } catch (Exception ex) {
+            offlineList = null;
         }
         return offlineList;
     }

@@ -89,7 +89,12 @@ public class MusicPlayerActivity extends BaseActivity
             MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
                     .playFromMediaId(item.getMediaId(), null);
         } else if (item.isBrowsable()) {
-            navigateToBrowser(item.getMediaId());
+            //TODO: check perms on opening
+            // if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)) {
+            //    if
+            //} else {
+                navigateToBrowser(item.getMediaId());
+            //}
         } else {
             LogHelper.w(TAG, "Ignoring MediaItem that is neither browsable nor playable: ",
                     "mediaId=", item.getMediaId());
