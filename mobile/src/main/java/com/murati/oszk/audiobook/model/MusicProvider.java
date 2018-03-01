@@ -24,8 +24,10 @@ import android.os.AsyncTask;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
@@ -46,6 +48,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOADS;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
@@ -369,7 +372,7 @@ public class MusicProvider {
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_star_on)));
 
             // Add Offline
-            mediaItems.add(createGroupItem(MEDIA_ID_BY_FAVORITES,
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_DOWNLOADS,
                 resources.getString(R.string.browse_downloads),
                 resources.getString(R.string.browse_downloads_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
@@ -451,6 +454,23 @@ public class MusicProvider {
             }
         }
 
+        // List all Downloads
+        else if (MEDIA_ID_BY_DOWNLOADS.equals(mediaId)) {
+            //TODO: canonical book list
+            List<String> offlineBookList = OfflineBookService.getOfflineBooks();
+
+            //TODO: generalize errorhandling - with customized exception/message
+            if (offlineBookList != null) {
+                for (String ebook : offlineBookList) {
+                    try {
+                        mediaItems.add(createEbookItem(ebook, resources));
+                    } catch (Exception ex){
+                        Log.i(TAG, "Exception listing favorite:"+ebook);
+                    }
+                }
+            }
+        }
+
         // Open a specific Ebook for direct play
         else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
             String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
@@ -513,6 +533,11 @@ public class MusicProvider {
             String ebook,
             Resources resources)
     {
+        //TODO: canonize ebook mediaid and title conversion
+        if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+            ebook = getCategoryValueFromMediaID(ebook);
+        }
+
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
