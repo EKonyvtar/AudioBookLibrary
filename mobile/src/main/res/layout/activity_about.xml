@@ -89,13 +89,23 @@
         </android.support.v7.widget.CardView>
 
         <Button
-            android:id="@+id/murati"
+            android:id="@+id/patreon"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView"
+            android:text="@string/about_button_support" />
+
+        <Button
+            android:id="@+id/murati"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/patreon"
             android:text="@string/about_button_murati" />
+
 
     </RelativeLayout>
 
