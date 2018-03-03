@@ -69,16 +69,14 @@ public class MusicProvider {
 
     private MusicProviderSource mSource;
 
-    // Categorized caches for ebook track data:
-    private final ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
-
     // Ebook cache
     public static String currentEBook = null;
     private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+    private static ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
     // Category caches
-    private ConcurrentMap<String, List<String>> mEbookListByGenre;
-    private ConcurrentMap<String, List<String>> mEbookListByWriter;
+    private static ConcurrentMap<String, List<String>> mEbookListByGenre;
+    private static ConcurrentMap<String, List<String>> mEbookListByWriter;
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
@@ -103,11 +101,14 @@ public class MusicProvider {
     public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
 
-        mTrackListById = new ConcurrentHashMap<>();
-        mEbookList = new ConcurrentHashMap<>();
+        if (mTrackListById == null) {
+            mTrackListById = new ConcurrentHashMap<>();
+            mEbookList = new ConcurrentHashMap<>();
 
-        mEbookListByGenre = new ConcurrentHashMap<>();
-        mEbookListByWriter = new ConcurrentHashMap<>();
+            //TODO: rethink dynamic/async construction
+            mEbookListByGenre = new ConcurrentHashMap<>();
+            mEbookListByWriter = new ConcurrentHashMap<>();
+        }
     }
 
 
@@ -322,11 +323,8 @@ public class MusicProvider {
         } catch (Exception e) {
             LogHelper.e(e.getMessage());
         } finally {
-            if (mCurrentState != State.INITIALIZED) {
-                // Something bad happened, so we reset state to NON_INITIALIZED to allow
-                // retries (eg if the network connection is temporary unavailable)
+            if (mCurrentState != State.INITIALIZED)
                 mCurrentState = State.NON_INITIALIZED;
-            }
         }
     }
     //endregion
@@ -336,15 +334,8 @@ public class MusicProvider {
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
         List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-
-        // Swap mediaId from queue to current eBook
-        if (mediaId.equals(MEDIA_ID_BY_QUEUE))
-            mediaId = currentEBook;
-
-        if (mediaId == null || !MediaIDHelper.isBrowseable(mediaId)) {
-            return mediaItems;
-        }
+        if (mediaId == null)
+            return Collections.emptyList();
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
             // Add writers
@@ -384,106 +375,127 @@ public class MusicProvider {
                     resources.getString(R.string.browse_queue_subtitle),
                     BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
             }
+
+            return mediaItems;
         }
 
-        // Search ebooks by Query String
-        else if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
-          String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
-          for (String ebook : getEbooksByQueryString(search_query)) {
-            mediaItems.add(createEbookItem(ebook, resources));
-          }
-        }
 
-        // List all Genre Items
-        else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
-            mediaItems.addAll(
-                createGroupList(
-                    mEbookListByGenre,
-                    MEDIA_ID_BY_GENRE,
-                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
-                    resources
-                )
-            );
-        }
-        // List ebooks in a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
-            String genre = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook : getEbooksByGenre(genre))
-                mediaItems.add(createEbookItem(ebook, resources));
-        }
+        // Not root section
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
 
-        // List Writers
-        else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            mediaItems.addAll(
-                createGroupList(
-                    mEbookListByWriter,
-                    MEDIA_ID_BY_WRITER,
-                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
-                    resources
-                )
-            );
-        }
+        try {
+            // Swap mediaId from queue to current eBook
+            if (mediaId.equals(MEDIA_ID_BY_QUEUE))
+                mediaId = currentEBook;
 
-        // Open a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
-            String writer = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook: getEbooksByWriter(writer))
-                mediaItems.add(createEbookItem(ebook, resources));
-        }
-
-        // List all EBooks Items
-        else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
-            TreeSet<String> sortedEbookTitles = new TreeSet<String>();
-            sortedEbookTitles.addAll(mEbookList.keySet());
-            for (String ebook : sortedEbookTitles) {
-                mediaItems.add(createEbookItem(ebook, resources));
+            //Rethink edgecase of misbrowse
+            if (!MediaIDHelper.isBrowseable(mediaId)) {
+                return mediaItems;
             }
-        }
 
-        // List all Favorites
-        else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
-            for (String ebook : FavoritesHelper.getFavorites()) {
-                try {
-                    if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
-                        String title = getCategoryValueFromMediaID(ebook);
-                        mediaItems.add(createEbookItem(title, resources));
-                    }
-                } catch (Exception ex){
-                    Log.i(TAG, "Exception listing favorite:"+ebook);
+            // Search ebooks by Query String
+            if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
+                String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
+                for (String ebook : getEbooksByQueryString(search_query)) {
+                    mediaItems.add(createEbookItem(ebook, resources));
                 }
             }
-        }
 
-        // List all Downloads
-        else if (MEDIA_ID_BY_DOWNLOADS.equals(mediaId)) {
-            //TODO: canonical book list
-            List<String> offlineBookList = OfflineBookService.getOfflineBooks();
+            // List all Genre Items
+            else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
+                mediaItems.addAll(
+                    createGroupList(
+                        mEbookListByGenre,
+                        MEDIA_ID_BY_GENRE,
+                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
+                        resources
+                    )
+                );
+            }
+            // List ebooks in a specific Genre
+            else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
+                String genre = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (String ebook : getEbooksByGenre(genre))
+                    mediaItems.add(createEbookItem(ebook, resources));
+            }
 
-            //TODO: generalize errorhandling - with customized exception/message
-            if (offlineBookList != null) {
-                for (String ebook : offlineBookList) {
+            // List Writers
+            else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
+                mediaItems.addAll(
+                    createGroupList(
+                        mEbookListByWriter,
+                        MEDIA_ID_BY_WRITER,
+                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
+                        resources
+                    )
+                );
+            }
+
+            // Open a specific Genre
+            else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
+                String writer = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (String ebook : getEbooksByWriter(writer))
+                    mediaItems.add(createEbookItem(ebook, resources));
+            }
+
+            // List all EBooks Items
+            else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
+                TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+                sortedEbookTitles.addAll(mEbookList.keySet());
+                for (String ebook : sortedEbookTitles) {
+                    mediaItems.add(createEbookItem(ebook, resources));
+                }
+            }
+
+            // List all Favorites
+            else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
+                for (String ebook : FavoritesHelper.getFavorites()) {
                     try {
-                        mediaItems.add(createEbookItem(ebook, resources));
-                    } catch (Exception ex){
-                        Log.i(TAG, "Exception listing favorite:"+ebook);
+                        if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+                            String title = getCategoryValueFromMediaID(ebook);
+                            mediaItems.add(createEbookItem(title, resources));
+                        }
+                    } catch (Exception ex) {
+                        Log.i(TAG, "Exception listing favorite:" + ebook);
                     }
                 }
             }
-        }
 
-        // Open a specific Ebook for direct play
-        else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
-            String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
-                mediaItems.add(createTrackItem(metadata));
+            // List all Downloads
+            else if (MEDIA_ID_BY_DOWNLOADS.equals(mediaId)) {
+                //TODO: canonical book list
+                List<String> offlineBookList = OfflineBookService.getOfflineBooks();
+
+                //TODO: generalize errorhandling - with customized exception/message
+                if (offlineBookList != null) {
+                    for (String ebook : offlineBookList) {
+                        try {
+                            mediaItems.add(createEbookItem(ebook, resources));
+                        } catch (Exception ex) {
+                            Log.i(TAG, "Exception listing favorite:" + ebook);
+                        }
+                    }
+                }
             }
-        }
 
-        // Can't open media
-        else {
-            LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
-        }
+            // Open a specific Ebook for direct play
+            else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
+                String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
+                    mediaItems.add(createTrackItem(metadata));
+                }
+            }
 
+            // Can't open media
+            else {
+                LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
+            }
+
+        } catch (Exception ex) {
+            //TODO: signal errors properly to UI
+            LogHelper.w(TAG, "Something went wrong processing", mediaId);
+            Log.d(TAG, ex.getMessage());
+        }
         return mediaItems;
     }
     //endregion
