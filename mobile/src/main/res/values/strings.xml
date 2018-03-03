@@ -110,11 +110,12 @@
         A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
         (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
         \n\n
-        Az alkalmazás fejlesztése ugyanakkor semmilyen módon nem áll kapcsolatban az
-        Országos Széchényi Könyvtár projektjeivel és az esetleges szoftver hibákért
+        Az alkalmazás Muráti Ákos szabadidős projekje, ami semmilyen módon nem áll kapcsolatban
+        az Országos Széchényi Könyvtár tevékenységeivel, így az esetleges szoftver hibákért
         a szervezet nem tartozik felelősséggel.
         \n\n
-        Az alkalmazást fejlesztette: Muráti Ákos
+        Amennyiben támogatni szeretnéd ezt a projektet vagy a fejlesztőt, kérlek adományozz
+        az alábbi Patreon oldalon.
     </string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
