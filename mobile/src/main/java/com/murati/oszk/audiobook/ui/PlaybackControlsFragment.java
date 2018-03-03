@@ -25,6 +25,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,10 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.NetworkHelper;
 
 /**
  * A class that shows the Media Queue to the user.
@@ -202,8 +205,32 @@ public class PlaybackControlsFragment extends Fragment {
                 enablePlay = true;
                 break;
             case PlaybackStateCompat.STATE_ERROR:
-                LogHelper.e(TAG, "error playbackstate: ", state.getErrorMessage());
-                Toast.makeText(getActivity(), state.getErrorMessage(), Toast.LENGTH_LONG).show();
+                String message =  state.getErrorMessage().toString();
+                LogHelper.e(TAG, "error playbackstate: ", message);
+
+                try {
+                    //Set smarter messages with state processing
+                    boolean offline = !NetworkHelper.isOnline(this.getActivity().getBaseContext());
+                    if (message.contains("EACCES")) {
+                        message = String.format(
+                            "%s - %s",
+                            getString(R.string.notification_playback_track_error),
+                            getString(R.string.notification_storage_permission_required));
+
+                        OfflineBookService.isPermissionGranted(this.getActivity());
+                    }
+
+                    if (offline && message.contains("Unable to connect to http")) {
+                        message = String.format(
+                            "%s - %s",
+                            getString(R.string.notification_playback_track_error),
+                            getString(R.string.notification_offline));
+                    }
+                } catch (Exception ex) {
+                    Log.d(TAG, ex.getMessage());
+                }
+
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 break;
         }
 

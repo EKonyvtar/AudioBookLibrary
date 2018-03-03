@@ -48,19 +48,42 @@
     <string name="browse_track_count">%1$s fájl</string>
     <string name="browse_title_count">%1$s könyv</string>
 
-    <!-- ACTION ITEMS: Action, NOtifications -->
+    <!-- ACTION ITEMS: Action, Notifications -->
     <string name="action_listen">Hallgatás</string>
 
+    <!-- Confirm -->
+    <string name="confirm_cancel">Mégsem</string>
+
+    <!-- Favorites -->
     <string name="action_favorite">Kedvenc</string>
     <string name="action_favorite_add">Kedvencekhez adás</string>
     <string name="action_favorite_remove">Eltávolítás Kedvencekből</string>
     <string name="notification_favorite_added">Hozzáadva a Kedvencekhez</string>
     <string name="notification_favorite_removed">Eltávolítva a Kedvencekből</string>
 
-    <string name="random_queue_title">Véletlen könyvek</string>
+    <!-- Download -->
+    <string name="action_download">Letöltés</string>
+    <string name="notification_download">Letöltés a háttérben</string>
+    <string name="notification_storage_permission_required">Tárhely hozzéférés szükséges a könyvek offline kezeléséhez</string>
 
-    <string name="error_no_connection">Hiba a szerverhez való csatlakozás közben</string>
+    <string name="browse_downloads">Letöltések</string>
+    <string name="browse_downloads_subtitle">Korábban letöltött hangoskönyvek</string>
+
+    <!-- Delete -->
+    <string name="action_delete">Tárhely felszabadítása</string>
+    <string name="confirm_delete_question">Biztosan törölni kívánja ezt az offline hangoskönyvet?</string>
+    <string name="confirm_delete">Törlés</string>
+
+
+    <!-- PLAYBACK RESOURCES -->
+    <!-- Notifications -->
     <string name="error_loading_media">Nincs megjeleníthető elem</string>
+
+    <string name="notification_playback_track_error">A rész nem elérhető</string>
+    <string name="notification_offline">Offline módban csak letöltött könyvek érhetők el</string>
+
+
+    <string name="random_queue_title">Véletlen könyvek</string>
     <string name="casting_to_device">Lejátszás %1$s eszközön</string>
     <string name="currently_playing_song">Most játszik</string>
     <string name="currently_playing_artist">Hangoskönyv előadója</string>
@@ -70,7 +93,7 @@
     <string name="play_pause">Indítás vagy szünet</string>
     <string name="skip_next">Következő</string>
     <string name="skip_prev">Előző</string>
-    <string name="touch_to_cast">Hangoskönyveit TV, ChromeCast vagy más eszközökön is lejátszhatja</string>
+    <string name="touch_to_cast">Hangoskönyveit TV, ChromeCast, Android Auto vagy más eszközökön is lejátszhatja</string>
 
     <string name="home_title">Kezdőlap</string>
     <string name="related_content_header">Hasonló könyvek</string>
@@ -98,13 +121,15 @@
         A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
         (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
         \n\n
-        Az alkalmazás fejlesztése ugyanakkor semmilyen módon nem áll kapcsolatban az
-        Országos Széchényi Könyvtár projektjeivel és az esetleges szoftver hibákért
+        Az alkalmazás Muráti Ákos szabadidős projekje, ami semmilyen módon nem áll kapcsolatban
+        az Országos Széchényi Könyvtár tevékenységeivel, így az esetleges szoftver hibákért
         a szervezet nem tartozik felelősséggel.
         \n\n
-        Az alkalmazást fejlesztette: Muráti Ákos
+        Amennyiben támogatni szeretnéd ezt a projektet vagy a fejlesztőt, kérlek támogass
+
     </string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
+    <string name="about_button_support">Patreon - támogatói oldal megnyitása</string>
     <string name="about_button_oszk">Oszk - MEK megnyitása</string>
 </resources>
