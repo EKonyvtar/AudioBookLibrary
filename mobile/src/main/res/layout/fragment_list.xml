@@ -37,8 +37,8 @@
             android:background="@color/message_background"
             android:gravity="center"
             tools:text="Connectivity error!"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textColor="@color/message_foreground"
+            />
     </android.support.v7.widget.CardView>
     <ListView
         android:id="@+id/list_view"
