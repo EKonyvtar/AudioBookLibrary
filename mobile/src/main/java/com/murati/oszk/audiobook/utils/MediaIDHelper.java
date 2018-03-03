@@ -39,6 +39,7 @@ public class MediaIDHelper {
     public static final String MEDIA_ID_BY_SEARCH = "__BY_SEARCH__";
     public static final String MEDIA_ID_BY_QUEUE = "__BY_QUEUE__";
     public static final String MEDIA_ID_BY_FAVORITES = "__BY_FAVORITES__";
+    public static final String MEDIA_ID_BY_DOWNLOADS = "__BY_DOWNLOADS__";
 
     private static final char CATEGORY_SEPARATOR = '/';
     private static final char LEAF_SEPARATOR = '|';
@@ -125,6 +126,14 @@ public class MediaIDHelper {
             return hierarchy[1];
         }
         return null;
+    }
+
+    public static String getEBookTitle(String book) {
+        //TODO: refactor with  getCategory with validation from ActionBar
+        if (book != null) {
+            book = book.replace(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/","");
+        }
+        return book;
     }
 
     public static boolean isBrowseable(@NonNull String mediaID) {

@@ -22,12 +22,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -89,7 +89,17 @@ public class MusicPlayerActivity extends BaseActivity
         if (item.isPlayable()) {
             MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
                     .playFromMediaId(item.getMediaId(), null);
-        } else if (item.isBrowsable()) {
+        }
+
+        else if (item.isBrowsable()) {
+            // Don't navigate to downloads if permissions are not granted
+            if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)) {
+                if (!OfflineBookService.isPermissionGranted(this)) {
+                    Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
             navigateToBrowser(item.getMediaId());
         } else {
             LogHelper.w(TAG, "Ignoring MediaItem that is neither browsable nor playable: ",
@@ -124,12 +134,15 @@ public class MusicPlayerActivity extends BaseActivity
             title = getString(R.string.browse_ebook);
         else if (MediaIDHelper.MEDIA_ID_BY_FAVORITES.equals(mediaItem))
             title = getString(R.string.browse_favorites);
+        else if (MediaIDHelper.MEDIA_ID_BY_DOWNLOADS.equals(mediaItem))
+            title = getString(R.string.browse_downloads);
 
         else if (
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_WRITER) ||
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_GENRE) ||
             mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK) ||
-            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_FAVORITES)
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_FAVORITES) ||
+            mediaItem.startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)
             )
             title = MediaIDHelper.getCategoryValueFromMediaID(mediaItem);
 
@@ -200,7 +213,7 @@ public class MusicPlayerActivity extends BaseActivity
     private void navigateToBrowser(String mediaId) {
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);
         MediaBrowserFragment fragment = getBrowseFragment();
-        updateFavoriteButton(mediaId);
+        updateBookButtons(mediaId);
 
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
             fragment = new MediaBrowserFragment();
@@ -219,24 +232,47 @@ public class MusicPlayerActivity extends BaseActivity
         }
     }
 
-    public void updateFavoriteButton(String mediaId) {
+    public void updateBookButtons(String mediaId) {
         if (mMenu == null) return;
-        MenuItem mFav = null;
 
-        boolean shouldBeVisible = (
+        boolean isValidBook = (
             mediaId != null && mediaId.startsWith(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/"));
 
         // Set Favorite Menu visibility
+        MenuItem mFavorite = null;
         try {
-            mFav = mMenu.findItem(R.id.option_favorite);
-            mFav.setVisible(shouldBeVisible);
+            mFavorite = mMenu.findItem(R.id.option_favorite);
+            mFavorite.setVisible(isValidBook);
 
             // Set Favorite icon
-            if (shouldBeVisible && FavoritesHelper.isFavorite(mediaId))
-                mFav.setIcon(R.drawable.ic_star_on);
+            if (isValidBook && FavoritesHelper.isFavorite(mediaId))
+                mFavorite.setIcon(R.drawable.ic_star_on);
             else
-                mFav.setIcon(R.drawable.ic_star_off);
+                mFavorite.setIcon(R.drawable.ic_star_off);
 
+        } catch (Exception e) {
+            Log.d(TAG,e.getMessage());
+        }
+
+
+        // Set Download/Delete menu visibility based on offline status
+        boolean isOfflineBook = false;
+        if (isValidBook) {
+            try {
+                isOfflineBook = OfflineBookService.isOfflineBook(mediaId);
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+        }
+
+        MenuItem mDownload = null;
+        MenuItem mDelete = null;
+        try {
+            mDownload = mMenu.findItem(R.id.option_download);
+            mDownload.setVisible(isValidBook && !isOfflineBook);
+
+            mDelete = mMenu.findItem(R.id.option_delete);
+            mDelete.setVisible(isValidBook && isOfflineBook);
         } catch (Exception e) {
             Log.d(TAG,e.getMessage());
         }
@@ -269,6 +305,6 @@ public class MusicPlayerActivity extends BaseActivity
       }*/
 
       getBrowseFragment().onConnected();
-      updateFavoriteButton(getMediaId());
+      updateBookButtons(getMediaId());
     }
 }
