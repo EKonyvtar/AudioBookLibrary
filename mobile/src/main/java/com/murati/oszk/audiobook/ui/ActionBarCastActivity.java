@@ -284,6 +284,8 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         //TODO: async delete
         OfflineBookService.removeOfflineBook(getMediaId());
+
+        //TODO: refresh control state
     }
 
     @Override

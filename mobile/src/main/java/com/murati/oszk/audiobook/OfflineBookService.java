@@ -197,7 +197,6 @@ public class OfflineBookService extends IntentService {
         catch (Exception ex) {
             Log.e(TAG, "Error deleting Book " + book);
         }
-
     }
 
 
