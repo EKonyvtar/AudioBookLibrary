@@ -15,16 +15,23 @@
  */
 package com.murati.oszk.audiobook.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,11 +39,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.MediaRouteButton;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
@@ -118,6 +127,18 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_FAVORITES);
+                        break;
+
+                    case R.id.navigation_downloads:
+
+                        if (!OfflineBookService.isPermissionGranted(ActionBarCastActivity.this)) {
+                            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_DOWNLOADS);
                         break;
 
                     //case R.id.navigation_settings:
@@ -253,6 +274,20 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         return fragment.getMediaId();
     }
 
+    private void deleteEbook() {
+        if (!OfflineBookService.isPermissionGranted(this)) {
+            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(getBaseContext(), R.string.action_delete, Toast.LENGTH_SHORT).show();
+
+        //TODO: async delete
+        OfflineBookService.removeOfflineBook(getMediaId());
+
+        //TODO: refresh control state
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -260,10 +295,9 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             return true;
         }
 
-        //Favorites Toggle
-        if (item != null && item.getItemId() == R.id.option_favorite) {
-            String mediaId = null;
-
+        //Try to get mediaId
+        String mediaId = null;
+        try {
             if (this.getClass() == MusicPlayerActivity.class) {
                 MusicPlayerActivity musicPlayerActivity = (MusicPlayerActivity) this;
                 mediaId = musicPlayerActivity.getMediaId();
@@ -272,22 +306,73 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 FullScreenPlayerActivity fullPlayer = (FullScreenPlayerActivity) this;
                 mediaId = fullPlayer.getMediaId();
             }
+        } catch (Exception ex) {
+            Log.d(TAG, "Unable to fetch mediaId");
+        }
 
-            if (mediaId != null) {
-                boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
-                String snakeText = "";
-                if (isFavorite) {
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
-                    snakeText = getResources().getString(R.string.notification_favorite_added);
-                }
-                else {
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
-                    snakeText = getResources().getString(R.string.notification_favorite_removed);
-                }
 
-                Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+        //Favorites Toggle
+        if (item != null && mediaId != null &&
+            item.getItemId() == R.id.option_favorite ) {
+
+            boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
+            String snakeText = "";
+            if (isFavorite) {
+                item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
+                snakeText = getResources().getString(R.string.notification_favorite_added);
+            }
+            else {
+                item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
+                snakeText = getResources().getString(R.string.notification_favorite_removed);
             }
 
+            Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        //Download button
+        //TODO: if not downloaded yet
+        if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
+            if (!OfflineBookService.isPermissionGranted(this)) {
+                Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            //The app is permissioned, proceeding with the book download
+            Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
+
+            startService(intent);
+            Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
+
+            //TODO: Downloads page visible
+            //Intent i = new Intent();
+            //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+            //startActivity(i);
+            return true;
+        }
+
+        //Delete button
+        if (item != null && mediaId != null && item.getItemId() == R.id.option_delete) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.confirm_delete_question)
+                .setTitle(R.string.action_delete)
+                .setCancelable(false)
+                .setPositiveButton(R.string.confirm_delete,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ActionBarCastActivity.this.deleteEbook();
+                        }
+                    }
+                )
+                .setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+            AlertDialog alert = builder.create();
+            alert.show();
             return true;
         }
 

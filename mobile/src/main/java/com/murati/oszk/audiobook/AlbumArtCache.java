@@ -82,6 +82,8 @@ public final class AlbumArtCache {
         // are not handled properly: they may cause redundant costly operations, like HTTP
         // requests and bitmap rescales. For production-level apps, we recommend you use
         // a proper image loading library, like Glide.
+
+        //TODO: Offline caching
         Bitmap[] bitmap = mCache.get(artUrl);
         if (bitmap != null) {
             LogHelper.d(TAG, "getOrFetch: album art is in cache, using it", artUrl);

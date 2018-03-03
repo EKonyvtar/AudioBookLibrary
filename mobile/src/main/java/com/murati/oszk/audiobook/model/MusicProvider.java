@@ -24,8 +24,10 @@ import android.os.AsyncTask;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
@@ -46,6 +48,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOADS;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
@@ -66,20 +69,18 @@ public class MusicProvider {
 
     private MusicProviderSource mSource;
 
-    // Categorized caches for ebook track data:
-    private final ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
-
     // Ebook cache
     public static String currentEBook = null;
-    private ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+    private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
+    private static ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
     // Category caches
-    private ConcurrentMap<String, List<String>> mEbookListByGenre;
-    private ConcurrentMap<String, List<String>> mEbookListByWriter;
+    private static ConcurrentMap<String, List<String>> mEbookListByGenre;
+    private static ConcurrentMap<String, List<String>> mEbookListByWriter;
 
     enum State { NON_INITIALIZED, INITIALIZING, INITIALIZED }
 
-    private volatile State mCurrentState = State.NON_INITIALIZED;
+    private static volatile State mCurrentState = State.NON_INITIALIZED;
 
     public interface Callback {
         void onMusicCatalogReady(boolean success);
@@ -100,29 +101,16 @@ public class MusicProvider {
     public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
 
-        mTrackListById = new ConcurrentHashMap<>();
-        mEbookList = new ConcurrentHashMap<>();
+        if (mTrackListById == null) {
+            mTrackListById = new ConcurrentHashMap<>();
+            mEbookList = new ConcurrentHashMap<>();
 
-        mEbookListByGenre = new ConcurrentHashMap<>();
-        mEbookListByWriter = new ConcurrentHashMap<>();
+            //TODO: rethink dynamic/async construction
+            mEbookListByGenre = new ConcurrentHashMap<>();
+            mEbookListByWriter = new ConcurrentHashMap<>();
+        }
     }
 
-
-    //region BROWSABLE_ITEM GENERATORS
-
-    //TODO: remove shuffle
-    public Iterable<MediaMetadataCompat> getShuffledMusic() {
-        if (mCurrentState != State.INITIALIZED) {
-            return Collections.emptyList();
-        }
-        List<MediaMetadataCompat> shuffled = new ArrayList<>(mTrackListById.size());
-        for (MutableMediaMetadata mutableMetadata: mTrackListById.values()) {
-            shuffled.add(mutableMetadata.metadata);
-        }
-        Collections.shuffle(shuffled);
-        return shuffled;
-    }
-    //endregion
 
     //region EBOOK_GETTERS
     public Iterable<String> getEbooksByGenre(String genre) {
@@ -139,7 +127,7 @@ public class MusicProvider {
         return mEbookListByWriter.get(writer);
     }
 
-    public Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
+    public static Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
         if (mCurrentState != State.INITIALIZED || !mEbookList.containsKey(ebook)) {
             return Collections.emptyList();
         }
@@ -246,6 +234,7 @@ public class MusicProvider {
 
     //region BUILD_TYPELISTS
     private synchronized void buildAlbumList() {
+        //TODO: rename album to ebook
         ConcurrentMap<String, List<MediaMetadataCompat>> newAlbumList = new ConcurrentHashMap<>();
 
         // Add tracks to ebook
@@ -334,11 +323,8 @@ public class MusicProvider {
         } catch (Exception e) {
             LogHelper.e(e.getMessage());
         } finally {
-            if (mCurrentState != State.INITIALIZED) {
-                // Something bad happened, so we reset state to NON_INITIALIZED to allow
-                // retries (eg if the network connection is temporary unavailable)
+            if (mCurrentState != State.INITIALIZED)
                 mCurrentState = State.NON_INITIALIZED;
-            }
         }
     }
     //endregion
@@ -348,15 +334,8 @@ public class MusicProvider {
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
         List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-
-        // Swap mediaId from queue to current eBook
-        if (mediaId.equals(MEDIA_ID_BY_QUEUE))
-            mediaId = currentEBook;
-
-        if (mediaId == null || !MediaIDHelper.isBrowseable(mediaId)) {
-            return mediaItems;
-        }
+        if (mediaId == null)
+            return Collections.emptyList();
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
             // Add writers
@@ -383,6 +362,12 @@ public class MusicProvider {
                 resources.getString(R.string.browse_favorites_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_star_on)));
 
+            // Add Offline
+            mediaItems.add(createGroupItem(MEDIA_ID_BY_DOWNLOADS,
+                resources.getString(R.string.browse_downloads),
+                resources.getString(R.string.browse_downloads_subtitle),
+                BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
+
             // Show Current playing
             if (currentEBook != null) {
                 mediaItems.add(createGroupItem(currentEBook,
@@ -390,89 +375,127 @@ public class MusicProvider {
                     resources.getString(R.string.browse_queue_subtitle),
                     BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
             }
+
+            return mediaItems;
         }
 
-        // Search ebooks by Query String
-        else if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
-          String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
-          for (String ebook : getEbooksByQueryString(search_query)) {
-            mediaItems.add(createEbookItem(ebook, resources));
-          }
-        }
 
-        // List all Genre Items
-        else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
-            mediaItems.addAll(
-                createGroupList(
-                    mEbookListByGenre,
-                    MEDIA_ID_BY_GENRE,
-                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
-                    resources
-                )
-            );
-        }
-        // List ebooks in a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
-            String genre = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook : getEbooksByGenre(genre))
-                mediaItems.add(createEbookItem(ebook, resources));
-        }
+        // Not root section
+        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
 
-        // List Writers
-        else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
-            mediaItems.addAll(
-                createGroupList(
-                    mEbookListByWriter,
-                    MEDIA_ID_BY_WRITER,
-                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
-                    resources
-                )
-            );
-        }
+        try {
+            // Swap mediaId from queue to current eBook
+            if (mediaId.equals(MEDIA_ID_BY_QUEUE))
+                mediaId = currentEBook;
 
-        // Open a specific Genre
-        else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
-            String writer = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (String ebook: getEbooksByWriter(writer))
-                mediaItems.add(createEbookItem(ebook, resources));
-        }
-
-        // List all EBooks Items
-        else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
-            TreeSet<String> sortedEbookTitles = new TreeSet<String>();
-            sortedEbookTitles.addAll(mEbookList.keySet());
-            for (String ebook : sortedEbookTitles) {
-                mediaItems.add(createEbookItem(ebook, resources));
+            //Rethink edgecase of misbrowse
+            if (!MediaIDHelper.isBrowseable(mediaId)) {
+                return mediaItems;
             }
-        }
 
-        // List all Favorites
-        else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
-            for (String ebook : FavoritesHelper.getFavorites()) {
-                try {
-                    if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
-                        String title = getCategoryValueFromMediaID(ebook);
-                        mediaItems.add(createEbookItem(title, resources));
-                    }
-                } catch (Exception ex){
-                    Log.i(TAG, "Exception listing favorite:"+ebook);
+            // Search ebooks by Query String
+            if (mediaId.startsWith(MEDIA_ID_BY_SEARCH)) {
+                String search_query = MediaIDHelper.extractMusicIDFromMediaID(mediaId);
+                for (String ebook : getEbooksByQueryString(search_query)) {
+                    mediaItems.add(createEbookItem(ebook, resources));
                 }
             }
-        }
 
-        // Open a specific Ebook for direct play
-        else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
-            String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
-            for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
-                mediaItems.add(createTrackItem(metadata));
+            // List all Genre Items
+            else if (MEDIA_ID_BY_GENRE.equals(mediaId)) {
+                mediaItems.addAll(
+                    createGroupList(
+                        mEbookListByGenre,
+                        MEDIA_ID_BY_GENRE,
+                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
+                        resources
+                    )
+                );
             }
-        }
+            // List ebooks in a specific Genre
+            else if (mediaId.startsWith(MEDIA_ID_BY_GENRE)) {
+                String genre = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (String ebook : getEbooksByGenre(genre))
+                    mediaItems.add(createEbookItem(ebook, resources));
+            }
 
-        // Can't open media
-        else {
-            LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
-        }
+            // List Writers
+            else if (MEDIA_ID_BY_WRITER.equals(mediaId)) {
+                mediaItems.addAll(
+                    createGroupList(
+                        mEbookListByWriter,
+                        MEDIA_ID_BY_WRITER,
+                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
+                        resources
+                    )
+                );
+            }
 
+            // Open a specific Genre
+            else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
+                String writer = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (String ebook : getEbooksByWriter(writer))
+                    mediaItems.add(createEbookItem(ebook, resources));
+            }
+
+            // List all EBooks Items
+            else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
+                TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+                sortedEbookTitles.addAll(mEbookList.keySet());
+                for (String ebook : sortedEbookTitles) {
+                    mediaItems.add(createEbookItem(ebook, resources));
+                }
+            }
+
+            // List all Favorites
+            else if (MEDIA_ID_BY_FAVORITES.equals(mediaId)) {
+                for (String ebook : FavoritesHelper.getFavorites()) {
+                    try {
+                        if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+                            String title = getCategoryValueFromMediaID(ebook);
+                            mediaItems.add(createEbookItem(title, resources));
+                        }
+                    } catch (Exception ex) {
+                        Log.i(TAG, "Exception listing favorite:" + ebook);
+                    }
+                }
+            }
+
+            // List all Downloads
+            else if (MEDIA_ID_BY_DOWNLOADS.equals(mediaId)) {
+                //TODO: canonical book list
+                List<String> offlineBookList = OfflineBookService.getOfflineBooks();
+
+                //TODO: generalize errorhandling - with customized exception/message
+                if (offlineBookList != null) {
+                    for (String ebook : offlineBookList) {
+                        try {
+                            mediaItems.add(createEbookItem(ebook, resources));
+                        } catch (Exception ex) {
+                            Log.i(TAG, "Exception listing favorite:" + ebook);
+                        }
+                    }
+                }
+            }
+
+            // Open a specific Ebook for direct play
+            else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
+                String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
+                for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
+                    mediaItems.add(createTrackItem(metadata));
+                }
+            }
+
+            // Can't open media
+            else {
+                LogHelper.w(TAG, "Skipping unmatched mediaId: ", mediaId);
+            }
+
+        } catch (Exception ex) {
+            //TODO: signal errors properly to UI
+            LogHelper.w(TAG, "Something went wrong processing", mediaId);
+            Log.d(TAG, ex.getMessage());
+        }
         return mediaItems;
     }
     //endregion
@@ -522,6 +545,11 @@ public class MusicProvider {
             String ebook,
             Resources resources)
     {
+        //TODO: canonize ebook mediaid and title conversion
+        if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+            ebook = getCategoryValueFromMediaID(ebook);
+        }
+
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()

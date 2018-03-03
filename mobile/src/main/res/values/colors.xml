@@ -38,5 +38,6 @@
     <color name="default_accent">#C00035</color>
 
     <color name="message_background">#d8fa9995</color>
+    <color name="message_foreground">@color/default_primary_dark</color>
 
 </resources>
