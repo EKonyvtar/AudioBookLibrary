@@ -20,6 +20,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,6 +52,27 @@ public class AboutActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        // Button
+        final Button patreon = findViewById(R.id.patreon);
+        patreon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.patreon.com/murati"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.search).setVisible(false);
+        menu.findItem(R.id.option_favorite).setVisible(false);
+        menu.findItem(R.id.option_download).setVisible(false);
+        menu.findItem(R.id.option_delete).setVisible(false);
+
+        super.onPrepareOptionsMenu(menu);
+        return true;
     }
 
     public String getVersion() {

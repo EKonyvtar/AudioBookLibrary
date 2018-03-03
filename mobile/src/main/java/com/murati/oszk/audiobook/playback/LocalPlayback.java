@@ -27,6 +27,7 @@ package com.murati.oszk.audiobook.playback;
         import android.text.TextUtils;
 
         import com.murati.oszk.audiobook.MusicService;
+        import com.murati.oszk.audiobook.OfflineBookService;
         import com.murati.oszk.audiobook.model.MusicProvider;
         import com.murati.oszk.audiobook.model.MusicProviderSource;
         import com.murati.oszk.audiobook.utils.LogHelper;
@@ -201,10 +202,7 @@ public final class LocalPlayback implements Playback {
                             MediaIDHelper.extractMusicIDFromMediaID(
                                     item.getDescription().getMediaId()));
 
-            String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-            if (source != null) {
-                source = source.replaceAll(" ", "%20"); // Escape spaces for URLs
-            }
+            String source = OfflineBookService.getTrackSource(track);
 
             if (mExoPlayer == null) {
                 mExoPlayer =
