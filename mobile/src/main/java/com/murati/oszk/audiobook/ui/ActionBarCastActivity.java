@@ -325,7 +325,6 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             }
 
             Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
-
             return true;
         }
 

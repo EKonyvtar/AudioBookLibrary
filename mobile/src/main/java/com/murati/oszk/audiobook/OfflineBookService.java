@@ -159,16 +159,45 @@ public class OfflineBookService extends IntentService {
     }
 
     public static boolean isOfflineBook(String book) {
-        if (book != null) {
-            book = book.replace(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/","");
-        }
-        File bookFolder = getBookDirectory(book);
+        book = MediaIDHelper.getEBookTitle(book);
+        File bookFolder = getBookDirectory(MediaIDHelper.getEBookTitle(book));
         return bookFolder.exists();
     }
 
     public static void removeOfflineBook(String book) {
+        book = MediaIDHelper.getEBookTitle(book);
         File bookFolder = getBookDirectory(book);
-        bookFolder.delete();
+        if (!bookFolder.exists()) return;
+
+        //Deleting files
+        try {
+            for (File file : bookFolder.listFiles()) {
+                try {
+                    if (file.delete()) {
+                        Log.d(TAG, "File Deleted " + file.toString());
+                    } else {
+                        Log.e(TAG, "File NOT Deleted " + file.toString());
+                    }
+                }
+                catch (Exception ex) {
+                    Log.e(TAG, "Error deleting Book " + book);
+                }
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, "Error deleting Book " + book);
+        }
+
+        try {
+            if (bookFolder.delete()) {
+                Log.d(TAG, "Deleted " + book);
+            } else {
+                Log.d(TAG, "Not Deleted " + book);
+            }
+        }
+        catch (Exception ex) {
+            Log.e(TAG, "Error deleting Book " + book);
+        }
+
     }
 
 

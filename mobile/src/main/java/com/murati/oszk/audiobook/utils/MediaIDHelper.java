@@ -128,6 +128,14 @@ public class MediaIDHelper {
         return null;
     }
 
+    public static String getEBookTitle(String book) {
+        //TODO: refactor with  getCategory with validation from ActionBar
+        if (book != null) {
+            book = book.replace(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/","");
+        }
+        return book;
+    }
+
     public static boolean isBrowseable(@NonNull String mediaID) {
         return mediaID.indexOf(LEAF_SEPARATOR) < 0 ||
           mediaID.indexOf(MEDIA_ID_BY_SEARCH) == 0;
