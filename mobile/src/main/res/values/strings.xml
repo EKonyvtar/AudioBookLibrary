@@ -51,6 +51,9 @@
     <!-- ACTION ITEMS: Action, Notifications -->
     <string name="action_listen">Hallgatás</string>
 
+    <!-- Confirm -->
+    <string name="confirm_cancel">Mégsem</string>
+
     <!-- Favorites -->
     <string name="action_favorite">Kedvenc</string>
     <string name="action_favorite_add">Kedvencekhez adás</string>
@@ -68,6 +71,8 @@
 
     <!-- Delete -->
     <string name="action_delete">Tárhely felszabadítása</string>
+    <string name="confirm_delete_question">Biztosan törölni kívánja ezt az offline hangoskönyvet?</string>
+    <string name="confirm_delete">Törlés</string>
 
 
     <!-- PLAYBACK RESOURCES -->
