@@ -284,7 +284,7 @@ public class MediaBrowserFragment extends Fragment {
         boolean showError = forceError;
         // If offline, message is about the lack of connectivity:
         if (!NetworkHelper.isOnline(getActivity())) {
-            mErrorMessage.setText(R.string.error_no_connection);
+            mErrorMessage.setText(R.string.notification_offline);
             showError = true;
         } else {
             // otherwise, if state is ERROR and metadata!=null, use playback state error message:
