@@ -18,8 +18,10 @@ package com.murati.oszk.audiobook.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -272,6 +274,18 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         return fragment.getMediaId();
     }
 
+    private void deleteEbook() {
+        if (!OfflineBookService.isPermissionGranted(this)) {
+            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(getBaseContext(), R.string.action_delete, Toast.LENGTH_SHORT).show();
+
+        //TODO: async delete
+        OfflineBookService.removeOfflineBook(getMediaId());
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -340,13 +354,24 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         //Delete button
         if (item != null && mediaId != null && item.getItemId() == R.id.option_delete) {
-            if (!OfflineBookService.isPermissionGranted(this)) {
-                Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            //TODO: async delete
-            OfflineBookService.removeOfflineBook(mediaId);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.confirm_delete_question)
+                .setTitle(R.string.action_delete)
+                .setCancelable(false)
+                .setPositiveButton(R.string.confirm_delete,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ActionBarCastActivity.this.deleteEbook();
+                        }
+                    }
+                )
+                .setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+            AlertDialog alert = builder.create();
+            alert.show();
             return true;
         }
 
