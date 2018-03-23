@@ -33,6 +33,7 @@ import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
 
 import java.util.ArrayList;
@@ -70,7 +71,6 @@ public class MusicProvider {
     private MusicProviderSource mSource;
 
     // Ebook cache
-    public static String currentEBook = null;
     private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
     private static ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
 
@@ -369,9 +369,9 @@ public class MusicProvider {
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
 
             // Show Current playing
-            if (currentEBook != null) {
-                mediaItems.add(createGroupItem(currentEBook,
-                    MediaIDHelper.getCategoryValueFromMediaID(currentEBook),
+            if (PlaybackHelper.getLastEBook() != null) {
+                mediaItems.add(createGroupItem(PlaybackHelper.getLastEBook(),
+                    MediaIDHelper.getCategoryValueFromMediaID(PlaybackHelper.getLastEBook()),
                     resources.getString(R.string.browse_queue_subtitle),
                     BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
             }
@@ -386,7 +386,7 @@ public class MusicProvider {
         try {
             // Swap mediaId from queue to current eBook
             if (mediaId.equals(MEDIA_ID_BY_QUEUE))
-                mediaId = currentEBook;
+                return getChildren(PlaybackHelper.getLastEBook(),resources);
 
             //Rethink edgecase of misbrowse
             if (!MediaIDHelper.isBrowseable(mediaId)) {
