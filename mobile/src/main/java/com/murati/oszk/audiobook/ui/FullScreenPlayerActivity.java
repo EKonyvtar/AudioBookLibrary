@@ -47,6 +47,7 @@ import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -118,7 +119,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     };
 
     public String getMediaId() {
-        return MusicProvider.currentEBook;
+        return PlaybackHelper.getLastEBook();
     }
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallback =
