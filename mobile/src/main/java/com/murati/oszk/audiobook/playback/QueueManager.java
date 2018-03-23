@@ -28,6 +28,7 @@ import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.QueueHelper;
 
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public class QueueManager {
 
     public void setQueueFromTrack(String mediaId) {
         LogHelper.d(TAG, "setQueueFromTrack", mediaId);
-        MusicProvider.currentEBook = MediaIDHelper.getParentMediaID(mediaId);
+        PlaybackHelper.setLastMediaId(mediaId);
 
         // The mediaId used here is not the unique musicId. This one comes from the
         // MediaBrowser, and is actually a "hierarchy-aware mediaID": a concatenation of
