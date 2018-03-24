@@ -32,6 +32,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
@@ -41,6 +42,10 @@ import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Base activity for activities that need to show a playback control fragment when media is playing.
@@ -143,13 +148,6 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        //getMenuInflater().inflate(R.menu.main, menu);
-
-        //TODO: move this to ActionBar
-        //ActionMenuItemView fav = (ActionMenuItemView)findViewById(R.id.option_favorite);
-        //fav.setVisibility(View.GONE);
-        //menu.findItem(R.id.option_favorite).setVisible(false);
-        //invalidateOptionsMenu();
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =

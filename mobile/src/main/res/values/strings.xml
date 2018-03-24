@@ -40,7 +40,7 @@
     <string name="browse_ebook_subtitle">Böngészés ABC rendben</string>
 
     <string name="browse_queue">Lejátszási lista</string>
-    <string name="browse_queue_subtitle">Aktuális könyv lejátszás alatt</string>
+    <string name="browse_queue_subtitle">Legutóbb hallgatott könyv</string>
 
     <string name="browse_favorites">Kedvenc Könyvek</string>
     <string name="browse_favorites_subtitle">Korábban elmentett kedvencek</string>
