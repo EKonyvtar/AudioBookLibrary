@@ -15,7 +15,9 @@
  */
 package com.murati.oszk.audiobook.ui;
 
+import android.app.SearchManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -33,9 +35,12 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.format.DateUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +54,9 @@ import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -159,32 +167,6 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mLine3 = (TextView) findViewById(R.id.line3);
         mLoading = (ProgressBar) findViewById(R.id.progressBar1);
         mControllers = findViewById(R.id.controllers);
-
-        /*
-        // Favorite action
-        mFavoriteButton = (FloatingActionButton)findViewById(R.id.favorite_button);
-        mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO: fix for current
-                String ebook = MediaIDHelper.getCategoryValueFromMediaID(MusicProvider.currentEBook);
-                boolean isFavorite = FavoritesHelper.toggleFavorite(ebook);
-
-                if (isFavorite) mFavoriteButton.setImageResource(R.drawable.ic_star_on);
-                else  mFavoriteButton.setImageResource(R.drawable.ic_star_off);
-
-                //TODO resource
-                Toast.makeText(getBaseContext(), "Favorite " + ebook, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        // Download action
-        mDownloadButton = (FloatingActionButton)findViewById(R.id.download_button);
-        mDownloadButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Download", Toast.LENGTH_LONG).show();
-            }
-        });
-        */
 
         mSkipNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -324,6 +306,28 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (controllerCompat != null) {
             controllerCompat.unregisterCallback(mCallback);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        // Disable all menu by default
+        List<Integer> menuItems = new ArrayList<Integer>(
+            Arrays.asList(
+                R.id.search,
+                R.id.option_favorite,
+                R.id.option_download,
+                R.id.option_delete
+            )
+        );
+
+        for (Integer menuItemRef : menuItems) {
+            MenuItem menuItem = menu.findItem(menuItemRef);
+            menuItem.setVisible(false);
+        }
+
+        return true;
     }
 
     @Override
