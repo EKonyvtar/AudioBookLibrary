@@ -1,15 +1,17 @@
 E-Könyvtár AudioBook
 ====================
 
-This project is an Android audiobook listener app for the National Library of Hungary (MEK)
+This project is an Android audiobook listener and catalog app for the National Library of Hungary (MEK)
 for Android phones, tablets, Android Auto, Android Wear, Android TV and Google Cast devices.
-
-
-
 
 <a href='https://play.google.com/store/apps/details?id=com.murati.oszk.audiobook&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-The source code is based on Android Universal Music Player:
+![Store art 1](./design/store_art_1.png)
+![Store art 1](./design/store_art_2.png)
+![Store art 1](./design/store_art_3.png)
+
+
+The source code is based on Google's original Android Universal Music Player:
  - https://github.com/googlesamples/android-UniversalMusicPlayer
 
 
