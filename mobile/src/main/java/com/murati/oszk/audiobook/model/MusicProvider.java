@@ -97,6 +97,8 @@ public class MusicProvider {
         } catch (Exception e){
             Log.e(TAG, e.getMessage());
         }
+
+        PlaybackHelper.setContext(c);
     }
     public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
