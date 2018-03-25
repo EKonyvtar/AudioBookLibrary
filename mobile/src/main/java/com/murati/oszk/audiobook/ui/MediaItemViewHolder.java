@@ -99,7 +99,7 @@ public class MediaItemViewHolder {
               //InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
               //drawable = Drawable.createFromStream(inputStream, imageUri.toString());
             } catch (Exception e) {
-              // Defautl to IC_genre
+              // Default to IC_genre
               drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
               DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
             }
