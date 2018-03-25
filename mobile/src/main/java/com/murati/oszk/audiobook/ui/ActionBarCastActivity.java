@@ -47,6 +47,7 @@ import android.view.View;
 import android.widget.MediaController;
 import android.widget.Toast;
 
+import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
@@ -158,9 +159,9 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
                         break;
                     case R.id.navigation_quit:
-                        //android.os.Process.killProcess(android.os.Process.myPid());
-                        //MediaControllerCompat controller = MediaControllerCompat.getMediaController(ActionBarCastActivity.this);
-                        //TODO: fix exit controller
+                        stopService(new Intent(ActionBarCastActivity.this, MusicService.class));
+                        finish();
+
                         System.exit(0);
                         break;
                 }
