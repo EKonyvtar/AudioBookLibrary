@@ -32,6 +32,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -43,6 +44,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.MediaController;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -154,6 +156,12 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         break;
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
+                        break;
+                    case R.id.navigation_quit:
+                        //android.os.Process.killProcess(android.os.Process.myPid());
+                        //MediaControllerCompat controller = MediaControllerCompat.getMediaController(ActionBarCastActivity.this);
+                        //TODO: fix exit controller
+                        System.exit(0);
                         break;
                 }
                 if (intent != null) {

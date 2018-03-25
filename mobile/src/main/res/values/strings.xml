@@ -26,6 +26,7 @@
     <string name="drawer_settings_title">Beállítások</string>
     <string name="drawer_feedback_title">Visszajelzés küldése</string>
     <string name="drawer_about_title">Névjegy</string>
+    <string name="drawer_quit_title">Kilépés</string>
 
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
 

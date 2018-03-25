@@ -51,5 +51,9 @@
             android:id="@+id/navigation_about"
             android:icon="@drawable/ic_menu_about"
             android:title="@string/drawer_about_title"/>
+        <item
+            android:id="@+id/navigation_quit"
+            android:icon="@drawable/ic_menu_quit"
+            android:title="@string/drawer_quit_title"/>
     </group>
 </menu>
