@@ -293,7 +293,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 fetchArtUrl = artUrl;
                 // use a placeholder art while the remote art is being downloaded
                 art = BitmapFactory.decodeResource(mService.getResources(),
-                    R.drawable.ic_default_art);
+                    R.drawable.ic_launcher_white);
             }
         }
 
@@ -303,7 +303,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
                             new int[]{playPauseButtonPosition})  // show only play/pause in compact view
                     .setMediaSession(mSessionToken))
                 .setColor(mNotificationColor)
-                .setSmallIcon(R.drawable.ic_notification)
+                .setSmallIcon(R.drawable.ic_launcher_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setUsesChronometer(true)
                 .setContentIntent(createContentIntent(description))
