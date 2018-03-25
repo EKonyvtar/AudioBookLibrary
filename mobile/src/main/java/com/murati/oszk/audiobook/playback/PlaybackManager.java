@@ -100,6 +100,7 @@ public class PlaybackManager implements Playback.Callback {
     public void handleStopRequest(String withError) {
         LogHelper.d(TAG, "handleStopRequest: mState=" + mPlayback.getState() + " error=", withError);
         mPlayback.stop(true);
+        //TODO: hide
         mServiceCallback.onPlaybackStop();
         updatePlaybackState(withError);
     }

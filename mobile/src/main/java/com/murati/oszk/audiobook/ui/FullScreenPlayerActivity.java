@@ -35,6 +35,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -457,5 +458,14 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             currentPosition += (int) timeDelta * mLastPlaybackState.getPlaybackSpeed();
         }
         mSeekbar.setProgress((int) currentPosition);
+
+        try {
+            if (mSeekbar.getMax() < currentPosition) {
+                mSeekbar.setMax((int) currentPosition + 30000);
+                mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()/1000));
+            }
+        } catch (Exception ex) {
+            //TODO: fix length detection
+        }
     }
 }
