@@ -176,6 +176,7 @@ public class MediaBrowserFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 checkForUserVisibleErrors(false);
                 if (mediaId != null) {
+                    //TODO: listview restore position
                     Parcelable state = listView.onSaveInstanceState();
                     if (listState.containsKey(mediaId)) {
                         ((ConcurrentHashMap) listState).remove(mediaId);

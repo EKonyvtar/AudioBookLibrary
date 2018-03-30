@@ -35,6 +35,10 @@ public class PlaybackHelper {
         return MediaIDHelper.getParentMediaID(_lastMediaId);
     }
 
+    public static String getLastMediaId() {
+        return _lastMediaId;
+    }
+
     public static void setLastMediaId(String mediaId) {
         _lastMediaId = mediaId;
 
