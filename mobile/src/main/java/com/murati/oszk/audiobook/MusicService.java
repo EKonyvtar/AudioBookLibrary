@@ -44,6 +44,7 @@ import com.murati.oszk.audiobook.playback.QueueManager;
 import com.murati.oszk.audiobook.ui.NowPlayingActivity;
 import com.murati.oszk.audiobook.utils.CarHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.TvHelper;
 import com.murati.oszk.audiobook.utils.WearHelper;
 import com.google.android.gms.cast.framework.CastContext;
@@ -352,6 +353,9 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // MediaController) disconnects, otherwise the music playback will stop.
         // Calling startService(Intent) will keep the service running until it is explicitly killed.
         startService(new Intent(getApplicationContext(), MusicService.class));
+
+        PlaybackHelper.setLastMediaId(this.mPlaybackManager.getPlayback().getCurrentMediaId());
+        PlaybackHelper.setLastPosition(mPlaybackManager.getPlayback().getCurrentStreamPosition());
     }
 
 
@@ -365,6 +369,10 @@ public class MusicService extends MediaBrowserServiceCompat implements
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mDelayedStopHandler.sendEmptyMessageDelayed(0, STOP_DELAY);
         stopForeground(true);
+
+        //Try to persist last position
+        PlaybackHelper.setLastMediaId(mPlaybackManager.getPlayback().getCurrentMediaId());
+        PlaybackHelper.setLastPosition(mPlaybackManager.getPlayback().getCurrentStreamPosition());
     }
 
     @Override
