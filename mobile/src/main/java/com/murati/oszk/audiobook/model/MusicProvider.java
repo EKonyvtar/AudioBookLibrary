@@ -372,7 +372,7 @@ public class MusicProvider {
 
             // Show Current playing
             if (PlaybackHelper.getLastEBook() != null) {
-                mediaItems.add(createGroupItem(PlaybackHelper.getLastEBook(),
+                mediaItems.add(createGroupItem(MEDIA_ID_BY_QUEUE,
                     MediaIDHelper.getCategoryValueFromMediaID(PlaybackHelper.getLastEBook()),
                     resources.getString(R.string.browse_queue_subtitle),
                     BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
