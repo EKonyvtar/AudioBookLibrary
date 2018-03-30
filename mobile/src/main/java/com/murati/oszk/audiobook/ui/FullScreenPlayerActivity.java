@@ -396,6 +396,9 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (state == null) {
             return;
         }
+
+        //TODO: Fix Time for current state
+
         mLastPlaybackState = state;
         MediaControllerCompat controllerCompat = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this);
         if (controllerCompat != null && controllerCompat.getExtras() != null) {

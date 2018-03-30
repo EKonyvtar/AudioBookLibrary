@@ -44,8 +44,9 @@ public class PlaybackHelper {
     }
 
     public static void setLastMediaId(String mediaId) {
-        _lastMediaId = mediaId;
+        if (TextUtils.isEmpty(mediaId)) return;
 
+        _lastMediaId = mediaId;
         persistPlayBackState();
     }
 
@@ -56,6 +57,10 @@ public class PlaybackHelper {
     }
 
     public static void persistPlayBackState() {
+        if (getLastEBook() == null) {
+            Log.i(TAG, "Refusing to save empty books");
+            return;
+        }
         try {
             SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE,Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
