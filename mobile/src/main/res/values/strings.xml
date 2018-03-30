@@ -82,7 +82,7 @@
 
     <string name="notification_playback_track_error">A rész nem elérhető</string>
     <string name="notification_offline">Offline módban csak letöltött könyvek érhetők el</string>
-
+    <string name="notification_playback_restored">Lejátszási pozíció visszaállítva %s %s</string>
 
     <string name="random_queue_title">Véletlen könyvek</string>
     <string name="casting_to_device">Lejátszás %1$s eszközön</string>
