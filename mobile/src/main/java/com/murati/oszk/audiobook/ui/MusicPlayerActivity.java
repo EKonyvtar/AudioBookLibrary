@@ -17,6 +17,7 @@ package com.murati.oszk.audiobook.ui;
 
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -88,6 +89,32 @@ public class MusicPlayerActivity extends BaseActivity
         super.onSaveInstanceState(outState);
     }
 
+    private void restorePlayback() {
+        // Load MediaController
+        MediaControllerCompat mediaController = MediaControllerCompat
+            .getMediaController(MusicPlayerActivity.this);
+
+        // If the playback is already established, just ignore
+        if (!(
+            mediaController == null ||
+            mediaController.getMetadata() == null ||
+            mediaController.getPlaybackState() == null
+        )) return;
+
+
+        //TODO: fix notificaton control unsync state
+        MediaControllerCompat.TransportControls control = mediaController.getTransportControls();
+        //control.prepareFromMediaId(PlaybackHelper.getLastMediaId(), null);
+        control.playFromMediaId(PlaybackHelper.getLastMediaId(), null);
+        control.seekTo(PlaybackHelper.getLastPosition());
+        //control.pause();
+
+        Toast.makeText(getBaseContext(), String.format(
+            getString(R.string.notification_playback_restored),
+            ((Long)PlaybackHelper.getLastPosition()).toString(),
+            MediaIDHelper.getEBookTitle(PlaybackHelper.getLastMediaId())
+        ), Toast.LENGTH_LONG).show();
+    }
 
     // MediaItem click handler
     @Override
@@ -109,10 +136,7 @@ public class MusicPlayerActivity extends BaseActivity
 
             //Try to continue from last position
             if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_QUEUE)) {
-                MediaControllerCompat
-                    .getMediaController(MusicPlayerActivity.this)
-                    .getTransportControls()
-                    .playFromMediaId(PlaybackHelper.getLastMediaId(), null);
+                restorePlayback();
             }
 
             navigateToBrowser(item.getMediaId());

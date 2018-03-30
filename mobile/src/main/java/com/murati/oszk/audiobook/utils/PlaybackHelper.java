@@ -39,6 +39,10 @@ public class PlaybackHelper {
         return _lastMediaId;
     }
 
+    public static long getLastPosition() {
+        return _lastPosition;
+    }
+
     public static void setLastMediaId(String mediaId) {
         _lastMediaId = mediaId;
 
