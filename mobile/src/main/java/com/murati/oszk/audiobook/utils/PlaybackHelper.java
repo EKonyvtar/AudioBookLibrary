@@ -20,7 +20,7 @@ public class PlaybackHelper {
     private static Context _context = null;
 
     private static String _lastMediaId = null;
-    private static int _lastPosition = 0;
+    private static long _lastPosition = 0;
 
     public static void setContext(Context context) {
         _context = context;
@@ -41,12 +41,18 @@ public class PlaybackHelper {
         persistPlayBackState();
     }
 
+    public static void setLastPosition(long position) {
+        _lastPosition = position;
+
+        persistPlayBackState();
+    }
+
     public static void persistPlayBackState() {
         try {
             SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE,Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(PLAYBACK_LAST_MEDIAID, _lastMediaId);
-            editor.putInt(PLAYBACK_LAST_POSITION, _lastPosition);
+            editor.putLong(PLAYBACK_LAST_POSITION, _lastPosition);
             editor.commit();
         } catch (Exception e) {
             Log.e(TAG, "Playback info cannot be saved. " + e.toString());
@@ -54,8 +60,12 @@ public class PlaybackHelper {
     }
 
     public static void restorePlayBackState() {
-        SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE,Context.MODE_PRIVATE);
-        _lastMediaId = sharedPref.getString(PLAYBACK_LAST_MEDIAID, null);
-        _lastPosition = sharedPref.getInt(PLAYBACK_LAST_POSITION, 0);
+        try {
+            SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE, Context.MODE_PRIVATE);
+            _lastMediaId = sharedPref.getString(PLAYBACK_LAST_MEDIAID, null);
+            _lastPosition = sharedPref.getLong(PLAYBACK_LAST_POSITION, 0);
+        } catch (Exception ex) {
+            Log.e(TAG, "Unable to restore previous playback state:" + ex.getMessage() );
+        }
     }
 }

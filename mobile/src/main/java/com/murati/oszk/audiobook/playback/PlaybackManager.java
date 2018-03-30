@@ -76,6 +76,8 @@ public class PlaybackManager implements Playback.Callback {
         if (currentMusic != null) {
             mServiceCallback.onPlaybackStart();
             mPlayback.play(currentMusic);
+            //TODO: save last here
+            //currentMusic.getDescription().getMediaId()
         }
     }
 
