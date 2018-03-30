@@ -32,6 +32,7 @@ import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
 /**
  * Main activity for the music player.
@@ -66,6 +67,10 @@ public class MusicPlayerActivity extends BaseActivity
         setContentView(R.layout.activity_player);
 
         initializeToolbar();
+
+        //TODO: fix toolbar blink
+        updateBookButtons(getMediaId());
+
         initializeFromParams(savedInstanceState, getIntent());
 
         // Only check if a full screen player is needed on the first time:
@@ -83,6 +88,8 @@ public class MusicPlayerActivity extends BaseActivity
         super.onSaveInstanceState(outState);
     }
 
+
+    // MediaItem click handler
     @Override
     public void onMediaItemSelected(MediaBrowserCompat.MediaItem item) {
         LogHelper.d(TAG, "onMediaItemSelected, mediaId=" + item.getMediaId());
@@ -98,6 +105,14 @@ public class MusicPlayerActivity extends BaseActivity
                     Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                     return;
                 }
+            }
+
+            //Try to continue from last position
+            if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_QUEUE)) {
+                MediaControllerCompat
+                    .getMediaController(MusicPlayerActivity.this)
+                    .getTransportControls()
+                    .playFromMediaId(PlaybackHelper.getLastMediaId(), null);
             }
 
             navigateToBrowser(item.getMediaId());
@@ -293,8 +308,8 @@ public class MusicPlayerActivity extends BaseActivity
     @Override
     protected void onMediaControllerConnected() {
 
-      /*
-      if (mSearchParams != null) {
+        /*
+        if (mSearchParams != null) {
         // If there is a bootstrap parameter to start from a search query, we
         // send it to the media session and set it to null, so it won't play again
         // when the activity is stopped/started or recreated:
@@ -302,9 +317,9 @@ public class MusicPlayerActivity extends BaseActivity
         MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
                 .playFromSearch(query, mSearchParams);
         mSearchParams = null;
-      }*/
+        }*/
 
-      getBrowseFragment().onConnected();
-      updateBookButtons(getMediaId());
+        getBrowseFragment().onConnected();
+        updateBookButtons(getMediaId());
     }
 }
