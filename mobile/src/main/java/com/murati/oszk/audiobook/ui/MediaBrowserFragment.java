@@ -157,7 +157,8 @@ public class MediaBrowserFragment extends Fragment {
 
         // Update Favoritebutton on backstack navigate
         try {
-            ((MusicPlayerActivity)this.getActivity()).updateBookButtons(mediaId);
+            ((MusicPlayerActivity)this.getActivity())
+                .updateBookButtons(mediaId);
         } catch (Exception ex) {
             Log.e(TAG,ex.getMessage());
         }

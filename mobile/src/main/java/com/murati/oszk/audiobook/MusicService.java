@@ -56,6 +56,7 @@ import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
 
  /**
@@ -323,7 +324,10 @@ public class MusicService extends MediaBrowserServiceCompat implements
                                @NonNull final Result<List<MediaItem>> result) {
         LogHelper.d(TAG, "OnLoadChildren: parentMediaId=", parentMediaId);
 
-        if (MEDIA_ID_ROOT.equals(parentMediaId) || mMusicProvider.isInitialized()) {
+        if (MEDIA_ID_ROOT.equals(parentMediaId) ||
+            mMusicProvider.isInitialized()) {
+            //TODO: fix reload entry
+            // || MEDIA_ID_BY_QUEUE.equals(parentMediaId)) {
             result.sendResult(mMusicProvider.getChildren(parentMediaId, getResources()));
         } else {
             // otherwise, only return results when the music library is retrieved

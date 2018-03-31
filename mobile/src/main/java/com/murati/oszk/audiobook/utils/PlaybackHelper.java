@@ -3,6 +3,7 @@ package com.murati.oszk.audiobook.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 /**
@@ -35,6 +36,13 @@ public class PlaybackHelper {
         return MediaIDHelper.getParentMediaID(_lastMediaId);
     }
 
+    public static String getLastEBookTitle() {
+        String ebookMediaId = getLastEBook();
+        if (ebookMediaId != null)
+            return MediaIDHelper.getEBookTitle(ebookMediaId);
+        return "";
+    }
+
     public static String getLastMediaId() {
         return _lastMediaId;
     }
@@ -43,9 +51,14 @@ public class PlaybackHelper {
         return _lastPosition;
     }
 
-    public static void setLastMediaId(String mediaId) {
-        _lastMediaId = mediaId;
+    public static String getLastPositionString() {
+        return DateUtils.formatElapsedTime(_lastPosition/1000);
+    }
 
+    public static void setLastMediaId(String mediaId) {
+        if (TextUtils.isEmpty(mediaId)) return;
+
+        _lastMediaId = mediaId;
         persistPlayBackState();
     }
 
@@ -56,6 +69,10 @@ public class PlaybackHelper {
     }
 
     public static void persistPlayBackState() {
+        if (getLastEBook() == null) {
+            Log.i(TAG, "Refusing to save empty books");
+            return;
+        }
         try {
             SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE,Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
