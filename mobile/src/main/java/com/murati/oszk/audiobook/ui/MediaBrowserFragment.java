@@ -41,7 +41,9 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
+import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +128,12 @@ public class MediaBrowserFragment extends Fragment {
                         mBrowserAdapter.add(item);
                     }
                     mBrowserAdapter.notifyDataSetChanged();
+
+                    //Try re-instantiating player if we are in the queue
+                    if (MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(parentId)) {
+                        PlaybackHelper.restorePlaybackController(getActivity());
+                    }
+
                 } catch (Throwable t) {
                     LogHelper.e(TAG, "Error on childrenloaded", t);
                 }

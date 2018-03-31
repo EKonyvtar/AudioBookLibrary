@@ -337,6 +337,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
                 public void onMusicCatalogReady(boolean success) {
                     Log.i(TAG, "mTrackProvider has loaded successfully.");
                     result.sendResult(mMusicProvider.getChildren(parentMediaId, getResources()));
+                    //TODO: fix mediaplayer retry
                 }
             });
         }
