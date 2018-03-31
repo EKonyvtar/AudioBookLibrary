@@ -31,45 +31,75 @@
 
         <include
             android:id="@+id/toolbar_container"
-            layout="@layout/include_toolbar" />
+            layout="@layout/include_toolbar"/>
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="60pt"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/toolbar_container"
-            android:padding="4pt"
-            android:src="@drawable/ic_launcher" />
+            >
 
-        <TextView
-            android:id="@+id/header"
-            android:layout_below="@+id/imageView"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/version"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/header"
-            android:gravity="center"
-            android:text="v0.0.0" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="60pt"
+                    android:padding="4pt"
+                    android:src="@drawable/ic_launcher" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/version"
-            android:layout_gravity="center"
-            android:gravity="clip_horizontal"
-            android:padding="10pt"
-            android:text="@string/about_content" />
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                <TextView
+                    android:id="@+id/version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/header"
+                    android:gravity="center"
+                    android:text="v0.0.0" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/version"
+                    android:layout_gravity="center"
+                    android:gravity="clip_horizontal"
+                    android:padding="10pt"
+                    android:text="@string/about_content" />
+
+                <Button
+                    android:id="@+id/patreon"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView"
+                    android:text="@string/about_button_support" />
+
+                <Button
+                    android:id="@+id/murati"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/patreon"
+                    android:text="@string/about_button_murati" />
+            </LinearLayout>
+        </ScrollView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/controls_container"
@@ -87,26 +117,6 @@
                 tools:layout="@layout/fragment_playback_controls" />
 
         </android.support.v7.widget.CardView>
-
-        <Button
-            android:id="@+id/patreon"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            android:text="@string/about_button_support" />
-
-        <Button
-            android:id="@+id/murati"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/patreon"
-            android:text="@string/about_button_murati" />
-
-
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
