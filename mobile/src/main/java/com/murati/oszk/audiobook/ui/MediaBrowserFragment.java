@@ -129,6 +129,7 @@ public class MediaBrowserFragment extends Fragment {
                     }
                     mBrowserAdapter.notifyDataSetChanged();
 
+                    //TODO: make this properly event driven
                     //Try re-instantiating player if we are in the queue
                     if (MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(parentId)) {
                         PlaybackHelper.restorePlaybackController(getActivity());
