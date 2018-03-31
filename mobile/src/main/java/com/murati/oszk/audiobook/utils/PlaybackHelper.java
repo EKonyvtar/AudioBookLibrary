@@ -3,6 +3,7 @@ package com.murati.oszk.audiobook.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 /**
@@ -35,12 +36,23 @@ public class PlaybackHelper {
         return MediaIDHelper.getParentMediaID(_lastMediaId);
     }
 
+    public static String getLastEBookTitle() {
+        String ebookMediaId = getLastEBook();
+        if (ebookMediaId != null)
+            return MediaIDHelper.getEBookTitle(ebookMediaId);
+        return "";
+    }
+
     public static String getLastMediaId() {
         return _lastMediaId;
     }
 
     public static long getLastPosition() {
         return _lastPosition;
+    }
+
+    public static String getLastPositionString() {
+        return DateUtils.formatElapsedTime(_lastPosition/1000);
     }
 
     public static void setLastMediaId(String mediaId) {
