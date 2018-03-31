@@ -159,6 +159,8 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
                         break;
                     case R.id.navigation_quit:
+                        //TODO: review notification bar cleanup
+
                         stopService(new Intent(ActionBarCastActivity.this, MusicService.class));
                         finish();
 
