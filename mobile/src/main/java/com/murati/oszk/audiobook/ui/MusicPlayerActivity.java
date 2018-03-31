@@ -111,8 +111,8 @@ public class MusicPlayerActivity extends BaseActivity
 
         Toast.makeText(getBaseContext(), String.format(
             getString(R.string.notification_playback_restored),
-            ((Long)PlaybackHelper.getLastPosition()).toString(),
-            MediaIDHelper.getEBookTitle(PlaybackHelper.getLastMediaId())
+            PlaybackHelper.getLastPositionString(),
+            PlaybackHelper.getLastEBookTitle()
         ), Toast.LENGTH_LONG).show();
     }
 
