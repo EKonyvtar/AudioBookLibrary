@@ -263,9 +263,8 @@ public class MusicPlayerActivity extends BaseActivity
                 R.animator.slide_in_from_left, R.animator.slide_out_to_right);
             transaction.replace(R.id.container, fragment, FRAGMENT_TAG);
 
-            // If this is not the top level media (root), we add it to the fragment back stack,
-            // so that actionbar toggle and Back will work appropriately:
-            if (mediaId != null) { // && !MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(mediaId)) {
+            // Not an empty, root or the same where we are currently, for refresh retries
+            if (mediaId != null && mediaId != getMediaId()) {
                 transaction.addToBackStack(null);
             }
             transaction.commit();
