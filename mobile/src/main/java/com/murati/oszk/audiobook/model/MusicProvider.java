@@ -383,7 +383,13 @@ public class MusicProvider {
 
 
         // Not root section
-        if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
+
+        //Refresh button for empty states
+        if (mCurrentState != State.INITIALIZED) {
+            mediaItems.add(createRefreshItem(mediaId, resources));
+            return mediaItems;
+        }
+
 
         try {
             // Swap mediaId from queue to current eBook
@@ -566,6 +572,19 @@ public class MusicProvider {
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
     //endregion;
+
+    private MediaBrowserCompat.MediaItem createRefreshItem(String mediaId, Resources resources) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+            .setMediaId(mediaId)
+            .setTitle("Újra-próbál")
+            .setSubtitle("")
+            //TODO: Fix resource loading
+            //Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
+            .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
+            .build();
+        return new MediaBrowserCompat.MediaItem(description,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
 
     private MediaBrowserCompat.MediaItem createTrackItem(MediaMetadataCompat metadata) {
         // Since mediaMetadata fields are immutable, we need to create a copy, so we

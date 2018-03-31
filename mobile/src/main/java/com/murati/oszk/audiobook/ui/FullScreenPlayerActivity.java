@@ -377,8 +377,6 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mLine1.setText(description.getTitle());
         mLine2.setText(description.getSubtitle());
 
-        //mDownloadButton.setVisibility(INVISIBLE);
-
         fetchImageAsync(description);
     }
 
@@ -396,6 +394,9 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (state == null) {
             return;
         }
+
+        //TODO: Fix Time for current state
+
         mLastPlaybackState = state;
         MediaControllerCompat controllerCompat = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this);
         if (controllerCompat != null && controllerCompat.getExtras() != null) {
@@ -447,6 +448,8 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (mLastPlaybackState == null) {
             return;
         }
+
+        //TODO: fix current position
         long currentPosition = mLastPlaybackState.getPosition();
         if (mLastPlaybackState.getState() == PlaybackStateCompat.STATE_PLAYING) {
             // Calculate the elapsed time between the last position update and now and unless
@@ -455,7 +458,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             // on MediaControllerCompat.
             long timeDelta = SystemClock.elapsedRealtime() -
                     mLastPlaybackState.getLastPositionUpdateTime();
-            currentPosition += (int) timeDelta * mLastPlaybackState.getPlaybackSpeed();
+            currentPosition += (long) timeDelta * mLastPlaybackState.getPlaybackSpeed();
         }
         mSeekbar.setProgress((int) currentPosition);
 
