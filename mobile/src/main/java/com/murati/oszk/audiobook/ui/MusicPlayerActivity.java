@@ -89,33 +89,6 @@ public class MusicPlayerActivity extends BaseActivity
         super.onSaveInstanceState(outState);
     }
 
-    private void restorePlayback() {
-        // Load MediaController
-        MediaControllerCompat mediaController = MediaControllerCompat
-            .getMediaController(MusicPlayerActivity.this);
-
-        // If the playback is already established, just ignore
-        if (!(
-            mediaController == null ||
-            mediaController.getMetadata() == null ||
-            mediaController.getPlaybackState() == null
-        )) return;
-
-
-        //TODO: fix notificaton control unsync state
-        MediaControllerCompat.TransportControls control = mediaController.getTransportControls();
-        //control.prepareFromMediaId(PlaybackHelper.getLastMediaId(), null);
-        control.playFromMediaId(PlaybackHelper.getLastMediaId(), null);
-        control.seekTo(PlaybackHelper.getLastPosition());
-        //control.pause();
-
-        Toast.makeText(getBaseContext(), String.format(
-            getString(R.string.notification_playback_restored),
-            PlaybackHelper.getLastPositionString(),
-            PlaybackHelper.getLastEBookTitle()
-        ), Toast.LENGTH_LONG).show();
-    }
-
     // MediaItem click handler
     @Override
     public void onMediaItemSelected(MediaBrowserCompat.MediaItem item) {
@@ -132,11 +105,6 @@ public class MusicPlayerActivity extends BaseActivity
                     Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                     return;
                 }
-            }
-
-            //Try to continue from last position
-            if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_QUEUE)) {
-                restorePlayback();
             }
 
             navigateToBrowser(item.getMediaId());
