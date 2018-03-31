@@ -1,10 +1,16 @@
 package com.murati.oszk.audiobook.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
 
 /**
  * Created by akosmurati on 24/03/18.
@@ -92,5 +98,32 @@ public class PlaybackHelper {
         } catch (Exception ex) {
             Log.e(TAG, "Unable to restore previous playback state:" + ex.getMessage() );
         }
+    }
+
+    public static void restorePlaybackController(Activity activity) {
+        // Load MediaController
+        MediaControllerCompat mediaController = MediaControllerCompat
+            .getMediaController(activity);
+
+        // If the playback is already established, just ignore
+        if (!(
+            mediaController == null ||
+                mediaController.getMetadata() == null ||
+                mediaController.getPlaybackState() == null
+        )) return;
+
+
+        //TODO: fix notificaton control unsync state
+        MediaControllerCompat.TransportControls control = mediaController.getTransportControls();
+        //control.prepareFromMediaId(PlaybackHelper.getLastMediaId(), null);
+        control.playFromMediaId(PlaybackHelper.getLastMediaId(), null);
+        control.seekTo(PlaybackHelper.getLastPosition());
+        //control.pause();
+
+        Toast.makeText(activity.getBaseContext(), String.format(
+            activity.getString(R.string.notification_playback_restored),
+            PlaybackHelper.getLastPositionString(),
+            PlaybackHelper.getLastEBookTitle()
+        ), Toast.LENGTH_LONG).show();
     }
 }
