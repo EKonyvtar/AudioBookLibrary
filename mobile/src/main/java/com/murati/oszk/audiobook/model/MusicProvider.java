@@ -36,6 +36,7 @@ import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -82,6 +83,8 @@ public class MusicProvider {
 
     private static volatile State mCurrentState = State.NON_INITIALIZED;
 
+    Collator collator = Collator.getInstance(Locale.GERMAN);
+
     public interface Callback {
         void onMusicCatalogReady(boolean success);
     }
@@ -119,14 +122,19 @@ public class MusicProvider {
         if (mCurrentState != State.INITIALIZED || !mEbookListByGenre.containsKey(genre)) {
             return Collections.emptyList();
         }
-        return mEbookListByGenre.get(genre);
+
+        List<String> ebookList = mEbookListByGenre.get(genre);
+        Collections.sort(ebookList, collator);
+        return ebookList;
     }
 
     public Iterable<String> getEbooksByWriter(String writer) {
         if (mCurrentState != State.INITIALIZED || !mEbookListByWriter.containsKey(writer)) {
             return Collections.emptyList();
         }
-        return mEbookListByWriter.get(writer);
+        List<String> ebookList = mEbookListByWriter.get(writer);
+        Collections.sort(ebookList, collator);
+        return ebookList;
     }
 
     public static Iterable<MediaMetadataCompat> getTracksByEbook(String ebook) {
@@ -448,7 +456,7 @@ public class MusicProvider {
 
             // List all EBooks Items
             else if (MEDIA_ID_BY_EBOOK.equals(mediaId)) {
-                TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+                TreeSet<String> sortedEbookTitles = new TreeSet<String>(collator);
                 sortedEbookTitles.addAll(mEbookList.keySet());
                 for (String ebook : sortedEbookTitles) {
                     mediaItems.add(createEbookItem(ebook, resources));
@@ -516,7 +524,9 @@ public class MusicProvider {
             Resources resources)
     {
         if (mCurrentState != State.INITIALIZED) return Collections.emptyList();
-        TreeSet<String> sortedCategoryList = new TreeSet<String>();
+
+
+        TreeSet<String> sortedCategoryList = new TreeSet<String>(collator);
         sortedCategoryList.addAll(categoryMap.keySet());
 
         List<MediaBrowserCompat.MediaItem> categoryList = new ArrayList<MediaBrowserCompat.MediaItem>();
