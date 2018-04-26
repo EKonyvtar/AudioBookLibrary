@@ -283,6 +283,10 @@ public class MusicProvider {
             for (String mv :metaValueString.split(",")) {
                 //TODO: Client resource translations
                 String key = mv.replaceAll("\\(.*\\)","");
+                if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
+                    Log.i(TAG, "Skipping " + key);
+                    continue;
+                }
                 key = TextHelper.Capitalize(key);
                 // Get List by Key
                 List<String> list = newListByMetadata.get(key);
