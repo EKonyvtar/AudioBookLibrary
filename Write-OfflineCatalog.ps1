@@ -11,8 +11,11 @@ $catalog = @()
 $audioBooks = Get-Content -Path $CatalogFile 
 #$audioBooks = Invoke-RestMethod $CatalogUrl | Select-Object -First 2
 
+$count = 0
 foreach ($book in $audioBooks) {
+	$count++
 	$id = $book.Split("/")[-1]
+	Write-Host "$count - Processing $($id).." -ForegroundColor Magenta
 
 	$ebookObject = New-Object psobject -Property @{
 		title=''
@@ -31,14 +34,14 @@ foreach ($book in $audioBooks) {
 	#$trackUrl = "$CatalogUrl/$($book.id)"
 	$trackUrl = "$CatalogUrl/$($id)"
 	$ebookObject.site = $trackUrl
-	Write-Host "Processing $($id).." -ForegroundColor Magenta
+	
     Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
     # Get Audiobook details
     $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
 
-	Write-Verbose "Enriching fullTitle"
+	Write-Verbose "Adding fullTitle"
 	if ($trackDeatils | Get-Member fullTitle) { $ebookObject.album = $trackDeatils.fullTitle }
 
 	if ($trackDeatils.fullTitle -match ':') {
@@ -77,7 +80,6 @@ foreach ($book in $audioBooks) {
 	}
 }
 
-$offline_catalog_json = New-object psobject -Property @{music=$catalog} | ConvertTo-Json -Depth 2
-$offline_catalog_json
-
-Set-Content -Path $File -Value $offline_catalog_json -Force -Encoding UTF8
+$sorted = New-object psobject -Property @{music=$catalog}
+$sorted.music = $sorted.music | Sort-Object image,trackNumber,source
+Set-Content -Path $File -Value ($sorted | ConvertTo-Json) -Force -Encoding UTF8
