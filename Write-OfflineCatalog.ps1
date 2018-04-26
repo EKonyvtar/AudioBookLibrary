@@ -1,20 +1,23 @@
 [CmdletBinding()]
 param (
 	[string]$CatalogUrl = 'http://oszkapi-dev.azurewebsites.net/api/audiobooks',
+	[string]$CatalogFile = './mobile/src/main/res/raw/offline_ebook_list.txt',
 	[string]$File = './mobile/src/main/res/raw/offline_catalog.json'
 )
 
 cd $PSScriptRoot
 
 $catalog = @()
-$audioBooks = Invoke-RestMethod $CatalogUrl |
-Select-Object -First 2
+$audioBooks = Get-Content -Path $CatalogFile 
+#$audioBooks = Invoke-RestMethod $CatalogUrl | Select-Object -First 2
 
 foreach ($book in $audioBooks) {
+	$id = $book.Split("/")[-1]
+
 	$ebookObject = New-Object psobject -Property @{
 		title=''
-		image=$book.thumbnailUrl
-		album=$book.fullTitle
+		image="$book/borito.jpg" # $book.thumbnailUrl
+		album='' # $book.fullTitle
 		artist=''
 		genre='Novella'
 		source=''
@@ -24,20 +27,25 @@ foreach ($book in $audioBooks) {
 		site=''
 	}
 
-	Write-Verbose "Enriching $book"
-	if ($book.fullTitle -match ':') {
-		Write-Verbose "Splitting fullTitle"
-		$ebookObject.album = $book.fullTitle.Split(':')[1].Trim()
-		$ebookObject.artist = $book.fullTitle.Split(':')[0].Trim()
-	}
-	$trackUrl = "$CatalogUrl/$($book.id)"
+	
+	#$trackUrl = "$CatalogUrl/$($book.id)"
+	$trackUrl = "$CatalogUrl/$($id)"
 	$ebookObject.site = $trackUrl
-	Write-Host "Processing $($book.fullTitle).." -ForegroundColor Magenta
+	Write-Host "Processing $($id).." -ForegroundColor Magenta
     Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
     # Get Audiobook details
     $trackDeatils = $null
 	$trackDeatils = Invoke-RestMethod $trackUrl
+
+	Write-Verbose "Enriching fullTitle"
+	if ($trackDeatils | Get-Member fullTitle) { $ebookObject.album = $trackDeatils.fullTitle }
+
+	if ($trackDeatils.fullTitle -match ':') {
+		Write-Verbose "Splitting fullTitle"
+		$ebookObject.album = $trackDeatils.fullTitle.Split(':')[1].Trim()
+		$ebookObject.artist = $trackDeatils.fullTitle.Split(':')[0].Trim()
+	}
 
     # Override Author
     if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
