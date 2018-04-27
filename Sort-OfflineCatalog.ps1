@@ -7,5 +7,7 @@ cd $PSScriptRoot
 
 $catalog = Get-Content -Path $File | ConvertFrom-Json
 $sorted = $catalog.psobject.Copy()
-$sorted.music = $sorted.music | Sort-Object image,trackNumber,source
+$sortedProperty = ($sorted.music[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name)
+
+$sorted.music = $sorted.music | Sort-Object image,trackNumber,source | Select-Object -Property $sortedProperty
 Set-Content -Path $File -Value ($sorted | ConvertTo-Json) -Force -Encoding UTF8

@@ -42,16 +42,18 @@ foreach ($book in $audioBooks) {
 	$trackDeatils = Invoke-RestMethod $trackUrl
 
 	Write-Verbose "Adding fullTitle"
-	if ($trackDeatils | Get-Member fullTitle) { $ebookObject.album = $trackDeatils.fullTitle }
+	#if ($trackDeatils | Get-Member fullTitle) { $ebookObject.album = $trackDeatils.fullTitle }
+	if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
+	if ($trackDeatils | Get-Member title) { $ebookObject.album = $trackDeatils.title }
 
-	if ($trackDeatils.fullTitle -match ':') {
-		Write-Verbose "Splitting fullTitle"
-		$ebookObject.album = $trackDeatils.fullTitle.Split(':')[1].Trim()
-		$ebookObject.artist = $trackDeatils.fullTitle.Split(':')[0].Trim()
-	}
+	#if ($trackDeatils.fullTitle -match ':') {
+	#	Write-Verbose "Splitting fullTitle"
+	#	$ebookObject.album = $trackDeatils.fullTitle.Split(':')[1].Trim()
+	#	$ebookObject.artist = $trackDeatils.fullTitle.Split(':')[0].Trim()
+	#}
 
     # Override Author
-    if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
+    #if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
 
     # Override Genre
     if ($trackDeatils | Get-Member type) {
@@ -79,6 +81,7 @@ foreach ($book in $audioBooks) {
 		Write-Error "No tracks found for $($t.title) on $trackUrl"
 	}
 }
+$sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name)
 
 $sorted = New-object psobject -Property @{music=$catalog}
 $sorted.music = $sorted.music | Sort-Object image,trackNumber,source
