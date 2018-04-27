@@ -303,25 +303,6 @@ public class MusicProvider {
         }
     }
 
-    private synchronized void BuildValueList(String metadata) {
-        ConcurrentMap<String, List<String>> newListByMetadata = new ConcurrentHashMap<>();
-
-        for (MutableMediaMetadata m : mTrackListById.values()) {
-            addMediaToCategory(m, metadata, newListByMetadata);
-        }
-
-        switch(metadata) {
-            case MediaMetadataCompat.METADATA_KEY_GENRE: {
-                mEbookListByGenre = newListByMetadata;
-                break;
-            }
-            case MediaMetadataCompat.METADATA_KEY_WRITER: {
-                mEbookListByWriter = newListByMetadata;
-                break;
-            }
-        }
-    }
-
     // Load MediaData from mSource
     private synchronized void retrieveMedia() {
         try {
@@ -348,13 +329,10 @@ public class MusicProvider {
 
                 buildAlbumList();
 
-                //BuildValueList(MediaMetadataCompat.METADATA_KEY_GENRE);
-                //BuildValueList(MediaMetadataCompat.METADATA_KEY_WRITER);
-
                 Long endTime = System.currentTimeMillis();
                 Log.d(TAG, "Build catalog finished at " + endTime.toString());
-                Log.d(TAG, "Build time is " + Long.toString(endTime-startTime));
 
+                Log.d(TAG, "Build time was: " + Long.toString(endTime-startTime));
                 mCurrentState = State.INITIALIZED;
             }
         } catch (Exception e) {
