@@ -14,6 +14,11 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
+
+<!--
+https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-item-and-how
+-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
