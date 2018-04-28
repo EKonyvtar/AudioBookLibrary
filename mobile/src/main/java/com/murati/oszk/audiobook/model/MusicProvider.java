@@ -25,6 +25,7 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
+import android.text.format.Time;
 import android.util.Log;
 
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -37,6 +38,7 @@ import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
 
 import java.text.Collator;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -273,40 +275,30 @@ public class MusicProvider {
         mEbookList = newAlbumList;
     }
 
-    private synchronized void BuildValueList(String metadata) {
-        ConcurrentMap<String, List<String>> newListByMetadata = new ConcurrentHashMap<>();
+    private synchronized void addMediaToCategory(MutableMediaMetadata m, String metadata, ConcurrentMap<String, List<String>> newListByMetadata) {
+        // Get Key
+        String metaValueString = m.metadata.getString(metadata);
 
-        for (MutableMediaMetadata m : mTrackListById.values()) {
-            // Get Key
-            String metaValueString = m.metadata.getString(metadata);
+        for (String mv :metaValueString.split(",")) {
 
-            for (String mv :metaValueString.split(",")) {
-                //TODO: Client resource translations
-                String key = mv.replaceAll("\\(.*\\)","");
-                key = TextHelper.Capitalize(key);
-                // Get List by Key
-                List<String> list = newListByMetadata.get(key);
-                if (list == null) {
-                    list = new ArrayList<>();
-                    newListByMetadata.put(key, list);
-                }
-
-                // Add ebook by key
-                String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-                if (!list.contains(ebook)) {
-                    list.add(ebook);
-                }
+            //TODO: Client resource translations
+            String key = mv.replaceAll("\\(.*\\)","");
+            if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
+                Log.i(TAG, "Skipping " + key);
+                continue;
             }
-        }
-
-        switch(metadata) {
-            case MediaMetadataCompat.METADATA_KEY_GENRE: {
-                mEbookListByGenre = newListByMetadata;
-                break;
+            key = TextHelper.Capitalize(key);
+            // Get List by Key
+            List<String> list = newListByMetadata.get(key);
+            if (list == null) {
+                list = new ArrayList<>();
+                newListByMetadata.put(key, list);
             }
-            case MediaMetadataCompat.METADATA_KEY_WRITER: {
-                mEbookListByWriter = newListByMetadata;
-                break;
+
+            // Add ebook by key
+            String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+            if (!list.contains(ebook)) {
+                list.add(ebook);
             }
         }
     }
@@ -318,16 +310,29 @@ public class MusicProvider {
                 mCurrentState = State.INITIALIZING;
 
                 Iterator<MediaMetadataCompat> tracks = mSource.iterator();
+                mEbookListByGenre = new ConcurrentHashMap<>();
+                mEbookListByWriter = new ConcurrentHashMap<>();
+
                 while (tracks.hasNext()) {
                     MediaMetadataCompat item = tracks.next();
                     String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
-                    mTrackListById.put(musicId, new MutableMediaMetadata(musicId, item));
+                    MutableMediaMetadata m = new MutableMediaMetadata(musicId, item);
+
+                    mTrackListById.put(musicId, m);
+
+                    addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_GENRE, mEbookListByGenre);
+                    addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_WRITER, mEbookListByWriter);
                 }
+
+                Long startTime = System.currentTimeMillis();
+                Log.d(TAG, "Build catalog started at " + startTime.toString());
+
                 buildAlbumList();
 
-                BuildValueList(MediaMetadataCompat.METADATA_KEY_GENRE);
-                BuildValueList(MediaMetadataCompat.METADATA_KEY_WRITER);
+                Long endTime = System.currentTimeMillis();
+                Log.d(TAG, "Build catalog finished at " + endTime.toString());
 
+                Log.d(TAG, "Build time was: " + Long.toString(endTime-startTime));
                 mCurrentState = State.INITIALIZED;
             }
         } catch (Exception e) {
