@@ -18,7 +18,6 @@ package com.murati.oszk.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.BitmapShader;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -37,9 +36,6 @@ import android.widget.TextView;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class MediaItemViewHolder {
 
@@ -69,7 +65,7 @@ public class MediaItemViewHolder {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(activity)
-                    .inflate(R.layout.media_list_item, parent, false);
+                    .inflate(R.layout.fragment_list_item, parent, false);
             holder = new MediaItemViewHolder();
             holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
             holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
