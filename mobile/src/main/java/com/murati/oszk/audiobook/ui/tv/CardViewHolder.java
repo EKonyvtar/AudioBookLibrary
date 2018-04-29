@@ -90,6 +90,8 @@ public class CardViewHolder extends Presenter.ViewHolder {
         Drawable drawable = MediaItemViewHolder.getDrawableByState(context, mItemState);
         mCardView.setBadgeImage(drawable);
 
+
+        //TODO: replace glide
         Uri artUri = description.getIconUri();
         if (artUri == null) {
             setCardImage(context, description.getIconBitmap());
