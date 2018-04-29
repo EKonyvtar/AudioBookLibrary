@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
@@ -98,6 +99,14 @@ public class MediaItemViewHolder {
             if (MediaIDHelper.isBrowseable(item.getMediaId())) {
                 // Browsable container represented by its image
 
+                if (MediaIDHelper.isEBook(item.getMediaId())) {
+                    //Adjust as a book card
+                    //holder.mImageView.setMaxWidth(130);
+                    //holder.mImageView.setMaxHeight(160);
+
+                } else {
+                    //Adjust as a category
+                }
 
                 try {
                     // Load URI for the item
@@ -105,6 +114,7 @@ public class MediaItemViewHolder {
                     GlideApp.
                         with(activity).
                         load(imageUri).
+                        override(Target.SIZE_ORIGINAL).
                         into(holder.mImageView);
                 } catch (Exception e) {
                     //TODO: fix placeholder image

@@ -79,7 +79,7 @@ public class MediaIDHelper {
         return sb.toString();
     }
 
-    private static boolean isEBook(String mediaId) {
+    public static boolean isEBook(String mediaId) {
         if (TextUtils.isEmpty(mediaId))
             return false;
         return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_EBOOK);
