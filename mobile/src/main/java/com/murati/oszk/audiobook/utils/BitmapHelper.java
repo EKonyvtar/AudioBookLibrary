@@ -32,6 +32,7 @@ import java.net.URL;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
+    //TODO: remove static packagename
     private static final String packageName = "com.murati.oszk.audiobook";
 
     // Max read limit that we allow our input stream to mark/reset.

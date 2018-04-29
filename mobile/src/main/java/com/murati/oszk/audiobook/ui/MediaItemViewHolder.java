@@ -112,11 +112,12 @@ public class MediaItemViewHolder {
             //holder.mImageView.setVisibility(View.GONE);
 
             // Split case by browsable or by playable
-            if (MediaIDHelper.isBrowseable(item.getMediaId())) {
+            if (MediaIDHelper.isBrowseable(mediaId)) {
                 // Browsable container represented by its image
 
-                if (MediaIDHelper.isEBook(item.getMediaId())) {
+                if (MediaIDHelper.isEBook(mediaId)) {
                     //Adjust as a book card
+                    //TODO: add download, favorites, etc..
                 } else {
                     //Adjust as a category
                 }
