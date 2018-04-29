@@ -35,7 +35,7 @@ limitations under the License.
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="180dp"
             android:contentDescription="@string/background_image_str"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/line1"

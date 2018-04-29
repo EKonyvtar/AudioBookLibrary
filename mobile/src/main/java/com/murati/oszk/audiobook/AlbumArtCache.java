@@ -72,10 +72,6 @@ public final class AlbumArtCache {
         return result == null ? null : result[BIG_BITMAP_INDEX];
     }
 
-    public Bitmap getIconImage(String artUrl) {
-        Bitmap[] result = mCache.get(artUrl);
-        return result == null ? null : result[ICON_BITMAP_INDEX];
-    }
 
     public void fetch(final String artUrl, final FetchListener listener) {
         // WARNING: for the sake of simplicity, simultaneous multi-thread fetch requests
