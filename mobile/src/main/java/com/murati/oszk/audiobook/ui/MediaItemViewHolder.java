@@ -18,6 +18,7 @@ package com.murati.oszk.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -36,6 +37,11 @@ import android.widget.TextView;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+
+
 
 public class MediaItemViewHolder {
 
@@ -80,37 +86,41 @@ public class MediaItemViewHolder {
         holder.mTitleView.setText(description.getTitle());
         holder.mDescriptionView.setText(description.getSubtitle());
 
-        // If the state of convertView is different, we need to adapt the view to the
-        // new state.
+        // If the state of convertView is different, we need to adapt it
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
-          Drawable drawable = null;
+            Drawable drawable = null;
+            //holder.mImageView.setColorFilter(R.color.media_item_icon_not_playing);
 
-          if (MediaIDHelper.isBrowseable(item.getMediaId())) {
-            try {
-              // Load URI for the item
-              Uri imageUri = item.getDescription().getIconUri();
-              int icDrawable = BitmapHelper.convertDrawableUritoResourceId(imageUri);
-              drawable = ContextCompat.getDrawable(activity.getBaseContext(), icDrawable);
-              //InputStream inputStream = activity.getContentResolver().openInputStream(imageUri);
-              //drawable = Drawable.createFromStream(inputStream, imageUri.toString());
-            } catch (Exception e) {
-              // Default to IC_genre
-              drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
-              DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
+            //holder.mImageView.setVisibility(View.GONE);
+
+            // Split case by browsable or by playable
+            if (MediaIDHelper.isBrowseable(item.getMediaId())) {
+                // Browsable container represented by its image
+
+
+                try {
+                    // Load URI for the item
+                    Uri imageUri = item.getDescription().getIconUri();
+                    GlideApp.
+                        with(activity).
+                        load(imageUri).
+                        into(holder.mImageView);
+                } catch (Exception e) {
+                    //TODO: fix placeholder image
+                    drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
+                    DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
+                }
+            } else {
+                // Playable item represented by its state
+                drawable = getDrawableByState(activity, state);
+                if (drawable != null)
+                    holder.mImageView.setImageDrawable(drawable);
+
+                //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
             }
-
-          } else {
-            drawable = getDrawableByState(activity, state);
-          }
-
-          if (drawable != null) {
-            holder.mImageView.setImageDrawable(drawable);
             holder.mImageView.setVisibility(View.VISIBLE);
-          } else {
-            holder.mImageView.setVisibility(View.GONE);
-          }
-          convertView.setTag(R.id.tag_mediaitem_state_cache, state);
+            convertView.setTag(R.id.tag_mediaitem_state_cache, state);
         }
 
         return convertView;
