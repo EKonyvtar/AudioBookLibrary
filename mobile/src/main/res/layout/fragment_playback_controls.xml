@@ -22,8 +22,8 @@
     <ImageView
         android:id="@+id/album_art"
         tools:src="@drawable/ic_launcher"
-        android:layout_width="@dimen/playback_controls_albumart_size"
-        android:layout_height="@dimen/playback_controls_albumart_size"
+        android:layout_width="@dimen/playback_controls_albumart_width"
+        android:layout_height="@dimen/playback_controls_albumart_height"
         android:scaleType="centerCrop"
         android:contentDescription="@string/currently_playing_song"
         android:layout_alignParentStart="true"/>

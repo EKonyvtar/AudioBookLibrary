@@ -14,81 +14,64 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-
-<!--
-https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-item-and-how
--->
-
-<android.support.v7.widget.CardView
-    android:id="@+id/card_item"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="2dp"
-    app:cardUseCompatPadding="true"
-    >
+    android:layout_height="@dimen/media_item_height" >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ImageView
+        android:id="@+id/play_eq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/media_item_icon_margin_start"
+        android:tintMode="src_in"
+        android:tint="@color/media_item_icon_not_playing"
+        android:contentDescription="@string/play_item"
+        android:src="@drawable/ic_play_arrow_black_36dp"/>
+
+    <LinearLayout
+        android:id="@+id/textcontent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp">
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/media_item_text_margin_start"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/play_eq"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?android:attr/textColorPrimary"
+            tools:text="Title" />
 
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-
-            android:contentDescription="@string/open_item"
-            android:src="@drawable/ic_play_arrow_black_36dp"/>
-
-        <LinearLayout
-            android:id="@+id/textcontent"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/description"
+            tools:text="John Doe, his brothers, his sisters, his pets and his more than amazing band"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/media_item_text_margin_start"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"/>
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorPrimary"
-                tools:text="Title" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/description"
-                tools:text="John Doe, his brothers, his sisters, his pets and his more than amazing band"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorSecondary"/>
+    <!-- <ImageView
+        android:id="@+id/item_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/textcontent"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_action_download"
+        android:tint="@color/media_item_icon_not_playing"
+        android:layout_margin="@dimen/drawer_item_horizontal_padding"
+        />
+     -->
 
-        </LinearLayout>
-
-        <!-- <ImageView
-            android:id="@+id/item_offline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/textcontent"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_action_download"
-            android:tint="@color/media_item_icon_not_playing"
-            android:layout_margin="@dimen/drawer_item_horizontal_padding"
-            />
-         -->
-
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+</RelativeLayout>
