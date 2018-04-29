@@ -30,16 +30,16 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
     app:cardUseCompatPadding="true"
     >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/play_eq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="123dp"
 
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -51,30 +51,31 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:id="@+id/textcontent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/media_item_text_margin_start"
-            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/play_eq"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary"
-                tools:text="Title" />
+                tools:text="Title"
+                android:singleLine="false"
+                />
 
             <TextView
                 android:id="@+id/description"
                 tools:text="John Doe, his brothers, his sisters, his pets and his more than amazing band"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorSecondary"/>
+                android:textColor="?android:attr/textColorSecondary"
+                android:singleLine="false"
+                />
 
         </LinearLayout>
 
@@ -90,5 +91,5 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             />
          -->
 
-    </RelativeLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -70,20 +70,36 @@ public class MediaItemViewHolder {
 
         Integer cachedState = STATE_INVALID;
 
+        //Load mediaItem
+        MediaDescriptionCompat description = item.getDescription();
+        final String mediaId = item.getMediaId();
+
+        // Inflate or restore view
         if (convertView == null) {
-            convertView = LayoutInflater.from(activity)
-                    .inflate(R.layout.fragment_list_item, parent, false);
+
+            if (MediaIDHelper.isBrowseable(mediaId) && MediaIDHelper.isEBook(mediaId)) {
+                convertView = LayoutInflater.
+                    from(activity).
+                    inflate(R.layout.fragment_ebook_item, parent, false);
+            } else {
+                convertView = LayoutInflater.
+                    from(activity).
+                    inflate(R.layout.fragment_list_item, parent, false);
+            }
+
+            //Lookup the standard fields
             holder = new MediaItemViewHolder();
             holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
             holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
             holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
+
             convertView.setTag(holder);
         } else {
             holder = (MediaItemViewHolder) convertView.getTag();
             cachedState = (Integer) convertView.getTag(R.id.tag_mediaitem_state_cache);
         }
 
-        MediaDescriptionCompat description = item.getDescription();
+        //Set View Content
         holder.mTitleView.setText(description.getTitle());
         holder.mDescriptionView.setText(description.getSubtitle());
 
@@ -101,26 +117,19 @@ public class MediaItemViewHolder {
 
                 if (MediaIDHelper.isEBook(item.getMediaId())) {
                     //Adjust as a book card
-                    //holder.mImageView.setMaxWidth(130);
-                    //holder.mImageView.setMaxHeight(160);
-
                 } else {
                     //Adjust as a category
                 }
 
-                try {
-                    // Load URI for the item
-                    Uri imageUri = item.getDescription().getIconUri();
-                    GlideApp.
-                        with(activity).
-                        load(imageUri).
-                        override(Target.SIZE_ORIGINAL).
-                        into(holder.mImageView);
-                } catch (Exception e) {
-                    //TODO: fix placeholder image
-                    drawable = ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_browse_by_writer);
-                    DrawableCompat.setTintList(drawable, sColorStateNotPlaying);
-                }
+                // Load URI for the item
+                Uri imageUri = item.getDescription().getIconUri();
+                GlideApp.
+                    with(activity).
+                    load(imageUri).
+                    override(Target.SIZE_ORIGINAL).
+                    fallback(ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_navigate_books)).
+                    into(holder.mImageView);
+
             } else {
                 // Playable item represented by its state
                 drawable = getDrawableByState(activity, state);

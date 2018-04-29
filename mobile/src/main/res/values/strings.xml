@@ -90,6 +90,7 @@
     <string name="currently_playing_artist">Hangoskönyv előadója</string>
     <string name="currently_playing_extra_info">További hangfájl infó</string>
 
+    <string name="open_item">Megnyitás</string>
     <string name="play_item">Lejátszás</string>
     <string name="play_pause">Indítás vagy szünet</string>
     <string name="skip_next">Következő</string>
