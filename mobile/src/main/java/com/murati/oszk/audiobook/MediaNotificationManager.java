@@ -34,7 +34,10 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
+import com.bumptech.glide.request.target.Target;
+import com.murati.oszk.audiobook.ui.GlideApp;
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
@@ -288,7 +291,15 @@ public class MediaNotificationManager extends BroadcastReceiver {
             // it can actually be any valid Android Uri formatted String.
             // async fetch the album art icon
             String artUrl = description.getIconUri().toString();
-            art = AlbumArtCache.getInstance().getBigImage(artUrl);
+
+            try {
+                //art = GlideApp.with(mService.getBaseContext()).asBitmap().load(artUrl).submit().get();
+
+                art = AlbumArtCache.getInstance().getBigImage(artUrl);
+
+            } catch (Exception ex) {
+                Log.d(TAG, ex.getMessage());
+            }
             if (art == null) {
                 fetchArtUrl = artUrl;
                 // use a placeholder art while the remote art is being downloaded

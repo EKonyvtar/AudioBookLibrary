@@ -46,6 +46,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.R;
@@ -342,29 +343,14 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (description.getIconUri() == null) {
             return;
         }
-        String artUrl = description.getIconUri().toString();
-        mCurrentArtUrl = artUrl;
-        AlbumArtCache cache = AlbumArtCache.getInstance();
-        Bitmap art = cache.getBigImage(artUrl);
-        if (art == null) {
-            art = description.getIconBitmap();
-        }
-        if (art != null) {
-            // if we have the art cached or from the MediaDescription, use it:
-            mBackgroundImage.setImageBitmap(art);
-        } else {
-            // otherwise, fetch a high res version and update:
-            cache.fetch(artUrl, new AlbumArtCache.FetchListener() {
-                @Override
-                public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                    // sanity check, in case a new fetch request has been done while
-                    // the previous hasn't yet returned:
-                    if (artUrl.equals(mCurrentArtUrl)) {
-                        mBackgroundImage.setImageBitmap(bitmap);
-                    }
-                }
-            });
-        }
+        mCurrentArtUrl = description.getIconUri().toString();
+
+        //TODO: create fallback book-title
+        GlideApp.
+            with(this).
+            load(mCurrentArtUrl).
+            override(Target.SIZE_ORIGINAL).
+            into(mBackgroundImage);
     }
 
     private void updateMediaDescription(MediaDescriptionCompat description) {
