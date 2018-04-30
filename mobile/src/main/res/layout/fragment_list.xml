@@ -52,6 +52,7 @@
     </ListView>
 
     <!--
+    https://www.binpress.com/tutorial/android-l-recyclerview-and-cardview-tutorial/156
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
