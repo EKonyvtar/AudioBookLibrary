@@ -18,7 +18,6 @@ package com.murati.oszk.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -33,15 +32,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.request.target.Target;
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
-import com.murati.oszk.audiobook.utils.BitmapHelper;
+import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
-
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
-
 
 
 public class MediaItemViewHolder {
@@ -64,13 +61,13 @@ public class MediaItemViewHolder {
 
 
     // Returns a view for use in media item list.
-    static View setupListView(Activity activity, View convertView, ViewGroup parent,
+    static View setupListView(final Activity activity, View convertView, ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
         if (sColorStateNotPlaying == null || sColorStatePlaying == null) {
             initializeColorStateLists(activity);
         }
 
-        MediaItemViewHolder holder;
+        final MediaItemViewHolder holder;
 
         Integer cachedState = STATE_INVALID;
 
@@ -114,19 +111,27 @@ public class MediaItemViewHolder {
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
             Drawable drawable = null;
-            //holder.mImageView.setColorFilter(R.color.media_item_icon_not_playing);
-
-            //holder.mImageView.setVisibility(View.GONE);
 
             // Split case by browsable or by playable
             if (MediaIDHelper.isBrowseable(mediaId)) {
                 // Browsable container represented by its image
 
                 if (MediaIDHelper.isEBook(mediaId)) {
-                    //Adjust as a book card
                     holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
+                    holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            OfflineBookService.downloadWithActivity(mediaId, activity);
+                        }
+                    });
 
                     holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
+                    holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(mediaId));
+                    holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            holder.mFavoriteButton.setImageResource(
+                                FavoritesHelper.toggleFavoriteWithText(mediaId, activity));
+                        }
+                    });
                 } else {
                     //Adjust as a category
                 }
