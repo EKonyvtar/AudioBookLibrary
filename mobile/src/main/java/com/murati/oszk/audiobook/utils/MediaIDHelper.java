@@ -89,7 +89,8 @@ public class MediaIDHelper {
     public static boolean isEBookHeader(String mediaId) {
         if (TextUtils.isEmpty(mediaId))
             return false;
-        return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_HEADER + CATEGORY_SEPARATOR);
+        //TODO: fix header notation
+        return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_HEADER);
     }
 
     private static boolean isValidCategory(String category) {
