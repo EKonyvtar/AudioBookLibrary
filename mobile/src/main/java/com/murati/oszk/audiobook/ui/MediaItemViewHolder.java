@@ -21,6 +21,7 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
@@ -32,7 +33,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -108,8 +113,19 @@ public class MediaItemViewHolder {
                     with(activity).
                     load(imageUri).
                     override(Target.SIZE_ORIGINAL).
-                    //fallback(R.drawable.default_book_cover).
-                    //error(R.drawable.default_book_cover).
+                    fallback(R.drawable.default_book_cover).
+                    error(R.drawable.default_book_cover).
+                    /*listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+                    }).*/
                     into(holder.mImageView);
 
                 // In addition to being browsable add quick-controls too
