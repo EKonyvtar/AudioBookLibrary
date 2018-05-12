@@ -32,6 +32,7 @@ import java.net.URL;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
+    //TODO: remove static packagename
     private static final String packageName = "com.murati.oszk.audiobook";
 
     // Max read limit that we allow our input stream to mark/reset.
@@ -88,44 +89,7 @@ public class BitmapHelper {
         }
     }
 
-  public static BitmapDrawable fetchAndRescaleBitmapDrawable(String uri, int width, int height)
-      throws IOException {
-      return new BitmapDrawable(fetchAndRescaleBitmap(uri, width, height));
-  }
-
-  public static Bitmap loadImageWithCache(MediaMetadataCompat metadata) {
-      String artUrl = metadata.getDescription().getIconUri().toString();
-      Bitmap art = metadata.getDescription().getIconBitmap();
-      AlbumArtCache cache = AlbumArtCache.getInstance();
-      if (art == null) { art = cache.getIconImage(artUrl); }
-      if (art != null) {
-          return art;
-      } else {
-          cache.fetch(artUrl, new AlbumArtCache.FetchListener() {
-                  @Override
-                  public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                      if (icon != null) {
-                          LogHelper.d(TAG, "album art icon of w=", icon.getWidth(),
-                              " h=", icon.getHeight());
-                          //return icon;
-                      }
-                  }
-              }
-          );
-      }
-      return null;
-  }
-
     public static Uri convertDrawabletoUri(int resourceId) {
         return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
-    }
-
-    public static int convertDrawableUritoResourceId(Uri resourceUri) {
-        if (resourceUri != null) {
-            String packagePart = String.format("android.resource://%s/", packageName);
-            String resourceIdStr = resourceUri.toString().replace(packagePart, "");
-            return Integer.parseInt(resourceIdStr);
-        }
-        return R.drawable.ic_navigate_books;
     }
 }

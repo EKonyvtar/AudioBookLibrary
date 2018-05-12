@@ -15,6 +15,7 @@
  */
 package com.murati.oszk.audiobook.ui;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -139,7 +141,7 @@ public class PlaybackControlsFragment extends Fragment {
         LogHelper.d(TAG, "onMetadataChanged ", metadata);
         if (getActivity() == null) {
             LogHelper.w(TAG, "onMetadataChanged called when getActivity null," +
-                    "this should not happen if the callback was properly unregistered. Ignoring.");
+                "this should not happen if the callback was properly unregistered. Ignoring.");
             return;
         }
         if (metadata == null) {
@@ -152,31 +154,13 @@ public class PlaybackControlsFragment extends Fragment {
         if (metadata.getDescription().getIconUri() != null) {
             artUrl = metadata.getDescription().getIconUri().toString();
         }
-        if (!TextUtils.equals(artUrl, mArtUrl)) {
-            mArtUrl = artUrl;
-            Bitmap art = metadata.getDescription().getIconBitmap();
-            AlbumArtCache cache = AlbumArtCache.getInstance();
-            if (art == null) {
-                art = cache.getIconImage(mArtUrl);
-            }
-            if (art != null) {
-                mAlbumArt.setImageBitmap(art);
-            } else {
-                cache.fetch(artUrl, new AlbumArtCache.FetchListener() {
-                            @Override
-                            public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                                if (icon != null) {
-                                    LogHelper.d(TAG, "album art icon of w=", icon.getWidth(),
-                                            " h=", icon.getHeight());
-                                    if (isAdded()) {
-                                        mAlbumArt.setImageBitmap(icon);
-                                    }
-                                }
-                            }
-                        }
-                );
-            }
-        }
+
+        Activity activity = getActivity();
+        GlideApp.with(activity).
+            load(artUrl).
+            override(Target.SIZE_ORIGINAL).
+            fallback(ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_navigate_books)).
+            into(mAlbumArt);
     }
 
     public void setExtraInfo(String extraInfo) {

@@ -337,7 +337,7 @@ public class MediaBrowserFragment extends Fragment {
     private static class BrowseAdapter extends ArrayAdapter<MediaBrowserCompat.MediaItem> {
 
         public BrowseAdapter(Activity context) {
-            super(context, R.layout.media_list_item, new ArrayList<MediaBrowserCompat.MediaItem>());
+            super(context, R.layout.fragment_list_item, new ArrayList<MediaBrowserCompat.MediaItem>());
         }
 
         @NonNull

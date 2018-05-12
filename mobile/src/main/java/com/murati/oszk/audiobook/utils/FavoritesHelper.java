@@ -1,7 +1,12 @@
 package com.murati.oszk.audiobook.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.murati.oszk.audiobook.R;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -38,6 +43,26 @@ public class FavoritesHelper {
         boolean result = FavoritesHelper.toggleFavorite(mediaId);
         if (result != favorite)
             FavoritesHelper.toggleFavorite(mediaId);
+    }
+
+
+    public static int getFavoriteIcon(String mediaId) {
+        if (isFavorite(mediaId)) {
+            return R.drawable.ic_star_on;
+        }
+        return R.drawable.ic_star_off;
+    }
+
+    public static int toggleFavoriteWithText(String mediaId, Activity activity) {
+        boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
+        String snakeText = "";
+        if (isFavorite)
+            snakeText = activity.getString(R.string.notification_favorite_added);
+        else
+            snakeText = activity.getString(R.string.notification_favorite_removed);
+
+        Toast.makeText(activity, MediaIDHelper.getEBookTitle(mediaId) + " - " + snakeText, Toast.LENGTH_SHORT).show();
+        return getFavoriteIcon(mediaId);
     }
 
     public static boolean toggleFavorite(String mediaId) {
