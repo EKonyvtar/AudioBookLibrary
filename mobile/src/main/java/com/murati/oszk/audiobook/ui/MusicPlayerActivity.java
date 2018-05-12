@@ -107,6 +107,11 @@ public class MusicPlayerActivity extends BaseActivity
                 }
             }
 
+            // Don't navigate for headers
+            if (MediaIDHelper.isEBookHeader(item.getMediaId())) {
+                return;
+            }
+
             navigateToBrowser(item.getMediaId());
         } else {
             LogHelper.w(TAG, "Ignoring MediaItem that is neither browsable nor playable: ",

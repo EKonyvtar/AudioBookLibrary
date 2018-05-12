@@ -114,7 +114,8 @@ public class MediaItemViewHolder {
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
             // Split case by browsable or by playable
-            if (MediaIDHelper.isBrowseable(description.getMediaId())) {
+            if (MediaIDHelper.isBrowseable(description.getMediaId())
+                || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
                 // Browsable container represented by its image
 
                 Uri imageUri = item.getDescription().getIconUri();
@@ -140,22 +141,26 @@ public class MediaItemViewHolder {
                 // In addition to being browsable add quick-controls too
                 if (MediaIDHelper.isEBook(description.getMediaId())) {
                     holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
-                    holder.mDownloadButton.setTag(description.getMediaId());
-                    holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
-                        }
-                    });
+                    if (holder.mDownloadButton !=null) {
+                        holder.mDownloadButton.setTag(description.getMediaId());
+                        holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
+                            }
+                        });
+                    }
 
                     holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
-                    holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(description.getMediaId()));
-                    holder.mFavoriteButton.setTag(description.getMediaId());
-                    holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            ((ImageView)v).setImageResource(
-                                FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
-                        }
-                    });
+                    if (holder.mFavoriteButton !=null) {
+                        holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(description.getMediaId()));
+                        holder.mFavoriteButton.setTag(description.getMediaId());
+                        holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                ((ImageView) v).setImageResource(
+                                    FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
+                            }
+                        });
+                    }
                 }
 
             } else {

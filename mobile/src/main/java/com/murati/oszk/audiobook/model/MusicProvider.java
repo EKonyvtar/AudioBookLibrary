@@ -605,8 +605,9 @@ public class MusicProvider {
 
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
+        //TODO: fix header notation
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-            .setMediaId(createMediaID(null, MEDIA_ID_BY_HEADER, ebook))
+            .setMediaId(createMediaID(MEDIA_ID_BY_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
             .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
             //TODO: Fix Album art
