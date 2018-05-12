@@ -6,4 +6,6 @@
 /build
 *.iml
 *.log
+**/output.json
+
 
