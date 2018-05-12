@@ -79,14 +79,22 @@ public class MediaItemViewHolder {
         holder = new MediaItemViewHolder();
 
 
-        if (MediaIDHelper.isBrowseable(description.getMediaId())
+        if (MediaIDHelper.isEBookHeader(description.getMediaId())) {
+            // EBook header
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_ebook_header, parent, false);
+        }
+        else if (MediaIDHelper.isBrowseable(description.getMediaId())
             && MediaIDHelper.isEBook(description.getMediaId())) {
+            // EBOOK Card
             // It is an e-book, so let's inflate with the e-book template
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_ebook_item, parent, false);
-        } else {
-            // It is a category
+        }
+        else {
+            // Everything else
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_item, parent, false);
