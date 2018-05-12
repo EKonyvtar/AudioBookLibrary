@@ -15,42 +15,32 @@
  */
 package com.murati.oszk.audiobook.ui;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.app.DownloadManager;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.MediaRouteButton;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.MediaController;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
-import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
@@ -323,45 +313,16 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
 
         //Favorites Toggle
-        if (item != null && mediaId != null &&
-            item.getItemId() == R.id.option_favorite ) {
-
-            boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
-            String snakeText = "";
-            if (isFavorite) {
-                item.setIcon(getResources().getDrawable(R.drawable.ic_star_on));
-                snakeText = getResources().getString(R.string.notification_favorite_added);
-            }
-            else {
-                item.setIcon(getResources().getDrawable(R.drawable.ic_star_off));
-                snakeText = getResources().getString(R.string.notification_favorite_removed);
-            }
-
-            Toast.makeText(getBaseContext(), snakeText, Toast.LENGTH_SHORT).show();
+        if (item != null && mediaId != null && item.getItemId() == R.id.option_favorite ) {
+            item.setIcon(
+                FavoritesHelper.toggleFavoriteWithText(mediaId,ActionBarCastActivity.this));
             return true;
         }
 
         //Download button
         //TODO: if not downloaded yet
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
-            if (!OfflineBookService.isPermissionGranted(this)) {
-                Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            //The app is permissioned, proceeding with the book download
-            Intent intent = new Intent(ActionBarCastActivity.this, OfflineBookService.class);
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
-
-            startService(intent);
-            Toast.makeText(getBaseContext(), R.string.notification_download, Toast.LENGTH_SHORT).show();
-
-            //TODO: Downloads page visible
-            //Intent i = new Intent();
-            //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
-            //startActivity(i);
-            return true;
+            return OfflineBookService.downloadWithActivity(mediaId,ActionBarCastActivity.this);
         }
 
         //Delete button

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.model.MusicProviderSource;
+import com.murati.oszk.audiobook.ui.ActionBarCastActivity;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 
@@ -138,6 +139,26 @@ public class OfflineBookService extends IntentService {
         return false;
     }
 
+    public static boolean downloadWithActivity(String mediaId, Activity activity) {
+        if (!OfflineBookService.isPermissionGranted(activity)) {
+            Toast.makeText(activity, R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        //The app is permissioned, proceeding with the book download
+        Intent intent = new Intent(activity, OfflineBookService.class);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
+
+        activity.startService(intent);
+        Toast.makeText(activity, R.string.notification_download, Toast.LENGTH_SHORT).show();
+
+        //TODO: Downloads page visible
+        //Intent i = new Intent();
+        //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        //startActivity(i);
+        return true;
+    }
 
     public static List<String> getOfflineBooks() {
         List<String> offlineList = new ArrayList<String>();
