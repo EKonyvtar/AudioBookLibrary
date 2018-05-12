@@ -75,8 +75,9 @@ public class MediaItemViewHolder {
         MediaItemViewHolder holder;
         Integer cachedState = STATE_INVALID;
 
-        // Inflate new holder
+        // Inflate new holder for the basic types:
         holder = new MediaItemViewHolder();
+
 
         if (MediaIDHelper.isBrowseable(description.getMediaId())
             && MediaIDHelper.isEBook(description.getMediaId())) {
