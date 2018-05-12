@@ -59,6 +59,10 @@ public class MediaItemViewHolder {
     private TextView mTitleView;
     private TextView mDescriptionView;
 
+    private ImageView mDownloadButton;
+    private ImageView mFavoriteButton;
+
+
     // Returns a view for use in media item list.
     static View setupListView(Activity activity, View convertView, ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
@@ -77,18 +81,21 @@ public class MediaItemViewHolder {
         // Inflate or restore view
         if (convertView == null) {
 
+            holder = new MediaItemViewHolder();
+
             if (MediaIDHelper.isBrowseable(mediaId) && MediaIDHelper.isEBook(mediaId)) {
+                // It is an e-book, so let's inflate with the e-book template
                 convertView = LayoutInflater.
                     from(activity).
                     inflate(R.layout.fragment_ebook_item, parent, false);
             } else {
+                // It is a category
                 convertView = LayoutInflater.
                     from(activity).
                     inflate(R.layout.fragment_list_item, parent, false);
             }
 
             //Lookup the standard fields
-            holder = new MediaItemViewHolder();
             holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
             holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
             holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
@@ -117,7 +124,9 @@ public class MediaItemViewHolder {
 
                 if (MediaIDHelper.isEBook(mediaId)) {
                     //Adjust as a book card
-                    //TODO: add download, favorites, etc..
+                    holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
+
+                    holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
                 } else {
                     //Adjust as a category
                 }

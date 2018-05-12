@@ -46,4 +46,8 @@
     <!-- Margins for full screen activity-->
     <dimen name="text_view_margin">16dp</dimen>
     <dimen name="end_text_margin">16dp</dimen>
+
+    <!-- Card buttons for quick activity-->
+    <dimen name="card_button_width">32dp</dimen>
+
 </resources>
