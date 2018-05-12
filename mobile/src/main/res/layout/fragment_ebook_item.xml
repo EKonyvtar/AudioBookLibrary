@@ -62,13 +62,13 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                 android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary"
-                tools:text="Title"
+                tools:text="Hosszu Konyv cim"
                 android:singleLine="false"
                 />
 
             <TextView
                 android:id="@+id/description"
-                tools:text="John Doe, his brothers, his sisters, his pets and his more than amazing band"
+                tools:text="Hosszu Nevu Szerzo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -77,6 +77,41 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                 android:singleLine="false"
                 />
 
+            <TextView
+                android:id="@+id/genre"
+                tools:text="Tipus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorSecondary"
+                android:singleLine="false"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/card_download"
+                    android:layout_width="@dimen/card_button_width"
+                    android:layout_height="@dimen/card_button_width"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_action_download"
+                    android:tint="@color/grey" />
+
+                <ImageView
+                    android:id="@+id/card_favorite"
+                    android:layout_width="@dimen/card_button_width"
+                    android:layout_height="@dimen/card_button_width"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_star_off"
+                    android:tint="@color/grey" />
+
+            </RelativeLayout>
         </LinearLayout>
 
         <!-- <ImageView
