@@ -35,6 +35,7 @@ public class MediaIDHelper {
     public static final String MEDIA_ID_ROOT = "__ROOT__";
     public static final String MEDIA_ID_BY_GENRE = "__BY_GENRE__";
     public static final String MEDIA_ID_BY_WRITER = "__BY_WRITER__";
+    public static final String MEDIA_ID_BY_HEADER = "__BY_HEADER__";
     public static final String MEDIA_ID_BY_EBOOK = "__BY_EBOOK__";
     public static final String MEDIA_ID_BY_SEARCH = "__BY_SEARCH__";
     public static final String MEDIA_ID_BY_QUEUE = "__BY_QUEUE__";
@@ -83,6 +84,12 @@ public class MediaIDHelper {
         if (TextUtils.isEmpty(mediaId))
             return false;
         return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_EBOOK + CATEGORY_SEPARATOR);
+    }
+
+    public static boolean isEBookHeader(String mediaId) {
+        if (TextUtils.isEmpty(mediaId))
+            return false;
+        return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_HEADER + CATEGORY_SEPARATOR);
     }
 
     private static boolean isValidCategory(String category) {
