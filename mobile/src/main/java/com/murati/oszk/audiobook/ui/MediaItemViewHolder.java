@@ -142,7 +142,7 @@ public class MediaItemViewHolder {
                     with(activity).
                     load(imageUri).
                     override(Target.SIZE_ORIGINAL).
-                    fallback(ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_navigate_books)).
+                    fallback(R.drawable.default_book_cover).
                     into(holder.mImageView);
 
             } else {
