@@ -580,8 +580,9 @@ public class MusicProvider {
                 .setTitle(ebook)
                 .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
                 //TODO: Fix Album art
-                //Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
-                .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
+                .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
+                //TODO: fix default image
+                // .setIconBitmap(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);

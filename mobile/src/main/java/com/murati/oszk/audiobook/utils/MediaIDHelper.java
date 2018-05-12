@@ -79,6 +79,12 @@ public class MediaIDHelper {
         return sb.toString();
     }
 
+    public static boolean isEBook(String mediaId) {
+        if (TextUtils.isEmpty(mediaId))
+            return false;
+        return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_EBOOK + CATEGORY_SEPARATOR);
+    }
+
     private static boolean isValidCategory(String category) {
         return category == null ||
             (
