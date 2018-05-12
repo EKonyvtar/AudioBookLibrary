@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -501,6 +502,10 @@ public class MusicProvider {
 
             // Open a specific Ebook for direct play
             else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
+                // Add header
+                mediaItems.add(createEbookHeader(mediaId, resources));
+
+                //Add tracks
                 String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
                 for (MediaMetadataCompat metadata : getTracksByEbook(ebook)) {
                     mediaItems.add(createTrackItem(metadata));
@@ -586,6 +591,30 @@ public class MusicProvider {
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowserCompat.MediaItem createEbookHeader(
+        String ebook,
+        Resources resources)
+    {
+        //TODO: canonize ebook mediaid and title conversion
+        if (ebook.startsWith(MEDIA_ID_BY_EBOOK)) {
+            ebook = getCategoryValueFromMediaID(ebook);
+        }
+
+        MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
+
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            .setTitle(ebook)
+            .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
+            //TODO: Fix Album art
+            .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
+            //TODO: fix default image
+            // .setIconBitmap(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
+            .build();
+        return new MediaBrowserCompat.MediaItem(description,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
     //endregion;
 
