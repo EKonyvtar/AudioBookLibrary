@@ -57,6 +57,7 @@ import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOAD
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_HEADER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
@@ -605,7 +606,7 @@ public class MusicProvider {
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-            .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            .setMediaId(createMediaID(null, MEDIA_ID_BY_HEADER, ebook))
             .setTitle(ebook)
             .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
             //TODO: Fix Album art
