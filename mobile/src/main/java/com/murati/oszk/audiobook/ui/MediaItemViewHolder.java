@@ -59,95 +59,83 @@ public class MediaItemViewHolder {
     private ImageView mDownloadButton;
     private ImageView mFavoriteButton;
 
-
     // Returns a view for use in media item list.
     static View setupListView(final Activity activity, View convertView, ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
-        if (sColorStateNotPlaying == null || sColorStatePlaying == null) {
+        if (sColorStateNotPlaying == null || sColorStatePlaying == null)
             initializeColorStateLists(activity);
-        }
 
-        final MediaItemViewHolder holder;
-
+        // Create holder and cache-state
+        MediaDescriptionCompat description = item.getDescription();
+        MediaItemViewHolder holder;
         Integer cachedState = STATE_INVALID;
 
-        //Load mediaItem
-        MediaDescriptionCompat description = item.getDescription();
-        final String mediaId = item.getMediaId();
+        // Inflate new holder
+        holder = new MediaItemViewHolder();
 
-        // Inflate or restore view
-        if (convertView == null) {
-
-            holder = new MediaItemViewHolder();
-
-            if (MediaIDHelper.isBrowseable(mediaId) && MediaIDHelper.isEBook(mediaId)) {
-                // It is an e-book, so let's inflate with the e-book template
-                convertView = LayoutInflater.
-                    from(activity).
-                    inflate(R.layout.fragment_ebook_item, parent, false);
-            } else {
-                // It is a category
-                convertView = LayoutInflater.
-                    from(activity).
-                    inflate(R.layout.fragment_list_item, parent, false);
-            }
-
-            //Lookup the standard fields
-            holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
-            holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
-            holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
-
-            convertView.setTag(holder);
+        if (MediaIDHelper.isBrowseable(description.getMediaId())
+            && MediaIDHelper.isEBook(description.getMediaId())) {
+            // It is an e-book, so let's inflate with the e-book template
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_ebook_item, parent, false);
         } else {
-            holder = (MediaItemViewHolder) convertView.getTag();
-            cachedState = (Integer) convertView.getTag(R.id.tag_mediaitem_state_cache);
+            // It is a category
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_list_item, parent, false);
         }
+        convertView.setTag(holder);
 
-        //Set View Content
+        //Lookup the standard fields
+        holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
+        holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
+        holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
+
+        // Set values
         holder.mTitleView.setText(description.getTitle());
         holder.mDescriptionView.setText(description.getSubtitle());
 
         // If the state of convertView is different, we need to adapt it
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
-            Drawable drawable = null;
-
             // Split case by browsable or by playable
-            if (MediaIDHelper.isBrowseable(mediaId)) {
+            if (MediaIDHelper.isBrowseable(description.getMediaId())) {
                 // Browsable container represented by its image
 
-                if (MediaIDHelper.isEBook(mediaId)) {
-                    holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
-                    holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            OfflineBookService.downloadWithActivity(mediaId, activity);
-                        }
-                    });
-
-                    holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
-                    holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(mediaId));
-                    holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            holder.mFavoriteButton.setImageResource(
-                                FavoritesHelper.toggleFavoriteWithText(mediaId, activity));
-                        }
-                    });
-                } else {
-                    //Adjust as a category
-                }
-
-                // Load URI for the item
                 Uri imageUri = item.getDescription().getIconUri();
                 GlideApp.
                     with(activity).
                     load(imageUri).
                     override(Target.SIZE_ORIGINAL).
-                    fallback(R.drawable.default_book_cover).
+                    //fallback(R.drawable.default_book_cover).
+                    //error(R.drawable.default_book_cover).
                     into(holder.mImageView);
+
+                // In addition to being browsable add quick-controls too
+                if (MediaIDHelper.isEBook(description.getMediaId())) {
+                    holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
+                    holder.mDownloadButton.setTag(description.getMediaId());
+                    holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
+                        }
+                    });
+
+                    holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
+                    holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(description.getMediaId()));
+                    holder.mFavoriteButton.setTag(description.getMediaId());
+                    holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            ((ImageView)v).setImageResource(
+                                FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
+                        }
+                    });
+                }
 
             } else {
                 // Playable item represented by its state
-                drawable = getDrawableByState(activity, state);
+                Drawable drawable = getDrawableByState(activity, state);
                 if (drawable != null)
                     holder.mImageView.setImageDrawable(drawable);
 
