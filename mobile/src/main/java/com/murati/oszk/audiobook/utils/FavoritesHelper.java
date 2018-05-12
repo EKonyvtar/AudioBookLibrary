@@ -61,7 +61,7 @@ public class FavoritesHelper {
         else
             snakeText = activity.getString(R.string.notification_favorite_removed);
 
-        Toast.makeText(activity, snakeText, Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, MediaIDHelper.getEBookTitle(mediaId) + " " + snakeText, Toast.LENGTH_SHORT).show();
         return getFavoriteIcon(mediaId);
     }
 
