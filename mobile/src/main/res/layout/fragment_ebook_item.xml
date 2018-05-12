@@ -45,7 +45,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:layout_centerVertical="true"
 
             android:contentDescription="@string/open_item"
-            android:src="@drawable/ic_play_arrow_black_36dp"/>
+            android:src="@drawable/default_book_cover"/>
 
         <LinearLayout
             android:id="@+id/textcontent"
