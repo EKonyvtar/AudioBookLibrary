@@ -20,15 +20,15 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 -->
 
 <LinearLayout
-    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-
-
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+    android:background="@drawable/default_book_background">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -36,8 +36,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
         android:layout_gravity="center"
 
         android:layout_marginBottom="32dp"
-        android:layout_marginTop="64dp"
-        >
+        android:layout_marginTop="32dp">
 
         <ImageView
             android:layout_width="130dp"
@@ -61,29 +60,30 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
     </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="false"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="?android:attr/textColorPrimary"
-            tools:text="Hosszu Konyv cim"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:singleLine="false"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textAlignment="center"
 
-            android:layout_gravity="center"
-            />
+        tools:text="Hosszu Konyv cim" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="false"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?android:attr/textColorSecondary"
-            tools:text="Hosszu Nevu Szerzo"
-            android:layout_gravity="center"
-            />
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:singleLine="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?android:attr/textColorSecondary"
+        tools:text="Hosszu Nevu Szerzo"
+        android:paddingBottom="32dp"
+        />
 
 </LinearLayout>

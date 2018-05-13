@@ -24,39 +24,56 @@
     android:fitsSystemWindows="true"
     android:configChanges="locale"
     tools:context=".ui.MusicPlayerActivity">
+<!--
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <include
-            layout="@layout/include_toolbar"
-            android:id="@+id/toolbar_container"/>
-
-        <FrameLayout
-            android:id="@+id/container"
+        <ImageView
+            android:id="@+id/splash_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_container"
-            android:layout_above="@+id/controls_container"/>
+            android:src="@drawable/default_background"
+            />
+-->
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/controls_container"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:cardElevation="8dp">
+            android:layout_height="match_parent">
 
-            <fragment android:name="com.murati.oszk.audiobook.ui.PlaybackControlsFragment"
-                android:id="@+id/fragment_playback_controls"
+
+            <include
+                layout="@layout/include_toolbar"
+                android:id="@+id/toolbar_container"/>
+
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar_container"
+                android:layout_above="@+id/controls_container"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/controls_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                tools:layout="@layout/fragment_playback_controls" />
+                app:cardElevation="8dp">
 
-        </android.support.v7.widget.CardView>
+                <fragment android:name="com.murati.oszk.audiobook.ui.PlaybackControlsFragment"
+                    android:id="@+id/fragment_playback_controls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    tools:layout="@layout/fragment_playback_controls" />
 
-    </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+   <!-- </LinearLayout>-->
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
