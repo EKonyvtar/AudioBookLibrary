@@ -31,6 +31,8 @@
     <string name="error_no_metadata">Hiba az adatok letöltése közben</string>
 
     <!-- Main categories and titles for those -->
+    <string name="label_catalog">Katalógus</string>
+
     <string name="browse_genres">Műfajok</string>
     <string name="browse_genre_subtitle">Könyvek műfajok alapján</string>
 

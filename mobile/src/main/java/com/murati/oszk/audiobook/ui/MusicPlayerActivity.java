@@ -93,6 +93,13 @@ public class MusicPlayerActivity extends BaseActivity
     @Override
     public void onMediaItemSelected(MediaBrowserCompat.MediaItem item) {
         LogHelper.d(TAG, "onMediaItemSelected, mediaId=" + item.getMediaId());
+
+        // Don't navigate for headers
+        if (MediaIDHelper.isEBookHeader(item.getMediaId()) ||
+            MediaIDHelper.isItemHeader(item.getMediaId()))
+            return;
+
+
         if (item.isPlayable()) {
             MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()
                     .playFromMediaId(item.getMediaId(), null);
@@ -106,12 +113,6 @@ public class MusicPlayerActivity extends BaseActivity
                     return;
                 }
             }
-
-            // Don't navigate for headers
-            if (MediaIDHelper.isEBookHeader(item.getMediaId())) {
-                return;
-            }
-
             navigateToBrowser(item.getMediaId());
         } else {
             LogHelper.w(TAG, "Ignoring MediaItem that is neither browsable nor playable: ",
@@ -223,6 +224,8 @@ public class MusicPlayerActivity extends BaseActivity
     }
 
     private void navigateToBrowser(String mediaId) {
+        //TODO: maybe place navigate block here
+
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);
         MediaBrowserFragment fragment = getBrowseFragment();
         updateBookButtons(mediaId);

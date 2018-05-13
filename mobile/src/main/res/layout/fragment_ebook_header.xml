@@ -86,14 +86,4 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:layout_gravity="center"
             />
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-
-            android:layout_marginBottom="32dp"
-            android:layout_marginTop="32dp"
-            />
-
 </LinearLayout>
