@@ -20,10 +20,10 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 -->
 
 <android.support.v7.widget.CardView
-    android:id="@+id/card_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="2dp"
@@ -73,9 +73,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 
         </RelativeLayout>
 
-
-
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/textcontent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,23 +134,17 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!--<ImageView-->
-                        <!--android:id="@+id/card_download"-->
-                        <!--android:layout_width="@dimen/card_button_width"-->
-                        <!--android:layout_height="@dimen/card_button_width"-->
-                        <!--android:layout_alignParentTop="true"-->
-                        <!--android:layout_centerHorizontal="true"-->
-                        <!--android:src="@drawable/ic_action_download"-->
-                        <!--android:tint="@color/grey" />-->
-
-
-                    <Button
+                    <TextView
+                        android:id="@+id/card_open"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:text="@string/open_item"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:textColor="@color/blue"/>
+                        android:textColor="@color/blue"
+                        android:layout_marginLeft="12dp"
+                        android:textAllCaps="true"
+                        android:focusable="false"
+                        />
 
                     <Button
                         android:id="@+id/card_download"
@@ -161,18 +153,12 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:layout_alignParentRight="true"
                         android:text="@string/action_download"
                         style="?android:attr/borderlessButtonStyle"
-                        android:textColor="@color/blue"/>
-
-                    <!--<ImageView-->
-                        <!--android:id="@+id/card_favorite"-->
-                        <!--android:layout_width="@dimen/card_button_width"-->
-                        <!--android:layout_height="@dimen/card_button_width"-->
-                        <!--android:layout_alignParentEnd="true"-->
-                        <!--android:layout_alignParentTop="true"-->
-                        <!--android:src="@drawable/ic_star_off"-->
-                        <!--android:tint="@color/grey" />-->
+                        android:textColor="@color/blue"
+                        android:focusable="false"
+                        />
 
                 </LinearLayout>
+
             </LinearLayout>
-        </LinearLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>

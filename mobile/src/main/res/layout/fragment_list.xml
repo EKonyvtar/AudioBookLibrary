@@ -41,21 +41,6 @@
             />
     </android.support.v7.widget.CardView>
 
-    <!--
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/playback_error"
-        android:columnWidth="90dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        />
-    -->
-
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
@@ -63,7 +48,9 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@id/playback_error"
         android:divider="@null"
-        android:dividerHeight="0dp"></ListView>
+        android:dividerHeight="0dp"
+        android:focusable="true"
+        />
 
     <!--
         https://www.binpress.com/tutorial/android-l-recyclerview-and-cardview-tutorial/156
