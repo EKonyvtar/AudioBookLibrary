@@ -88,9 +88,10 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 
                     <TextView
                         android:id="@+id/title"
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
+                        android:layout_marginRight="@dimen/card_button_width"
                         android:ellipsize="end"
                         android:singleLine="false"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -102,6 +103,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:layout_width="@dimen/card_button_width"
                         android:layout_height="@dimen/card_button_width"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
                         android:src="@drawable/ic_star_off"
                         android:tint="@color/grey" />
 
@@ -143,6 +145,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:textColor="@color/blue"
                         android:layout_marginLeft="12dp"
                         android:textAllCaps="true"
+                        android:textStyle="bold"
                         android:focusable="false"
                         />
 
