@@ -79,7 +79,14 @@ public class MediaItemViewHolder {
         holder = new MediaItemViewHolder();
 
 
-        if (MediaIDHelper.isEBookHeader(description.getMediaId())) {
+        //TODO: optimize inflators
+        if (MediaIDHelper.isItemHeader(description.getMediaId())) {
+            // EBook header
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_list_header, parent, false);
+        }
+        else if (MediaIDHelper.isEBookHeader(description.getMediaId())) {
             // EBook header
             convertView = LayoutInflater.
                 from(activity).
@@ -107,72 +114,81 @@ public class MediaItemViewHolder {
         holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
 
         // Set values
-        holder.mTitleView.setText(description.getTitle());
-        holder.mDescriptionView.setText(description.getSubtitle());
+        if (holder.mTitleView != null) {
+            holder.mTitleView.setText(description.getTitle());
+        }
 
-        // If the state of convertView is different, we need to adapt it
-        int state = getMediaItemState(activity, item);
-        if (cachedState == null || cachedState != state) {
-            // Split case by browsable or by playable
-            if (MediaIDHelper.isBrowseable(description.getMediaId())
-                || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
-                // Browsable container represented by its image
+        if (holder.mDescriptionView != null) {
+            holder.mDescriptionView.setText(description.getSubtitle());
+        }
 
-                Uri imageUri = item.getDescription().getIconUri();
-                GlideApp.
-                    with(activity).
-                    load(imageUri).
-                    override(Target.SIZE_ORIGINAL).
-                    fallback(R.drawable.default_book_cover).
-                    error(R.drawable.default_book_cover).
-                    /*listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            return false;
+
+        // Load images
+        if (holder.mImageView != null) {
+            // If the state of convertView is different, we need to adapt it
+            int state = getMediaItemState(activity, item);
+            if (cachedState == null || cachedState != state) {
+                // Split case by browsable or by playable
+                if (MediaIDHelper.isBrowseable(description.getMediaId())
+                    || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
+                    // Browsable container represented by its image
+
+                    Uri imageUri = item.getDescription().getIconUri();
+                    GlideApp.
+                        with(activity).
+                        load(imageUri).
+                        override(Target.SIZE_ORIGINAL).
+                        fallback(R.drawable.default_book_cover).
+                        error(R.drawable.default_book_cover).
+                        /*listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
+                        }).*/
+                        into(holder.mImageView);
+
+                    // In addition to being browsable add quick-controls too
+                    if (MediaIDHelper.isEBook(description.getMediaId())) {
+                        holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
+                        if (holder.mDownloadButton !=null) {
+                            holder.mDownloadButton.setTag(description.getMediaId());
+                            holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
+                                }
+                            });
                         }
 
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            return false;
+                        holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
+                        if (holder.mFavoriteButton !=null) {
+                            holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(description.getMediaId()));
+                            holder.mFavoriteButton.setTag(description.getMediaId());
+                            holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    ((ImageView) v).setImageResource(
+                                        FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
+                                }
+                            });
                         }
-                    }).*/
-                    into(holder.mImageView);
-
-                // In addition to being browsable add quick-controls too
-                if (MediaIDHelper.isEBook(description.getMediaId())) {
-                    holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
-                    if (holder.mDownloadButton !=null) {
-                        holder.mDownloadButton.setTag(description.getMediaId());
-                        holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
-                            }
-                        });
                     }
 
-                    holder.mFavoriteButton = (ImageView) convertView.findViewById(R.id.card_favorite);
-                    if (holder.mFavoriteButton !=null) {
-                        holder.mFavoriteButton.setImageResource(FavoritesHelper.getFavoriteIcon(description.getMediaId()));
-                        holder.mFavoriteButton.setTag(description.getMediaId());
-                        holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                ((ImageView) v).setImageResource(
-                                    FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
-                            }
-                        });
-                    }
+                } else {
+                    // Playable item represented by its state
+                    Drawable drawable = getDrawableByState(activity, state);
+                    if (drawable != null)
+                        holder.mImageView.setImageDrawable(drawable);
+
+                    //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
                 }
-
-            } else {
-                // Playable item represented by its state
-                Drawable drawable = getDrawableByState(activity, state);
-                if (drawable != null)
-                    holder.mImageView.setImageDrawable(drawable);
-
-                //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
+                holder.mImageView.setVisibility(View.VISIBLE);
+                convertView.setTag(R.id.tag_mediaitem_state_cache, state);
             }
-            holder.mImageView.setVisibility(View.VISIBLE);
-            convertView.setTag(R.id.tag_mediaitem_state_cache, state);
         }
 
         return convertView;

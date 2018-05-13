@@ -33,9 +33,12 @@ public class MediaIDHelper {
     public static final String EXTRA_MEDIA_ID_KEY = "com.murati.oszk.audiobook.MEDIA_ID";
 
     public static final String MEDIA_ID_ROOT = "__ROOT__";
+    public static final String MEDIA_ID_EBOOK_HEADER = "__EBOOK_HEADER__";
+    public static final String MEDIA_ID_CATEGORY_HEADER = "__CATEGORY_HEADER__";
+
+
     public static final String MEDIA_ID_BY_GENRE = "__BY_GENRE__";
     public static final String MEDIA_ID_BY_WRITER = "__BY_WRITER__";
-    public static final String MEDIA_ID_BY_HEADER = "__BY_HEADER__";
     public static final String MEDIA_ID_BY_EBOOK = "__BY_EBOOK__";
     public static final String MEDIA_ID_BY_SEARCH = "__BY_SEARCH__";
     public static final String MEDIA_ID_BY_QUEUE = "__BY_QUEUE__";
@@ -86,11 +89,19 @@ public class MediaIDHelper {
         return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_EBOOK + CATEGORY_SEPARATOR);
     }
 
+    //TODO: ratiaonalize mediaidtypes
     public static boolean isEBookHeader(String mediaId) {
         if (TextUtils.isEmpty(mediaId))
             return false;
         //TODO: fix header notation
-        return mediaId.contains(MediaIDHelper.MEDIA_ID_BY_HEADER);
+        return mediaId.contains(MediaIDHelper.MEDIA_ID_EBOOK_HEADER);
+    }
+
+    public static boolean isItemHeader(String mediaId) {
+        if (TextUtils.isEmpty(mediaId))
+            return false;
+        //TODO: fix header notation
+        return mediaId.contains(MediaIDHelper.MEDIA_ID_CATEGORY_HEADER);
     }
 
     private static boolean isValidCategory(String category) {

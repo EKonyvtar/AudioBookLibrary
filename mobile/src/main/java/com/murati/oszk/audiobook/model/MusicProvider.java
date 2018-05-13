@@ -21,12 +21,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.text.TextUtils;
-import android.text.format.Time;
 import android.util.Log;
 
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -39,7 +36,6 @@ import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.TextHelper;
 
 import java.text.Collator;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,7 +43,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -57,7 +52,8 @@ import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOAD
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
-import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_HEADER;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_CATEGORY_HEADER;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_EBOOK_HEADER;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_SEARCH;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
@@ -355,6 +351,17 @@ public class MusicProvider {
             return Collections.emptyList();
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
+
+            // Show Current playing
+            if (mCurrentState == State.INITIALIZED && PlaybackHelper.getLastEBook() != null) {
+                mediaItems.add(createHeader(resources.getString(R.string.browse_queue_subtitle)));
+                mediaItems.add(createEbookItem(PlaybackHelper.getLastEBook(),resources));
+            }
+
+            // Catalog header
+            mediaItems.add(
+                createHeader(resources.getString(R.string.label_catalog)));
+
             // Add writers
             mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
                 resources.getString(R.string.browse_writer),
@@ -385,13 +392,7 @@ public class MusicProvider {
                 resources.getString(R.string.browse_downloads_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
 
-            // Show Current playing
-            if (PlaybackHelper.getLastEBook() != null) {
-                mediaItems.add(createGroupItem(MEDIA_ID_BY_QUEUE,
-                    MediaIDHelper.getCategoryValueFromMediaID(PlaybackHelper.getLastEBook()),
-                    resources.getString(R.string.browse_queue_subtitle),
-                    BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_current)));
-            }
+
 
             return mediaItems;
         }
@@ -594,6 +595,15 @@ public class MusicProvider {
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
     }
 
+    private MediaBrowserCompat.MediaItem createHeader(String title) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaID(null, MEDIA_ID_CATEGORY_HEADER, title))
+            .setTitle(title)
+            .build();
+        return new MediaBrowserCompat.MediaItem(description,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
     private MediaBrowserCompat.MediaItem createEbookHeader(
         String ebook,
         Resources resources)
@@ -607,7 +617,7 @@ public class MusicProvider {
 
         //TODO: fix header notation
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-            .setMediaId(createMediaID(MEDIA_ID_BY_HEADER, MEDIA_ID_BY_EBOOK, ebook))
+            .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
             .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
             //TODO: Fix Album art
