@@ -231,18 +231,24 @@ public class MusicPlayerActivity extends BaseActivity
         updateBookButtons(mediaId);
 
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
-            fragment = new MediaBrowserFragment();
-            fragment.setMediaId(mediaId);
+            // Create Transaction
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left,
                 R.animator.slide_in_from_left, R.animator.slide_out_to_right);
-            transaction.replace(R.id.container, fragment, FRAGMENT_TAG);
 
+            // Create Backstack
             // Not an empty, root or the same where we are currently, for refresh retries
-            if (mediaId != null && mediaId != getMediaId()) {
+            if (fragment !=null && mediaId != null && mediaId != getMediaId()) {
                 transaction.addToBackStack(null);
             }
+
+            //Create new fragment and navigate
+            fragment = new MediaBrowserFragment();
+            fragment.setMediaId(mediaId);
+            transaction.replace(R.id.container, fragment, FRAGMENT_TAG);
+
+            //Do it
             transaction.commit();
         }
     }
