@@ -31,7 +31,10 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.DataSource;
@@ -61,18 +64,19 @@ public class MediaItemViewHolder {
     private TextView mTitleView;
     private TextView mDescriptionView;
 
-    private ImageView mDownloadButton;
+    private Button mDownloadButton;
+    private Button mOpenButton;
     private ImageView mFavoriteButton;
 
     // Returns a view for use in media item list.
-    static View setupListView(final Activity activity, View convertView, ViewGroup parent,
+    static View setupListView(final Activity activity, View convertView, final ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
         if (sColorStateNotPlaying == null || sColorStatePlaying == null)
             initializeColorStateLists(activity);
 
         // Create holder and cache-state
         MediaDescriptionCompat description = item.getDescription();
-        MediaItemViewHolder holder;
+        final MediaItemViewHolder holder;
         Integer cachedState = STATE_INVALID;
 
         // Inflate new holder for the basic types:
@@ -155,7 +159,7 @@ public class MediaItemViewHolder {
 
                     // In addition to being browsable add quick-controls too
                     if (MediaIDHelper.isEBook(description.getMediaId())) {
-                        holder.mDownloadButton= (ImageView) convertView.findViewById(R.id.card_download);
+                        holder.mDownloadButton= (Button) convertView.findViewById(R.id.card_download);
                         if (holder.mDownloadButton !=null) {
                             holder.mDownloadButton.setTag(description.getMediaId());
                             holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +179,11 @@ public class MediaItemViewHolder {
                                         FavoritesHelper.toggleFavoriteWithText((String) v.getTag(), activity));
                                 }
                             });
+                        }
+
+                        //holder.mOpenButton = (Button) convertView.findViewById(R.id.card_open);
+                        if (holder.mOpenButton !=null) {
+                            //TODO: solve event listener
                         }
                     }
 
