@@ -20,12 +20,16 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.OfflineBookService;
@@ -47,6 +51,12 @@ public class MusicPlayerActivity extends BaseActivity
     private static final String TAG = LogHelper.makeLogTag(MusicPlayerActivity.class);
     private static final String FRAGMENT_TAG = "uamp_list_container";
 
+    private static final int STOPSPLASH = 0;
+    //time in milliseconds
+    private static final long SPLASHTIME = 200;
+
+    private ImageView splash;
+
     public static final String EXTRA_START_FULLSCREEN =
             "com.murati.oszk.audiobook.EXTRA_START_FULLSCREEN";
 
@@ -59,6 +69,22 @@ public class MusicPlayerActivity extends BaseActivity
         "com.murati.oszk.audiobook.CURRENT_MEDIA_DESCRIPTION";
 
     private Bundle mSearchParams;
+
+    private Handler splashHandler = new Handler() {
+        /* (non-Javadoc)
+         * @see android.os.Handler#handleMessage(android.os.Message)
+         */
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case STOPSPLASH:
+                    //remove SplashScreen from view
+                    splash.setVisibility(View.GONE);
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +104,15 @@ public class MusicPlayerActivity extends BaseActivity
         if (savedInstanceState == null) {
             startFullScreenActivityIfNeeded(getIntent());
         }
+
+
+        //TODO: Handle splashscreen
+        /*
+        splash = (ImageView) findViewById(R.id.splash_image);
+        Message msg = new Message();
+        msg.what = STOPSPLASH;
+        splashHandler.sendMessageDelayed(msg, SPLASHTIME);
+        */
     }
 
     @Override
