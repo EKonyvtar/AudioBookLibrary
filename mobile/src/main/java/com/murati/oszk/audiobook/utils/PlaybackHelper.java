@@ -58,14 +58,25 @@ public class PlaybackHelper {
         String ebook = getLastEBookTitle();
 
         return new MediaDescriptionCompat.Builder()
-            //.setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
-            .setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
+            .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            //.setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
             .setTitle(ebook)
             .setSubtitle(_lastAuthor)
             .setIconUri(Uri.parse(_lastImageUrl))
             .build();
     }
 
+    public static boolean canContinuePlayback(String mediaId) {
+        return MediaIDHelper.MEDIA_ID_BY_QUEUE.equals(mediaId) ||
+            isLastEBook(mediaId);
+    }
+
+    public static boolean isLastEBook(String mediaId) {
+        if (TextUtils.isEmpty(mediaId) || TextUtils.isEmpty(_lastMediaId))
+            return false;
+
+        return getLastEBookTitle().equals(MediaIDHelper.getEBookTitle(mediaId));
+    }
     public static String getLastEBook() {
         if (TextUtils.isEmpty(_lastMediaId))
             return null;
