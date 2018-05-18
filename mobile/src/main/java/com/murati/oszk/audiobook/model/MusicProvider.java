@@ -179,7 +179,7 @@ public class MusicProvider {
      *
      * @param musicId The unique, non-hierarchical music ID.
      */
-    public MediaMetadataCompat getTrack(String musicId) {
+    public static MediaMetadataCompat getTrack(String musicId) {
         return mTrackListById.containsKey(musicId) ? mTrackListById.get(musicId).metadata : null;
     }
 
@@ -352,10 +352,18 @@ public class MusicProvider {
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
 
-            // Show Current playing
-            if (mCurrentState == State.INITIALIZED && PlaybackHelper.getLastEBook() != null) {
-                mediaItems.add(createHeader(resources.getString(R.string.browse_queue_subtitle)));
-                mediaItems.add(createEbookItem(PlaybackHelper.getLastEBook(),resources));
+            try {
+                // Show Last ebook
+                if (PlaybackHelper.getLastEBook() != null) {
+                    mediaItems.add(createHeader(resources.getString(R.string.browse_queue_subtitle)));
+                    mediaItems.add(
+                        new MediaBrowserCompat.MediaItem(
+                            PlaybackHelper.getLastEBookDescriptor(),
+                            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE)
+                    );
+                }
+            } catch (Exception ex) {
+                Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());
             }
 
             // Catalog header

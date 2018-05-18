@@ -179,6 +179,18 @@ public class OfflineBookService extends IntentService {
         return new File(getDownloadDirectory(), book);
     }
 
+    public static boolean isOfflineBookTrackExist(String book, String source) {
+
+        Log.d(TAG, "Checking Offline Track " + source);
+        File file = getOfflineSource(book, source);
+        if (!file.exists())
+            Log.d(TAG, source + " is not found");
+        else
+            Log.d(TAG, source + " is already downloaded");
+
+        return file.exists();
+    }
+
     public static boolean isOfflineBook(String book) {
         book = MediaIDHelper.getEBookTitle(book);
         File bookFolder = getBookDirectory(MediaIDHelper.getEBookTitle(book));
@@ -192,13 +204,8 @@ public class OfflineBookService extends IntentService {
             Log.d(TAG, "Checking all tracks");
             for (MediaMetadataCompat track : tracks) {
                 String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-                Log.d(TAG, "Checking Offline Track " + source);
-
-                File file = getOfflineSource(book, source);
-                if (!file.exists())
+                if (!isOfflineBookTrackExist(book, source))
                     return false;
-                else
-                    Log.d(TAG, source + " is already downloaded");
             }
         } catch (Exception ex) {
             Log.d(TAG, ex.getMessage());
