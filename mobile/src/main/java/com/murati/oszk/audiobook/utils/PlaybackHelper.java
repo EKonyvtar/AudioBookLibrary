@@ -20,6 +20,7 @@ import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
 import java.util.logging.Logger;
 
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.createMediaID;
 
 /**
@@ -57,7 +58,8 @@ public class PlaybackHelper {
         String ebook = getLastEBookTitle();
 
         return new MediaDescriptionCompat.Builder()
-            .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            //.setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            .setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
             .setTitle(ebook)
             .setSubtitle(_lastAuthor)
             .setIconUri(Uri.parse(_lastImageUrl))
