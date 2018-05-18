@@ -157,10 +157,13 @@ public class MediaIDHelper {
         //TODO: refactor with  getCategory with validation from ActionBar
         if (book != null) {
             book = book.replace(MediaIDHelper.MEDIA_ID_BY_EBOOK + "/","");
+            book = book.split("[|]")[0];
         }
+
         return book;
     }
 
+    // __BY.....__/BookTitle|mediaidINT
     public static boolean isBrowseable(@NonNull String mediaID) {
         return mediaID.indexOf(LEAF_SEPARATOR) < 0 ||
           mediaID.indexOf(MEDIA_ID_BY_SEARCH) == 0;

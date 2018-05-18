@@ -18,6 +18,7 @@ package com.murati.oszk.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -45,8 +46,10 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
+import com.murati.oszk.audiobook.utils.NetworkHelper;
 
 
 public class MediaItemViewHolder {
@@ -194,6 +197,15 @@ public class MediaItemViewHolder {
                         holder.mImageView.setImageDrawable(drawable);
 
                     //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
+
+                    //If offline and not available
+                    /*if (!NetworkHelper.isOnline(parent.getContext())) {
+                        String source = OfflineBookService.getTrackSource(
+                            MusicProvider.getTrack(description.getMediaId()));
+                        holder.mTitleView.setTextColor(Color.CYAN);
+
+
+                    }*/
                 }
                 holder.mImageView.setVisibility(View.VISIBLE);
                 convertView.setTag(R.id.tag_mediaitem_state_cache, state);
