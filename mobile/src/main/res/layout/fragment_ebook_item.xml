@@ -105,7 +105,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
                         android:src="@drawable/ic_star_off"
-                        android:tint="@color/grey" />
+                        android:tint="@color/color_star" />
 
                 </RelativeLayout>
 
