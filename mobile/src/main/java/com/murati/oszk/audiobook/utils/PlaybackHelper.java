@@ -3,6 +3,10 @@ package com.murati.oszk.audiobook.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaMetadata;
+import android.net.Uri;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -10,7 +14,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
+
+import java.util.logging.Logger;
+
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.createMediaID;
 
 /**
  * Created by akosmurati on 24/03/18.
@@ -23,16 +33,35 @@ public class PlaybackHelper {
     private static final String PLAYBACK_LAST_POSITION = "PLAYBACK_LAST_POSITION";
     private static final String PLAYBACK_LAST_MEDIAID = "PLAYBACK_LAST_MEDIAID";
 
+    private static final String PLAYBACK_LAST_IMAGEURL = "PLAYBACK_LAST_IMAGEURL";
+    private static final String PLAYBACK_LAST_AUTHOR = "PLAYBACK_LAST_AUTHOR";
+
 
     private static Context _context = null;
-
     private static String _lastMediaId = null;
+
+    private static String _lastAuthor = null;
+    private static String _lastImageUrl = null;
+
     private static long _lastPosition = 0;
 
     public static void setContext(Context context) {
         _context = context;
 
         restorePlayBackState();
+    }
+
+
+    //TODO: Harmonize taxonomy BOOK, TRACK, TITLE, ID, DECRIPTOR
+    public static MediaDescriptionCompat getLastEBookDescriptor() {
+        String ebook = getLastEBookTitle();
+
+        return new MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
+            .setTitle(ebook)
+            .setSubtitle(_lastAuthor)
+            .setIconUri(Uri.parse(_lastImageUrl))
+            .build();
     }
 
     public static String getLastEBook() {
@@ -65,6 +94,18 @@ public class PlaybackHelper {
         if (TextUtils.isEmpty(mediaId)) return;
 
         _lastMediaId = mediaId;
+
+        try {
+            //Try to save Image and author
+            MediaMetadataCompat track = MusicProvider.getTrack(
+                MediaIDHelper.extractMusicIDFromMediaID(mediaId));
+
+            _lastImageUrl = track.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI);
+            _lastAuthor = track.getString(MediaMetadataCompat.METADATA_KEY_WRITER);
+        } catch (Exception ex) {
+            Log.d(TAG, "Failed to fetch book details");
+        }
+
         persistPlayBackState();
     }
 
@@ -84,6 +125,10 @@ public class PlaybackHelper {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(PLAYBACK_LAST_MEDIAID, _lastMediaId);
             editor.putLong(PLAYBACK_LAST_POSITION, _lastPosition);
+
+            editor.putString(PLAYBACK_LAST_IMAGEURL, _lastImageUrl);
+            editor.putString(PLAYBACK_LAST_AUTHOR, _lastAuthor);
+
             editor.commit();
         } catch (Exception e) {
             Log.e(TAG, "Playback info cannot be saved. " + e.toString());
@@ -95,6 +140,10 @@ public class PlaybackHelper {
             SharedPreferences sharedPref = _context.getSharedPreferences(PLAYBACK_PREFERENCE_FILE, Context.MODE_PRIVATE);
             _lastMediaId = sharedPref.getString(PLAYBACK_LAST_MEDIAID, null);
             _lastPosition = sharedPref.getLong(PLAYBACK_LAST_POSITION, 0);
+
+            _lastImageUrl = sharedPref.getString(PLAYBACK_LAST_IMAGEURL, null);
+            _lastAuthor = sharedPref.getString(PLAYBACK_LAST_AUTHOR, null);
+
         } catch (Exception ex) {
             Log.e(TAG, "Unable to restore previous playback state:" + ex.getMessage() );
         }
