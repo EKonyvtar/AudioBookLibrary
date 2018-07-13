@@ -33,7 +33,7 @@ import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
-import com.murati.oszk.audiobook.utils.TextHelper;
+import com.murati.oszk.audiobook.utils.DisplayHelper;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -277,14 +277,14 @@ public class MusicProvider {
         // Get Key
         String metaValueString = m.metadata.getString(metadata);
 
-        for (String mv :metaValueString.split(",")) {
+        for (String mv :metaValueString.split(DisplayHelper.visualSeparator)) {
             //TODO: Client resource translations
             String key = mv.replaceAll("\\(.*\\)","");
             if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
                 Log.i(TAG, "Skipping " + key);
                 continue;
             }
-            key = TextHelper.Capitalize(key);
+            key = DisplayHelper.Capitalize(key);
             // Get List by Key
             List<String> list = newListByMetadata.get(key);
             if (list == null) {
@@ -293,6 +293,7 @@ public class MusicProvider {
             }
 
             // Add ebook by key
+            //TODO: convert to DisplayHelper
             String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
             if (!list.contains(ebook)) {
                 list.add(ebook);
@@ -592,8 +593,7 @@ public class MusicProvider {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
-                .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER).split(",")[0])
-                //TODO: Fix Album art
+                .setSubtitle(DisplayHelper.getCreator(metadata))
                 .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
                 //TODO: fix default image
                 // .setIconBitmap(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
@@ -626,8 +626,7 @@ public class MusicProvider {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
             .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
-            .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER).split(",")[0])
-            //TODO: Fix Album art
+            .setSubtitle(DisplayHelper.getCreator(metadata))
             .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
             //TODO: fix default image
             // .setIconBitmap(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))

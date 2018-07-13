@@ -61,7 +61,7 @@ public class PlaybackHelper {
             .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
             //.setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
             .setTitle(ebook)
-            .setSubtitle(_lastAuthor)
+            .setSubtitle(DisplayHelper.getFirstVisual(_lastAuthor))
             .setIconUri(Uri.parse(_lastImageUrl))
             .build();
     }
