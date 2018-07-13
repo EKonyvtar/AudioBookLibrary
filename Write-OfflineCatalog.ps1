@@ -44,7 +44,7 @@ foreach ($book in $audioBooks) {
 
 	try {
 		if ($trackDetails.creators[0].isFamilyFirst -eq $false) {
-			$ebookObject.artist = $ebookObject.artist + $Separator + $trackDetails.creators[0].familyName + " " +  $trackDetails.creators[0].givenName
+			$ebookObject.artist = $ebookObject.artist + $Separator + $trackDetails.creators[0].familyName # + " " +  $trackDetails.creators[0].givenName
 		}
 		Write-Warning "Expanded name to $($ebookObject.artist)"
 	} catch {
