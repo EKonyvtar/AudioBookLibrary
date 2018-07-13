@@ -278,7 +278,6 @@ public class MusicProvider {
         String metaValueString = m.metadata.getString(metadata);
 
         for (String mv :metaValueString.split(",")) {
-
             //TODO: Client resource translations
             String key = mv.replaceAll("\\(.*\\)","");
             if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
@@ -593,7 +592,7 @@ public class MusicProvider {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(createMediaID(null, MEDIA_ID_BY_EBOOK, ebook))
                 .setTitle(ebook)
-                .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
+                .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER).split(",")[0])
                 //TODO: Fix Album art
                 .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
                 //TODO: fix default image
@@ -627,7 +626,7 @@ public class MusicProvider {
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
             .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
-            .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER))
+            .setSubtitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER).split(",")[0])
             //TODO: Fix Album art
             .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
             //TODO: fix default image
