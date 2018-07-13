@@ -2,14 +2,14 @@
 param (
 	[string]$CatalogUrl = 'http://oszkapi-dev.azurewebsites.net/api/audiobooks',
 	[string]$CatalogFile = './mobile/src/main/res/raw/offline_ebook_list.txt',
-	[string]$File = './mobile/src/main/res/raw/offline_catalog.json'
+	[string]$File = './mobile/src/main/res/raw/offline_catalog.json',
+	[string]$Separator = ','
 )
 
-cd $PSScriptRoot
+Set-Location $PSScriptRoot
 
 $catalog = @()
-$audioBooks = Get-Content -Path $CatalogFile 
-#$audioBooks = Invoke-RestMethod $CatalogUrl | Select-Object -First 2
+$audioBooks = Get-Content -Path $CatalogFile
 
 $count = 0
 foreach ($book in $audioBooks) {
@@ -19,8 +19,8 @@ foreach ($book in $audioBooks) {
 
 	$ebookObject = New-Object psobject -Property @{
 		title=''
-		image="$book/borito.jpg" # $book.thumbnailUrl
-		album='' # $book.fullTitle
+		image="$book/borito.jpg"
+		album=''
 		artist=''
 		genre='Novella'
 		source=''
@@ -30,11 +30,8 @@ foreach ($book in $audioBooks) {
 		site=''
 	}
 
-	
-	#$trackUrl = "$CatalogUrl/$($book.id)"
 	$trackUrl = "$CatalogUrl/$($id)"
 	$ebookObject.site = $trackUrl
-	
     Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
     # Get Audiobook details
@@ -42,31 +39,21 @@ foreach ($book in $audioBooks) {
 	$trackDetails = Invoke-RestMethod $trackUrl
 
 	Write-Verbose "Adding fullTitle"
-	#if ($trackDetails | Get-Member fullTitle) { $ebookObject.album = $trackDetails.fullTitle }
 	if ($trackDetails | Get-Member author) { $ebookObject.artist = $trackDetails.author }
 	if ($trackDetails | Get-Member title) { $ebookObject.album = $trackDetails.title }
 
 	try {
 		if ($trackDetails.creators[0].isFamilyFirst -eq $false) {
-			$ebookObject.artist = $ebookObject.artist + "," + $trackDetails.creators[0].familyName + " " +  $trackDetails.creators[0].givenName
+			$ebookObject.artist = $ebookObject.artist + $Separator + $trackDetails.creators[0].familyName + " " +  $trackDetails.creators[0].givenName
 		}
 		Write-Warning "Expanded name to $($ebookObject.artist)"
 	} catch {
 		$_  | Out-Null
 	}
 
-	#if ($trackDetails.fullTitle -match ':') {
-	#	Write-Verbose "Splitting fullTitle"
-	#	$ebookObject.album = $trackDetails.fullTitle.Split(':')[1].Trim()
-	#	$ebookObject.artist = $trackDetails.fullTitle.Split(':')[0].Trim()
-	#}
-
-    # Override Author
-    #if ($trackDetails | Get-Member author) { $ebookObject.artist = $trackDetails.author }
-
     # Override Genre
     if ($trackDetails | Get-Member type) {
-        $ebookObject.genre = [string]::Join(',',($trackDetails.type | where { $_ -notmatch 'hang'}))
+        $ebookObject.genre = [string]::Join($Separator,($trackDetails.type | Where-Object { $_ -notmatch 'hang'}))
     }
 
     # Populate tracks
