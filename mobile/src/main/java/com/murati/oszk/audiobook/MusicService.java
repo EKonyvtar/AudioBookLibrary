@@ -359,8 +359,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // Calling startService(Intent) will keep the service running until it is explicitly killed.
         startService(new Intent(getApplicationContext(), MusicService.class));
 
-        PlaybackHelper.setLastMediaId(this.mPlaybackManager.getPlayback().getCurrentMediaId());
-        PlaybackHelper.setLastPosition(mPlaybackManager.getPlayback().getCurrentStreamPosition());
+        PlaybackHelper.savePlaybackController(mPlaybackManager.getPlayback());
     }
 
 
@@ -376,8 +375,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         stopForeground(true);
 
         //Try to persist last position
-        PlaybackHelper.setLastMediaId(mPlaybackManager.getPlayback().getCurrentMediaId());
-        PlaybackHelper.setLastPosition(mPlaybackManager.getPlayback().getCurrentStreamPosition());
+        PlaybackHelper.savePlaybackController(mPlaybackManager.getPlayback());
     }
 
     @Override
