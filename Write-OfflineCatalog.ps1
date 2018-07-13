@@ -38,37 +38,46 @@ foreach ($book in $audioBooks) {
     Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
     # Get Audiobook details
-    $trackDeatils = $null
-	$trackDeatils = Invoke-RestMethod $trackUrl
+    $trackDetails = $null
+	$trackDetails = Invoke-RestMethod $trackUrl
 
 	Write-Verbose "Adding fullTitle"
-	#if ($trackDeatils | Get-Member fullTitle) { $ebookObject.album = $trackDeatils.fullTitle }
-	if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
-	if ($trackDeatils | Get-Member title) { $ebookObject.album = $trackDeatils.title }
+	#if ($trackDetails | Get-Member fullTitle) { $ebookObject.album = $trackDetails.fullTitle }
+	if ($trackDetails | Get-Member author) { $ebookObject.artist = $trackDetails.author }
+	if ($trackDetails | Get-Member title) { $ebookObject.album = $trackDetails.title }
 
-	#if ($trackDeatils.fullTitle -match ':') {
+	try {
+		if ($trackDetails.creators[0].isFamilyFirst -eq $false) {
+			$ebookObject.artist = $ebookObject.artist + "," + $trackDetails.creators[0].familyName + " " +  $trackDetails.creators[0].givenName
+		}
+		Write-Warning "Expanded name to $($ebookObject.artist)"
+	} catch {
+		$_  | Out-Null
+	}
+
+	#if ($trackDetails.fullTitle -match ':') {
 	#	Write-Verbose "Splitting fullTitle"
-	#	$ebookObject.album = $trackDeatils.fullTitle.Split(':')[1].Trim()
-	#	$ebookObject.artist = $trackDeatils.fullTitle.Split(':')[0].Trim()
+	#	$ebookObject.album = $trackDetails.fullTitle.Split(':')[1].Trim()
+	#	$ebookObject.artist = $trackDetails.fullTitle.Split(':')[0].Trim()
 	#}
 
     # Override Author
-    #if ($trackDeatils | Get-Member author) { $ebookObject.artist = $trackDeatils.author }
+    #if ($trackDetails | Get-Member author) { $ebookObject.artist = $trackDetails.author }
 
     # Override Genre
-    if ($trackDeatils | Get-Member type) {
-        $ebookObject.genre = [string]::Join(',',($trackDeatils.type | where { $_ -notmatch 'hang'}))
+    if ($trackDetails | Get-Member type) {
+        $ebookObject.genre = [string]::Join(',',($trackDetails.type | where { $_ -notmatch 'hang'}))
     }
 
     # Populate tracks
 	$trackNumber = 0
-	foreach ($t in $trackDeatils.tracks) {
+	foreach ($t in $trackDetails.tracks) {
 		$trackNumber++
 		$trackObject = $ebookObject.psobject.Copy()
 		$trackObject.title = $t.title
 		$trackObject.source = $t.fileUrl
 		$trackObject.trackNumber = $trackNumber
-		$trackObject.totalTrackCount = $trackDeatils.tracks | Measure-Object | Select-Object -Expand Count
+		$trackObject.totalTrackCount = $trackDetails.tracks | Measure-Object | Select-Object -Expand Count
 
         if ($t | Get-Member lengthTotalSeconds) {
             $trackObject.duration = $t.lengthTotalSeconds
