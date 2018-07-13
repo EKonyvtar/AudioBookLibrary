@@ -16,15 +16,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.1'
 
     defaultConfig {
         applicationId "com.murati.oszk.audiobook"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 13
-        versionName "0.1.13"
+        versionCode 14
+        versionName "0.1.14"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
