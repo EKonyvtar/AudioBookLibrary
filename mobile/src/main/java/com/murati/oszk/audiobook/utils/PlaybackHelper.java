@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.playback.Playback;
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
 
 import java.util.logging.Logger;
@@ -123,6 +124,8 @@ public class PlaybackHelper {
     }
 
     public static void setLastPosition(long position) {
+        if (position == 0)
+            return;
         _lastPosition = position;
 
         persistPlayBackState();
@@ -160,6 +163,11 @@ public class PlaybackHelper {
         } catch (Exception ex) {
             Log.e(TAG, "Unable to restore previous playback state:" + ex.getMessage() );
         }
+    }
+
+    public static void savePlaybackController(Playback playback) {
+        PlaybackHelper.setLastMediaId(playback.getCurrentMediaId());
+        PlaybackHelper.setLastPosition(playback.getCurrentStreamPosition());
     }
 
     public static void restorePlaybackController(Activity activity) {

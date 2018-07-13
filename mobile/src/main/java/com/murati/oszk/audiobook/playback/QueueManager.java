@@ -123,7 +123,7 @@ public class QueueManager {
 
     public void setQueueFromTrack(String mediaId) {
         LogHelper.d(TAG, "setQueueFromTrack", mediaId);
-        PlaybackHelper.setLastMediaId(mediaId);
+        //TODO: skip PlaybackHelper.setLastMediaId(mediaId);
 
         // The mediaId used here is not the unique musicId. This one comes from the
         // MediaBrowser, and is actually a "hierarchy-aware mediaID": a concatenation of
