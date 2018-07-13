@@ -96,8 +96,6 @@ public class FavoritesHelper {
 
             writer.flush();
 
-        } catch (FileNotFoundException e) {
-                Log.e(TAG, "Favorite not found: " + e.toString());
         } catch (IOException e) {
             Log.e(TAG, "Favorites can not write file: " + e.toString());
         } finally {
