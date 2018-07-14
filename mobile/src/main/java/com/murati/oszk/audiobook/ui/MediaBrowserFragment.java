@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.FeatureHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
@@ -125,7 +126,10 @@ public class MediaBrowserFragment extends Fragment {
                     checkForUserVisibleErrors(children.isEmpty());
                     mBrowserAdapter.clear();
                     for (MediaBrowserCompat.MediaItem item : children) {
-                        mBrowserAdapter.add(item);
+                        if (FeatureHelper.canShowItem(item))
+                            mBrowserAdapter.add(item);
+                        else
+                            Log.i(TAG, "Content filtered: "+item.toString());
                     }
                     mBrowserAdapter.notifyDataSetChanged();
 
