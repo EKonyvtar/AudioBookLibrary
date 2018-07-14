@@ -48,8 +48,8 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="60pt"
-                    android:padding="4pt"
+                    android:layout_height="128dp"
+                    android:padding="4dp"
                     android:src="@drawable/ic_launcher" />
 
                 <TextView
@@ -71,14 +71,14 @@
                     android:text="v0.0.0" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/about_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/version"
                     android:layout_gravity="center"
                     android:gravity="clip_horizontal"
-                    android:padding="10pt"
+                    android:padding="12dp"
                     android:text="@string/about_content" />
 
                 <Button
@@ -90,6 +90,17 @@
                     android:layout_below="@+id/textView"
                     android:text="@string/about_button_support" />
 
+                <TextView
+                    android:id="@+id/about_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/version"
+                    android:layout_gravity="center"
+                    android:gravity="clip_horizontal"
+                    android:padding="12dp"
+                    android:text="@string/about_footer" />
+
                 <Button
                     android:id="@+id/murati"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -98,6 +109,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/patreon"
                     android:text="@string/about_button_murati" />
+
             </LinearLayout>
         </ScrollView>
 
