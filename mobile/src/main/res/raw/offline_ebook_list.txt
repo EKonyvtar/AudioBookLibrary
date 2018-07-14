@@ -322,3 +322,8 @@ http://mek.oszk.hu/17100/17148
 http://mek.oszk.hu/17400/17412
 http://mek.oszk.hu/17600/17673
 http://mek.oszk.hu/17700/17713
+http://mek.oszk.hu/18000/18022
+http://mek.oszk.hu/18300/18384
+http://mek.oszk.hu/18200/18262
+http://mek.oszk.hu/18100/18199
+http://mek.oszk.hu/18100/18152
