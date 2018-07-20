@@ -282,8 +282,9 @@ public class CastPlayback implements Playback {
         // Convert the remote playback states to media playback states.
         switch (status) {
             case MediaStatus.PLAYER_STATE_IDLE:
-                if (idleReason == MediaStatus.IDLE_REASON_FINISHED) {
-                    if (mCallback != null) {
+                if (idleReason == MediaStatus.IDLE_REASON_FINISHED) { // ||
+                    //idleReason == MediaStatus.IDLE_REASON_NONE) {
+                    if (mCallback != null && mPlaybackState != PlaybackStateCompat.STATE_BUFFERING) {
                         mCallback.onCompletion();
                     }
                 }
