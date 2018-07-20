@@ -33,6 +33,9 @@ buildscript {
 
         //Crashlytics
         classpath 'io.fabric.tools:gradle:1.25.4'
+
+        //Firebase performance
+        classpath 'com.google.firebase:firebase-plugins:1.1.5'
     }
 }
 

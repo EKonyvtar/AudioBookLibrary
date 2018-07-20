@@ -16,8 +16,9 @@
 
 apply plugin: 'com.android.application'
 
-//Add Crashlytics
+//Add Crashlytics and performance
 apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 27
@@ -27,8 +28,8 @@ android {
         applicationId "com.murati.oszk.audiobook"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 17
-        versionName "0.3.17"
+        versionCode 18
+        versionName "0.3.18"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -79,6 +80,9 @@ dependencies {
 
     //Crashlytics
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
+
+    //Performance
+    implementation 'com.google.firebase:firebase-perf:16.0.0'
 
     // Test
     testImplementation 'junit:junit:4.12'
