@@ -8,4 +8,5 @@
 *.log
 **/output.json
 
+**/google-services.json
 
