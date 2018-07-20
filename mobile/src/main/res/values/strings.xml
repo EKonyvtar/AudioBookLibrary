@@ -80,6 +80,9 @@
 
     <!-- PLAYBACK RESOURCES -->
     <!-- Notifications -->
+    <string name="notification_channel">com.murati.oszk.audiobook.notification</string>
+    <string name="notification_channel_description">Hangoskönytár lejátszó értesítések</string>
+
     <string name="error_loading_media">Nincs megjeleníthető elem</string>
 
     <string name="notification_playback_track_error">A rész nem elérhető</string>
@@ -125,15 +128,15 @@
         A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
         (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
         \n\n
-        Az alkalmazás Muráti Ákos szabadidős projekje, ami semmilyen módon nem áll kapcsolatban
-        az Országos Széchényi Könyvtár tevékenységeivel, így az esetleges szoftver hibákért
-        a szervezet nem tartozik felelősséggel.
-        \n\n
-        Amennyiben támogatni szeretnéd ezt a projektet vagy a fejlesztőt, kérlek támogass
-
+        Az alkalmazás Muráti Ákos szabadidős projekje, így az esetleges hibákért
+        a könyvtár nem tartozik felelősséggel.
+        Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:
     </string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
+    <string name="about_button_store">Play Store megnyitása</string>
     <string name="about_button_support">Patreon - támogatói oldal megnyitása</string>
     <string name="about_button_oszk">Oszk - MEK megnyitása</string>
+
+    <string name="about_footer">Segítségüket előre is köszönjük!</string>
 </resources>
