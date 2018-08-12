@@ -139,6 +139,8 @@ public class MediaBrowserFragment extends Fragment {
                         PlaybackHelper.restorePlaybackController(getActivity());
                     }
 
+                    restorePosition(parentId, mlistView);
+
                 } catch (Throwable t) {
                     LogHelper.e(TAG, "Error on childrenloaded", t);
                 }
@@ -207,7 +209,7 @@ public class MediaBrowserFragment extends Fragment {
 
         //mlistView.setOnHierarchyChangeListener();
         // Restore listViewState if we have previous
-        restorePosition(mediaId, mlistView);
+        //restorePosition(mediaId, mlistView);
         return rootView;
     }
 
@@ -216,10 +218,12 @@ public class MediaBrowserFragment extends Fragment {
         if (mediaId != null && listState.containsKey(mediaId)) {
             //mlistView.onRestoreInstanceState(listState.get(mediaId));
             listView.requestFocus();
+            int child = listView.getChildCount();
             int visiblePosition = listState.get(mediaId);
-            //listView.setSelection(listState.get(mediaId));
+            listView.setSelection(visiblePosition);
             //listView.setSelectionFromTop(listState.get(mediaId)*400,200);
             //listView.scrollTo(0, visiblePosition);
+            //listView.smoothScrollToPosition(visiblePosition);
         }
     }
 
@@ -290,6 +294,7 @@ public class MediaBrowserFragment extends Fragment {
             mMediaId = mMediaFragmentListener.getMediaBrowser().getRoot();
         }
         updateTitle();
+        //restorePosition(mMediaId, mlistView);
 
         // Unsubscribing before subscribing is required if this mediaId already has a subscriber
         // on this MediaBrowser instance. Subscribing to an already subscribed mediaId will replace
@@ -367,6 +372,7 @@ public class MediaBrowserFragment extends Fragment {
             return MediaItemViewHolder.setupListView((Activity) getContext(), convertView, parent,
                     item);
         }
+
     }
 
     public interface MediaFragmentListener extends MediaBrowserProvider {
