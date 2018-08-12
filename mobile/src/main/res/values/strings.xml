@@ -144,4 +144,7 @@
     <string name="about_button_oszk">Oszk - MEK megnyitása</string>
 
     <string name="about_footer">Segítségüket előre is köszönjük!</string>
+
+    <string name="admob_app_id">ca-app-pub-4138598680797724~1681833678</string>
+    <string name="admob_unit_id_1">ca-app-pub-4138598680797724/9225265861</string>
 </resources>

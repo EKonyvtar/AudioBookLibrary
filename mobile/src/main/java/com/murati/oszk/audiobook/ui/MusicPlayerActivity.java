@@ -107,6 +107,8 @@ public class MusicPlayerActivity extends BaseActivity
         }
 
 
+        //TODO: Progressbar:
+        //https://stackoverflow.com/questions/12559461/how-to-show-progress-barcircle-in-an-activity-having-a-listview-before-loading
         //TODO: Handle splashscreen
         /*
         splash = (ImageView) findViewById(R.id.splash_image);

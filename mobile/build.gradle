@@ -28,8 +28,9 @@ android {
         applicationId "com.murati.oszk.audiobook"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 19
-        versionName "0.3.19"
+        multiDexEnabled true
+        versionCode 20
+        versionName "0.3.20"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -55,6 +56,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+
     compileOnly 'com.google.android.wearable:wearable:2.3.0'
 
     implementation 'com.google.android.gms:play-services-cast-framework:15.0.0'
@@ -83,6 +86,9 @@ dependencies {
 
     //Performance
     implementation 'com.google.firebase:firebase-perf:16.0.0'
+
+    //Admob
+    implementation 'com.google.android.gms:play-services-ads:15.0.0'
 
     // Test
     testImplementation 'junit:junit:4.12'
