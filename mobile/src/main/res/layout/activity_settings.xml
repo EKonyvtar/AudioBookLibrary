@@ -32,15 +32,25 @@
 
         <Switch
             android:id="@+id/switch_ads"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="77dp"
+            android:layout_below="@+id/toolbar_container"
             android:text="@string/setting_ad_switch" />
 
-        <!-- <TextView
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="92dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_unit_id_1" />
+
+        <!--
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,8 +67,9 @@
             android:layout_alignParentBottom="true"
             app:cardElevation="8dp">
 
-            <fragment android:name="com.murati.oszk.audiobook.ui.PlaybackControlsFragment"
+            <fragment
                 android:id="@+id/fragment_playback_controls"
+                android:name="com.murati.oszk.audiobook.ui.PlaybackControlsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
