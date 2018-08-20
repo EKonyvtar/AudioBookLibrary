@@ -21,6 +21,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -49,8 +52,10 @@ import android.widget.Toast;
 import com.bumptech.glide.request.target.Target;
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
+import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
+import com.murati.oszk.audiobook.model.MusicProviderSource;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
@@ -58,6 +63,7 @@ import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -372,6 +378,23 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         }
         LogHelper.d(TAG, "updateDuration called ");
         int duration = (int) metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+
+        if (duration == 0) {
+            try {
+                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                //String mediaUrl = metadata.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+                String mediaUrl = OfflineBookService.getTrackSource(metadata);
+                if (Build.VERSION.SDK_INT >= 14)
+                    retriever.setDataSource(mediaUrl, new HashMap<String, String>());
+                else
+                    retriever.setDataSource(mediaUrl);
+                String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                duration = Integer.parseInt(time);
+                retriever.release();
+            } catch (Exception ex) {
+                Log.e(TAG, "Error retrieving the length of the mediafile: \n" + ex.getMessage());
+            }
+        }
         mSeekbar.setMax(duration);
         mEnd.setText(DateUtils.formatElapsedTime(duration/1000));
     }

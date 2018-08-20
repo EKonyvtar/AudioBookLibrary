@@ -134,9 +134,10 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_DOWNLOADS);
                         break;
 
-                    //case R.id.navigation_settings:
-                    //    intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
-                    //    break;
+                    case R.id.navigation_settings:
+                        intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
+                        break;
+
                     case R.id.navigation_feedback:
                         //intent = new Intent(Intent.ACTION_APP_ERROR);
                         //startActivity(intent);
