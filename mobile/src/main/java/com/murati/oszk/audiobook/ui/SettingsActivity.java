@@ -16,8 +16,15 @@
 package com.murati.oszk.audiobook.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.murati.oszk.audiobook.BuildConfig;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.LogHelper;
 
 /**
  * Placeholder activity for features that are not implemented in this sample, but
@@ -25,11 +32,45 @@ import com.murati.oszk.audiobook.R;
  */
 public class SettingsActivity extends BaseActivity {
 
+    private static final String TAG = LogHelper.makeLogTag(SettingsActivity.class);
+    private AdView mAdView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //https://firebase.google.com/docs/crashlytics/force-a-crash?authuser=0
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         initializeToolbar();
+
+        try {
+            MobileAds.initialize(this, getString(R.string.admob_app_id));
+            mAdView = findViewById(R.id.adView);
+            //if (!BuildConfig.DEBUG) {
+            //mAdView.setAdSize(AdSize.BANNER);
+            //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+            //}
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+
+
+
+        /*
+        Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Crashlytics.getInstance().crash(); // Force a crash
+            }
+        });
+
+        addContentView(crashButton,
+            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+                */
     }
 
 }

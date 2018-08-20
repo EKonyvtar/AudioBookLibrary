@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -42,7 +41,6 @@ import android.widget.Toast;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.FeatureHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
-import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
@@ -61,11 +59,13 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class MediaBrowserFragment extends Fragment {
 
+    private ListView mlistView;
     private static final String TAG = LogHelper.makeLogTag(MediaBrowserFragment.class);
 
     //TODO: cleanup with helper
     private static final String ARG_MEDIA_ID = "media_id";
-    private static ConcurrentMap<String, Parcelable> listState  = new ConcurrentHashMap<>();
+    //private static ConcurrentMap<String, Parcelable> listState  = new ConcurrentHashMap<>();
+    private static ConcurrentMap<String, Integer> listState  = new ConcurrentHashMap<>();
 
     private BrowseAdapter mBrowserAdapter;
     private String mMediaId;
@@ -139,6 +139,8 @@ public class MediaBrowserFragment extends Fragment {
                         PlaybackHelper.restorePlaybackController(getActivity());
                     }
 
+                    restorePosition(parentId, mlistView);
+
                 } catch (Throwable t) {
                     LogHelper.e(TAG, "Error on childrenloaded", t);
                 }
@@ -183,30 +185,46 @@ public class MediaBrowserFragment extends Fragment {
 
         mBrowserAdapter = new BrowseAdapter(getActivity());
 
-        final ListView listView = (ListView) rootView.findViewById(R.id.list_view);
-        listView.setAdapter(mBrowserAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //final ListView mlistView = (ListView) rootView.findViewById(R.id.list_view);
+        mlistView = (ListView) rootView.findViewById(R.id.list_view);
+        mlistView.setAdapter(mBrowserAdapter);
+        mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 checkForUserVisibleErrors(false);
                 if (mediaId != null) {
                     //TODO: listview restore position
-                    Parcelable state = listView.onSaveInstanceState();
-                    if (listState.containsKey(mediaId)) {
+                    int visiblePosition = mlistView.getFirstVisiblePosition();
+                    //visiblePosition = mlistView.getScrollY();
+
+                    //Parcelable state = mlistView.onSaveInstanceState();
+                    if (listState.containsKey(mediaId))
                         ((ConcurrentHashMap) listState).remove(mediaId);
-                    }
-                    ((ConcurrentHashMap) listState).put(mediaId, state);
+                    ((ConcurrentHashMap) listState).put(mediaId, visiblePosition);
                 }
                 MediaBrowserCompat.MediaItem item = mBrowserAdapter.getItem(position);
                 mMediaFragmentListener.onMediaItemSelected(item);
             }
         });
 
+        //mlistView.setOnHierarchyChangeListener();
+        // Restore listViewState if we have previous
+        //restorePosition(mediaId, mlistView);
+        return rootView;
+    }
+
+    public void restorePosition(String mediaId, ListView listView) {
         // Restore listViewState if we have previous
         if (mediaId != null && listState.containsKey(mediaId)) {
-            listView.onRestoreInstanceState(listState.get(mediaId));
+            //mlistView.onRestoreInstanceState(listState.get(mediaId));
+            listView.requestFocus();
+            int child = listView.getChildCount();
+            int visiblePosition = listState.get(mediaId);
+            listView.setSelection(visiblePosition);
+            //listView.setSelectionFromTop(listState.get(mediaId)*400,200);
+            //listView.scrollTo(0, visiblePosition);
+            //listView.smoothScrollToPosition(visiblePosition);
         }
-        return rootView;
     }
 
     @Override
@@ -260,6 +278,8 @@ public class MediaBrowserFragment extends Fragment {
         Bundle args = new Bundle(1);
         args.putString(MediaBrowserFragment.ARG_MEDIA_ID, mediaId);
         setArguments(args);
+
+        //restorePosition(mediaId);
     }
 
     // Called when the MediaBrowser is connected. This method is either called by the
@@ -274,6 +294,7 @@ public class MediaBrowserFragment extends Fragment {
             mMediaId = mMediaFragmentListener.getMediaBrowser().getRoot();
         }
         updateTitle();
+        //restorePosition(mMediaId, mlistView);
 
         // Unsubscribing before subscribing is required if this mediaId already has a subscriber
         // on this MediaBrowser instance. Subscribing to an already subscribed mediaId will replace
@@ -351,6 +372,7 @@ public class MediaBrowserFragment extends Fragment {
             return MediaItemViewHolder.setupListView((Activity) getContext(), convertView, parent,
                     item);
         }
+
     }
 
     public interface MediaFragmentListener extends MediaBrowserProvider {

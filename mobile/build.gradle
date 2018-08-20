@@ -13,7 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 apply plugin: 'com.android.application'
+
+//Add Crashlytics and performance
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 27
@@ -23,8 +28,9 @@ android {
         applicationId "com.murati.oszk.audiobook"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 16
-        versionName "0.2.16"
+        multiDexEnabled true
+        versionCode 21
+        versionName "0.4.21"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -50,6 +56,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+
     compileOnly 'com.google.android.wearable:wearable:2.3.0'
 
     implementation 'com.google.android.gms:play-services-cast-framework:15.0.0'
@@ -70,6 +78,18 @@ dependencies {
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
+    //Crashlytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
+
+    //Performance
+    implementation 'com.google.firebase:firebase-perf:16.0.0'
+
+    //Admob
+    implementation 'com.google.android.gms:play-services-ads:15.0.0'
+
     // Test
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.15.0'
@@ -78,3 +98,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'
