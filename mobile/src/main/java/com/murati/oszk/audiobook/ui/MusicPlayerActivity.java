@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.AnalyticsHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
@@ -106,6 +107,8 @@ public class MusicPlayerActivity extends BaseActivity
         }
 
 
+        //TODO: Progressbar:
+        //https://stackoverflow.com/questions/12559461/how-to-show-progress-barcircle-in-an-activity-having-a-listview-before-loading
         //TODO: Handle splashscreen
         /*
         splash = (ImageView) findViewById(R.id.splash_image);
@@ -134,6 +137,14 @@ public class MusicPlayerActivity extends BaseActivity
             MediaIDHelper.isItemHeader(item.getMediaId()))
             return;
 
+        try {
+            String item_name = (String) item.getDescription().getTitle(); // + " - " + (String) item.getDescription().getSubtitle();
+            String item_type = item.isBrowsable() ? "browsable":"playable";
+            AnalyticsHelper.selectItem(getBaseContext(), getMediaId(), item.getMediaId(), item_name, item_type);
+        } catch (Exception ex) {
+            //TODO: figure out error reporting
+            Log.e(TAG, "Unable to send analytics for " + item.getMediaId());
+        }
 
         if (item.isPlayable()) {
             MediaControllerCompat.getMediaController(MusicPlayerActivity.this).getTransportControls()

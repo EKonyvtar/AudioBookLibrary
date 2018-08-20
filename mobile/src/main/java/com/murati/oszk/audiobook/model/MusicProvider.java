@@ -26,6 +26,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.util.Log;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
@@ -243,25 +244,27 @@ public class MusicProvider {
     }
 
     //region BUILD_TYPELISTS
-    private synchronized void buildAlbumList() {
+
+    @AddTrace(name = "CatalogIndexing", enabled = true)
+    private synchronized void buildCatalogIndex() {
         //TODO: rename album to ebook
-        ConcurrentMap<String, List<MediaMetadataCompat>> newAlbumList = new ConcurrentHashMap<>();
+        ConcurrentMap<String, List<MediaMetadataCompat>> newEbookList = new ConcurrentHashMap<>();
 
         // Add tracks to ebook
         for (MutableMediaMetadata m : mTrackListById.values()) {
-            String album = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-            List<MediaMetadataCompat> list = newAlbumList.get(album);
+            String ebook = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+            List<MediaMetadataCompat> list = newEbookList.get(ebook);
             if (list == null) {
                 list = new ArrayList<>();
-                newAlbumList.put(album, list);
+                newEbookList.put(ebook, list);
             }
             list.add(m.metadata);
         }
 
         //Sort Individual ebooks by track numbers
-        for (List<MediaMetadataCompat> album: newAlbumList.values()) {
+        for (List<MediaMetadataCompat> ebook: newEbookList.values()) {
             //MediaMetadataCompat[] sortedOrder = album.toArray(new MediaMetadataCompat[album.size()]);
-            java.util.Collections.sort(album, new Comparator<MediaMetadataCompat>(){
+            java.util.Collections.sort(ebook, new Comparator<MediaMetadataCompat>(){
                 @Override
                 public int compare(final MediaMetadataCompat lhs,MediaMetadataCompat rhs) {
                     if (lhs.getLong(METADATA_KEY_TRACK_NUMBER) < rhs.getLong(METADATA_KEY_TRACK_NUMBER))
@@ -270,7 +273,7 @@ public class MusicProvider {
                 }
             });
         }
-        mEbookList = newAlbumList;
+        mEbookList = newEbookList;
     }
 
     private synchronized void addMediaToCategory(MutableMediaMetadata m, String metadata, ConcurrentMap<String, List<String>> newListByMetadata) {
@@ -325,7 +328,7 @@ public class MusicProvider {
                 Long startTime = System.currentTimeMillis();
                 Log.d(TAG, "Build catalog started at " + startTime.toString());
 
-                buildAlbumList();
+                buildCatalogIndex();
 
                 Long endTime = System.currentTimeMillis();
                 Log.d(TAG, "Build catalog finished at " + endTime.toString());
