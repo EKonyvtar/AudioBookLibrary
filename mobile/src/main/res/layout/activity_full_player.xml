@@ -28,12 +28,22 @@ limitations under the License.
         android:layout_alignParentEnd="true"
         android:background="@drawable/fullscreen_bg_gradient" >
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_unit_id_1" />
+
         <ImageView
             android:id="@+id/background_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="180dp"
+            android:layout_marginBottom="178dp"
             android:contentDescription="@string/background_image_str"
             android:scaleType="fitCenter" />
 
