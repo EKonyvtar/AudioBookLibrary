@@ -30,13 +30,6 @@ limitations under the License.
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </LinearLayout>
     <RelativeLayout
         android:id="@+id/mainframe"
         android:layout_width="fill_parent"
@@ -47,11 +40,11 @@ limitations under the License.
 
         <ImageView
             android:id="@+id/background_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="178dp"
+            android:layout_width="192dp"
+            android:layout_height="236dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="64dp"
             android:contentDescription="@string/background_image_str"
             android:scaleType="fitCenter" />
 
