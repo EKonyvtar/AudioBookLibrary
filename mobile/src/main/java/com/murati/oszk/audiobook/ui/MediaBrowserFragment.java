@@ -65,7 +65,7 @@ public class MediaBrowserFragment extends Fragment {
     //TODO: cleanup with helper
     private static final String ARG_MEDIA_ID = "media_id";
     //private static ConcurrentMap<String, Parcelable> listState  = new ConcurrentHashMap<>();
-    private static ConcurrentMap<String, Integer> listState  = new ConcurrentHashMap<>();
+    private static ConcurrentMap<String, Integer> listState  = new ConcurrentHashMap<String, Integer>();
 
     private BrowseAdapter mBrowserAdapter;
     private String mMediaId;
@@ -199,8 +199,9 @@ public class MediaBrowserFragment extends Fragment {
 
                     //Parcelable state = mlistView.onSaveInstanceState();
                     if (listState.containsKey(mediaId))
-                        ((ConcurrentHashMap) listState).remove(mediaId);
-                    ((ConcurrentHashMap) listState).put(mediaId, visiblePosition);
+                        listState.remove(mediaId);
+                    //((ConcurrentHashMap) listState).put(mediaId, visiblePosition);
+                    listState.putIfAbsent(mediaId, visiblePosition);
                 }
                 MediaBrowserCompat.MediaItem item = mBrowserAdapter.getItem(position);
                 mMediaFragmentListener.onMediaItemSelected(item);
