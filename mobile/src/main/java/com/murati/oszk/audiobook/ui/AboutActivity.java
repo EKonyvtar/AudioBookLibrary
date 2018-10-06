@@ -30,6 +30,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.DisplayHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
 /**
@@ -39,6 +40,13 @@ import com.murati.oszk.audiobook.utils.LogHelper;
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
     private AdView mAdView;
+
+
+    private void openBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,21 +61,18 @@ public class AboutActivity extends BaseActivity {
         // Button
         final Button button = findViewById(R.id.murati);
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://murati.hu"));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-            }
+            public void onClick(View v) { openBrowser("https://murati.hu"); }
+        });
+
+        final Button privacy = findViewById(R.id.privacy);
+        privacy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) { openBrowser(getString(R.string.about_privacy)); }
         });
 
         // Button
         final Button patreon = findViewById(R.id.patreon);
         patreon.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.patreon.com/murati"));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-            }
+            public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
         try {
