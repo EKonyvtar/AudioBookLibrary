@@ -373,7 +373,6 @@ public class MediaBrowserFragment extends Fragment {
             return MediaItemViewHolder.setupListView((Activity) getContext(), convertView, parent,
                     item);
         }
-
     }
 
     public interface MediaFragmentListener extends MediaBrowserProvider {
