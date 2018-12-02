@@ -91,6 +91,9 @@ dependencies {
     //Admob
     implementation 'com.google.android.gms:play-services-ads:17.1.1'
 
+    //Remote Config
+    implementation 'com.google.firebase:firebase-config:16.1.0'
+
     // Test
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.15.0'

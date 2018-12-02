@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>ad_position</key>
+        <value></value>
+    </entry>
+    <entry>
+        <key>audiobook_server_url</key>
+        <value>http://mek.oszk.hu/</value>
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->

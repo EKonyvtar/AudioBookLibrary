@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
@@ -32,6 +33,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.AnalyticsHelper;
@@ -51,6 +55,8 @@ public class MusicPlayerActivity extends BaseActivity
 
     private static final String TAG = LogHelper.makeLogTag(MusicPlayerActivity.class);
     private static final String FRAGMENT_TAG = "uamp_list_container";
+
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     private static final int STOPSPLASH = 0;
     //time in milliseconds
@@ -95,6 +101,29 @@ public class MusicPlayerActivity extends BaseActivity
         setContentView(R.layout.activity_player);
 
         initializeToolbar();
+
+        //Load remote config defaults
+        // https://firebase.google.com/docs/remote-config/android/start/
+
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetch(60)
+            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // After config data is successfully fetched, it must be activated before newly fetched
+                        // values are returned.
+                        mFirebaseRemoteConfig.activateFetched();
+                        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
+                        Toast.makeText(MusicPlayerActivity.this, "Fetch Succeeded: " + welcomeMessage,
+                            Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MusicPlayerActivity.this, "Fetch Failed",
+                            Toast.LENGTH_SHORT).show();
+                    }
+                    //displayWelcomeMessage();
+                }
+            });
 
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
