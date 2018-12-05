@@ -33,6 +33,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -63,6 +66,8 @@ public class MusicPlayerActivity extends BaseActivity
     private static final long SPLASHTIME = 200;
 
     private ImageView splash;
+    private AdView mAdView;
+
 
     public static final String EXTRA_START_FULLSCREEN =
             "com.murati.oszk.audiobook.EXTRA_START_FULLSCREEN";
@@ -102,31 +107,10 @@ public class MusicPlayerActivity extends BaseActivity
 
         initializeToolbar();
 
-        //Load remote config defaults
-        // https://firebase.google.com/docs/remote-config/android/start/
-
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        mFirebaseRemoteConfig.fetch(60)
-            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        // After config data is successfully fetched, it must be activated before newly fetched
-                        // values are returned.
-                        mFirebaseRemoteConfig.activateFetched();
-                        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
-                        Toast.makeText(MusicPlayerActivity.this, "Fetch Succeeded: " + welcomeMessage,
-                            Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MusicPlayerActivity.this, "Fetch Failed",
-                            Toast.LENGTH_SHORT).show();
-                    }
-                    //displayWelcomeMessage();
-                }
-            });
-
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
+
+        refreshRemoteConfig();
 
         initializeFromParams(savedInstanceState, getIntent());
 
@@ -145,6 +129,49 @@ public class MusicPlayerActivity extends BaseActivity
         msg.what = STOPSPLASH;
         splashHandler.sendMessageDelayed(msg, SPLASHTIME);
         */
+
+        try {
+            MobileAds.initialize(this, getString(R.string.admob_app_id));
+            mAdView = findViewById(R.id.adView);
+            //if (!BuildConfig.DEBUG) {
+            //mAdView.setAdSize(AdSize.BANNER);
+            //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+            //}
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+    }
+
+    public void refreshRemoteConfig() {
+        //Load remote config defaults
+        // https://firebase.google.com/docs/remote-config/android/start/
+
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetch(3600)
+            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // After config data is successfully fetched, it must be activated before newly fetched
+                        // values are returned.
+                        mFirebaseRemoteConfig.activateFetched();
+                        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
+                        Toast.makeText(MusicPlayerActivity.this, "Fetch Succeeded: " + welcomeMessage,
+                            Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MusicPlayerActivity.this, "Fetch Failed",
+                            Toast.LENGTH_SHORT).show();
+                    }
+                    //displayWelcomeMessage();
+                }
+            });
+
+    }
+    public int getAdPosition() {
+        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
+        return 0;
     }
 
     @Override
