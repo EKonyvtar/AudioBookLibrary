@@ -132,10 +132,12 @@ public class MusicPlayerActivity extends BaseActivity
         */
 
         try {
+            mAdView = findViewById(R.id.adView);
+            mAdView.setVisibility(View.GONE);
             int ad = getAdPosition();
             if (ad == AdHelper.AD_EVERYWHERE) {
+                mAdView.setVisibility(View.VISIBLE);
                 MobileAds.initialize(this, getString(R.string.admob_app_id));
-                mAdView = findViewById(R.id.adView);
                 //if (!BuildConfig.DEBUG) {
                 //mAdView.setAdSize(AdSize.BANNER);
                 //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
