@@ -41,6 +41,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.AnalyticsHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -131,14 +132,16 @@ public class MusicPlayerActivity extends BaseActivity
         */
 
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
-            mAdView = findViewById(R.id.adView);
-            //if (!BuildConfig.DEBUG) {
-            //mAdView.setAdSize(AdSize.BANNER);
-            //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-            //}
+            int ad = getAdPosition();
+            if (ad == AdHelper.AD_EVERYWHERE) {
+                MobileAds.initialize(this, getString(R.string.admob_app_id));
+                mAdView = findViewById(R.id.adView);
+                //if (!BuildConfig.DEBUG) {
+                //mAdView.setAdSize(AdSize.BANNER);
+                //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
