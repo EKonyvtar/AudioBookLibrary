@@ -111,6 +111,9 @@ public class MediaItemViewHolder {
                 from(activity).
                 inflate(R.layout.fragment_ebook_item, parent, false);
         }
+        else if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
+            // Advert show
+        }
         else {
             // Everything else
             convertView = LayoutInflater.
