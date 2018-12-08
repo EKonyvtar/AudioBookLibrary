@@ -78,8 +78,8 @@
                     tools:layout="@layout/fragment_playback_controls" />
 
                 <com.google.android.gms.ads.AdView
-                    android:id="@+id/adView"
-                    android:visibility="gone"
+                    android:id="@+id/control_ad"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ads:adSize="BANNER"
