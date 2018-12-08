@@ -41,6 +41,7 @@ import android.widget.Toast;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.FeatureHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
+import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
@@ -204,7 +205,10 @@ public class MediaBrowserFragment extends Fragment {
                     listState.putIfAbsent(mediaId, visiblePosition);
                 }
                 MediaBrowserCompat.MediaItem item = mBrowserAdapter.getItem(position);
-                mMediaFragmentListener.onMediaItemSelected(item);
+
+                if (item.getMediaId() != null && !MediaIDHelper.ADVERTISEMENT.equals(item.getMediaId())) {
+                    mMediaFragmentListener.onMediaItemSelected(item);
+                }
             }
         });
 
