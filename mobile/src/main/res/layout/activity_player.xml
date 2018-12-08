@@ -79,7 +79,7 @@
 
                 <com.google.android.gms.ads.AdView
                     android:id="@+id/control_ad"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ads:adSize="BANNER"
