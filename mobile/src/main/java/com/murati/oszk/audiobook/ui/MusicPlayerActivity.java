@@ -135,10 +135,10 @@ public class MusicPlayerActivity extends BaseActivity
             mAdView = findViewById(R.id.control_ad);
             mAdView.setVisibility(View.GONE);
             if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
-                mAdView.setVisibility(View.VISIBLE);
                 MobileAds.initialize(this, getString(R.string.admob_app_id));
                 AdRequest adRequest = new AdRequest.Builder().build();
                 mAdView.loadAd(adRequest);
+                mAdView.setVisibility(View.VISIBLE);
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
@@ -151,7 +151,7 @@ public class MusicPlayerActivity extends BaseActivity
         // https://firebase.google.com/docs/remote-config/android/start/
 
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        mFirebaseRemoteConfig.fetch(3600)
+        mFirebaseRemoteConfig.fetch(600)
             .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
