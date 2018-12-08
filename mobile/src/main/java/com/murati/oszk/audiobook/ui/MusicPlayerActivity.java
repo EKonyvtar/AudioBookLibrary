@@ -159,14 +159,10 @@ public class MusicPlayerActivity extends BaseActivity
                         // After config data is successfully fetched, it must be activated before newly fetched
                         // values are returned.
                         mFirebaseRemoteConfig.activateFetched();
-                        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
-                        Toast.makeText(MusicPlayerActivity.this, "Fetch Succeeded: " + welcomeMessage,
-                            Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Remote config fetched successfully.");
                     } else {
-                        Toast.makeText(MusicPlayerActivity.this, "Fetch Failed",
-                            Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "There was an issue fetching Remote config.");
                     }
-                    //displayWelcomeMessage();
                 }
             });
 
