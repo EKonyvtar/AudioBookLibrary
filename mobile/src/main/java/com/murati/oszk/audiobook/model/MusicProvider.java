@@ -27,8 +27,10 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -70,6 +72,7 @@ import static com.murati.oszk.audiobook.utils.MediaIDHelper.getCategoryValueFrom
 public class MusicProvider {
 
     private static final String TAG = LogHelper.makeLogTag(MusicProvider.class);
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     private MusicProviderSource mSource;
 
@@ -353,8 +356,10 @@ public class MusicProvider {
 
         List<MediaBrowserCompat.MediaItem> mediaItems = getChildrenNative(mediaId, resources);
 
-        // Add advertisement
-        mediaItems.add(createAdvertisement());
+        if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_LIST) {
+            // Add advertisement
+            mediaItems.add(createAdvertisement());
+        }
 
         return mediaItems;
     }
