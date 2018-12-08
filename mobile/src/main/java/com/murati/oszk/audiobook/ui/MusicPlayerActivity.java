@@ -132,15 +132,12 @@ public class MusicPlayerActivity extends BaseActivity
         */
 
         try {
-            mAdView = findViewById(R.id.adView);
+            mAdView = findViewById(R.id.control_ad);
             mAdView.setVisibility(View.GONE);
             int ad = getAdPosition();
             if (ad == AdHelper.AD_EVERYWHERE) {
                 mAdView.setVisibility(View.VISIBLE);
                 MobileAds.initialize(this, getString(R.string.admob_app_id));
-                //if (!BuildConfig.DEBUG) {
-                //mAdView.setAdSize(AdSize.BANNER);
-                //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
                 AdRequest adRequest = new AdRequest.Builder().build();
                 mAdView.loadAd(adRequest);
             }
@@ -149,6 +146,7 @@ public class MusicPlayerActivity extends BaseActivity
         }
     }
 
+    //TODO: move to base
     public void refreshRemoteConfig() {
         //Load remote config defaults
         // https://firebase.google.com/docs/remote-config/android/start/
@@ -175,8 +173,8 @@ public class MusicPlayerActivity extends BaseActivity
 
     }
     public int getAdPosition() {
-        String welcomeMessage = mFirebaseRemoteConfig.getString("ad_position");
-        return 0;
+        String adPosition = mFirebaseRemoteConfig.getString("ad_position");
+        return Integer.parseInt(adPosition);
     }
 
     @Override

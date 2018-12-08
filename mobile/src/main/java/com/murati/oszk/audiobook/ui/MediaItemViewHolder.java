@@ -78,6 +78,7 @@ public class MediaItemViewHolder {
     private ImageView mFavoriteButton;
 
     private AdView mAdView;
+    private static AdRequest adRequest;
 
     // Returns a view for use in media item list.
     static View setupListView(final Activity activity, View convertView, final ViewGroup parent,
@@ -107,13 +108,13 @@ public class MediaItemViewHolder {
                 //if (!BuildConfig.DEBUG) {
                 //mAdView.setAdSize(AdSize.BANNER);
                 //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
-                AdRequest adRequest = new AdRequest.Builder().build();
+                adRequest = new AdRequest.Builder().build();
                 holder.mAdView.loadAd(adRequest);
                 //}
             } catch (Exception ex) {
                 Log.e(TAG, ex.getMessage());
             }
-
+            return convertView;
         }
         else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
             // EBook header
