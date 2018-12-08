@@ -3,7 +3,7 @@
 <defaultsMap>
     <entry>
         <key>ad_position</key>
-        <value>1</value>
+        <value>0</value>
     </entry>
     <entry>
         <key>audiobook_server_url</key>

@@ -134,8 +134,7 @@ public class MusicPlayerActivity extends BaseActivity
         try {
             mAdView = findViewById(R.id.control_ad);
             mAdView.setVisibility(View.GONE);
-            int ad = getAdPosition();
-            if (ad == AdHelper.AD_EVERYWHERE) {
+            if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
                 mAdView.setVisibility(View.VISIBLE);
                 MobileAds.initialize(this, getString(R.string.admob_app_id));
                 AdRequest adRequest = new AdRequest.Builder().build();
@@ -171,10 +170,6 @@ public class MusicPlayerActivity extends BaseActivity
                 }
             });
 
-    }
-    public int getAdPosition() {
-        String adPosition = mFirebaseRemoteConfig.getString("ad_position");
-        return Integer.parseInt(adPosition);
     }
 
     @Override
