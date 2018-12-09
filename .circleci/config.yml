@@ -13,6 +13,7 @@ jobs:
 #      - run:
 #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
 #         command: sudo chmod +x ./gradlew
+      - run: ./.circleci/pre-build.sh
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
