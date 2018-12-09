@@ -27,8 +27,10 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -49,6 +51,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import static android.media.MediaMetadata.METADATA_KEY_TRACK_NUMBER;
+import static com.murati.oszk.audiobook.utils.MediaIDHelper.ADVERTISEMENT;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOADS;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.oszk.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
@@ -69,6 +72,7 @@ import static com.murati.oszk.audiobook.utils.MediaIDHelper.getCategoryValueFrom
 public class MusicProvider {
 
     private static final String TAG = LogHelper.makeLogTag(MusicProvider.class);
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     private MusicProviderSource mSource;
 
@@ -347,8 +351,22 @@ public class MusicProvider {
 
 
     //region Hierarchy browser
+
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
-        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
+
+        List<MediaBrowserCompat.MediaItem> mediaItems = getChildrenNative(mediaId, resources);
+
+        if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_LIST) {
+            // Add advertisement
+            mediaItems.add(createAdvertisement());
+        }
+
+        return mediaItems;
+    }
+
+
+    public List<MediaBrowserCompat.MediaItem> getChildrenNative(String mediaId, Resources resources) {
+            List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
         if (mediaId == null)
             return Collections.emptyList();
@@ -402,8 +420,6 @@ public class MusicProvider {
                 resources.getString(R.string.browse_downloads),
                 resources.getString(R.string.browse_downloads_subtitle),
                 BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
-
-
 
             return mediaItems;
         }
@@ -612,6 +628,14 @@ public class MusicProvider {
             .build();
         return new MediaBrowserCompat.MediaItem(description,
             MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowserCompat.MediaItem createAdvertisement() {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaID(null, ADVERTISEMENT))
+            .build();
+        return new MediaBrowserCompat.MediaItem(description,
+            MediaBrowserCompat.MediaItem.FLAG_PLAYABLE);
     }
 
     private MediaBrowserCompat.MediaItem createEbookHeader(

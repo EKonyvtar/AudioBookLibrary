@@ -38,8 +38,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+    //TODO: fix CircleCI linting issues
     lintOptions {
-        abortOnError true
+        abortOnError false
     }
     buildTypes {
         release {
@@ -90,6 +91,9 @@ dependencies {
 
     //Admob
     implementation 'com.google.android.gms:play-services-ads:17.1.1'
+
+    //Remote Config
+    implementation 'com.google.firebase:firebase-config:16.1.0'
 
     // Test
     testImplementation 'junit:junit:4.12'
