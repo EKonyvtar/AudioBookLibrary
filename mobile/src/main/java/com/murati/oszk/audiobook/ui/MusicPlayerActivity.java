@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
@@ -32,8 +33,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
+import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.AnalyticsHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
@@ -52,11 +60,15 @@ public class MusicPlayerActivity extends BaseActivity
     private static final String TAG = LogHelper.makeLogTag(MusicPlayerActivity.class);
     private static final String FRAGMENT_TAG = "uamp_list_container";
 
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
     private static final int STOPSPLASH = 0;
     //time in milliseconds
     private static final long SPLASHTIME = 200;
 
     private ImageView splash;
+    private AdView mAdView;
+
 
     public static final String EXTRA_START_FULLSCREEN =
             "com.murati.oszk.audiobook.EXTRA_START_FULLSCREEN";
@@ -99,6 +111,8 @@ public class MusicPlayerActivity extends BaseActivity
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
 
+        refreshRemoteConfig();
+
         initializeFromParams(savedInstanceState, getIntent());
 
         // Only check if a full screen player is needed on the first time:
@@ -116,6 +130,42 @@ public class MusicPlayerActivity extends BaseActivity
         msg.what = STOPSPLASH;
         splashHandler.sendMessageDelayed(msg, SPLASHTIME);
         */
+
+        try {
+            mAdView = findViewById(R.id.control_ad);
+            mAdView.setVisibility(View.GONE);
+            if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
+                MobileAds.initialize(this, getString(R.string.admob_app_id));
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+                mAdView.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+    }
+
+    //TODO: move to base
+    public void refreshRemoteConfig() {
+        //Load remote config defaults
+        // https://firebase.google.com/docs/remote-config/android/start/
+
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetch(600)
+            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // After config data is successfully fetched, it must be activated before newly fetched
+                        // values are returned.
+                        mFirebaseRemoteConfig.activateFetched();
+                        Log.d(TAG, "Remote config fetched successfully.");
+                    } else {
+                        Log.d(TAG, "There was an issue fetching Remote config.");
+                    }
+                }
+            });
+
     }
 
     @Override

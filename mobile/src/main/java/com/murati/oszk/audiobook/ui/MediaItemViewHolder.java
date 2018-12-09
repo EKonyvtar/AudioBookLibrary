@@ -29,6 +29,7 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,15 +45,20 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
+import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;
 
 
 public class MediaItemViewHolder {
+    private static final String TAG = LogHelper.makeLogTag(MediaItemViewHolder.class);
 
     public static final int STATE_INVALID = -1;
     public static final int STATE_NONE = 0;
@@ -71,6 +77,9 @@ public class MediaItemViewHolder {
     private Button mOpenButton;
     private ImageView mFavoriteButton;
 
+    private AdView mAdView;
+    private static AdRequest adRequest;
+
     // Returns a view for use in media item list.
     static View setupListView(final Activity activity, View convertView, final ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
@@ -87,7 +96,27 @@ public class MediaItemViewHolder {
 
 
         //TODO: optimize inflators
-        if (MediaIDHelper.isItemHeader(description.getMediaId())) {
+        if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
+            // Advert show
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_list_ad, parent, false);
+
+            try {
+                MobileAds.initialize(activity, activity.getString(R.string.admob_app_id));
+                holder.mAdView = convertView.findViewById(R.id.itemAd);
+                //if (!BuildConfig.DEBUG) {
+                //mAdView.setAdSize(AdSize.BANNER);
+                //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
+                adRequest = new AdRequest.Builder().build();
+                holder.mAdView.loadAd(adRequest);
+                //}
+            } catch (Exception ex) {
+                Log.e(TAG, ex.getMessage());
+            }
+            return convertView;
+        }
+        else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
             // EBook header
             convertView = LayoutInflater.
                 from(activity).

@@ -44,6 +44,7 @@ public class MediaIDHelper {
     public static final String MEDIA_ID_BY_QUEUE = "__BY_QUEUE__";
     public static final String MEDIA_ID_BY_FAVORITES = "__BY_FAVORITES__";
     public static final String MEDIA_ID_BY_DOWNLOADS = "__BY_DOWNLOADS__";
+    public static final String ADVERTISEMENT = "__ADVERTISEMENT__";
 
     private static final char CATEGORY_SEPARATOR = '/';
     private static final char LEAF_SEPARATOR = '|';
