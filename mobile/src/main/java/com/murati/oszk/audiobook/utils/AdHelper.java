@@ -28,8 +28,13 @@ public class AdHelper {
     }
 
     public static int getAdPosition(FirebaseRemoteConfig mFirebaseRemoteConfig) {
-        String adPosition = mFirebaseRemoteConfig.getString("ad_position");
-        return Integer.parseInt(adPosition);
+        try {
+            String adPosition = mFirebaseRemoteConfig.getString("ad_position");
+            return Integer.parseInt(adPosition);
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+        return 0;
     }
 
 }
