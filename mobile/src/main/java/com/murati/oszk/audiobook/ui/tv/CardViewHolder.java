@@ -92,27 +92,17 @@ public class CardViewHolder extends Presenter.ViewHolder {
         mCardView.setBadgeImage(drawable);
 
 
-        //TODO: replace glide
-        Uri artUri = description.getIconUri();
-        if (artUri == null) {
-            setCardImage(context, description.getIconBitmap());
-        } else {
-            // IconUri potentially has a better resolution than iconBitmap.
-            String artUrl = artUri.toString();
-            AlbumArtCache cache = AlbumArtCache.getInstance();
-            if (cache.getBigImage(artUrl) != null) {
-                // So, we use it immediately if it's cached:
-                setCardImage(context, cache.getBigImage(artUrl));
-            } else {
-                // Otherwise, we use iconBitmap if available while we wait for iconURI
-                setCardImage(context, description.getIconBitmap());
-                BitmapHelper.fetch(context, artUrl, new AlbumArtCache.FetchListener() {
-                    @Override
-                    public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                        setCardImage(context, bitmap);
-                    }
-                });
-            }
+        // Set Bitmap to default
+        setCardImage(context, description.getIconBitmap());
+
+        // The try to load extra if present
+        if (description.getIconUri() != null) {
+            BitmapHelper.fetch(context, description.getIconUri().toString(), new AlbumArtCache.FetchListener() {
+                @Override
+                public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
+                    setCardImage(context, bitmap);
+                }
+            });
         }
     }
 
