@@ -12,7 +12,7 @@ http://mek.oszk.hu/02300/02328
 http://mek.oszk.hu/02300/02358
 http://mek.oszk.hu/02300/02359
 http://mek.oszk.hu/02300/02363
-http://mek.oszk.hu/02300/02364
+#http://mek.oszk.hu/02300/02364
 http://mek.oszk.hu/02300/02367
 http://mek.oszk.hu/02300/02368
 http://mek.oszk.hu/02300/02375
