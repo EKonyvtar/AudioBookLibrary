@@ -29,8 +29,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 27
         multiDexEnabled true
-        versionCode 28
-        versionName "0.6.28"
+        versionCode 29
+        versionName "0.6.29"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -81,19 +81,19 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
 
     //Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.7'
 
     //Performance
-    implementation 'com.google.firebase:firebase-perf:16.2.1'
+    implementation 'com.google.firebase:firebase-perf:16.2.2'
 
     //Admob
-    implementation 'com.google.android.gms:play-services-ads:17.1.1'
+    implementation 'com.google.android.gms:play-services-ads:17.1.2'
 
     //Remote Config
-    implementation 'com.google.firebase:firebase-config:16.1.0'
+    implementation 'com.google.firebase:firebase-config:16.1.2'
 
     // Test
     testImplementation 'junit:junit:4.12'
