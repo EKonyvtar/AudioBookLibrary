@@ -378,7 +378,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private void fetchBitmapFromURLAsync(final String bitmapUrl,
                                          final NotificationCompat.Builder builder) {
-        BitmapHelper.fetch(mService.getApplicationContext(), bitmapUrl, new AlbumArtCache.FetchListener() {
+        BitmapHelper.fetch(mService.getApplicationContext(), bitmapUrl, new BitmapHelper.FetchListener() {
             @Override
             public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                 if (mMetadata != null && mMetadata.getDescription().getIconUri() != null &&
