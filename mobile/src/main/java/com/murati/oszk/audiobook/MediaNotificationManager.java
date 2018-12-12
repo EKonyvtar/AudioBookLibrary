@@ -43,6 +43,7 @@ import android.support.v4.media.session.PlaybackStateCompat;
 //import com.murati.oszk.audiobook.ui.GlideApp;
 
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
 
@@ -271,27 +272,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
         MediaDescriptionCompat description = mMetadata.getDescription();
 
-        String fetchArtUrl = null;
-        Bitmap art = null;
-        if (description.getIconUri() != null) {
-            // This sample assumes the iconUri will be a valid URL formatted String, but
-            // it can actually be any valid Android Uri formatted String.
-            // async fetch the album art icon
-            String artUrl = description.getIconUri().toString();
-            try {
-                //art = GlideApp.with(mService.getBaseContext()).asBitmap().load(artUrl).submit().get();
-                art = AlbumArtCache.getInstance().getBigImage(artUrl);
-            } catch (Exception ex) {
-                LogHelper.d(TAG, ex.getMessage());
-            }
-            if (art == null) {
-                fetchArtUrl = artUrl;
-                // use a placeholder art while the remote art is being downloaded
-                art = BitmapFactory.decodeResource(mService.getResources(),
-                    R.drawable.ic_launcher_white);
-            }
-        }
-
         // Notification channels are only supported on Android O+.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel();
@@ -316,7 +296,9 @@ public class MediaNotificationManager extends BroadcastReceiver {
             .setContentIntent(createContentIntent(description))
             .setContentTitle(description.getTitle())
             .setContentText(description.getSubtitle())
-            .setLargeIcon(art);
+            .setLargeIcon(
+                BitmapFactory.decodeResource(mService.getResources(), R.drawable.ic_launcher_white)
+            );
 
         if (mController != null && mController.getExtras() != null) {
             String castName = mController.getExtras().getString(MusicService.EXTRA_CONNECTED_CAST);
@@ -330,8 +312,11 @@ public class MediaNotificationManager extends BroadcastReceiver {
         }
 
         setNotificationPlaybackState(notificationBuilder);
-        if (fetchArtUrl != null) {
-            fetchBitmapFromURLAsync(fetchArtUrl, notificationBuilder);
+
+        if (description.getIconUri() != null) {
+            // This sample assumes the iconUri will be a valid URL formatted String, but
+            // it can actually be any valid Android Uri formatted String.
+            fetchBitmapFromURLAsync(description.getIconUri().toString(), notificationBuilder);
         }
 
         return notificationBuilder.build();
@@ -339,6 +324,8 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private int addActions(final NotificationCompat.Builder notificationBuilder) {
         LogHelper.d(TAG, "updatePlayPauseAction");
+
+        notificationBuilder.mActions.clear();
 
         int playPauseButtonPosition = 0;
         // If skip to previous action is enabled
@@ -391,14 +378,14 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private void fetchBitmapFromURLAsync(final String bitmapUrl,
                                          final NotificationCompat.Builder builder) {
-        AlbumArtCache.getInstance().fetch(bitmapUrl, new AlbumArtCache.FetchListener() {
+        BitmapHelper.fetch(mService.getApplicationContext(), bitmapUrl, new BitmapHelper.FetchListener() {
             @Override
             public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                 if (mMetadata != null && mMetadata.getDescription().getIconUri() != null &&
                     mMetadata.getDescription().getIconUri().toString().equals(artUrl)) {
                     // If the media is still the same, update the notification:
                     LogHelper.d(TAG, "fetchBitmapFromURLAsync: set bitmap to ", artUrl);
-                    builder.setLargeIcon(bitmap);
+                    builder.setLargeIcon(bitmap); //480x160x130
                     addActions(builder);
                     mNotificationManager.notify(NOTIFICATION_ID, builder.build());
                 }
