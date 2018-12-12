@@ -16,10 +16,16 @@
 
 package com.murati.oszk.audiobook;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.LruCache;
 
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.transition.Transition;
+import com.murati.oszk.audiobook.ui.GlideApp;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
@@ -72,51 +78,36 @@ public final class AlbumArtCache {
         return result == null ? null : result[BIG_BITMAP_INDEX];
     }
 
-
-    public void fetch(final String artUrl, final FetchListener listener) {
-        // WARNING: for the sake of simplicity, simultaneous multi-thread fetch requests
-        // are not handled properly: they may cause redundant costly operations, like HTTP
-        // requests and bitmap rescales. For production-level apps, we recommend you use
-        // a proper image loading library, like Glide.
-
-        //TODO: Offline caching
-        Bitmap[] bitmap = mCache.get(artUrl);
-        if (bitmap != null) {
-            LogHelper.d(TAG, "getOrFetch: album art is in cache, using it", artUrl);
-            listener.onFetched(artUrl, bitmap[BIG_BITMAP_INDEX], bitmap[ICON_BITMAP_INDEX]);
-            return;
-        }
-        LogHelper.d(TAG, "getOrFetch: starting asynctask to fetch ", artUrl);
-
-        new AsyncTask<Void, Void, Bitmap[]>() {
+    public void fetch(Context context, final String artUrl, final FetchListener listener) {
+        BaseTarget bitmapTarget = new BaseTarget<Bitmap>() {
             @Override
-            protected Bitmap[] doInBackground(Void[] objects) {
-                Bitmap[] bitmaps;
-                try {
-                    Bitmap bitmap = BitmapHelper.fetchAndRescaleBitmap(artUrl,
-                        MAX_ART_WIDTH, MAX_ART_HEIGHT);
-                    Bitmap icon = BitmapHelper.scaleBitmap(bitmap,
-                        MAX_ART_WIDTH_ICON, MAX_ART_HEIGHT_ICON);
-                    bitmaps = new Bitmap[] {bitmap, icon};
-                    mCache.put(artUrl, bitmaps);
-                } catch (IOException e) {
-                    return null;
-                }
-                LogHelper.d(TAG, "doInBackground: putting bitmap in cache. cache size=" +
-                    mCache.size());
-                return bitmaps;
-            }
+            public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                // do something with the bitmap
 
-            @Override
-            protected void onPostExecute(Bitmap[] bitmaps) {
-                if (bitmaps == null) {
-                    listener.onError(artUrl, new IllegalArgumentException("got null bitmaps"));
-                } else {
+                if (bitmap != null) {
+                    LogHelper.d(TAG, "getOrFetch: album art is in cache, using it", artUrl);
+                    Bitmap large = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH, MAX_ART_HEIGHT);
+                    Bitmap icon = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH_ICON, MAX_ART_HEIGHT_ICON);
+
                     listener.onFetched(artUrl,
-                        bitmaps[BIG_BITMAP_INDEX], bitmaps[ICON_BITMAP_INDEX]);
+                        large.copy(large.getConfig(), false),
+                        icon.copy(icon.getConfig(), false));
+                    return;
                 }
+
             }
-        }.execute();
+
+            @Override
+            public void getSize(SizeReadyCallback cb) {
+                cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
+                //cb.onSizeReady(MAX_ART_WIDTH, MAX_ART_HEIGHT);
+            }
+
+            @Override
+            public void removeCallback(SizeReadyCallback cb) {}
+        };
+
+        GlideApp.with(context).asBitmap().load(artUrl).into(bitmapTarget);
     }
 
     public static abstract class FetchListener {

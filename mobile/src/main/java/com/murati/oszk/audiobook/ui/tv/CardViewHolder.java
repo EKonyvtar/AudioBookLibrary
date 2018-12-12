@@ -36,6 +36,7 @@ import android.view.View;
 
 import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.ui.MediaItemViewHolder;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 
 public class CardViewHolder extends Presenter.ViewHolder {
 
@@ -105,7 +106,7 @@ public class CardViewHolder extends Presenter.ViewHolder {
             } else {
                 // Otherwise, we use iconBitmap if available while we wait for iconURI
                 setCardImage(context, description.getIconBitmap());
-                cache.fetch(artUrl, new AlbumArtCache.FetchListener() {
+                BitmapHelper.fetch(context, artUrl, new AlbumArtCache.FetchListener() {
                     @Override
                     public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                         setCardImage(context, bitmap);
