@@ -75,6 +75,7 @@ public class MusicProvider {
     private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     private MusicProviderSource mSource;
+    private final Context context;
 
     // Ebook cache
     private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
@@ -107,9 +108,11 @@ public class MusicProvider {
         }
 
         PlaybackHelper.setContext(c);
+
     }
     public MusicProvider(MusicProviderSource source, Context c) {
         mSource = source;
+        context = c;
 
         if (mTrackListById == null) {
             mTrackListById = new ConcurrentHashMap<>();
@@ -121,6 +124,10 @@ public class MusicProvider {
         }
     }
 
+
+    public Context getContext() {
+        return context;
+    }
 
     //region EBOOK_GETTERS
     public Iterable<String> getEbooksByGenre(String genre) {

@@ -27,15 +27,14 @@ import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v17.leanback.widget.ImageCardView;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.view.View;
 
-import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.ui.MediaItemViewHolder;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 
 public class CardViewHolder extends Presenter.ViewHolder {
 
@@ -91,27 +90,17 @@ public class CardViewHolder extends Presenter.ViewHolder {
         mCardView.setBadgeImage(drawable);
 
 
-        //TODO: replace glide
-        Uri artUri = description.getIconUri();
-        if (artUri == null) {
-            setCardImage(context, description.getIconBitmap());
-        } else {
-            // IconUri potentially has a better resolution than iconBitmap.
-            String artUrl = artUri.toString();
-            AlbumArtCache cache = AlbumArtCache.getInstance();
-            if (cache.getBigImage(artUrl) != null) {
-                // So, we use it immediately if it's cached:
-                setCardImage(context, cache.getBigImage(artUrl));
-            } else {
-                // Otherwise, we use iconBitmap if available while we wait for iconURI
-                setCardImage(context, description.getIconBitmap());
-                cache.fetch(artUrl, new AlbumArtCache.FetchListener() {
-                    @Override
-                    public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                        setCardImage(context, bitmap);
-                    }
-                });
-            }
+        // Set Bitmap to default
+        setCardImage(context, description.getIconBitmap());
+
+        // The try to load extra if present
+        if (description.getIconUri() != null) {
+            BitmapHelper.fetch(context, description.getIconUri().toString(), new BitmapHelper.FetchListener() {
+                @Override
+                public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
+                    setCardImage(context, bitmap);
+                }
+            });
         }
     }
 

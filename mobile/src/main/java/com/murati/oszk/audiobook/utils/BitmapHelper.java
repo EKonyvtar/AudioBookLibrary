@@ -15,28 +15,29 @@
  */
 package com.murati.oszk.audiobook.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.support.v4.media.MediaMetadataCompat;
 
-import com.murati.oszk.audiobook.AlbumArtCache;
-import com.murati.oszk.audiobook.R;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.transition.Transition;
+import com.murati.oszk.audiobook.ui.GlideApp;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
-    //TODO: remove static packagename
+    //TODO: remove static packagename and count in flavors
     private static final String packageName = "com.murati.oszk.audiobook";
 
-    // Max read limit that we allow our input stream to mark/reset.
-    private static final int MAX_READ_LIMIT_PER_IMG = 1024 * 1024;
+    private static final int MAX_ART_WIDTH = 800;  // pixels
+    private static final int MAX_ART_HEIGHT = 480;  // pixels
+
+    // Resolution reasonable for carrying around as an icon (generally in
+    // MediaDescription.getIconBitmap). This should not be bigger than necessary, because
+    // the MediaDescription object should be lightweight. If you set it too high and try to
+    // serialize the MediaDescription, you may get FAILED BINDER TRANSACTION errors.
+    private static final int MAX_ART_WIDTH_ICON = 128;  // pixels
+    private static final int MAX_ART_HEIGHT_ICON = 128;  // pixels
 
     public static Bitmap scaleBitmap(Bitmap src, int maxWidth, int maxHeight) {
        double scaleFactor = Math.min(
@@ -45,51 +46,43 @@ public class BitmapHelper {
             (int) (src.getWidth() * scaleFactor), (int) (src.getHeight() * scaleFactor), false);
     }
 
-    public static Bitmap scaleBitmap(int scaleFactor, InputStream is) {
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-
-        return BitmapFactory.decodeStream(is, null, bmOptions);
-    }
-
-    public static int findScaleFactor(int targetW, int targetH, InputStream is) {
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(is, null, bmOptions);
-        int actualW = bmOptions.outWidth;
-        int actualH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        return Math.min(actualW/targetW, actualH/targetH);
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    public static Bitmap fetchAndRescaleBitmap(String uri, int width, int height)
-            throws IOException {
-        URL url = new URL(uri);
-        BufferedInputStream is = null;
-        try {
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            is = new BufferedInputStream(urlConnection.getInputStream());
-            is.mark(MAX_READ_LIMIT_PER_IMG);
-            int scaleFactor = findScaleFactor(width, height, is);
-            LogHelper.d(TAG, "Scaling bitmap ", uri, " by factor ", scaleFactor, " to support ",
-                    width, "x", height, "requested dimension");
-            is.reset();
-            return scaleBitmap(scaleFactor, is);
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-        }
-    }
-
     public static Uri convertDrawabletoUri(int resourceId) {
         return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
+    }
+
+    public static void fetch(Context context, final String artUrl, final BitmapHelper.FetchListener listener) {
+        BaseTarget bitmapTarget = new BaseTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                if (bitmap != null) {
+                    Bitmap large = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH, MAX_ART_HEIGHT);
+                    Bitmap icon = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH_ICON, MAX_ART_HEIGHT_ICON);
+
+                    listener.onFetched(artUrl,
+                        large.copy(large.getConfig(), false),
+                        icon.copy(icon.getConfig(), false));
+                    return;
+                } else {
+                    LogHelper.d(TAG, "Bitmap could not fetched for", artUrl);
+                }
+            }
+
+            @Override
+            public void getSize(SizeReadyCallback cb) {
+                cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
+            }
+
+            @Override
+            public void removeCallback(SizeReadyCallback cb) {}
+        };
+
+        GlideApp.with(context).asBitmap().load(artUrl).into(bitmapTarget);
+    }
+
+    public static abstract class FetchListener {
+        public abstract void onFetched(String artUrl, Bitmap bigImage, Bitmap iconImage);
+        public void onError(String artUrl, Exception e) {
+            LogHelper.e(TAG, e, "BitmapFetchListener: error while downloading " + artUrl);
+        }
     }
 }
