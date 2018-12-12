@@ -23,13 +23,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 
-import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
-import com.murati.oszk.audiobook.utils.PlaybackHelper;
 import com.murati.oszk.audiobook.utils.QueueHelper;
 
 import java.util.ArrayList;

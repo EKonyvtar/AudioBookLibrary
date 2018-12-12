@@ -17,23 +17,12 @@ package com.murati.oszk.audiobook.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.support.v4.media.MediaMetadataCompat;
 
 import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
-import com.murati.oszk.audiobook.AlbumArtCache;
-import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.ui.GlideApp;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
