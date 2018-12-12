@@ -251,7 +251,7 @@ public class TvPlaybackFragment extends PlaybackSupportFragment {
     }
 
     private void updateAlbumArt(Uri artUri) {
-        BitmapHelper.fetch(getActivity(), artUri.toString(), new AlbumArtCache.FetchListener() {
+        BitmapHelper.fetch(getActivity(), artUri.toString(), new BitmapHelper.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                     if (bitmap != null) {

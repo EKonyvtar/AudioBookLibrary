@@ -195,7 +195,7 @@ public class QueueManager {
         if (metadata.getDescription().getIconBitmap() == null &&
                 metadata.getDescription().getIconUri() != null) {
             String albumUri = metadata.getDescription().getIconUri().toString();
-            BitmapHelper.fetch(mMusicProvider.getContext(), albumUri, new AlbumArtCache.FetchListener() {
+            BitmapHelper.fetch(mMusicProvider.getContext(), albumUri, new BitmapHelper.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                     mMusicProvider.updateTrackArt(musicId, bitmap, icon);
