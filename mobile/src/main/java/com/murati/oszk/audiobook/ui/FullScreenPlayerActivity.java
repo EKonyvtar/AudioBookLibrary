@@ -15,21 +15,16 @@
  */
 package com.murati.oszk.audiobook.ui;
 
-import android.app.SearchManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
@@ -44,24 +39,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.oszk.audiobook.R;
-import com.murati.oszk.audiobook.model.MusicProvider;
-import com.murati.oszk.audiobook.model.MusicProviderSource;
-import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
-import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 
 import java.util.ArrayList;

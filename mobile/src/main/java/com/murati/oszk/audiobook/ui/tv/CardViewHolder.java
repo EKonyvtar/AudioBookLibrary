@@ -27,14 +27,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v17.leanback.widget.ImageCardView;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.view.View;
 
-import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.ui.MediaItemViewHolder;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 

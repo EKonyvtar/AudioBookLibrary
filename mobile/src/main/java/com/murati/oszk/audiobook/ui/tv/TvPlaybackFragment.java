@@ -47,7 +47,6 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import com.murati.oszk.audiobook.AlbumArtCache;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.QueueHelper;
