@@ -21,12 +21,5 @@ import android.graphics.Bitmap;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
 public final class AlbumArtCache {
-    private static final String TAG = LogHelper.makeLogTag(AlbumArtCache.class);
 
-    public static abstract class FetchListener {
-        public abstract void onFetched(String artUrl, Bitmap bigImage, Bitmap iconImage);
-        public void onError(String artUrl, Exception e) {
-            LogHelper.e(TAG, e, "AlbumArtFetchListener: error while downloading " + artUrl);
-        }
-    }
 }

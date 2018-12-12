@@ -97,7 +97,7 @@ public class CardViewHolder extends Presenter.ViewHolder {
 
         // The try to load extra if present
         if (description.getIconUri() != null) {
-            BitmapHelper.fetch(context, description.getIconUri().toString(), new AlbumArtCache.FetchListener() {
+            BitmapHelper.fetch(context, description.getIconUri().toString(), new BitmapHelper.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                     setCardImage(context, bitmap);

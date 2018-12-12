@@ -61,7 +61,7 @@ public class BitmapHelper {
         return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
     }
 
-    public static void fetch(Context context, final String artUrl, final AlbumArtCache.FetchListener listener) {
+    public static void fetch(Context context, final String artUrl, final BitmapHelper.FetchListener listener) {
         BaseTarget bitmapTarget = new BaseTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
