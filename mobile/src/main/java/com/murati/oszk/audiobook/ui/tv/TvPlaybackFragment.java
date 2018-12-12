@@ -48,6 +48,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.murati.oszk.audiobook.AlbumArtCache;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.QueueHelper;
 
@@ -250,7 +251,7 @@ public class TvPlaybackFragment extends PlaybackSupportFragment {
     }
 
     private void updateAlbumArt(Uri artUri) {
-        AlbumArtCache.getInstance().fetch(artUri.toString(), new AlbumArtCache.FetchListener() {
+        BitmapHelper.fetch(getActivity(), artUri.toString(), new AlbumArtCache.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                     if (bitmap != null) {
