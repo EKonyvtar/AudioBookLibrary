@@ -43,6 +43,7 @@ import android.support.v4.media.session.PlaybackStateCompat;
 //import com.murati.oszk.audiobook.ui.GlideApp;
 
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
+import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
 
@@ -340,6 +341,8 @@ public class MediaNotificationManager extends BroadcastReceiver {
     private int addActions(final NotificationCompat.Builder notificationBuilder) {
         LogHelper.d(TAG, "updatePlayPauseAction");
 
+        notificationBuilder.mActions.clear();
+
         int playPauseButtonPosition = 0;
         // If skip to previous action is enabled
         if ((mPlaybackState.getActions() & PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS) != 0) {
@@ -391,14 +394,14 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private void fetchBitmapFromURLAsync(final String bitmapUrl,
                                          final NotificationCompat.Builder builder) {
-        AlbumArtCache.getInstance().fetch(bitmapUrl, new AlbumArtCache.FetchListener() {
+        BitmapHelper.fetch(mService.getApplicationContext(), bitmapUrl, new AlbumArtCache.FetchListener() {
             @Override
             public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                 if (mMetadata != null && mMetadata.getDescription().getIconUri() != null &&
                     mMetadata.getDescription().getIconUri().toString().equals(artUrl)) {
                     // If the media is still the same, update the notification:
                     LogHelper.d(TAG, "fetchBitmapFromURLAsync: set bitmap to ", artUrl);
-                    builder.setLargeIcon(bitmap);
+                    builder.setLargeIcon(bitmap); //480x160x130
                     addActions(builder);
                     mNotificationManager.notify(NOTIFICATION_ID, builder.build());
                 }
