@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/muratiakos/EKonyvtarAudio.svg?style=svg)](https://circleci.com/gh/muratiakos/EKonyvtarAudio)
+
 E-Könyvtár AudioBook
 ====================
 
