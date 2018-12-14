@@ -71,12 +71,16 @@ import static android.view.View.VISIBLE;
 public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private static final String TAG = LogHelper.makeLogTag(FullScreenPlayerActivity.class);
     private static final long PROGRESS_UPDATE_INTERNAL = 1000;
+    private static final long PLAY_SHIFT = 3000;
+
     private static final long PROGRESS_UPDATE_INITIAL_INTERVAL = 100;
 
     private AdView mAdView;
 
     private ImageView mSkipPrev;
+    private ImageView mPlayBackward;
     private ImageView mSkipNext;
+    private ImageView mPlayForward;
     private ImageView mPlayPause;
     private TextView mStart;
     private TextView mEnd;
@@ -172,8 +176,14 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mPauseDrawable = ContextCompat.getDrawable(this, R.drawable.uamp_ic_pause_white_48dp);
         mPlayDrawable = ContextCompat.getDrawable(this, R.drawable.uamp_ic_play_arrow_white_48dp);
         mPlayPause = (ImageView) findViewById(R.id.play_pause);
+
         mSkipNext = (ImageView) findViewById(R.id.next);
+        mPlayBackward = (ImageView) findViewById(R.id.backward);
+
         mSkipPrev = (ImageView) findViewById(R.id.prev);
+        mPlayForward = (ImageView) findViewById(R.id.forward);
+
+
         mStart = (TextView) findViewById(R.id.startText);
         mEnd = (TextView) findViewById(R.id.endText);
         mSeekbar = (SeekBar) findViewById(R.id.seekBar1);
