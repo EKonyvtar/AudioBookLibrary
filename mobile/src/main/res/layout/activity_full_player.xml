@@ -179,6 +179,16 @@ limitations under the License.
                     android:src="@drawable/ic_skip_previous_white_48dp" />
 
                 <ImageView
+                    android:id="@+id/backward"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="6dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/skip_prev"
+                    android:src="@drawable/ic_play_backward" />
+
+                <ImageView
                     android:id="@+id/play_pause"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -186,6 +196,17 @@ limitations under the License.
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/play_pause"
                     android:src="@drawable/uamp_ic_play_arrow_white_48dp" />
+
+                <ImageView
+                    android:id="@+id/forward"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="6dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/skip_next"
+                    android:src="@drawable/ic_play_forward" />
+
 
                 <ImageView
                     android:id="@+id/next"
