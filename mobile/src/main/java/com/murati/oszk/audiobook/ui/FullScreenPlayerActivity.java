@@ -201,11 +201,29 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             }
         });
 
+        mPlayForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
+                //controls.fastForward();
+                //controls.skipToNext();
+                controls.seekTo(mLastPlaybackState.getPosition()+30000);
+            }
+        });
+
         mSkipPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
                 controls.skipToPrevious();
+            }
+        });
+
+        mPlayBackward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
+                controls.seekTo(mLastPlaybackState.getPosition()-30000);
             }
         });
 
