@@ -560,8 +560,7 @@ public class MusicProvider {
 
         } catch (Exception ex) {
             //TODO: signal errors properly to UI
-            LogHelper.w(TAG, "Something went wrong processing", mediaId);
-            Log.d(TAG, ex.getMessage());
+            LogHelper.e(TAG, "Unknown MusicProvider childer error: " + ex.getMessage(), mediaId);
         }
         return mediaItems;
     }
