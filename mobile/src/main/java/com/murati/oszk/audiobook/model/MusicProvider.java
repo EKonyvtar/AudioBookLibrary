@@ -33,6 +33,7 @@ import com.murati.oszk.audiobook.R;
 import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
+import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
@@ -156,32 +157,36 @@ public class MusicProvider {
         return mEbookList.get(ebook);
     }
 
-  public Iterable<String> getEbooksByQueryString(String query) {
-    if (mCurrentState != State.INITIALIZED) {
-      return Collections.emptyList();
-    }
-
-    TreeSet<String> sortedEbookTitles = new TreeSet<String>();
-    //TODO: Handle accents
-    query = query.toLowerCase(Locale.US);
-
-    for (MutableMediaMetadata track: mTrackListById.values() ) {
-      String title = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-      if (!sortedEbookTitles.contains(title)) {
-        String search_fields =
-          track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM) + "|" +
-            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE) + "|" +
-            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER) + "|" +
-            track.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
-
-        if (search_fields.toLowerCase(Locale.US).contains(query)) {
-          sortedEbookTitles.add(title);
+    public Iterable<String> getEbooksByQueryString(String query) {
+        if (mCurrentState != State.INITIALIZED) {
+          return Collections.emptyList();
         }
-      }
-    }
 
-    return sortedEbookTitles;
-  }
+        TreeSet<String> sortedEbookTitles = new TreeSet<String>();
+        query = query.toLowerCase(Locale.US);
+
+        for (MutableMediaMetadata track: mTrackListById.values() ) {
+            String title = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+
+            if (!sortedEbookTitles.contains(title)) {
+                String search_fields = "";
+                search_fields = track.metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM) + "|" +
+                  track.metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE) + "|" +
+                  track.metadata.getString(MediaMetadataCompat.METADATA_KEY_WRITER) + "|" +
+                  track.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+
+                search_fields = search_fields.toLowerCase(Locale.US);
+                String accentless = LanguageHelper.replaceAccent(search_fields);
+                if (accentless != "") search_fields += accentless;
+
+                if (search_fields.toLowerCase(Locale.US).contains(query)) {
+                  sortedEbookTitles.add(title);
+                }
+            }
+        }
+
+        return sortedEbookTitles;
+    }
 
 
     //endregion
@@ -256,7 +261,7 @@ public class MusicProvider {
 
     //region BUILD_TYPELISTS
 
-    @AddTrace(name = "CatalogIndexing", enabled = true)
+    @AddTrace(name = "CatalogIndexing")
     private synchronized void buildCatalogIndex() {
         //TODO: rename album to ebook
         ConcurrentMap<String, List<MediaMetadataCompat>> newEbookList = new ConcurrentHashMap<>();
