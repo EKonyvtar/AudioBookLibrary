@@ -71,7 +71,7 @@ import static android.view.View.VISIBLE;
 public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private static final String TAG = LogHelper.makeLogTag(FullScreenPlayerActivity.class);
     private static final long PROGRESS_UPDATE_INTERNAL = 1000;
-    private static final long PLAY_SHIFT = 3000;
+    private static final long PLAY_SHIFT = 30000;
 
     private static final long PROGRESS_UPDATE_INITIAL_INTERVAL = 100;
 
@@ -207,7 +207,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
                 MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
                 //controls.fastForward();
                 //controls.skipToNext();
-                controls.seekTo(mLastPlaybackState.getPosition()+30000);
+                controls.seekTo(mLastPlaybackState.getPosition()+PLAY_SHIFT);
             }
         });
 
@@ -223,7 +223,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             @Override
             public void onClick(View v) {
                 MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
-                controls.seekTo(mLastPlaybackState.getPosition()-30000);
+                controls.seekTo(mLastPlaybackState.getPosition()-PLAY_SHIFT);
             }
         });
 
