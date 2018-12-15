@@ -228,10 +228,14 @@ public class MusicService extends MediaBrowserServiceCompat implements
         }
 
         if (!TvHelper.isTvUiMode(this)) {
-            mCastSessionManager = CastContext.getSharedInstance(this).getSessionManager();
-            mCastSessionManagerListener = new CastSessionManagerListener();
-            mCastSessionManager.addSessionManagerListener(mCastSessionManagerListener,
+            try {
+                mCastSessionManager = CastContext.getSharedInstance(this).getSessionManager();
+                mCastSessionManagerListener = new CastSessionManagerListener();
+                mCastSessionManager.addSessionManagerListener(mCastSessionManagerListener,
                     CastSession.class);
+            } catch (Exception ex) {
+                Log.e(TAG, "Error initializing Google Cast Session manager: " + ex.getMessage());
+            }
         }
 
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
