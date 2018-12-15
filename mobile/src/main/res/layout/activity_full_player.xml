@@ -180,9 +180,10 @@ limitations under the License.
 
                 <ImageView
                     android:id="@+id/backward"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="6dp"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/skip_prev"
                     android:src="@drawable/ic_play_backward" />
@@ -198,9 +199,10 @@ limitations under the License.
 
                 <ImageView
                     android:id="@+id/forward"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="6dp"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/skip_next"
                     android:src="@drawable/ic_play_forward" />
