@@ -270,13 +270,19 @@ public class MusicPlayerActivity extends BaseActivity
         startFullScreenActivityIfNeeded(intent);
     }
 
+
+    //TODO: fix bug: Fatal Exception: java.lang.ClassCastException
+    //android.support.v4.media.MediaDescriptionCompat cannot be cast to android.os.Bundle
+    //com.murati.oszk.audiobook.ui.MusicPlayerActivity.startFullScreenActivityIfNeeded
+
     private void startFullScreenActivityIfNeeded(Intent intent) {
         if (intent != null && intent.getBooleanExtra(EXTRA_START_FULLSCREEN, false)) {
             Intent fullScreenIntent = new Intent(this, FullScreenPlayerActivity.class)
-                .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(EXTRA_CURRENT_MEDIA_DESCRIPTION,
-                    intent.getParcelableExtra(EXTRA_CURRENT_MEDIA_DESCRIPTION));
+                .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(
+                    EXTRA_CURRENT_MEDIA_DESCRIPTION,
+                    intent.getParcelableExtra(EXTRA_CURRENT_MEDIA_DESCRIPTION)
+                );
             startActivity(fullScreenIntent);
         }
     }
