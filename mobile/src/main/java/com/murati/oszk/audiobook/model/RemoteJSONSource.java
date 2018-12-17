@@ -18,6 +18,7 @@ package com.murati.oszk.audiobook.model;
 
 import android.app.Activity;
 import android.support.v4.media.MediaMetadataCompat;
+import android.util.Log;
 
 import com.murati.oszk.audiobook.utils.LogHelper;
 
@@ -32,6 +33,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 /**
  * Utility class to get a list of available tracks based on a server-side JSON
@@ -124,7 +126,9 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // Fix writer
         if (writer == null || writer.trim().length() == 0) {
             if (title.contains(":")) {
+                //TODO: fix by generating empty title
                 writer = title.split(":")[0];
+                Log.w(TAG, "Writer from title: " + title);
             } else {
                 writer = "Ismeretlen szerző"; //TODO: resource
             }
