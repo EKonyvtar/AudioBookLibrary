@@ -105,7 +105,7 @@ public class MusicProvider {
             FavoritesHelper.setContext(c);
             FavoritesHelper.loadFavorites();
         } catch (Exception e){
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "MusicProvider constructor fails with " + e.getMessage());
         }
 
         PlaybackHelper.setContext(c);
