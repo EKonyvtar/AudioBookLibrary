@@ -227,15 +227,16 @@ public class MusicService extends MediaBrowserServiceCompat implements
             throw new IllegalStateException("Could not create a MediaNotificationManager", e);
         }
 
-        if (!TvHelper.isTvUiMode(this)) {
-            try {
+        try {
+            if (!TvHelper.isTvUiMode(this)) {
+
                 mCastSessionManager = CastContext.getSharedInstance(this).getSessionManager();
                 mCastSessionManagerListener = new CastSessionManagerListener();
                 mCastSessionManager.addSessionManagerListener(mCastSessionManagerListener,
                     CastSession.class);
-            } catch (Exception ex) {
-                Log.e(TAG, "Error initializing Google Cast Session manager: " + ex.getMessage());
             }
+        } catch (Exception ex) {
+            Log.e(TAG, "Error initializing Google Cast Session manager: " + ex.getMessage());
         }
 
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
