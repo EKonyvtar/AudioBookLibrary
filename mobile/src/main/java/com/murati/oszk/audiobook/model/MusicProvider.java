@@ -300,7 +300,7 @@ public class MusicProvider {
             //TODO: Client resource translations
             String key = mv.replaceAll("\\(.*\\)","");
             if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
-                Log.i(TAG, "Skipping " + key);
+                Log.w(TAG, "Skipping " + key);
                 continue;
             }
             key = DisplayHelper.Capitalize(key);
