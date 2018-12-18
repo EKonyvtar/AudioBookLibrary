@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,8 @@ import java.util.concurrent.ConcurrentMap;
 public class MediaBrowserFragment extends Fragment {
 
     private ListView mlistView;
+    private ProgressBar mLoading;
+
     private static final String TAG = LogHelper.makeLogTag(MediaBrowserFragment.class);
 
     //TODO: cleanup with helper
@@ -125,6 +128,8 @@ public class MediaBrowserFragment extends Fragment {
                     LogHelper.d(TAG, "fragment onChildrenLoaded, parentId=" + parentId +
                         "  count=" + children.size());
                     checkForUserVisibleErrors(children.isEmpty());
+
+                    mLoading.setVisibility(View.GONE);
                     mBrowserAdapter.clear();
                     for (MediaBrowserCompat.MediaItem item : children) {
                         if (FeatureHelper.canShowItem(item))
@@ -184,6 +189,8 @@ public class MediaBrowserFragment extends Fragment {
         mErrorView = rootView.findViewById(R.id.playback_error);
         mErrorMessage = (TextView) mErrorView.findViewById(R.id.error_message);
 
+        mLoading = rootView.findViewById(R.id.list_loading_progressbar);
+
         mBrowserAdapter = new BrowseAdapter(getActivity());
 
         //final ListView mlistView = (ListView) rootView.findViewById(R.id.list_view);
@@ -194,7 +201,7 @@ public class MediaBrowserFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 checkForUserVisibleErrors(false);
                 if (mediaId != null) {
-                    //TODO: listview restore position
+                    //Listview to restore position
                     int visiblePosition = mlistView.getFirstVisiblePosition();
                     //visiblePosition = mlistView.getScrollY();
 
@@ -235,7 +242,6 @@ public class MediaBrowserFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         // fetch browsing information to fill the listview:
         MediaBrowserCompat mediaBrowser = mMediaFragmentListener.getMediaBrowser();
 
@@ -294,6 +300,8 @@ public class MediaBrowserFragment extends Fragment {
         if (isDetached()) {
             return;
         }
+        mLoading.setVisibility(View.VISIBLE);
+
         mMediaId = getMediaId();
         if (mMediaId == null) {
             mMediaId = mMediaFragmentListener.getMediaBrowser().getRoot();
@@ -311,8 +319,8 @@ public class MediaBrowserFragment extends Fragment {
         // subscriber or if the media content changes on the service side, so we need to
         // unsubscribe first.
         mMediaFragmentListener.getMediaBrowser().unsubscribe(mMediaId);
-
         mMediaFragmentListener.getMediaBrowser().subscribe(mMediaId, mSubscriptionCallback);
+
 
         // Add MediaController callback so we can redraw the list when metadata changes:
         MediaControllerCompat controller = MediaControllerCompat.getMediaController(getActivity());
