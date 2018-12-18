@@ -38,6 +38,7 @@ import android.support.v4.media.app.NotificationCompat.MediaStyle;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.util.Log;
 
 //import com.bumptech.glide.request.target.Target;
 //import com.murati.oszk.audiobook.ui.GlideApp;
@@ -281,6 +282,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
             new NotificationCompat.Builder(mService, CHANNEL_ID);
 
         final int playPauseButtonPosition = addActions(notificationBuilder);
+
         notificationBuilder
             .setStyle(new MediaStyle()
                 // show only play/pause in compact view
@@ -319,7 +321,20 @@ public class MediaNotificationManager extends BroadcastReceiver {
             fetchBitmapFromURLAsync(description.getIconUri().toString(), notificationBuilder);
         }
 
-        return notificationBuilder.build();
+        /*
+        Try to avoid Android 5.1 notification expansion errors:
+        android.app.RemoteServiceException: Bad notification posted from package com.murati.oszk.audiobook:
+        Couldn't expand RemoteViews for: StatusBarNotification
+        (pkg=com.murati.oszk.audiobook user=UserHandle{0} id=412 tag=null score=0 key=0|com.murati.oszk.audiobook|412|null|10108: Notification(pri=0 contentView=com.murati.oszk.audiobook/0x109007f vibrate=null sound=null defaults=0x0 flags=0x8 color=0xffbe0224 category=transport actions=3 vis=PUBLIC))
+         */
+
+        try {
+            Notification notification = notificationBuilder.build();
+            return notification;
+        } catch (Exception ex) {
+            Log.e(TAG, "Notification builder failed to render" + ex.getMessage());
+        }
+        return null;
     }
 
     private int addActions(final NotificationCompat.Builder notificationBuilder) {
