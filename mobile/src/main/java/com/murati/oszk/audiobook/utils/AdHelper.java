@@ -34,7 +34,7 @@ public class AdHelper {
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-        return 0;
+        return AD_DEFAULT;
     }
 
 }
