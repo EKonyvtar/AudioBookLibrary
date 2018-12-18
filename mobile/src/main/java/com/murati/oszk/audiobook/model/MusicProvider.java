@@ -105,7 +105,7 @@ public class MusicProvider {
             FavoritesHelper.setContext(c);
             FavoritesHelper.loadFavorites();
         } catch (Exception e){
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "MusicProvider constructor fails with " + e.getMessage());
         }
 
         PlaybackHelper.setContext(c);
@@ -154,7 +154,18 @@ public class MusicProvider {
         if (mCurrentState != State.INITIALIZED || !mEbookList.containsKey(ebook)) {
             return Collections.emptyList();
         }
-        return mEbookList.get(ebook);
+
+        //Sort Tracklist as lazy load was introduced in indexing
+        List<MediaMetadataCompat> tracklist = mEbookList.get(ebook);
+        java.util.Collections.sort(tracklist, new Comparator<MediaMetadataCompat>(){
+            @Override
+            public int compare(final MediaMetadataCompat lhs,MediaMetadataCompat rhs) {
+                if (lhs.getLong(METADATA_KEY_TRACK_NUMBER) < rhs.getLong(METADATA_KEY_TRACK_NUMBER))
+                    return -1;
+                return 1;
+            }
+        });
+        return tracklist;
     }
 
     public Iterable<String> getEbooksByQueryString(String query) {
@@ -246,7 +257,7 @@ public class MusicProvider {
         new AsyncTask<Void, Void, State>() {
             @Override
             protected State doInBackground(Void... params) {
-                retrieveMedia();
+                retrieveCatalog();
                 return mCurrentState;
             }
 
@@ -277,8 +288,8 @@ public class MusicProvider {
             list.add(m.metadata);
         }
 
-        //Sort Individual ebooks by track numbers
-        for (List<MediaMetadataCompat> ebook: newEbookList.values()) {
+        //Sort Individual ebook chapters by track numbers
+        /*for (List<MediaMetadataCompat> ebook: newEbookList.values()) {
             //MediaMetadataCompat[] sortedOrder = album.toArray(new MediaMetadataCompat[album.size()]);
             java.util.Collections.sort(ebook, new Comparator<MediaMetadataCompat>(){
                 @Override
@@ -288,7 +299,7 @@ public class MusicProvider {
                     return 1;
                 }
             });
-        }
+        }*/
         mEbookList = newEbookList;
     }
 
@@ -300,7 +311,7 @@ public class MusicProvider {
             //TODO: Client resource translations
             String key = mv.replaceAll("\\(.*\\)","");
             if (key.matches("^(\\d+|\\.).*")) { // Numbers or dots
-                Log.i(TAG, "Skipping " + key);
+                Log.w(TAG, "Skipping " + key);
                 continue;
             }
             key = DisplayHelper.Capitalize(key);
@@ -321,7 +332,8 @@ public class MusicProvider {
     }
 
     // Load MediaData from mSource
-    private synchronized void retrieveMedia() {
+    @AddTrace(name = "RetrieveCatalog")
+    private synchronized void retrieveCatalog() {
         try {
             if (mCurrentState == State.NON_INITIALIZED) {
                 mCurrentState = State.INITIALIZING;

@@ -12,7 +12,7 @@ http://mek.oszk.hu/02300/02328
 http://mek.oszk.hu/02300/02358
 http://mek.oszk.hu/02300/02359
 http://mek.oszk.hu/02300/02363
-#http://mek.oszk.hu/02300/02364
+#Kalevala - http://mek.oszk.hu/02300/02364
 http://mek.oszk.hu/02300/02367
 http://mek.oszk.hu/02300/02368
 http://mek.oszk.hu/02300/02375
@@ -62,7 +62,7 @@ http://mek.oszk.hu/02900/02967
 http://mek.oszk.hu/02900/02970
 http://mek.oszk.hu/02900/02971
 http://mek.oszk.hu/02900/02972
-http://mek.oszk.hu/03000/03071
+# Tajnyelv - http://mek.oszk.hu/03000/03071
 http://mek.oszk.hu/03000/03072
 http://mek.oszk.hu/03000/03073
 http://mek.oszk.hu/03000/03075
@@ -115,7 +115,7 @@ http://mek.oszk.hu/03700/03742
 http://mek.oszk.hu/03700/03743
 http://mek.oszk.hu/03700/03798
 http://mek.oszk.hu/03700/03799
-http://mek.oszk.hu/03800/03833
+#Tajnyelv - http://mek.oszk.hu/03800/03833
 http://mek.oszk.hu/03900/03980
 http://mek.oszk.hu/03900/03981
 http://mek.oszk.hu/03900/03985
