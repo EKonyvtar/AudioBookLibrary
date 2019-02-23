@@ -7,8 +7,8 @@
 <string name="browse_genres">Genres</string>
 <string name="browse_genre_subtitle">Titles by genre</string>
 
-<string name="browse_writer">Writers</string>
-<string name="browse_writer_subtitle">Browse writers</string>
+<string name="browse_writer">Authors</string>
+<string name="browse_writer_subtitle">Browse authors</string>
 
 <string name="browse_ebook">Alphabetical</string>
 <string name="browse_ebook_subtitle">Browse all titles</string>
@@ -17,7 +17,7 @@
 <string name="browse_title_count">%1$s books</string>
 
 <string name="random_queue_title">Random titles</string>
-<string name="error_loading_media">Error Loading Media</string>
+<string name="error_loading_media">Nothing to show</string>
 <string name="casting_to_device">Casting to %1$s</string>
 <string name="currently_playing_song">Currently playing</string>
 <string name="currently_playing_artist">Artist of currently playing song</string>
@@ -33,7 +33,7 @@
 <string name="action_listen">Listen</string>
 <string name="open_content_drawer">Open the main menu</string>
 <string name="close_content_drawer">Close the main menu</string>
-<string name="placeholder_message">This is a placeholder for your application code.</string>
+<string name="placeholder_message">Under Development - Coming soon...</string>
 <string name="drawer_allmusic_title">All AudioBook</string>
 <string name="drawer_playlists_title">Playlists</string>
 <string name="now_playing">Now Playing</string>
@@ -53,4 +53,23 @@
 
 <string name="app_name">Hangoskönyvtár</string>
     <string name="app_name">AudioBook Library</string>
+    <string name="drawer_settings_title">Settings</string>
+    <string name="drawer_feedback_title">Feedback</string>
+    <string name="drawer_about_title">About</string>
+    <string name="label_catalog">Catalogue</string>
+    <string name="browse_queue">Playlist</string>
+    <string name="drawer_quit_title">Quit</string>
+    <string name="browse_favorites">Favourites</string>
+    <string name="confirm_cancel">Undo</string>
+    <string name="action_favorite">Favourite</string>
+    <string name="action_favorite_add">Add to favourites</string>
+    <string name="action_favorite_remove">Remove from favourites</string>
+    <string name="action_download">Download</string>
+    <string name="notification_favorite_removed">Removed from favourites</string>
+    <string name="notification_favorite_added">Added to favourites</string>
+    <string name="browse_downloads">Downloads</string>
+    <string name="browse_downloads_subtitle">Previously downloaded audiobooks</string>
+    <string name="confirm_delete">Delete</string>
+    <string name="confirm_delete_question">Are you sure you want to delete this audiobook</string>
+    <string name="notification_channel">com.murati.oszk.audiobook.notification</string>
 </resources>
