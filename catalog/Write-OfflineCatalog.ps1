@@ -42,8 +42,9 @@ function Get-RemoteFile($remotefile) {
 	$cacheFile = $remotefile
 	$cacheFile = $cacheFile -ireplace "http://",""
 	$cacheFile = $cacheFile -ireplace "/","|"
-	$cacheFile = "./cache/$cacheFile"
+	$cacheFile = $cacheFile -ireplace "\?","#"
 	$missingFile = "./cache/missing/$cacheFile"
+	$cacheFile = "./cache/$cacheFile"
 
 	try {
 		if (-Not (Test-Path $cacheFile)) {
@@ -67,6 +68,7 @@ function Get-Tracks($zipfile) {
 	$cacheFile = $m3u
 	$cacheFile = $cacheFile -ireplace "http://",""
 	$cacheFile = $cacheFile -ireplace "/","|"
+	$cacheFile = $cacheFile -ireplace "\?","#"
 	$cacheFile = "./cache/$cacheFile"
 
 	try {
@@ -82,9 +84,7 @@ function Get-Tracks($zipfile) {
 }
 
 function Get-Cover($zipfile) {
-	if (-Not $zipfile) {
-		return ""
-	}
+	if (-Not $zipfile) { return "" }
 	#https://ia800702.us.archive.org/19/items/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_files.xml
 	$remotefile=$zipfile -ireplace "_64kb_mp3.zip","_files.xml"
 	$xml = $null
@@ -169,7 +169,7 @@ foreach ($locale in $Locales) {
 			$trackObject.title = "$part $trackNumber"
 			$trackObject.source = $t
 			$trackObject.trackNumber = $trackNumber
-			$trackObject.totalTrackCount = $totalCount
+			$trackObject.totalTrackCount = $totalCount-1
 
 			$catalog += $trackObject
 			$trackObject
