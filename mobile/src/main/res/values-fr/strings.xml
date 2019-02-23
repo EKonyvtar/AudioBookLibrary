@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Bibliothèque  d\'AudioLivre</string>
+    <string name="placeholder_message">En développement - Bientôt disponible ...</string>
+    <string name="drawer_allmusic_title">Tout audiolivres</string>
+    <string name="error_no_metadata">Impossible de récupérer les métadonnées</string>
+    <string name="label_catalog">Catalogue</string>
+    <string name="browse_genres">Genres</string>
+    <string name="browse_genre_subtitle">Titres par genre</string>
+    <string name="browse_writer">Auteurs</string>
+    <string name="browse_writer_subtitle">Parcourir les auteurs</string>
+    <string name="browse_favorites">Favoris</string>
+    <string name="action_listen">Écoute</string>
+    <string name="confirm_cancel">Annuler</string>
+    <string name="action_favorite_add">Ajouter aux favoris</string>
+    <string name="browse_title_count">%1$s livres</string>
+    <string name="browse_track_count">%1$s pistes</string>
+    <string name="action_favorite_remove">Supprimer des favoris</string>
+    <string name="action_download">Télécharger</string>
+    <string name="notification_favorite_removed">Retiré des favoris</string>
+    <string name="notification_favorite_added">Ajouté aux favoris</string>
+    <string name="browse_downloads">Téléchargements</string>
+    <string name="confirm_delete">Effacer</string>
+    <string name="confirm_delete_question">Êtes-vous sûr de vouloir supprimer ce livre audio?</string>
+    <string name="notification_channel">com.murati.oszk.audiobook.notification</string>
+    <string name="error_loading_media">Rien à montrer</string>
+    <string name="drawer_quit_title">Quitter</string>
 </resources>
