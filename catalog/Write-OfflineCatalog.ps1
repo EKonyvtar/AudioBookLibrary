@@ -33,6 +33,32 @@ function Reorder-Title($text) {
 	return $name
 }
 
+function Test-RemoteFile($remotefile) {
+	$file = Get-RemoteFile $remotefile
+	return ($file -ne $null)
+}
+
+function Get-RemoteFile($remotefile) {
+	$cacheFile = $remotefile
+	$cacheFile = $cacheFile -ireplace "http://",""
+	$cacheFile = $cacheFile -ireplace "/","|"
+	$cacheFile = "./cache/$cacheFile"
+	$missingFile = "./cache/missing/$cacheFile"
+
+	try {
+		if (-Not (Test-Path $cacheFile)) {
+			$response = Invoke-WebRequest -Uri $remotefile -UseBasicParsing -OutFile $cacheFile #| Select -ExpandProperty Content
+		}
+		$content = Get-Content $cacheFile -Raw
+		Remove-item -Path $missingFile -EA 0 -Force
+		return $content
+	} catch {
+		Set-Content -Path $missingFile -Value $remotefile -Force -EA 0
+	}
+
+	return $null;
+}
+
 function Get-Tracks($zipfile) {
 	# http://www.archive.org/download/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_64kb_mp3.zip
 	$m3u=$zipfile -ireplace "_mp3.zip",".m3u"
@@ -62,18 +88,8 @@ function Get-Cover($zipfile) {
 	#https://ia800702.us.archive.org/19/items/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_files.xml
 	$remotefile=$zipfile -ireplace "_64kb_mp3.zip","_files.xml"
 	$xml = $null
-	
-	$cacheFile = $remotefile
-	$cacheFile = $cacheFile -ireplace "http://",""
-	$cacheFile = $cacheFile -ireplace "/","|"
-	$cacheFile = "./cache/$cacheFile"
-
 	try {
-		if (-Not (Test-Path $cacheFile)) {
-			$response = Invoke-WebRequest -Uri $remotefile -UseBasicParsing -OutFile $cacheFile #| Select -ExpandProperty Content
-		}
-
-		$content = Get-Content $cacheFile -Raw
+		$content = Get-RemoteFile $remotefile
 		$xml = [xml]$content
 		$parentUrl = Split-Path -Path $remotefile -Parent
 		$images = $xml.files.file | where name -imatch "\.jpg"
@@ -81,14 +97,14 @@ function Get-Cover($zipfile) {
 		foreach ($image in $images) {
 			$imageUrl = "$parentUrl/"+$image.name
 			try {
-				$response = Invoke-WebRequest -Uri $imageUrl -UseBasicParsing
-				if ($response.StatusCode -eq 200) {
+				if (Test-RemoteFile $imageUrl) {
 					return $imageUrl
 				} else {
 					Write-Error "$imageUrl missing"
 				}
 			} catch {
 				#Does not exist
+				Write-Error $_
 			}
 		}
 	} catch { }
@@ -145,9 +161,7 @@ foreach ($locale in $Locales) {
 		$totalCount = $trackUrls| Measure-Object | Select-Object -Expand Count
 
 		foreach ($t in $trackUrls) {
-			if ([String]::IsNullOrEmpty($t)) {
-				continue
-			}
+			if ([String]::IsNullOrEmpty($t)) { continue }
 			Write-Host "`t $t" -ForegroundColor Magenta
 
 			$trackNumber++
