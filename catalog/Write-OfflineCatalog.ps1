@@ -24,6 +24,15 @@ function Reorder-Name($text) {
 	}
 	return $name
 }
+
+
+function Reorder-Title($text) {
+	if ($text.Contains(", The")) {
+		$text = "The " + ($text -ireplace ", The","")
+	}
+	return $name
+}
+
 function Get-Tracks($zipfile) {
 	# http://www.archive.org/download/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_64kb_mp3.zip
 	$m3u=$zipfile -ireplace "_mp3.zip",".m3u"
@@ -47,8 +56,43 @@ function Get-Tracks($zipfile) {
 }
 
 function Get-Cover($zipfile) {
+	if (-Not $zipfile) {
+		return ""
+	}
 	#https://ia800702.us.archive.org/19/items/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_files.xml
-	return "TODO"
+	$remotefile=$zipfile -ireplace "_64kb_mp3.zip","_files.xml"
+	$xml = $null
+	
+	$cacheFile = $remotefile
+	$cacheFile = $cacheFile -ireplace "http://",""
+	$cacheFile = $cacheFile -ireplace "/","|"
+	$cacheFile = "./cache/$cacheFile"
+
+	try {
+		if (-Not (Test-Path $cacheFile)) {
+			$response = Invoke-WebRequest -Uri $remotefile -UseBasicParsing -OutFile $cacheFile #| Select -ExpandProperty Content
+		}
+
+		$content = Get-Content $cacheFile -Raw
+		$xml = [xml]$content
+		$parentUrl = Split-Path -Path $remotefile -Parent
+		$images = $xml.files.file | where name -imatch "\.jpg"
+
+		foreach ($image in $images) {
+			$imageUrl = "$parentUrl/"+$image.name
+			try {
+				$response = Invoke-WebRequest -Uri $imageUrl -UseBasicParsing
+				if ($response.StatusCode -eq 200) {
+					return $imageUrl
+				}
+			} catch {
+				#Does not exist
+			}
+		}
+
+	} catch { }
+
+	return ""
 }
 
 Set-Location $PSScriptRoot
@@ -68,7 +112,7 @@ foreach ($locale in $Locales) {
 	$audioBooks = $allBook | Where language -ieq $locale
 	foreach ($book in $audioBooks) {
 		$count++
-		if ($book -match "^#") {
+		if ($book -match "^#" -or [String]::IsNullOrEmpty($book.zipfile)) {
 			Write-Host "$count - Skipping book $($book)." -ForegroundColor Yellow
 			continue
 		}
@@ -84,7 +128,7 @@ foreach ($locale in $Locales) {
 
 		$ebookObject = New-Object psobject -Property @{
 			title=''
-			image='TODO'
+			image=(Get-Cover $book.zipfile)
 			album=$book.title #(Reorder-Text $book.title)
 			artist=(Reorder-Name $book.author)
 			genre=$book.category
