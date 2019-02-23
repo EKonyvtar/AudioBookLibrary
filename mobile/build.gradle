@@ -21,16 +21,16 @@ apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.murati.oszk.audiobook"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
         multiDexEnabled true
-        versionCode 34
-        versionName "0.8.${versionCode}"
+        versionCode 40
+        versionName "0.9.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -65,12 +65,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-cast-framework:16.1.0'
     implementation 'com.google.android.support:wearable:2.4.0'
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:mediarouter-v7:27.1.1'
-    implementation 'com.android.support:leanback-v17:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:percent:27.1.1'
+    implementation "com.android.support:support-core-utils:28.0.0"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:mediarouter-v7:28.0.0'
+    implementation 'com.android.support:leanback-v17:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:percent:28.0.0'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
 
@@ -99,7 +100,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.15.0'
     androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
