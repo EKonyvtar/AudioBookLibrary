@@ -147,6 +147,6 @@
     <string name="about_privacy">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
     <string name="about_privacy_label">Adatvédelmi nyilatkozat</string>
 
-    <string name="admob_app_id">ca-app-pub-4138598680797724~1681833678</string>
-    <string name="admob_unit_id_1">ca-app-pub-4138598680797724/9225265861</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~1681833678</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9225265861</string>
 </resources>
