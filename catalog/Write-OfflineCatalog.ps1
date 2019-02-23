@@ -84,14 +84,14 @@ function Get-Cover($zipfile) {
 				$response = Invoke-WebRequest -Uri $imageUrl -UseBasicParsing
 				if ($response.StatusCode -eq 200) {
 					return $imageUrl
+				} else {
+					Write-Error "$imageUrl missing"
 				}
 			} catch {
 				#Does not exist
 			}
 		}
-
 	} catch { }
-
 	return ""
 }
 
@@ -145,6 +145,9 @@ foreach ($locale in $Locales) {
 		$totalCount = $trackUrls| Measure-Object | Select-Object -Expand Count
 
 		foreach ($t in $trackUrls) {
+			if ([String]::IsNullOrEmpty($t)) {
+				continue
+			}
 			Write-Host "`t $t" -ForegroundColor Magenta
 
 			$trackNumber++
