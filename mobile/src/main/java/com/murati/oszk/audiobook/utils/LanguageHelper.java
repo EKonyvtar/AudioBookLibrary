@@ -49,4 +49,17 @@ public class LanguageHelper {
         activity.getResources().getDisplayMetrics());
     }
   }
+
+  public static String getPackageLanguage(Activity activity) {
+      return activity.getPackageName().split("[.]")[3];
+  }
+
+  public static void setLanguage(Activity activity, String language) {
+      Locale locale = new Locale(language);
+      Locale.setDefault(locale);
+      Configuration config = activity.getBaseContext().getResources().getConfiguration();
+      config.locale = locale;
+      activity.getBaseContext().getResources().updateConfiguration(config,
+          activity.getBaseContext().getResources().getDisplayMetrics());
+  }
 }
