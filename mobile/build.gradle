@@ -82,12 +82,20 @@ android {
             dimension "language"
             applicationIdSuffix ".hu"
             versionNameSuffix "-hu"
+            //resConfig "default"
         }
 
         french {
             dimension "language"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
+            //resConfig "fr"
+        }
+
+        english {
+            dimension "language"
+            applicationIdSuffix ".en"
+            versionNameSuffix "-en"
         }
 
         /*
@@ -97,11 +105,6 @@ android {
             versionNameSuffix "-sp"
         }
 
-        english {
-            dimension "language"
-            applicationIdSuffix ".en"
-            versionNameSuffix "-en"
-        }
         */
     }
 }
