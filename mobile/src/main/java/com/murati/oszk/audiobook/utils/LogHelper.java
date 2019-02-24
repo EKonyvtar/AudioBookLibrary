@@ -17,7 +17,7 @@ package com.murati.oszk.audiobook.utils;
 
 import android.util.Log;
 
-import com.murati.oszk.audiobook.BuildConfig;
+import com.murati.audiobook.BuildConfig;
 
 public class LogHelper {
 

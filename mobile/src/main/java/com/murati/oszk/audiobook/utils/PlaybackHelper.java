@@ -13,7 +13,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.playback.Playback;
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;

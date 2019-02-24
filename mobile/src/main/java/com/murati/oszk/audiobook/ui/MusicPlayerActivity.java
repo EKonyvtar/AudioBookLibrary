@@ -40,7 +40,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.oszk.audiobook.OfflineBookService;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.AdHelper;
 import com.murati.oszk.audiobook.utils.AnalyticsHelper;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;

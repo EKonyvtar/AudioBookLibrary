@@ -18,6 +18,7 @@ package com.murati.oszk.audiobook;
 
 import android.content.Context;
 
+import com.murati.audiobook.R;
 import com.google.android.gms.cast.framework.CastOptions;
 import com.google.android.gms.cast.framework.OptionsProvider;
 import com.google.android.gms.cast.framework.SessionProvider;
