@@ -15,9 +15,8 @@
   limitations under the License.
   -->
 <resources>
-    <string name="cast_application_id" translatable="false">CC1AD845</string>
-
     <string name="app_name">Hangoskönyvtár</string>
+    <string name="cast_application_id" translatable="false">CC1AD845</string>
     <string name="placeholder_message">Fejlesztés alatt - Hamarosan ...</string>
 
     <!-- DRAWER MENU -->
@@ -80,20 +79,20 @@
 
     <!-- PLAYBACK RESOURCES -->
     <!-- Notifications -->
-    <string name="notification_channel">com.murati.oszk.audiobook.notification</string>
-    <string name="notification_channel_description">Hangoskönytár lejátszó értesítések</string>
+    <string name="notification_channel">Általános Értesítések</string>
+    <string name="notification_channel_description">Hangoskönytár általános értesítései</string>
 
     <string name="error_loading_media">Nincs megjeleníthető elem</string>
 
-    <string name="notification_playback_track_error">A rész nem elérhető</string>
+    <string name="notification_playback_track_error">A rész jelenleg nem elérhető</string>
     <string name="notification_offline">Offline módban csak letöltött könyvek érhetők el</string>
     <string name="notification_playback_restored">Lejátszási pozíció visszaállítva %s %s</string>
 
     <string name="random_queue_title">Véletlen könyvek</string>
     <string name="casting_to_device">Lejátszás %1$s eszközön</string>
     <string name="currently_playing_song">Most játszik</string>
-    <string name="currently_playing_artist">Hangoskönyv előadója</string>
-    <string name="currently_playing_extra_info">További hangfájl infó</string>
+    <string name="currently_playing_artist">Szerző</string>
+    <string name="currently_playing_extra_info">További infó</string>
 
     <string name="open_item">Megnyitás</string>
     <string name="play_item">Lejátszás</string>
@@ -129,14 +128,7 @@
     <string name="setting_ad_switch">Hirdetések engedélyezve</string>
 
     <!-- About page -->
-    <string name="about_content">
-        A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
-        (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
-        \n\n
-        Az alkalmazás Muráti Ákos szabadidős projekje, így az esetleges hibákért
-        a könyvtár nem tartozik felelősséggel.
-        Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:
-    </string>
+    <string name="about_content">"         A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár         (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.                    Az alkalmazás Muráti Ákos szabadidős projekje, így az esetleges hibákért         a könyvtár nem tartozik felelősséggel.         Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:     "</string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
     <string name="about_button_store">Play Store megnyitása</string>
