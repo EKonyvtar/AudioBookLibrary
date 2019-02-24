@@ -39,7 +39,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.FeatureHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.MediaIDHelper;

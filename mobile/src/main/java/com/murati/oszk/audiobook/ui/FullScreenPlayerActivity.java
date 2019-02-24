@@ -48,7 +48,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.PlaybackHelper;
 

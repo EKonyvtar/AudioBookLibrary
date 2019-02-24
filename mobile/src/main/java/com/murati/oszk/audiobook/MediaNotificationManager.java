@@ -43,6 +43,7 @@ import android.util.Log;
 //import com.bumptech.glide.request.target.Target;
 //import com.murati.oszk.audiobook.ui.GlideApp;
 
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.ui.MusicPlayerActivity;
 import com.murati.oszk.audiobook.utils.BitmapHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;

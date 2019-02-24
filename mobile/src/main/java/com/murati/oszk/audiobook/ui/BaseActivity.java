@@ -37,7 +37,7 @@ import android.view.View;
 import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.MusicService;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.murati.oszk.audiobook.utils.NetworkHelper;

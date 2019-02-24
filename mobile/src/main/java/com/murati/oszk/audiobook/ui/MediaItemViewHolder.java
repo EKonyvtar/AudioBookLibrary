@@ -49,7 +49,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.oszk.audiobook.OfflineBookService;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.model.MusicProvider;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;

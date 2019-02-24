@@ -22,6 +22,7 @@ import android.content.res.XmlResourceParser;
 import android.os.Process;
 import android.util.Base64;
 
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
 import org.xmlpull.v1.XmlPullParserException;

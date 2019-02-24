@@ -40,7 +40,7 @@ import android.widget.Toast;
 
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;

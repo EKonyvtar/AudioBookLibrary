@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
