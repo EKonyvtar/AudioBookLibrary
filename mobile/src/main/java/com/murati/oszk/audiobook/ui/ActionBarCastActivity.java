@@ -42,6 +42,7 @@ import com.murati.oszk.audiobook.MusicService;
 import com.murati.oszk.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.FavoritesHelper;
+import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
@@ -233,6 +234,11 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         // action bar toggle: only top level screens show the hamburger-like icon, inner
         // screens - either Activities or fragments - show the "Up" icon instead.
         getFragmentManager().addOnBackStackChangedListener(mBackStackChangedListener);
+
+        LanguageHelper.setLanguage (
+            this,
+            LanguageHelper.getPackageLanguage(this)
+        );
     }
 
     @Override
