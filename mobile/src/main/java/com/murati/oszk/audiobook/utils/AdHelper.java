@@ -7,7 +7,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 
 public class AdHelper {
 

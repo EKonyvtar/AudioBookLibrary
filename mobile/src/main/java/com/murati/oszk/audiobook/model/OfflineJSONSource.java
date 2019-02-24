@@ -19,7 +19,7 @@ package com.murati.oszk.audiobook.model;
 import android.content.Context;
 import android.support.v4.media.MediaMetadataCompat;
 
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
 import org.json.JSONArray;

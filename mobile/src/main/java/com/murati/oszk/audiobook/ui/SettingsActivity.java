@@ -22,8 +22,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.murati.oszk.audiobook.BuildConfig;
-import com.murati.oszk.audiobook.R;
+import com.murati.audiobook.BuildConfig;
+import com.murati.audiobook.R;
 import com.murati.oszk.audiobook.utils.LogHelper;
 
 /**
