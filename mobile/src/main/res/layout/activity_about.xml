@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:padding="4dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@mipmap/ic_launcher" />
 
                 <TextView
                     android:id="@+id/header"
