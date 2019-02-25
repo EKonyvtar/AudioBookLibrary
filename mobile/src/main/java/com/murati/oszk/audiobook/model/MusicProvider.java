@@ -160,8 +160,10 @@ public class MusicProvider {
         java.util.Collections.sort(tracklist, new Comparator<MediaMetadataCompat>(){
             @Override
             public int compare(final MediaMetadataCompat lhs,MediaMetadataCompat rhs) {
-                if (lhs.getLong(METADATA_KEY_TRACK_NUMBER) < rhs.getLong(METADATA_KEY_TRACK_NUMBER))
-                    return -1;
+                if
+                (lhs.getLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER)
+                    < rhs.getLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER)
+                ) return -1;
                 return 1;
             }
         });
@@ -314,7 +316,7 @@ public class MusicProvider {
                 Log.w(TAG, "Skipping " + key);
                 continue;
             }
-            key = DisplayHelper.Capitalize(key);
+            key = DisplayHelper.Capitalize(key.trim());
             // Get List by Key
             List<String> list = newListByMetadata.get(key);
             if (list == null) {
