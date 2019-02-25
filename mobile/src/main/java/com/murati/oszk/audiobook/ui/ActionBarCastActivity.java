@@ -203,6 +203,11 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         if (playServicesAvailable == ConnectionResult.SUCCESS) {
             mCastContext = CastContext.getSharedInstance(this);
         }
+
+        LanguageHelper.setLanguage (
+            this,
+            LanguageHelper.getPackageLanguage(this)
+        );
     }
 
     @Override

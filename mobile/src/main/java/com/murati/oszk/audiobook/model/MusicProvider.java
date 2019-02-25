@@ -421,31 +421,31 @@ public class MusicProvider {
             mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
                 resources.getString(R.string.browse_writer),
                 resources.getString(R.string.browse_writer_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer)));
+                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
 
             // Add Genres
             mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                 resources.getString(R.string.browse_genres),
                 resources.getString(R.string.browse_genre_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list)));
+                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list)));
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
                 resources.getString(R.string.browse_ebook),
                 resources.getString(R.string.browse_ebook_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books)));
+                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_books)));
 
             // Add Favorites
             mediaItems.add(createGroupItem(MEDIA_ID_BY_FAVORITES,
                 resources.getString(R.string.browse_favorites),
                 resources.getString(R.string.browse_favorites_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_star_on)));
+                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_star_on)));
 
             // Add Offline
             mediaItems.add(createGroupItem(MEDIA_ID_BY_DOWNLOADS,
                 resources.getString(R.string.browse_downloads),
                 resources.getString(R.string.browse_downloads_subtitle),
-                BitmapHelper.convertDrawabletoUri(R.drawable.ic_action_download)));
+                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_action_download)));
 
             return mediaItems;
         }
@@ -484,7 +484,7 @@ public class MusicProvider {
                     createGroupList(
                         mEbookListByGenre,
                         MEDIA_ID_BY_GENRE,
-                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_list),
+                        BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list),
                         resources
                     )
                 );
@@ -502,7 +502,7 @@ public class MusicProvider {
                     createGroupList(
                         mEbookListByWriter,
                         MEDIA_ID_BY_WRITER,
-                        BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_writer),
+                        BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer),
                         resources
                     )
                 );
@@ -693,9 +693,7 @@ public class MusicProvider {
             .setMediaId(mediaId)
             .setTitle("Újra-próbál")
             .setSubtitle("")
-            //TODO: Fix resource loading
-            //Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
-            .setIconUri(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
+            .setIconUri(BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_books))
             .build();
         return new MediaBrowserCompat.MediaItem(description,
             MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
