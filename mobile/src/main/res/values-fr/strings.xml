@@ -45,7 +45,7 @@
     <string name="random_queue_title">Titres aléatoires</string>
     <string name="casting_to_device">Casting à %1$s</string>
     <string name="currently_playing_song">En train de jouer</string>
-    <string name="open_item">Vue</string>
+    <string name="open_item">Ouvrir</string>
     <string name="play_item">Jouer</string>
     <string name="play_pause">Jouer ou Pause</string>
     <string name="skip_next">Passer au suivant</string>

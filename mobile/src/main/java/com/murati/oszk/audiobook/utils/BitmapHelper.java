@@ -16,6 +16,7 @@
 package com.murati.oszk.audiobook.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
@@ -26,8 +27,6 @@ import com.murati.oszk.audiobook.ui.GlideApp;
 
 public class BitmapHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
-    //TODO: remove static packagename and count in flavors
-    private static final String packageName = "com.murati.oszk.audiobook";
 
     private static final int MAX_ART_WIDTH = 800;  // pixels
     private static final int MAX_ART_HEIGHT = 480;  // pixels
@@ -46,8 +45,12 @@ public class BitmapHelper {
             (int) (src.getWidth() * scaleFactor), (int) (src.getHeight() * scaleFactor), false);
     }
 
-    public static Uri convertDrawabletoUri(int resourceId) {
-        return Uri.parse(String.format("android.resource://%s/%d", packageName, resourceId));
+    public static Uri convertDrawabletoUri(Resources resources, int resourceId) {
+        return Uri.parse(
+            String.format("android.resource://%s/%d",
+                resources.getResourcePackageName(resourceId),
+                resourceId)
+        );
     }
 
     public static void fetch(Context context, final String artUrl, final BitmapHelper.FetchListener listener) {

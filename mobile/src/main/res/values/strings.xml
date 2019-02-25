@@ -81,7 +81,7 @@
 <string name="notification_playback_track_error">Part is currently unavailable</string>
 <string name="notification_offline">Offline - Only downloaded titles are available</string>
 <string name="notification_playback_restored">Playback position restored %s %s</string>
-<string name="open_item">View</string>
+<string name="open_item">Open</string>
 <string name="setting_ad_switch">Enable Advertisements</string>
 <string name="about_content">The Audio Library application builds on the public database of Librivox, which we would like to thank the operators for.  If you can, please support the project on the following page:</string>
 <string name="about_button_murati">Browse murati.hu</string>
