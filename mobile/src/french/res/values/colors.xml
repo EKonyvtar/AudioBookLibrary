@@ -20,7 +20,7 @@
     <!-- Re-enforced color -->
     <color name="default_primary">#2196F3</color>
     <color name="default_primary_dark">#3F51B5</color>
-    <color name="default_accent">#03A9F4</color>
+    <color name="default_accent">#283238</color>
 
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
