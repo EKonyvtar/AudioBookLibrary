@@ -177,7 +177,10 @@ public class MediaItemViewHolder {
                     GlideApp.
                         with(activity).
                         load(imageUri).
-                        override(Target.SIZE_ORIGINAL).
+                        //override(130,160).
+                        centerCrop().
+                        //fitCenter().
+                        //override(Target.SIZE_ORIGINAL).
                         fallback(R.drawable.default_book_cover).
                         error(R.drawable.default_book_cover).
                         /*listener(new RequestListener<Drawable>() {
