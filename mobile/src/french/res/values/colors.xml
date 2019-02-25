@@ -18,14 +18,14 @@
     <color name="default_background">#0096a6</color>
 
     <!-- Re-enforced color -->
-    <color name="default_primary">#2196F3</color>
-    <color name="default_primary_dark">#3F51B5</color>
-    <color name="default_accent">#283238</color>
+    <color name="default_primary">#46417B</color>
+    <color name="default_primary_dark">#242055</color>
+    <color name="default_accent">#FFCC00</color>
 
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
 
-    <color name="color_star">#ffc65c</color>
+    <color name="color_star">#FFCC00</color>
 
 
 </resources>
