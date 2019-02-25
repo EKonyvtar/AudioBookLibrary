@@ -30,22 +30,13 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
 
 import com.murati.oszk.audiobook.MusicService;
 import com.murati.audiobook.R;
-import com.murati.oszk.audiobook.utils.LanguageHelper;
 import com.murati.oszk.audiobook.utils.LogHelper;
-import com.murati.oszk.audiobook.utils.NetworkHelper;
 import com.murati.oszk.audiobook.utils.ResourceHelper;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Base activity for activities that need to show a playback control fragment when media is playing.
@@ -72,7 +63,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
             ActivityManager.TaskDescription taskDesc = new ActivityManager.TaskDescription(
                     getTitle().toString(),
                     //TODO: remove white
-                    BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_white),
+                    BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher),
                     ResourceHelper.getThemeColor(this, R.attr.colorPrimary,
                             android.R.color.darker_gray));
             setTaskDescription(taskDesc);
