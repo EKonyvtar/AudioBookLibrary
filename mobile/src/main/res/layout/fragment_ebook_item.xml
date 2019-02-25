@@ -41,6 +41,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/default_book"
                 android:layout_width="96dp"
                 android:layout_height="118dp"
                 android:src="@drawable/default_book_cover" />
