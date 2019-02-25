@@ -126,7 +126,7 @@
         -->
         <meta-data
             android:name="com.google.android.gms.car.notification.SmallIcon"
-            android:resource="@drawable/ic_launcher_white" />
+            android:resource="@drawable/ic_launcher" />
 
         <!--
              (OPTIONAL) use this meta data to override the theme from which Android Auto will
