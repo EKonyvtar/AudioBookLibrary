@@ -63,7 +63,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
             ActivityManager.TaskDescription taskDesc = new ActivityManager.TaskDescription(
                     getTitle().toString(),
                     //TODO: remove white
-                    BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher),
+                    BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher),
                     ResourceHelper.getThemeColor(this, R.attr.colorPrimary,
                             android.R.color.darker_gray));
             setTaskDescription(taskDesc);
