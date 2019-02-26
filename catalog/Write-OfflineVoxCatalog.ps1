@@ -27,10 +27,18 @@ function Reorder-Name($text) {
 
 
 function Reorder-Title($text) {
-	if ($text.Contains(", The")) {
-		$text = "The " + ($text -ireplace ", The","")
+	if ($text -imatch ",\s*\w+") {
+		$order = $text.Split(",")
+		if ($order.Count -lt 3) {
+			if ($text -imatch "livre|bible|tome") {
+				return ($text -replace ",","")
+			}
+			return ($order[1]).Trim() + " " +($order[0]).Trim()
+		} else {
+			return ($order[1]).Trim() + " " +($order[0]).Trim() + $order[2]
+		}
 	}
-	return $name
+	return $text
 }
 
 function Test-RemoteFile($remotefile) {
@@ -145,7 +153,7 @@ foreach ($locale in $Locales) {
 		$ebookObject = New-Object psobject -Property @{
 			title=''
 			image=(Get-Cover $book.zipfile)
-			album=$book.title #(Reorder-Text $book.title)
+			album=(Reorder-Title $book.title)
 			artist=(Reorder-Name $book.author)
 			genre=$book.category
 			source=''
