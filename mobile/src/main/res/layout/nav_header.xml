@@ -30,7 +30,7 @@
         android:layout_below="@+id/toolbar_container"
         android:layout_alignParentStart="true"
         android:padding="18px"
-        android:src="@drawable/ic_launcher" />
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:layout_width="match_parent"
