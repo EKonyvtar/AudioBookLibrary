@@ -60,7 +60,7 @@
 
         <!-- Main activity for music browsing on phone -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.MusicPlayerActivity"
+            android:name="com.murati.audiobook.ui.MusicPlayerActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,26 +80,26 @@
 
         <!-- Placeholder activity for phone settings -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.SettingsActivity"
+            android:name="com.murati.audiobook.ui.SettingsActivity"
             android:label="@string/app_name">
         </activity>
 
         <!-- Placeholder activity for About page -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.AboutActivity"
+            android:name="com.murati.audiobook.ui.AboutActivity"
             android:label="@string/app_name">
         </activity>
 
         <!-- Proxy activity that opens either the NowPlaying TV or the mobile UI, depending on
         the current environment -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.NowPlayingActivity"
+            android:name="com.murati.audiobook.ui.NowPlayingActivity"
             android:icon="@mipmap/ic_launcher">
         </activity>
 
         <!-- Main activity for Android TV user interface -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.tv.TvBrowseActivity"
+            android:name="com.murati.audiobook.ui.tv.TvBrowseActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.UAmp.TVLeanback" >
             <intent-filter>
@@ -109,15 +109,15 @@
         </activity>
 
         <activity
-            android:name="com.murati.oszk.audiobook.ui.tv.TvVerticalGridActivity"
+            android:name="com.murati.audiobook.ui.tv.TvVerticalGridActivity"
             android:theme="@style/Theme.UAmp.TVLeanback"
-            android:parentActivityName="com.murati.oszk.audiobook.ui.tv.TvBrowseActivity" />
+            android:parentActivityName="com.murati.audiobook.ui.tv.TvBrowseActivity" />
 
         <!-- Android TV UI when playing a song -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.tv.TvPlaybackActivity"
+            android:name="com.murati.audiobook.ui.tv.TvPlaybackActivity"
             android:theme="@style/Theme.UAmp.TVLeanback"
-            android:parentActivityName="com.murati.oszk.audiobook.ui.tv.TvBrowseActivity" />
+            android:parentActivityName="com.murati.audiobook.ui.tv.TvBrowseActivity" />
 
         <!--
              (OPTIONAL) use this meta data to indicate which icon should be
@@ -151,7 +151,7 @@
          consumers through MediaBrowserService and MediaSession. Consumers connect to it through
          MediaBrowser (for browsing) and MediaController (for play session control) -->
         <service
-            android:name="com.murati.oszk.audiobook.MusicService"
+            android:name="com.murati.audiobook.MusicService"
             android:exported="true"
             tools:ignore="ExportedService">
             <intent-filter>
@@ -164,18 +164,18 @@
         -->
         <meta-data
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.murati.oszk.audiobook.CastOptionsProvider" />
+            android:value="com.murati.audiobook.CastOptionsProvider" />
 
         <!-- A full screen activity showing controls and a seek bar for
              the current playing music -->
         <activity
-            android:name="com.murati.oszk.audiobook.ui.FullScreenPlayerActivity"
+            android:name="com.murati.audiobook.ui.FullScreenPlayerActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:parentActivityName="com.murati.oszk.audiobook.ui.MusicPlayerActivity">
+            android:parentActivityName="com.murati.audiobook.ui.MusicPlayerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.murati.oszk.audiobook.ui.MusicPlayerActivity"/>
+                android:value="com.murati.audiobook.ui.MusicPlayerActivity"/>
         </activity>
 
         <!-- A receiver that will receive media buttons and send as
