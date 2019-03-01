@@ -20,7 +20,7 @@
     <!-- Re-enforced color -->
     <color name="default_primary">#46417B</color>
     <color name="default_primary_dark">#242055</color>
-    <color name="default_accent">#FFCC00</color>
+    <color name="default_accent">@color/bt_accent</color>
 
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
