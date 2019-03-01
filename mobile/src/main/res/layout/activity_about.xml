@@ -139,7 +139,7 @@
 
             <fragment
                 android:id="@+id/fragment_playback_controls"
-                android:name="com.murati.oszk.audiobook.ui.PlaybackControlsFragment"
+                android:name="com.murati.audiobook.ui.PlaybackControlsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

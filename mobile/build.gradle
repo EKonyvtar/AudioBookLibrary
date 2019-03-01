@@ -29,7 +29,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 40
+        versionCode 41
         versionName "0.9.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -81,7 +81,7 @@ android {
         hungarian {
             dimension "language"
             applicationIdSuffix ".hu"
-            //applicationId "com.murati.oszk.audiobook"
+            //applicationId "com.murati.audiobook"
             versionNameSuffix "-hu"
             //resConfig "default"
         }
@@ -118,7 +118,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.android.support:multidex:1.0.3'
+    //implementation 'com.android.support:multidex:1.0.3'
 
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 
