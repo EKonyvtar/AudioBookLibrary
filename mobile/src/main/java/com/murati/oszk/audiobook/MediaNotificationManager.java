@@ -293,14 +293,14 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 .setMediaSession(mSessionToken))
             .setDeleteIntent(mStopIntent)
             .setColor(mNotificationColor)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .setContentIntent(createContentIntent(description))
             .setContentTitle(description.getTitle())
             .setContentText(description.getSubtitle())
             .setLargeIcon(
-                BitmapFactory.decodeResource(mService.getResources(), R.mipmap.ic_launcher)
+                BitmapFactory.decodeResource(mService.getResources(), R.mipmap.ic_launcher_foreground)
             );
 
         if (mController != null && mController.getExtras() != null) {
