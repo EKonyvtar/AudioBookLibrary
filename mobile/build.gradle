@@ -118,7 +118,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.android.support:multidex:1.0.3'
+    //implementation 'com.android.support:multidex:1.0.3'
 
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 
