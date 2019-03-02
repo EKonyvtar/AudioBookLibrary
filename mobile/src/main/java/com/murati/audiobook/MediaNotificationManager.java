@@ -292,15 +292,15 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 .setMediaSession(mSessionToken))
             .setDeleteIntent(mStopIntent)
             .setColor(mNotificationColor)
-            .setSmallIcon(R.mipmap.ic_launcher_foreground)
+            .setSmallIcon(R.mipmap.ic_notification_icon)
+            .setLargeIcon(
+                BitmapFactory.decodeResource(mService.getResources(), R.mipmap.ic_notification_icon)
+            )
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .setContentIntent(createContentIntent(description))
             .setContentTitle(description.getTitle())
-            .setContentText(description.getSubtitle())
-            .setLargeIcon(
-                BitmapFactory.decodeResource(mService.getResources(), R.mipmap.ic_launcher_foreground)
-            );
+            .setContentText(description.getSubtitle());
 
         if (mController != null && mController.getExtras() != null) {
             String castName = mController.getExtras().getString(MusicService.EXTRA_CONNECTED_CAST);
