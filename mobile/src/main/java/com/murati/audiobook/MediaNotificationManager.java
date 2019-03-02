@@ -43,7 +43,6 @@ import android.util.Log;
 //import com.bumptech.glide.request.target.Target;
 //import com.murati.audiobook.ui.GlideApp;
 
-import com.murati.audiobook.R;
 import com.murati.audiobook.ui.MusicPlayerActivity;
 import com.murati.audiobook.utils.BitmapHelper;
 import com.murati.audiobook.utils.LogHelper;
@@ -309,7 +308,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 String castInfo = mService.getResources()
                     .getString(R.string.casting_to_device, castName);
                 notificationBuilder.setSubText(castInfo);
-                notificationBuilder.addAction(R.drawable.ic_close_black_24dp,
+                notificationBuilder.addAction(R.drawable.ic_action_close,
                     mService.getString(R.string.stop_casting), mStopCastIntent);
             }
         }
