@@ -17,12 +17,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="146dp"
+    android:layout_height="148dp"
     android:background="?attr/colorPrimaryDark"
     android:padding="16dp"
+    android:paddingTop="32dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="horizontal"
-    android:gravity="center">
+    android:gravity="bottom">
 
     <ImageView
         android:layout_width="100dp"
