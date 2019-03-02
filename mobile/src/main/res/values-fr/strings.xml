@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bibliothèque  d\'AudioLivre</string>
+    <string name="app_name">Bibliothèque  d\'Livre Audio</string>
     <string name="placeholder_message">En développement - Bientôt disponible ...</string>
     <string name="drawer_allmusic_title">Tout audiolivres</string>
     <string name="error_no_metadata">Impossible de récupérer les métadonnées</string>
