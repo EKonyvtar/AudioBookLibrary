@@ -184,7 +184,7 @@ http://mek.oszk.hu/08900/08956
 http://mek.oszk.hu/08900/08958
 http://mek.oszk.hu/08900/08959
 http://mek.oszk.hu/09000/09059
-http://mek.oszk.hu/09100/09129
+#http://mek.oszk.hu/09100/09129 - Egri -- Fix indexing
 http://mek.oszk.hu/09300/09340
 http://mek.oszk.hu/09300/09361
 http://mek.oszk.hu/09300/09387
