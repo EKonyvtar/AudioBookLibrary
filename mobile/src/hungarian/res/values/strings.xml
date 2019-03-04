@@ -122,4 +122,6 @@
     <string name="about_footer">Segítségüket előre is köszönjük!</string>
     <string name="about_privacy_label">Adatvédelmi nyilatkozat</string>
 
+    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
+
 </resources>
