@@ -77,8 +77,8 @@ android {
         /*
         spanish {
             dimension "language"
-            applicationIdSuffix ".sp"
-            versionNameSuffix "-sp"
+            applicationIdSuffix ".es"
+            versionNameSuffix "-es"
         }
 
         */
