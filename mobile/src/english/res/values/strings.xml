@@ -90,9 +90,9 @@
 <string name="about_button_oszk">Visit Library page</string>
 <string name="about_footer">Thank you for your kind support!</string>
 <string name="about_privacy_label">Privacy Policy</string>
+<string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
 
 <string name="cast_application_id" translatable="false">CC1AD845</string>
-<string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
 <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~1681833678</string>
 <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9225265861</string>
 
