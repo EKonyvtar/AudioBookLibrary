@@ -70,7 +70,7 @@
     <string name="app_label">AudioLivres</string>
     <string name="search_hint">Rechercher des livres audio</string>
     <string name="setting_ad_switch">Activer les publicités</string>
-    <string name="about_content">L\'application Audio Library s\'appuie sur la base de données publique de Librivox, pour laquelle nous remercions les opérateurs.  Si vous le pouvez, veuillez soutenir le projet à la page suivante:</string>
+    <string name="about_content">L\'application s\'appuie sur la base de données publique de Librivox, pour laquelle nous remercions les opérateurs.  Si vous le pouvez, veuillez soutenir le projet à la page suivante:</string>
     <string name="about_button_murati">Parcourir murati.hu</string>
     <string name="about_button_store">Ouvrir Play Store</string>
     <string name="about_button_support">Visitez la page Patreon</string>
@@ -81,6 +81,7 @@
     <string name="currently_playing_extra_info">Plus d\'informations</string>
     <string name="browse_queue">Liste de lecture</string>
 
+    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
     <string name="cast_application_id" translatable="false">CC1AD845</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~6528088367</string>
     <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/8674426476</string>
