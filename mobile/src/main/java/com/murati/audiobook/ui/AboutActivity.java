@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.R;
@@ -78,12 +79,8 @@ public class AboutActivity extends BaseActivity {
         try {
             MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
-            //if (!BuildConfig.DEBUG) {
-            //mAdView.setAdSize(AdSize.BANNER);
-            //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
-            //}
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
