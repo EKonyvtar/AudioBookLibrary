@@ -346,13 +346,17 @@ public class MusicProvider {
 
                 while (tracks.hasNext()) {
                     MediaMetadataCompat item = tracks.next();
-                    String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
-                    MutableMediaMetadata m = new MutableMediaMetadata(musicId, item);
+                    try {
+                        String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
+                        MutableMediaMetadata m = new MutableMediaMetadata(musicId, item);
 
-                    mTrackListById.put(musicId, m);
+                        mTrackListById.put(musicId, m);
 
-                    addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_GENRE, mEbookListByGenre);
-                    addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_WRITER, mEbookListByWriter);
+                        addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_GENRE, mEbookListByGenre);
+                        addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_WRITER, mEbookListByWriter);
+                    } catch (Exception ex) {
+                        Log.e(TAG, "Failed to process " + item.toString());
+                    }
                 }
 
                 Long startTime = System.currentTimeMillis();
@@ -367,7 +371,7 @@ public class MusicProvider {
                 mCurrentState = State.INITIALIZED;
             }
         } catch (Exception e) {
-            LogHelper.e(e.getMessage());
+            Log.e(TAG,e.getMessage());
         } finally {
             if (mCurrentState != State.INITIALIZED)
                 mCurrentState = State.NON_INITIALIZED;
