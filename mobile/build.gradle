@@ -29,7 +29,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 44
+        versionCode 45
         versionName "0.9.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -74,14 +74,11 @@ android {
             versionNameSuffix "-en"
         }
 
-        /*
         spanish {
             dimension "language"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
         }
-
-        */
     }
 }
 
@@ -93,7 +90,7 @@ repositories {
 }
 
 dependencies {
-    //implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.3'
 
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 
