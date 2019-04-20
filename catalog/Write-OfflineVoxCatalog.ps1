@@ -3,7 +3,7 @@ param (
 	[string]$CatalogFile = './book.csv',
 	[string]$FilePattern = './release/offline_catalog.json',
 	[string]$Separator = ',',
-	[string[]]$Locales = @("French") #,"English","Spanish")
+	[string[]]$Locales = @("Spanish") #,"French") #,"English","Spanish")
 )
 
 function Reorder-Text($text) {
