@@ -133,6 +133,7 @@ foreach ($locale in $Locales) {
 	$part = "Part"
 	switch ($locale) {
 		"French" { $part = "Partie" }
+		"Spanish" { $part = "Parte" }
 		Default {}
 	}
 	$count = 0
