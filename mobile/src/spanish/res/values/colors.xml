@@ -34,7 +34,7 @@
 
     <!-- Re-enforced color -->
     <color name="default_primary">#ef6900</color>
-    <color name="default_primary_dark">#973057</color>
+    <color name="default_primary_dark">#C75800</color>
     <color name="default_accent">#ffd300</color>
 
     <color name="message_background">#d8fa9995</color>
