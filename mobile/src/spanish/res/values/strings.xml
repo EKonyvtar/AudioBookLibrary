@@ -35,7 +35,7 @@
     <string name="open_content_drawer">Abrir el menu principal</string>
     <string name="close_content_drawer">Cerrar el menu principal</string>
     <string name="placeholder_message">En desarrollo - Próximamente ...</string>
-    <string name="drawer_allmusic_title">Todos los audiolibros</string>
+    <string name="drawer_allmusic_title">Audiolibros</string>
     <string name="drawer_playlists_title">Listas de reproducción</string>
     <string name="now_playing">Jugando ahora</string>
     <string name="background_image_str">Imagen del título del libro</string>
