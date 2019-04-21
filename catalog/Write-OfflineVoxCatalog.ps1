@@ -148,14 +148,16 @@ foreach ($locale in $Locales) {
 			Write-Error "Error fetching ETEXT ID"
 		}
 
-		Write-Host "$count - Processing $($id).." -ForegroundColor Magenta
+		$genre = "Fiction"
+		if (![String]::IsNullOrEmpty($book.category)) { $genre = $book.category}
 
+		Write-Host "$count - Processing $($id).." -ForegroundColor Magenta
 		$ebookObject = New-Object psobject -Property @{
 			title=''
 			image=(Get-Cover $book.zipfile)
 			album=(Reorder-Title $book.title)
 			artist=(Reorder-Name $book.author)
-			genre=$book.category
+			genre=$genre
 			source=''
 			trackNumber=0
 			totalTrackCount=0
