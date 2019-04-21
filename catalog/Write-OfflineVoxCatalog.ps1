@@ -7,6 +7,8 @@ param (
 )
 
 function Reorder-Text($text) {
+	#$text = $text -ireplace "&iacute;","í"
+	$text = [System.Web.HttpUtility]::HtmlDecode($text)
 	try {
 		if ($text.Contains($Separator)) {
 			return ($text.Split($Separator)[-1]).Trim() + " " + ($text.Split($Separator)[0]).Trim()
@@ -18,6 +20,7 @@ function Reorder-Text($text) {
 }
 
 function Reorder-Name($text) {
+	$text = [System.Web.HttpUtility]::HtmlDecode($text)
 	$name = Reorder-Text $text
 	if ($text.Contains($Separator)) {
 		return ($name + "$Separator " + $text.Split($Separator)[0]).Trim()
