@@ -86,8 +86,8 @@
 
     <!-- ADs -->
     <string name="setting_ad_switch">Habilitar anuncios</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~1681833678</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9225265861</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~9251426768</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9430556015</string>
 
     <!-- About page -->
     <string name="about_content">The Audio Library application builds on the public database of Librivox, which we would like to thank the operators for.  If you can, please support the project on the following page:</string>
