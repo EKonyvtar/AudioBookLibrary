@@ -29,7 +29,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 47
+        versionCode 49
         versionName "0.10.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -141,8 +141,7 @@ apply plugin: 'com.google.gms.google-services'
 allprojects {
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" // << "-Xlint:deprecation"--warning-mode=(all
-            options.compilerArgs << "-Dorg.gradle.warning.mode=all"
+            options.compilerArgs << "-Xlint:unchecked" // << "-Xlint:deprecation"
         }
     }
 }
