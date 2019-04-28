@@ -96,7 +96,13 @@ public class MediaItemViewHolder {
 
 
         //TODO: optimize inflators
-        if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
+        if (MediaIDHelper.MEDIA_ID_BY_RECOMMENDATION.equals(description.getMediaId())) {
+            // Horizontal list show
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_sidelist_ebook, parent, false);
+        }
+        else if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
             // Advert show
             convertView = LayoutInflater.
                 from(activity).
