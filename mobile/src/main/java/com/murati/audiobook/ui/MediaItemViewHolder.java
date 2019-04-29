@@ -59,6 +59,9 @@ import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.widget.LinearLayout.HORIZONTAL;
 
 
 public class MediaItemViewHolder {
@@ -111,10 +114,19 @@ public class MediaItemViewHolder {
             RecyclerViewAdapter adapter;
 
             holder.mRecyclerView = (RecyclerView) convertView.findViewById(R.id.horizontal_list);
-            holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+            holder.mRecyclerView.setHasFixedSize(true);
 
-            adapter = new RecyclerViewAdapter(activity,
-                new ArrayList<MediaBrowserCompat.MediaItem>());
+            holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(convertView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            //holder.mRecyclerView.setLayoutManager(new CustomLinearLayoutManager(convertView.getContext(),HORIZONTAL,false));
+
+            List<MediaBrowserCompat.MediaItem> items = new ArrayList<MediaBrowserCompat.MediaItem>();
+            items.add(item);
+            items.add(item);
+            items.add(item);
+            items.add(item);
+            items.add(item);
+
+            adapter = new RecyclerViewAdapter(convertView.getContext(), items);
             holder.mRecyclerView.setAdapter(adapter);
             return convertView;
         }
