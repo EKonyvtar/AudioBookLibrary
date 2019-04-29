@@ -54,6 +54,7 @@ public class BitmapHelper {
     }
 
     public static void fetch(Context context, final String artUrl, final BitmapHelper.FetchListener listener) {
+        //TODO: upgrade https://github.com/bumptech/glide/wiki/Custom-targets
         BaseTarget bitmapTarget = new BaseTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {

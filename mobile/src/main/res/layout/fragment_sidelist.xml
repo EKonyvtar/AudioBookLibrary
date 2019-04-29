@@ -22,9 +22,11 @@
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/horizontal_list"
-        android:scrollbars="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
 
     <!-- <ListView
