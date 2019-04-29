@@ -37,9 +37,9 @@ public class RecommendationHelper {
         return !TextUtils.isEmpty(remoteRecommendationString);
     }
 
-    public static List<MediaDescriptionCompat> getRecommendations(FirebaseRemoteConfig mFirebaseRemoteConfig) {
-        if (recommendations == null)
-            refreshRemoteRecommendation(mFirebaseRemoteConfig);
+    public static List<MediaDescriptionCompat> getRecommendations() { //(FirebaseRemoteConfig mFirebaseRemoteConfig) {
+        //if (recommendations == null)
+        //    refreshRemoteRecommendation(mFirebaseRemoteConfig);
         return  recommendations;
     }
 
