@@ -29,6 +29,8 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +58,8 @@ import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
 
+import java.util.ArrayList;
+
 
 public class MediaItemViewHolder {
     private static final String TAG = LogHelper.makeLogTag(MediaItemViewHolder.class);
@@ -80,6 +84,8 @@ public class MediaItemViewHolder {
     private AdView mAdView;
     private static AdRequest adRequest;
 
+    private RecyclerView mRecyclerView;
+
     // Returns a view for use in media item list.
     static View setupListView(final Activity activity, View convertView, final ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
@@ -100,7 +106,17 @@ public class MediaItemViewHolder {
             // Horizontal list show
             convertView = LayoutInflater.
                 from(activity).
-                inflate(R.layout.fragment_sidelist_ebook, parent, false);
+                inflate(R.layout.fragment_sidelist, parent, false);
+
+            RecyclerViewAdapter adapter;
+
+            holder.mRecyclerView = (RecyclerView) convertView.findViewById(R.id.horizontal_list);
+            holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+
+            adapter = new RecyclerViewAdapter(activity,
+                new ArrayList<MediaBrowserCompat.MediaItem>());
+            holder.mRecyclerView.setAdapter(adapter);
+            return convertView;
         }
         else if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
             // Advert show
