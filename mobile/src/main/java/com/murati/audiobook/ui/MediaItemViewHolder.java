@@ -40,6 +40,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -117,8 +118,21 @@ public class MediaItemViewHolder {
             holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(convertView.getContext(), LinearLayoutManager.HORIZONTAL, false));
             //holder.mRecyclerView.setLayoutManager(new CustomLinearLayoutManager(convertView.getContext(),HORIZONTAL,false));
 
-            List<MediaBrowserCompat.MediaItem> items = RecommendationHelper.getRecommendations();
+            final List<MediaBrowserCompat.MediaItem> items = RecommendationHelper.getRecommendations();
             adapter = new RecyclerViewAdapter(convertView.getContext(), items);
+
+            holder.mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(convertView.getContext(), holder.mRecyclerView, new RecyclerTouchListener.ClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                    MediaBrowserCompat.MediaItem selectedItem = items.get(position);
+                    ((MusicPlayerActivity)activity).navigateToBrowser(selectedItem.getMediaId());
+                }
+
+                @Override
+                public void onLongClick(View view, int position) {
+
+                }
+            }));
             holder.mRecyclerView.setAdapter(adapter);
             return convertView;
         }
@@ -199,6 +213,8 @@ public class MediaItemViewHolder {
                     || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
                     // Browsable container represented by its image
 
+
+                    //TODO - fix image load
                     Uri imageUri = item.getDescription().getIconUri();
                     GlideApp.
                         with(activity).
