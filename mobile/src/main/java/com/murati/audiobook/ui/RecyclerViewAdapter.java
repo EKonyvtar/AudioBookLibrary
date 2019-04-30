@@ -52,10 +52,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             GlideApp.
                 with(customViewHolder.itemView).
                 load(imageUri).
-                //centerCrop().
+                placeholder(R.drawable.default_book_cover).
                 fallback(R.drawable.default_book_cover).
                 error(R.drawable.default_book_cover).
-                    into(customViewHolder.imageView);
+                into(customViewHolder.imageView);
         } catch (Exception ex) {
             Log.e(TAG,ex.getMessage());
         }
