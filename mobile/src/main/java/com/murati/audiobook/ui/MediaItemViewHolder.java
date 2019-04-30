@@ -57,11 +57,9 @@ import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
+import com.murati.audiobook.utils.RecommendationHelper;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static android.widget.LinearLayout.HORIZONTAL;
 
 
 public class MediaItemViewHolder {
@@ -119,13 +117,7 @@ public class MediaItemViewHolder {
             holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(convertView.getContext(), LinearLayoutManager.HORIZONTAL, false));
             //holder.mRecyclerView.setLayoutManager(new CustomLinearLayoutManager(convertView.getContext(),HORIZONTAL,false));
 
-            List<MediaBrowserCompat.MediaItem> items = new ArrayList<MediaBrowserCompat.MediaItem>();
-            items.add(item);
-            items.add(item);
-            items.add(item);
-            items.add(item);
-            items.add(item);
-
+            List<MediaBrowserCompat.MediaItem> items = RecommendationHelper.getRecommendations();
             adapter = new RecyclerViewAdapter(convertView.getContext(), items);
             holder.mRecyclerView.setAdapter(adapter);
             return convertView;

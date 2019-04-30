@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -14,6 +15,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
+import static com.murati.audiobook.utils.MediaIDHelper.createMediaID;
 
 
 /**
@@ -26,7 +30,7 @@ public class RecommendationHelper {
 
     private static Context _context = null;
     private static String remoteRecommendationString = null;
-    private static List<MediaDescriptionCompat> recommendations = null;
+    private static List<MediaBrowserCompat.MediaItem> recommendations = null;
 
     public static void setContext(Context context) {
         _context = context;
@@ -37,7 +41,7 @@ public class RecommendationHelper {
         return !TextUtils.isEmpty(remoteRecommendationString);
     }
 
-    public static List<MediaDescriptionCompat> getRecommendations() { //(FirebaseRemoteConfig mFirebaseRemoteConfig) {
+    public static List<MediaBrowserCompat.MediaItem> getRecommendations() { //(FirebaseRemoteConfig mFirebaseRemoteConfig) {
         //if (recommendations == null)
         //    refreshRemoteRecommendation(mFirebaseRemoteConfig);
         return  recommendations;
@@ -47,17 +51,20 @@ public class RecommendationHelper {
         try {
             remoteRecommendationString = mFirebaseRemoteConfig.getString("book_recommendation");
             JSONArray remoteRecommendation = new JSONArray(remoteRecommendationString);
-            List<MediaDescriptionCompat> mediaItems = new ArrayList<>();
+            List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
             for (int i = 0; i < remoteRecommendation.length(); i++) {
                 try {
                     JSONObject rec = remoteRecommendation.getJSONObject(i);
-                    mediaItems.add(new MediaDescriptionCompat.Builder()
+                    MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                         .setMediaId(MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_EBOOK, rec.getString("album")))
                         //.setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
                         .setTitle(rec.getString("album"))
                         .setSubtitle(rec.getString("album"))
                         .setIconUri(Uri.parse(rec.getString("image")))
-                        .build());
+                        .build();
+
+                    mediaItems.add(new MediaBrowserCompat.MediaItem(description,
+                        MediaBrowserCompat.MediaItem.FLAG_BROWSABLE));
                 } catch (Exception ex) {
                     Log.e(TAG, "Error processing item" + i);
                 }
