@@ -325,7 +325,7 @@ public class MusicPlayerActivity extends BaseActivity
       navigateToBrowser(mediaId);
     }
 
-    private void navigateToBrowser(String mediaId) {
+    public void navigateToBrowser(String mediaId) {
         //TODO: maybe place navigate block here
 
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mediaId);

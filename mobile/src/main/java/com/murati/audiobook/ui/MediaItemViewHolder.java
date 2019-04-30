@@ -29,6 +29,8 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -55,6 +58,9 @@ import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
+import com.murati.audiobook.utils.RecommendationHelper;
+
+import java.util.List;
 
 
 public class MediaItemViewHolder {
@@ -80,6 +86,8 @@ public class MediaItemViewHolder {
     private AdView mAdView;
     private static AdRequest adRequest;
 
+    private RecyclerView mRecyclerView;
+
     // Returns a view for use in media item list.
     static View setupListView(final Activity activity, View convertView, final ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
@@ -96,7 +104,39 @@ public class MediaItemViewHolder {
 
 
         //TODO: optimize inflators
-        if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
+        if (MediaIDHelper.MEDIA_ID_BY_RECOMMENDATION.equals(description.getMediaId())) {
+            // Horizontal list show
+            convertView = LayoutInflater.
+                from(activity).
+                inflate(R.layout.fragment_sidelist, parent, false);
+
+            RecyclerViewAdapter adapter;
+
+            holder.mRecyclerView = (RecyclerView) convertView.findViewById(R.id.horizontal_list);
+            holder.mRecyclerView.setHasFixedSize(true);
+
+            holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(convertView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            //holder.mRecyclerView.setLayoutManager(new CustomLinearLayoutManager(convertView.getContext(),HORIZONTAL,false));
+
+            final List<MediaBrowserCompat.MediaItem> items = RecommendationHelper.getRecommendations();
+            adapter = new RecyclerViewAdapter(convertView.getContext(), items);
+
+            holder.mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(convertView.getContext(), holder.mRecyclerView, new RecyclerTouchListener.ClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                    MediaBrowserCompat.MediaItem selectedItem = items.get(position);
+                    ((MusicPlayerActivity)activity).navigateToBrowser(selectedItem.getMediaId());
+                }
+
+                @Override
+                public void onLongClick(View view, int position) {
+
+                }
+            }));
+            holder.mRecyclerView.setAdapter(adapter);
+            return convertView;
+        }
+        else if (MediaIDHelper.ADVERTISEMENT.equals(description.getMediaId())) {
             // Advert show
             convertView = LayoutInflater.
                 from(activity).
@@ -173,6 +213,8 @@ public class MediaItemViewHolder {
                     || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
                     // Browsable container represented by its image
 
+
+                    //TODO - fix image load
                     Uri imageUri = item.getDescription().getIconUri();
                     GlideApp.
                         with(activity).
