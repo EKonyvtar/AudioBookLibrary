@@ -1,6 +1,7 @@
 package com.murati.audiobook.ui;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -40,9 +41,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
         //Setting text view title
         try {
+
             MediaBrowserCompat.MediaItem item = mediaItemList.get(i);
-            customViewHolder.titleView.setText("Hello");
-            customViewHolder.descriptionView.setText("Bello");
+
+            customViewHolder.titleView.setText(item.getDescription().getTitle());
+            customViewHolder.descriptionView.setText(item.getDescription().getSubtitle());
+
+            //Load image
+            Uri imageUri = item.getDescription().getIconUri();
+            GlideApp.
+                with(customViewHolder.itemView).
+                load(imageUri).
+                //centerCrop().
+                fallback(R.drawable.default_book_cover).
+                error(R.drawable.default_book_cover).
+                    into(customViewHolder.imageView);
         } catch (Exception ex) {
             Log.e(TAG,ex.getMessage());
         }
