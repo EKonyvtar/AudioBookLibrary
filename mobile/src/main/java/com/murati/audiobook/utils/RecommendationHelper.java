@@ -37,8 +37,13 @@ public class RecommendationHelper {
     }
 
     public static boolean canShowRecommendation(FirebaseRemoteConfig mFirebaseRemoteConfig) {
-        refreshRemoteRecommendation(mFirebaseRemoteConfig);
-        return !TextUtils.isEmpty(remoteRecommendationString);
+        try {
+            refreshRemoteRecommendation(mFirebaseRemoteConfig);
+            return !recommendations.isEmpty();
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+        return false;
     }
 
     public static List<MediaBrowserCompat.MediaItem> getRecommendations() { //(FirebaseRemoteConfig mFirebaseRemoteConfig) {
@@ -56,10 +61,14 @@ public class RecommendationHelper {
                 try {
                     JSONObject rec = remoteRecommendation.getJSONObject(i);
                     MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
-                        .setMediaId(MediaIDHelper.createMediaID(null, MediaIDHelper.MEDIA_ID_BY_EBOOK, rec.getString("album")))
-                        //.setMediaId(createMediaID(null, MEDIA_ID_BY_QUEUE))
+                        .setMediaId(
+                            MediaIDHelper.createMediaID(
+                                null,
+                                MediaIDHelper.MEDIA_ID_BY_EBOOK,
+                                rec.getString("album"))
+                        )
                         .setTitle(rec.getString("album"))
-                        .setSubtitle(rec.getString("album"))
+                        .setSubtitle(rec.getString("artist"))
                         .setIconUri(Uri.parse(rec.getString("image")))
                         .build();
 
