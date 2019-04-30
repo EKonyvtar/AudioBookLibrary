@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -38,6 +39,7 @@ import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.PlaybackHelper;
 import com.murati.audiobook.utils.DisplayHelper;
+import com.murati.audiobook.utils.RecommendationHelper;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_DOWNLOADS;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_FAVORITES;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_RECOMMENDATION;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_CATEGORY_HEADER;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_EBOOK_HEADER;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
@@ -396,7 +399,7 @@ public class MusicProvider {
 
 
     public List<MediaBrowserCompat.MediaItem> getChildrenNative(String mediaId, Resources resources) {
-            List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
+        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
         if (mediaId == null)
             return Collections.emptyList();
@@ -412,6 +415,19 @@ public class MusicProvider {
                             PlaybackHelper.getLastEBookDescriptor(),
                             MediaBrowserCompat.MediaItem.FLAG_BROWSABLE)
                     );
+                }
+            } catch (Exception ex) {
+                Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());
+            }
+
+            try {
+                // Show Recommendation
+                if (RecommendationHelper.canShowRecommendation(mFirebaseRemoteConfig)) {
+                    mediaItems.add(createHeader(resources.getString(R.string.browse_recommendations)));
+                    mediaItems.add(createGroupItem(MEDIA_ID_BY_RECOMMENDATION,
+                        resources.getString(R.string.browse_recommendations),
+                        resources.getString(R.string.browse_recommendations_subtitle),
+                        BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
                 }
             } catch (Exception ex) {
                 Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());

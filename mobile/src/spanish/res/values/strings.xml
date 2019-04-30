@@ -14,6 +14,9 @@
     <string name="browse_ebook">Todos los títulos</string>
     <string name="browse_ebook_subtitle">Buscar todos los audiolibros</string>
 
+    <string name="browse_recommendations">Recomendaciones</string>
+    <string name="browse_recommendations_subtitle">Buscar los recomendaciones</string>
+
     <string name="browse_track_count">%1$s pistas</string>
     <string name="browse_title_count">%1$s libros</string>
 
