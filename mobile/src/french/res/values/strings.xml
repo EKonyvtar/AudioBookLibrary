@@ -30,6 +30,10 @@
     <string name="drawer_feedback_title">Retour d\'information</string>
     <string name="drawer_about_title">À propos de nous</string>
     <string name="browse_ebook">Tous les livres</string>
+
+    <string name="browse_recommendations">Recommandations</string>
+    <string name="browse_recommendations_subtitle">Parcourir les titres recommandés</string>
+
     <string name="browse_ebook_subtitle">Parcourir tous les titres</string>
     <string name="browse_queue_subtitle">Récemment écouté</string>
     <string name="browse_favorites_subtitle">Titres déjà favoris</string>
