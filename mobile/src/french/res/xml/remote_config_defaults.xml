@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>ad_position</key>
+        <value>1</value>
+    </entry>
+    <entry>
+        <key>settings_menu</key>
+        <value>0</value>
+    </entry>
+    <entry>
+        <key>audiobook_server_url</key>
+        <value>http://www.archive.org/</value>
+    </entry>
+    <entry>
+        <key>book_recommendation</key>
+        <value>[
+            {
+            "album": "Don Quijote 1",
+            "artist": "Miguel de Cervantes Saavedra",
+            "image": "http://www.archive.org/download/don_quijote_vol1_0706_librivox/Don_Quijote_Vol1_1109.jpg"
+            },
+            {
+            "album": "Vol. 1 Cuentos de Hadas",
+            "artist": "Jacob y Wilhelm Grimm",
+            "image": "http://www.archive.org/download/cuentos_grimm_01_1109_librivox/Cuentos_Hadas_1210_thumb.jpg"
+            },
+            {
+            "album": "Las Fábulas de Esopo Vol 1",
+            "artist": "Esopo",
+            "image": "http://www.archive.org/download/fabulas_esopo_01_librivox/Fbulas_Esopo_Vol_01_1107.jpg"
+            },
+            {
+            "album": "Spanish Poetry Collection 001",
+            "artist": "Varios escritores",
+            "image": "http://www.archive.org/download/spanishpoetry_001_librivox/Spanish_Poetry_Collection_001_1109.jpg"
+            }
+            ]</value>
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->
