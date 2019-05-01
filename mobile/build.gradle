@@ -55,8 +55,8 @@ android {
 
         hungarian {
             dimension "language"
-            applicationIdSuffix ".hu"
-            //applicationId "com.murati.oszk.audiobook"
+            //applicationIdSuffix ".hu"
+            applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
             //resConfig "default"
         }
