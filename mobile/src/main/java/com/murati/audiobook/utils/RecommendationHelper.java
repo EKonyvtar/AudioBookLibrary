@@ -39,7 +39,7 @@ public class RecommendationHelper {
     public static boolean canShowRecommendation(FirebaseRemoteConfig mFirebaseRemoteConfig) {
         try {
             refreshRemoteRecommendation(mFirebaseRemoteConfig);
-            return !recommendations.isEmpty();
+            return recommendations != null && !recommendations.isEmpty();
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
