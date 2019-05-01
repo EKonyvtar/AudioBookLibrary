@@ -17,24 +17,29 @@
         <key>book_recommendation</key>
         <value>[
             {
-            "album": "Don Quijote 1",
-            "artist": "Miguel de Cervantes Saavedra",
-            "image": "http://www.archive.org/download/don_quijote_vol1_0706_librivox/Don_Quijote_Vol1_1109.jpg"
+            "album": "Le Comte de Monte-Cristo",
+            "artist": "Alexandre Dumas",
+            "image": "http://www.archive.org/download/comte_monte_cristo_jg_librivox/__ia_thumb.jpg"
             },
             {
-            "album": "Vol. 1 Cuentos de Hadas",
-            "artist": "Jacob y Wilhelm Grimm",
-            "image": "http://www.archive.org/download/cuentos_grimm_01_1109_librivox/Cuentos_Hadas_1210_thumb.jpg"
+            "album": "Le Tour du monde en quatre-vingts jours",
+            "artist": "Jules Verne",
+            "image": "http://www.archive.org/download/tour_du_monde_en_80_jours_librivox/le_tour_du_monde_en_quatre-vingts_jours.jpg"
             },
             {
-            "album": "Las Fábulas de Esopo Vol 1",
-            "artist": "Esopo",
-            "image": "http://www.archive.org/download/fabulas_esopo_01_librivox/Fbulas_Esopo_Vol_01_1107.jpg"
+            "album": "Les Contes de la bécasse",
+            "artist": "Guy de Maupassant",
+            "image": "http://www.archive.org/download/les_contes_de_la_becasse_0809_librivox/contesdelabecasse_1011_thumb.jpg"
             },
             {
-            "album": "Spanish Poetry Collection 001",
-            "artist": "Varios escritores",
-            "image": "http://www.archive.org/download/spanishpoetry_001_librivox/Spanish_Poetry_Collection_001_1109.jpg"
+            "album": "Les Trois Mousquetaires",
+            "artist": "Alexandre Dumas",
+            "image": "http://www.archive.org/download/trois_mousquetaires_0810_librivox/troismousquetaires_dumas_1008_thumb.jpg"
+            },
+            {
+            "album": "Fables de La Fontaine livre 01",
+            "artist": "La Fontaine",
+            "image": "http://www.archive.org/download/fables_lafontaine_01_librivox/fables01_1007.jpg"
             }
             ]</value>
     </entry>
