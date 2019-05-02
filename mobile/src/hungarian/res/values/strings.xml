@@ -16,7 +16,7 @@
     <!-- Main categories and titles for those -->
     <string name="label_catalog">Katalógus</string>
 
-    <string name="browse_recommendations">Ajánlatok</string>
+    <string name="browse_recommendations">Ajánlott könyvek</string>
     <string name="browse_recommendations_subtitle">Ajánlatok böngészése</string>
 
     <string name="browse_genres">Műfajok</string>
