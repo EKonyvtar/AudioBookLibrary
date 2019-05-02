@@ -30,48 +30,35 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
     android:orientation="vertical"
     android:background="@drawable/default_book_background">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/play_eq"
+        android:layout_width="130dp"
+        android:layout_height="160dp"
+
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+
         android:layout_gravity="center"
 
         android:layout_marginBottom="32dp"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="160dp"
-
-            android:src="@drawable/default_book_cover" />
-
-
-        <ImageView
-            android:id="@+id/play_eq"
-            android:layout_width="130dp"
-            android:layout_height="160dp"
-
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-
-            android:contentDescription="@string/open_item"
-            android:src="@drawable/ic_play_arrow_black_36dp" />
-
-
-    </RelativeLayout>
+        android:contentDescription="@string/open_item"
+        android:src="@drawable/ic_play_arrow_black_36dp" />
 
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ellipsize="end"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:singleLine="false"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="?android:attr/textColorPrimary"
-        android:textAlignment="center"
-
-        tools:text="Hosszu Konyv cim" />
+        tools:text="Nagyon Hosszu Konyv cim akar tobb soron keresztul is" />
 
     <TextView
         android:id="@+id/description"

@@ -213,29 +213,13 @@ public class MediaItemViewHolder {
                     || MediaIDHelper.isEBookHeader(description.getMediaId()) ) {
                     // Browsable container represented by its image
 
-
-                    //TODO - fix image load
                     Uri imageUri = item.getDescription().getIconUri();
                     GlideApp.
                         with(activity).
                         load(imageUri).
-                        //override(130,160).
-                        centerCrop().
-                        //fitCenter().
-                        //override(Target.SIZE_ORIGINAL).
+                        placeholder(R.drawable.default_book_cover).
                         fallback(R.drawable.default_book_cover).
                         error(R.drawable.default_book_cover).
-                        /*listener(new RequestListener<Drawable>() {
-                            @Override
-                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                return false;
-                            }
-                        }).*/
                         into(holder.mImageView);
 
                     // In addition to being browsable add quick-controls too
