@@ -25,7 +25,9 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="154dp"
-    android:layout_height="wrap_content"
+    android:layout_height="208dp"
+    android:minHeight="208dp"
+
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true"
     >
@@ -36,33 +38,29 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
         android:layout_margin="6dp"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+        <ImageView
+            android:id="@+id/play_eq"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
 
-            <ImageView
-                android:id="@+id/play_eq"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
 
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
 
-                android:contentDescription="@string/open_item"
-                android:src="@drawable/default_book_cover" />
-
-        </RelativeLayout>
+            android:contentDescription="@string/open_item"
+            android:src="@drawable/default_book_cover" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="false"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorPrimary"
-            tools:text="Hosszu Konyv cim" />
+            tools:text="Irtozatosan Hosszu Konyv" />
 
         <TextView
             android:id="@+id/description"
@@ -70,6 +68,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
+            android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorSecondary"
             tools:text="Hosszu Nevu Szerzo" />
