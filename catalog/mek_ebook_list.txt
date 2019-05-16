@@ -1,3 +1,4 @@
+# https://mek.oszk.hu/html/vgi/kereses/keresesf.phtml?formatum=MP3&rendezes=datum
 http://mek.oszk.hu/01300/01329
 http://mek.oszk.hu/01600/01611
 http://mek.oszk.hu/01800/01895
@@ -327,3 +328,22 @@ http://mek.oszk.hu/18300/18384
 http://mek.oszk.hu/18200/18262
 http://mek.oszk.hu/18100/18199
 http://mek.oszk.hu/18100/18152
+#2019
+http://mek.oszk.hu/19300/19341
+http://mek.oszk.hu/19300/19312
+http://mek.oszk.hu/19200/19258
+http://mek.oszk.hu/19100/19150
+http://mek.oszk.hu/19100/19149
+http://mek.oszk.hu/19100/19144
+http://mek.oszk.hu/19000/19059
+http://mek.oszk.hu/19000/19013
+http://mek.oszk.hu/18900/18972
+http://mek.oszk.hu/18900/18938
+http://mek.oszk.hu/18900/18907
+http://mek.oszk.hu/18900/18906
+http://mek.oszk.hu/18800/18884
+http://mek.oszk.hu/18800/18838
+http://mek.oszk.hu/18700/18753
+http://mek.oszk.hu/18300/18384
+http://mek.oszk.hu/18200/18262
+http://mek.oszk.hu/18100/18199

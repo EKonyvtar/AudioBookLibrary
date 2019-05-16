@@ -119,7 +119,15 @@
     <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9225265861</string>
 
     <!-- About page -->
-    <string name="about_content">"         A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár         (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.                    Az alkalmazás Muráti Ákos szabadidős projekje, így az esetleges hibákért         a könyvtár nem tartozik felelősséggel.         Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:     "</string>
+    <string name="about_content">
+        A Hangoskönyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár (MEK)
+        nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
+
+        Az alkalmazás Muráti Ákos szabadidős projekje, így az esetleges hibákért a könyvtár nem
+        tartozik felelősséggel.
+
+        Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:
+    </string>
 
     <string name="about_button_murati">murati.hu megnyitása</string>
     <string name="about_button_store">Play Store megnyitása</string>
