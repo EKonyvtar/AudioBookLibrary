@@ -115,8 +115,8 @@
 
     <!-- ADs -->
     <string name="setting_ad_switch">Hirdetések engedélyezve</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-4138598680797724~1681833678</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-4138598680797724/9225265861</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~7544903903</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/1672919685</string>
 
     <!-- About page -->
     <string name="about_content">
