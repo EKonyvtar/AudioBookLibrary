@@ -300,7 +300,7 @@ http://mek.oszk.hu/15200/15201
 http://mek.oszk.hu/15200/15299
 http://mek.oszk.hu/15300/15349
 http://mek.oszk.hu/15500/15513
-http://mek.oszk.hu/15600/15612
+#Pedagogia - http://mek.oszk.hu/15600/15612
 http://mek.oszk.hu/15600/15625
 http://mek.oszk.hu/15600/15626
 http://mek.oszk.hu/15600/15638

@@ -2,7 +2,7 @@
 param (
 	[string]$CatalogUrl = 'http://oszkapi-dev.azurewebsites.net/api/audiobooks',
 	[string]$CatalogFile = './mek_ebook_list.txt',
-	[string]$File = './offline_catalog-Hungarian.json',
+	[string]$File = './release/offline_catalog-Hungarian.json',
 	[string]$Separator = ','
 )
 
@@ -15,7 +15,7 @@ $count = 0
 foreach ($book in $audioBooks) {
 	$count++
 	if ($book -match "^#") {
-		Write-Host "$count - Skipping book $($book)." -ForegroundColor Yellow
+		Write-Host "$count - Skipping $($book)." -ForegroundColor Yellow
 		continue
 	}
 	
