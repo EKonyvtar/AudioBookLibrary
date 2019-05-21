@@ -54,7 +54,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     private static final String JSON_SOURCE = "source";
     private static final String JSON_IMAGE = "image";
     private static final String JSON_TRACK_NUMBER = "trackNumber";
-    private static final String JSON_TOTAL_TRACK_COUNT = "totalTrackCount";
+    //private static final String JSON_TOTAL_TRACK_COUNT = "totalTrackCount";
     private static final String JSON_DURATION = "duration";
 
     @Override
@@ -93,7 +93,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         String source = json.getString(JSON_SOURCE);
         String iconUrl = json.getString(JSON_IMAGE);
 
-        int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
+        //int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
         int duration = json.getInt(JSON_DURATION) * 1000; // ms
 
         LogHelper.d(TAG, "Loaded tracks: ", json);
@@ -152,7 +152,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
               .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, iconUrl)
               .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
               .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, trackNumber)
-              .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount)
+              //.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount)
               .build();
     }
 
