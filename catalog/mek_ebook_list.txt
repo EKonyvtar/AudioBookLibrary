@@ -3,7 +3,7 @@ http://mek.oszk.hu/01300/01329
 http://mek.oszk.hu/01600/01611
 http://mek.oszk.hu/01800/01895
 http://mek.oszk.hu/01800/01897
-http://mek.oszk.hu/02200/02268
+#DUP - http://mek.oszk.hu/02200/02268
 http://mek.oszk.hu/02200/02284
 http://mek.oszk.hu/02200/02286
 http://mek.oszk.hu/02200/02287
@@ -209,7 +209,7 @@ http://mek.oszk.hu/10700/10799
 http://mek.oszk.hu/10800/10874
 http://mek.oszk.hu/10900/10945
 http://mek.oszk.hu/11000/11029
-http://mek.oszk.hu/11200/11236
+#DUP - http://mek.oszk.hu/11200/11236
 http://mek.oszk.hu/11200/11241
 http://mek.oszk.hu/11200/11242
 http://mek.oszk.hu/11200/11247
@@ -227,7 +227,7 @@ http://mek.oszk.hu/11700/11747
 http://mek.oszk.hu/11800/11839
 http://mek.oszk.hu/11900/11997
 http://mek.oszk.hu/11900/11999
-http://mek.oszk.hu/12000/12013
+# Lorre duplicate - http://mek.oszk.hu/12000/12013
 http://mek.oszk.hu/12000/12058
 http://mek.oszk.hu/12000/12066
 http://mek.oszk.hu/12000/12080
@@ -238,7 +238,7 @@ http://mek.oszk.hu/12100/12199
 http://mek.oszk.hu/12200/12231
 http://mek.oszk.hu/12200/12244
 http://mek.oszk.hu/12200/12297
-http://mek.oszk.hu/12300/12367
+#DUP - http://mek.oszk.hu/12300/12367
 http://mek.oszk.hu/12300/12368
 http://mek.oszk.hu/12300/12369
 http://mek.oszk.hu/12300/12377
@@ -247,7 +247,7 @@ http://mek.oszk.hu/12300/12379
 http://mek.oszk.hu/12300/12396
 http://mek.oszk.hu/12300/12397
 http://mek.oszk.hu/12300/12398
-http://mek.oszk.hu/12400/12409
+#DUP - http://mek.oszk.hu/12400/12409
 http://mek.oszk.hu/12400/12410
 http://mek.oszk.hu/12400/12419
 http://mek.oszk.hu/12400/12420
@@ -333,12 +333,12 @@ http://mek.oszk.hu/19300/19341
 http://mek.oszk.hu/19300/19312
 http://mek.oszk.hu/19200/19258
 http://mek.oszk.hu/19100/19150
-http://mek.oszk.hu/19100/19149
-http://mek.oszk.hu/19100/19144
+#DUP - http://mek.oszk.hu/19100/19149
+#DUP - http://mek.oszk.hu/19100/19144
 http://mek.oszk.hu/19000/19059
 http://mek.oszk.hu/19000/19013
 http://mek.oszk.hu/18900/18972
-http://mek.oszk.hu/18900/18938
+#DUP - http://mek.oszk.hu/18900/18938
 http://mek.oszk.hu/18900/18907
 http://mek.oszk.hu/18900/18906
 http://mek.oszk.hu/18800/18884

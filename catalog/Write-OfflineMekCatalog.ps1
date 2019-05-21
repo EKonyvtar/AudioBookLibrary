@@ -82,8 +82,8 @@ foreach ($book in $audioBooks) {
 		Write-Error "No tracks found for $($t.title) on $trackUrl"
 	}
 }
-$sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name)
+$sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name) | Where-object {$_ -notmatch "site|total"}
 
 $sorted = New-object psobject -Property @{music=$catalog}
-$sorted.music = $sorted.music | Sort-Object image,trackNumber,source | Select-Object -Property $sortedProperty
+$sorted.music = $sorted.music | Sort-Object image,trackNumber,source | Select-Object -Property $sortedProperty 
 Set-Content -Path $File -Value ($sorted | ConvertTo-Json) -Force -Encoding UTF8
