@@ -69,7 +69,7 @@ public class AboutActivity extends BaseActivity {
         privacy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser(getString(R.string.about_privacy)); }
         });
-
+        
         // Button
         final Button patreon = findViewById(R.id.patreon);
         patreon.setOnClickListener(new View.OnClickListener() {
