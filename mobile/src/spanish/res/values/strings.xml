@@ -91,6 +91,7 @@
     <string name="setting_ad_switch">Habilitar anuncios</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~8227204847</string>
     <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/3875405609</string>
+    <string name="mopub_ad_unit_id" translatable="false">1509624899ed440582d82a96bef5a7d7</string>
 
     <!-- About page -->
     <string name="about_content">
