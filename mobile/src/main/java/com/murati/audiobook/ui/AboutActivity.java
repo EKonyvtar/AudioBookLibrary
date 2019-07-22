@@ -30,6 +30,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.mopub.mobileads.MoPubView;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.DisplayHelper;
 import com.murati.audiobook.utils.LogHelper;
@@ -41,6 +42,7 @@ import com.murati.audiobook.utils.LogHelper;
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
     private AdView mAdView;
+    private MoPubView moPubView;
 
 
     private void openBrowser(String url) {
@@ -76,6 +78,16 @@ public class AboutActivity extends BaseActivity {
             public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
+        //MoPub advertisement
+        try {
+            moPubView = (MoPubView) findViewById(R.id.adview);
+            moPubView.setAdUnitId(getString(R.string.mopub_ad_unit_id)); // Enter your Ad Unit ID from www.mopub.com
+            moPubView.loadAd();
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+
+        //Admod advertisement
         try {
             MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
