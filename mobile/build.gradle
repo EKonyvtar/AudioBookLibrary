@@ -29,8 +29,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 55
-        versionName "0.11.${versionCode}"
+        versionCode 56
+        versionName "0.12.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -87,6 +87,8 @@ repositories {
         dirs 'libs'
     }
     google()
+    jcenter()
+    maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
 }
 
 dependencies {
@@ -125,6 +127,11 @@ dependencies {
 
     //Admob
     implementation 'com.google.android.gms:play-services-ads:17.2.0'
+
+    //Mopub Banner: https://developers.mopub.com/publishers/android/get-started/
+    implementation('com.mopub:mopub-sdk-banner:+@aar') {
+        transitive = true
+    }
 
     //Remote Config
     implementation 'com.google.firebase:firebase-config:17.0.0'

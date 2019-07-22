@@ -1,1 +1,1 @@
-include ':mobile'
+include ':mobile', ':mopub-sdk', ':mopub-sdk:mopub-sdk-base', ':mopub-sdk:mopub-sdk-banner', ':mopub-sdk:mopub-sdk-native-static'
