@@ -74,7 +74,6 @@ function Get-RemoteFile($remotefile) {
 function Get-Tracks($zipfile) {
 	# http://www.archive.org/download/fables_lafontaine_01_librivox/fables_lafontaine_01_librivox_64kb_mp3.zip
 	$m3u=$zipfile -ireplace "_mp3.zip",".m3u"
-	$enc = [System.Text.Encoding]::ASCII
 	
 	$cacheFile = $m3u
 	$cacheFile = $cacheFile -ireplace "http://",""
@@ -105,7 +104,7 @@ function Get-Cover($zipfile) {
 		$content = Get-RemoteFile $remotefile
 		$xml = [xml]$content
 		$parentUrl = Split-Path -Path $remotefile -Parent
-		$images = $xml.files.file | where name -imatch "\.jpg"
+		$images = $xml.files.file | Where-Object name -imatch "\.jpg"
 
 		foreach ($image in $images) {
 			$imageUrl = "$parentUrl/"+$image.name
@@ -139,7 +138,7 @@ foreach ($locale in $Locales) {
 		Default {}
 	}
 	$count = 0
-	$audioBooks = $allBook | Where language -ieq $locale
+	$audioBooks = $allBook | Where-Object language -ieq $locale
 	foreach ($book in $audioBooks) {
 		$count++
 		if ($book -match "^#" -or [String]::IsNullOrEmpty($book.zipfile)) {
