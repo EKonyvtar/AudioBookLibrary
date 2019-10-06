@@ -3,7 +3,7 @@ param (
 	[string]$CatalogFile = './book.csv',
 	[string]$FilePattern = './release/offline_catalog.json',
 	[string]$Separator = ',',
-	[string[]]$Locales = @("Spanish") #,"French") #,"English","Spanish")
+	[string[]]$Locales = @("German") #,"French") #,"English","Spanish")
 )
 
 function Reorder-Text($text) {
@@ -84,13 +84,15 @@ function Get-Tracks($zipfile) {
 
 	try {
 		if (-Not (Test-Path $cacheFile)) {
-			$m3uResponse = Invoke-WebRequest -Uri $m3u -UseBasicParsing -OutFile $cacheFile #| Select -ExpandProperty Content
+			$m3uResponse = Invoke-WebRequest -Uri $m3u -UseBasicParsing -OutFile $cacheFile -ea Stop #| Select -ExpandProperty Content
 		}
 
 		$m3uContent = Get-Content $cacheFile -Raw
 		return $m3uContent.Split("`n")
 
-	} catch { }
+	} catch { 
+		Write-Error $_
+	}
 	return @()
 }
 
