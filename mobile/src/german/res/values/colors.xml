@@ -18,9 +18,9 @@
     <color name="default_background">#0096a6</color>
 
     <!-- Re-enforced color -->
-    <color name="default_primary">#FFD300</color>
-    <color name="default_primary_dark">#EB0000</color>
-    <color name="default_accent">@color/bt_accent</color>
+    <color name="default_primary">#EB0000</color>
+    <color name="default_primary_dark">#2F2F2F</color>
+    <color name="default_accent">@color/default_primary</color>
 
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
