@@ -3,7 +3,7 @@
     <color name="tv_branding">#94caf4</color>
     <color name="tv_branding_dark">#0cadbf</color>
     <color name="tv_branding_accent">#00B8D4</color>
-    <color name="bt_accent">#00B8D4</color>
+    <color name="bt_accent">#2F2F2F</color>
     <color name="media_item_icon_playing">@color/bt_accent</color>
     <color name="media_item_icon_not_playing">#ccc</color>
     <color name="drawer_header_background">@color/bt_accent</color>
@@ -18,8 +18,8 @@
     <color name="default_background">#0096a6</color>
 
     <!-- Re-enforced color -->
-    <color name="default_primary">#46417B</color>
-    <color name="default_primary_dark">#242055</color>
+    <color name="default_primary">#FFD300</color>
+    <color name="default_primary_dark">#EB0000</color>
     <color name="default_accent">@color/bt_accent</color>
 
     <color name="message_background">#d8fa9995</color>
