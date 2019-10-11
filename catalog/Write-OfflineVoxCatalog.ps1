@@ -135,6 +135,7 @@ foreach ($locale in $Locales) {
 	switch ($locale) {
 		"French" { $part = "Partie" }
 		"Spanish" { $part = "Parte" }
+		"German" { $part = "Teile" }
 		Default {}
 	}
 	$count = 0
