@@ -40,6 +40,16 @@ limitations under the License.
 
         <ImageView
             android:id="@+id/background_image"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="false"
+            android:layout_margin="0dp"
+            android:alpha=".15"
+            android:contentDescription="@string/background_image_str"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/cover_image"
             android:layout_width="192dp"
             android:layout_height="236dp"
             android:layout_centerHorizontal="true"
