@@ -43,8 +43,11 @@ limitations under the License.
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="false"
-            android:layout_margin="0dp"
-            android:alpha=".15"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:alpha=".33"
             android:contentDescription="@string/background_image_str"
             android:scaleType="fitXY" />
 

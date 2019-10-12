@@ -392,13 +392,15 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         GlideApp.
             with(this).
             load(mCurrentArtUrl).
-            override(Target.SIZE_ORIGINAL).
-            into(mCoverImage);
+            override(30, 30).
+            into(mBackgroundImage);
 
         GlideApp.
             with(this).
-            load(mCurrentArtUrl).override(15, 15).
-            into(mBackgroundImage);
+            load(mCurrentArtUrl).
+            override(Target.SIZE_ORIGINAL).
+            into(mCoverImage);
+
     }
 
     private void updateMediaDescription(MediaDescriptionCompat description) {
