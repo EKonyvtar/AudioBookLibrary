@@ -87,7 +87,7 @@
 
     <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
     <string name="cast_application_id" translatable="false">CC1AD845</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~5194573746</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/6124512033</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~3034430096</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/8178945564</string>
 
 </resources>
