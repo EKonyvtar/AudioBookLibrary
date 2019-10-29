@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hörbuch Bibliothek</string>
+    <string name="app_name">Hörbücher Bibliothek</string>
     <string name="placeholder_message">In Entwicklung - in Kürze ...</string>
     <string name="drawer_allmusic_title">Alle Hörbücher</string>
     <string name="error_no_metadata">Metadaten können nicht abgerufen werden</string>
