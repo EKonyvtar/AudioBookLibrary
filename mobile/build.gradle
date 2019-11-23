@@ -65,7 +65,6 @@ android {
             dimension "language"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
-            //resConfig "fr"
         }
 
         english {
@@ -78,6 +77,12 @@ android {
             dimension "language"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
+        }
+
+        german {
+            dimension = 'language'
+            applicationIdSuffix = '.de'
+            versionNameSuffix = '-de'
         }
     }
 }
