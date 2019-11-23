@@ -12,10 +12,15 @@ $catalog = @()
 $audioBooks = Get-Content -Path $CatalogFile
 
 $count = 0
+$errorList = ""
+$skipList = ""
+
 foreach ($book in $audioBooks) {
 	$count++
 	if ($book -match "^#") {
-		Write-Host "$count - Skipping $($book)." -ForegroundColor Yellow
+		$msg = "$count - Skipping $($book)."
+		Write-Host $msg -ForegroundColor Yellow
+		$skipList += "$msg `n`n"
 		continue
 	}
 	
@@ -79,9 +84,18 @@ foreach ($book in $audioBooks) {
 		$trackObject
 	}
 	if ($trackNumber -eq 0) {
-		Write-Error "No tracks found for $($t.title) on $trackUrl"
+		$msg = "No tracks found for $($t.title) on $trackUrl"
+		Write-Error $msg
+		$errorList += "$msg`n`n"
 	}
 }
+Write-Host "----- Errors reported ------"
+$errorList
+
+Write-Host "----- Items skipped ------"
+$skipList
+
+Write-Host "----- Writing catalogue ----- "
 $sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name) | Where-object {$_ -notmatch "site|total"}
 
 $sorted = New-object psobject -Property @{music=$catalog}
