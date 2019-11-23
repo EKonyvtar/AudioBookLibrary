@@ -531,8 +531,13 @@ public class MusicProvider {
             // Open a specific Genre
             else if (mediaId.startsWith(MEDIA_ID_BY_WRITER)) {
                 String writer = MediaIDHelper.getHierarchy(mediaId)[1];
-                for (String ebook : getEbooksByWriter(writer))
-                    mediaItems.add(createEbookItem(ebook, resources));
+                for (String ebook : getEbooksByWriter(writer)) {
+                    try {
+                        mediaItems.add(createEbookItem(ebook, resources));
+                    } catch (Exception ex) {
+                        Log.e(TAG, "Failed to list book: " + ebook);
+                    }
+                }
             }
 
             // List all EBooks Items
