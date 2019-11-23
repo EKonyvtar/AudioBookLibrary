@@ -93,6 +93,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private Drawable mPauseDrawable;
     private Drawable mPlayDrawable;
     private ImageView mBackgroundImage;
+    private ImageView mCoverImage;
 
     //private FloatingActionButton mFavoriteButton;
     //private FloatingActionButton mDownloadButton;
@@ -173,6 +174,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         }
 
         mBackgroundImage = (ImageView) findViewById(R.id.background_image);
+        mCoverImage = (ImageView) findViewById(R.id.cover_image);
         mPauseDrawable = ContextCompat.getDrawable(this, R.drawable.uamp_ic_pause_white_48dp);
         mPlayDrawable = ContextCompat.getDrawable(this, R.drawable.uamp_ic_play_arrow_white_48dp);
         mPlayPause = (ImageView) findViewById(R.id.play_pause);
@@ -390,8 +392,15 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         GlideApp.
             with(this).
             load(mCurrentArtUrl).
-            override(Target.SIZE_ORIGINAL).
+            override(30, 30).
             into(mBackgroundImage);
+
+        GlideApp.
+            with(this).
+            load(mCurrentArtUrl).
+            override(Target.SIZE_ORIGINAL).
+            into(mCoverImage);
+
     }
 
     private void updateMediaDescription(MediaDescriptionCompat description) {

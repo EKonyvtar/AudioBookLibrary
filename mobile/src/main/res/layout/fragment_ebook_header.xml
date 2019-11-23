@@ -32,16 +32,16 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 
     <ImageView
         android:id="@+id/play_eq"
-        android:layout_width="130dp"
-        android:layout_height="160dp"
+        android:layout_width="192dp"
+        android:layout_height="236dp"
 
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
 
         android:layout_gravity="center"
 
-        android:layout_marginBottom="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
 
         android:contentDescription="@string/open_item"
         android:src="@drawable/ic_play_arrow_black_36dp" />
