@@ -17,29 +17,29 @@
         <key>book_recommendation</key>
         <value>[
             {
-            "album": "Le Comte de Monte-Cristo",
-            "artist": "Alexandre Dumas",
-            "image": "http://www.archive.org/download/comte_monte_cristo_jg_librivox/__ia_thumb.jpg"
-            },
-            {
-            "album": "Le Tour du monde en quatre-vingts jours",
+            "album": "20.000 Meilen unter dem Meer",
             "artist": "Jules Verne",
-            "image": "http://www.archive.org/download/tour_du_monde_en_80_jours_librivox/le_tour_du_monde_en_quatre-vingts_jours.jpg"
+            "image": "http://www.archive.org/download/20000_meilen_1001_librivox/__ia_thumb.jpg"
             },
             {
-            "album": "Les Contes de la bécasse",
-            "artist": "Guy de Maupassant",
-            "image": "http://www.archive.org/download/les_contes_de_la_becasse_0809_librivox/contesdelabecasse_1011_thumb.jpg"
+            "album": "Die Leiden des jungen Werther",
+            "artist": "Johann Wolfgang von Goethe",
+            "image": "http://www.archive.org/download/leiden_werther_librivox/__ia_thumb.jpg"
             },
             {
-            "album": "Les Trois Mousquetaires",
-            "artist": "Alexandre Dumas",
-            "image": "http://www.archive.org/download/trois_mousquetaires_0810_librivox/troismousquetaires_dumas_1008_thumb.jpg"
+            "album": "Auf der Galerie",
+            "artist": "Franz Kafka",
+            "image": "http://www.archive.org/download/kafka_galerie_librivox/Auf_Galerie_1108.jpg"
             },
             {
-            "album": "Fables de La Fontaine livre 01",
-            "artist": "La Fontaine",
-            "image": "http://www.archive.org/download/fables_lafontaine_01_librivox/fables01_1007.jpg"
+            "album": "Woyzeck",
+            "artist": "Georg Büchner",
+            "image": "http://www.archive.org/download/woyzeck_librivox/Woyzeck_1107.jpg"
+            },
+            {
+            "album": "Götzendämmerung",
+            "artist": "Friedrich Nietzsche",
+            "image": "http://www.archive.org/download/goetzendaemmerung_ry_librivox/Gotzendammerung_1110.jpg"
             }
             ]</value>
     </entry>
