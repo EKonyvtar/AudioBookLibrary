@@ -318,7 +318,7 @@ http://mek.oszk.hu/16200/16296
 http://mek.oszk.hu/16600/16698
 http://mek.oszk.hu/16800/16878
 http://mek.oszk.hu/17000/17009
-http://mek.oszk.hu/17000/17051
+# Nightingale removed http://mek.oszk.hu/17000/17051
 http://mek.oszk.hu/17100/17148
 http://mek.oszk.hu/17400/17412
 http://mek.oszk.hu/17600/17673
