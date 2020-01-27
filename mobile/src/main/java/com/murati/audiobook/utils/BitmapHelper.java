@@ -18,9 +18,11 @@ package com.murati.audiobook.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
 import com.murati.audiobook.ui.GlideApp;
@@ -80,7 +82,33 @@ public class BitmapHelper {
             public void removeCallback(SizeReadyCallback cb) {}
         };
 
-        GlideApp.with(context).asBitmap().load(artUrl).into(bitmapTarget);
+        GlideApp.
+            with(context).
+            asBitmap().
+            load(artUrl).
+            //diskCacheStrategy(DiskCacheStrategy.ALL)
+            into(new CustomTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                    //imageView.setImageBitmap(bitmap);
+                    //imageView.buildDrawingCache();
+
+                    if (bitmap != null) {
+                        Bitmap large = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH, MAX_ART_HEIGHT);
+                        Bitmap icon = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH_ICON, MAX_ART_HEIGHT_ICON);
+
+                        listener.onFetched(artUrl,
+                            large.copy(large.getConfig(), false),
+                            icon.copy(icon.getConfig(), false));
+                        return;
+                    } else {
+                        LogHelper.d(TAG, "Bitmap could not fetched for", artUrl);
+                    }
+                }
+                @Override
+                public void onLoadCleared(Drawable placeholder) { }
+            });
+            //into(bitmapTarget);
     }
 
     public static abstract class FetchListener {
