@@ -56,32 +56,7 @@ public class BitmapHelper {
     }
 
     public static void fetch(Context context, final String artUrl, final BitmapHelper.FetchListener listener) {
-        //TODO: upgrade https://github.com/bumptech/glide/wiki/Custom-targets
-        BaseTarget bitmapTarget = new BaseTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
-                if (bitmap != null) {
-                    Bitmap large = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH, MAX_ART_HEIGHT);
-                    Bitmap icon = BitmapHelper.scaleBitmap(bitmap, MAX_ART_WIDTH_ICON, MAX_ART_HEIGHT_ICON);
-
-                    listener.onFetched(artUrl,
-                        large.copy(large.getConfig(), false),
-                        icon.copy(icon.getConfig(), false));
-                    return;
-                } else {
-                    LogHelper.d(TAG, "Bitmap could not fetched for", artUrl);
-                }
-            }
-
-            @Override
-            public void getSize(SizeReadyCallback cb) {
-                cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
-            }
-
-            @Override
-            public void removeCallback(SizeReadyCallback cb) {}
-        };
-
+        //TODO: remove fetch
         GlideApp.
             with(context).
             asBitmap().
@@ -108,7 +83,6 @@ public class BitmapHelper {
                 @Override
                 public void onLoadCleared(Drawable placeholder) { }
             });
-            //into(bitmapTarget);
     }
 
     public static abstract class FetchListener {
