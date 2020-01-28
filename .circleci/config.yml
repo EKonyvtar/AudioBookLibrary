@@ -27,12 +27,24 @@ jobs:
       - run:
           name: Lint source and Tests
           command: ./gradlew lintHungarianRelease testHungarianReleaseUnitTest
+
       - run:
           name: Compile
           command: ./gradlew compileHungarianReleaseSources
-      - store_artifacts:
-          path: mobile/build/reports
-          destination: reports
+
+      - run:
+          name: Assemble Unsigned APK
+          command: ./gradlew assembleHungarianRelease
+
       - store_test_results:
           path: mobile/build/test-results
+      
+      - store_artifacts:
+          path: mobile/build/reports
+          destination: build-reports
+     
+      - store_artifacts:
+          path: mobile/build/outputs
+          destination: outputs
+
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
