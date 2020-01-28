@@ -25,8 +25,11 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
+          name: Lint source and Tests
+          command: ./gradlew lintHungarianRelease testHungarianReleaseUnitTest
+      - run:
+          name: Compile
+          command: ./gradlew compileHungarianReleaseSources
       - store_artifacts:
           path: mobile/build/reports
           destination: reports
