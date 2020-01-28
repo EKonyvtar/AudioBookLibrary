@@ -1,15 +1,21 @@
-[![CircleCI](https://circleci.com/gh/muratiakos/EKonyvtarAudio.svg?style=svg)](https://circleci.com/gh/muratiakos/EKonyvtarAudio)
+[![CircleCI](https://circleci.com/gh/EKonyvtar/AudioBookLibrary/tree/master.svg?style=svg)](https://circleci.com/gh/EKonyvtar/AudioBookLibrary/tree/master)
 
 AudioBook Library App
 ====================
 
-This project is a generalized version of EKonyvtar Audio Android
+This project is a generalized version of EKonyvtar Audio -
 audiobook listener and catalog app for mobiles, tablets, Android
 Auto, Android Wear, Android TV and Chrome/Google Cast devices.
 
-<a href='https://play.google.com/store/apps/details?id=com.murati.audiobook&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+Supported Language Flavors:
+ - French
+ - Spanish
+ - German
+ - Hungarian 
 
-The source code is based on Google's original Android Universal Music Player:
+<a href='https://play.google.com/store/apps/details?id=com.murati.audiobook.fr'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+
+The source code is based on the original Java based Google Android Universal Music Player:
  - https://github.com/googlesamples/android-UniversalMusicPlayer
 
 
