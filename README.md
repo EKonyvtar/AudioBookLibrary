@@ -15,7 +15,7 @@ The source code is based on Google's original Android Universal Music Player:
 
 Pre-requisites
 --------------
-- Android SDK v26
+- Android SDK v28
 
 
 License and Legal
