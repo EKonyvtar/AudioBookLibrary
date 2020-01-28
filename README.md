@@ -1,7 +1,8 @@
-[![CircleCI](https://circleci.com/gh/EKonyvtar/AudioBookLibrary/tree/master.svg?style=svg)](https://circleci.com/gh/EKonyvtar/AudioBookLibrary/tree/master)
+[![CircleCI](https://circleci.com/gh/EKonyvtar/AudioBookLibrary.svg?style=svg&circle-token=af20ac1f8d0eb0fcd0c100c7efbc736e443e301b)](https://circleci.com/gh/EKonyvtar/AudioBookLibrary)
+
 
 AudioBook Library App
-====================
+=====================
 
 This project is a generalized version of EKonyvtar Audio -
 audiobook listener and catalog app for mobiles, tablets, Android
@@ -11,7 +12,7 @@ Supported Language Flavors:
  - French
  - Spanish
  - German
- - Hungarian 
+ - Hungarian
 
 <a href='https://play.google.com/store/apps/details?id=com.murati.audiobook.fr'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
