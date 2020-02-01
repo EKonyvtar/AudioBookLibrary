@@ -99,6 +99,10 @@ dependencies {
 
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 
+    // Upgrade 18 errors:
+    // ERROR: Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.0.2) from [com.android.support:support-v4:26.0.2] AndroidManifest.xml:28:13-35
+    //	is also present at [com.android.support:customtabs:26.1.0] AndroidManifest.xml:25:13-35 value=(26.1.0).
+    //	Suggestion: add 'tools:replace="android:value"' to <meta-data> element at AndroidManifest.xml:26:9-28:38 to override.
     implementation 'com.google.android.gms:play-services-cast-framework:16.2.0'
     implementation 'com.google.android.support:wearable:2.4.0'
 
