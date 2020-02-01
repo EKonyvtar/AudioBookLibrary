@@ -30,22 +30,38 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
     android:orientation="vertical"
     android:background="@drawable/default_book_background">
 
-    <ImageView
-        android:id="@+id/play_eq"
-        android:layout_width="192dp"
-        android:layout_height="236dp"
+    <RelativeLayout
+        android:id="@+id/mainframe"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        >
 
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        <ImageView
+            android:id="@+id/play_eq"
+            android:layout_width="192dp"
+            android:layout_height="236dp"
 
-        android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/open_item"
+            android:src="@drawable/ic_play_arrow_black_36dp" />
 
-        android:contentDescription="@string/open_item"
-        android:src="@drawable/ic_play_arrow_black_36dp" />
 
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+
+            android:layout_gravity="center"
+
+            android:contentDescription="@string/open_item"
+            android:src="@drawable/ic_play_arrow_black_36dp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/title"
