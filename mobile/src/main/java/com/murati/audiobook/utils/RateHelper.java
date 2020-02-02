@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
+import com.murati.audiobook.BuildConfig;
+
 public class RateHelper {
     private static final String TAG = LogHelper.makeLogTag(RateHelper.class);
 
@@ -50,15 +52,21 @@ public class RateHelper {
 
     public static void openRating(Context c) {
         try {
-            incrementCount(c, RATED_COUNT);
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(
+                    String.format(
+                        BuildConfig.APPSTORE_URL, BuildConfig.APPLICATION_ID
+                    )
+                )
+            );
 
-            http://play.google.com/store/apps/details?id=
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK
+            );
 
-            String appPackageName = getPackageName();
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+appPackageName));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-
+            c.startActivity(intent);
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error incrementing %s :", ex.getMessage());
         }
