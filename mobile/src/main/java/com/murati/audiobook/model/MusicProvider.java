@@ -29,6 +29,7 @@ import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -444,10 +445,12 @@ public class MusicProvider {
                 BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
 
             // Add Genres
-            mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
-                resources.getString(R.string.browse_genres),
-                resources.getString(R.string.browse_genre_subtitle),
-                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list)));
+            if (BuildConfig.FLAVOR == "hungarian") {
+                mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
+                    resources.getString(R.string.browse_genres),
+                    resources.getString(R.string.browse_genre_subtitle),
+                    BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list)));
+            }
 
             // Add EBooks
             mediaItems.add(createGroupItem(MEDIA_ID_BY_EBOOK,
