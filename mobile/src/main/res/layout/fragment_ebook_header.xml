@@ -44,9 +44,18 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
 
             android:layout_gravity="center"
             android:contentDescription=""
-            android:alpha=".40"
+            android:alpha=".60"
             android:scaleType="fitXY"
             android:src="@drawable/ic_play_arrow_black_36dp" />
+
+        <ImageView
+            android:id="@+id/background_white"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/default_book_background" />
 
         <ImageView
             android:id="@+id/play_eq"
