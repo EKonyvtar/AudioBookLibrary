@@ -94,6 +94,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
 
       ## Build apps individually
+      - test_app:
+          variantname: "HungarianGooglePlayRelease"
       - make_app:
           variantname: "HungarianGooglePlayRelease"
 
@@ -121,3 +123,12 @@ jobs:
       #     destination: outputs
 
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+# workflows:
+#  version: 2
+#  Example_Workflow:
+#    jobs:
+#      - Hello-World
+#      - I-Have-Code:
+#          requires:
+#            - Hello-World
+     
