@@ -76,6 +76,7 @@ public class MediaItemViewHolder {
     private static ColorStateList sColorStateNotPlaying;
 
     private ImageView mImageView;
+    private ImageView mBackgroundImage;
     private TextView mTitleView;
     private TextView mDescriptionView;
 
@@ -190,6 +191,7 @@ public class MediaItemViewHolder {
 
         //Lookup the standard fields
         holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
+        holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
         holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
         holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
 
@@ -221,6 +223,16 @@ public class MediaItemViewHolder {
                         fallback(R.drawable.default_book_cover).
                         error(R.drawable.default_book_cover).
                         into(holder.mImageView);
+
+                    // Load blur background
+                    if (holder.mBackgroundImage != null) {
+                        GlideApp.
+                            with(activity).
+                            load(imageUri).
+                            override(30, 30).
+                            into(holder.mBackgroundImage);
+                    }
+
 
                     // In addition to being browsable add quick-controls too
                     if (MediaIDHelper.isEBook(description.getMediaId())) {
