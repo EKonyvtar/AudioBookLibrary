@@ -1,7 +1,7 @@
 version: 2.1
 ## Add reusable components
 commands:
-  makeApp:
+  make_app:
     description: "Lint, test, build and harvest android app"
     parameters:
       variantname:
@@ -59,8 +59,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
 
       ## Build apps individually
-      - makeApp:
-          variantName: "HungarianGooglePlayRelease"
+      - make_app:
+          variantname: "HungarianGooglePlayRelease"
 
       # - run:
       #     name: Lint source and Tests
