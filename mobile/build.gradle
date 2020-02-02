@@ -29,8 +29,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 60
-        versionName "0.13.${versionCode}"
+        versionCode 61
+        versionName "0.14.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
