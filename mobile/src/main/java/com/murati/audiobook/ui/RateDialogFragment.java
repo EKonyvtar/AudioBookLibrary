@@ -9,6 +9,8 @@ import android.support.v4.app.DialogFragment;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.RateHelper;
 
+import static com.murati.audiobook.utils.RateHelper.RATED_COUNT;
+
 public class RateDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -16,8 +18,10 @@ public class RateDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.rate_title);
         builder.setMessage(R.string.rate_message)
+
             .setPositiveButton(R.string.rate_ok_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    RateHelper.incrementCount(getContext(), RATED_COUNT);
                     RateHelper.openRating(getContext());
                 }
             })
