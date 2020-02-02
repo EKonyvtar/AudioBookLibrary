@@ -23,27 +23,31 @@ public class RateHelper {
             Long startCount = sharedPref.getLong(START_COUNT, 0);
             Long ratedCount = sharedPref.getLong(RATED_COUNT, 0);
 
-            LogHelper.d(TAG, "RateCount stats:", playbackCount, startCount);
+            LogHelper.d(TAG, "RateCount stats STAT,PLAY,RATED:", startCount, playbackCount, ratedCount);
             // Haven't asked more than 2 times,
-            // Played at least 2 books
+            // Played at least 3 chapters
             // Every second time
-            if (ratedCount <= 1 && playbackCount >= 2 && startCount%2 == 0)
+            if (ratedCount < 2 && playbackCount >= 3 && playbackCount%3 == 0 && startCount%2 == 1) {
+                // To avoid re-popup, increment start-count
+                incrementCount(c, START_COUNT);
                 return true;
+            }
 
         } catch (Exception ex) {
-            LogHelper.e(TAG, "Error evaluatingg rate-count", ex.getMessage());
+            LogHelper.e(TAG, "Error evaluating rate-count", ex.getMessage());
         }
 
-        return true;
+        return false;
     }
 
     public static void incrementCount(Context c, String CountLabel) {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
-            Long count = sharedPref.getLong(CountLabel, 0);
+            Long count = sharedPref.getLong(CountLabel, 0) + 1;
 
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putLong(CountLabel, count);
+            editor.apply();
 
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error incrementing %s :", ex.getMessage());
