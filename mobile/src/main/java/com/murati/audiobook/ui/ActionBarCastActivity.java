@@ -52,6 +52,7 @@ import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.murati.audiobook.utils.MediaIDHelper;
+import com.murati.audiobook.utils.RateHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -140,12 +141,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_feedback:
-                        //intent = new Intent(Intent.ACTION_APP_ERROR);
-                        //startActivity(intent);
-
-                        String appPackageName = getPackageName();
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+appPackageName));
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        RateHelper.openRating(ActionBarCastActivity.this.getApplicationContext());
                         break;
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);

@@ -47,6 +47,7 @@ import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.PlaybackHelper;
+import com.murati.audiobook.utils.RateHelper;
 
 /**
  * Main activity for the music player.
@@ -111,6 +112,7 @@ public class MusicPlayerActivity extends BaseActivity
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
 
+        RateHelper.incrementCount(getApplicationContext(), RateHelper.START_COUNT);
         refreshRemoteConfig();
 
         initializeFromParams(savedInstanceState, getIntent());
@@ -429,5 +431,10 @@ public class MusicPlayerActivity extends BaseActivity
 
         getBrowseFragment().onConnected();
         updateBookButtons(getMediaId());
+
+        if (RateHelper.shoudShowRateDialog(this.getApplicationContext())) {
+            RateDialogFragment dialog = new RateDialogFragment();
+            dialog.show(this.getSupportFragmentManager(),TAG);
+        }
     }
 }
