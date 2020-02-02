@@ -330,6 +330,7 @@ http://mek.oszk.hu/18100/18199
 http://mek.oszk.hu/18100/18152
 
 #2019
+https://mek.oszk.hu/19900/19999
 https://mek.oszk.hu/19900/19937
 https://mek.oszk.hu/19900/19901
 https://mek.oszk.hu/19800/19874
@@ -358,3 +359,8 @@ http://mek.oszk.hu/18700/18753
 http://mek.oszk.hu/18300/18384
 http://mek.oszk.hu/18200/18262
 http://mek.oszk.hu/18100/18199
+
+## 2020
+https://mek.oszk.hu/20100/20110
+https://mek.oszk.hu/20000/20041
+https://mek.oszk.hu/20000/20040

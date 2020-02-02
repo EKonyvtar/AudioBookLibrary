@@ -45,6 +45,7 @@ import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
 import com.murati.audiobook.utils.PlaybackHelper;
+import com.murati.audiobook.utils.RateHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +117,14 @@ public class MediaBrowserFragment extends Fragment {
             LogHelper.d(TAG, "Received state change: ", state);
             checkForUserVisibleErrors(false);
             mBrowserAdapter.notifyDataSetChanged();
+
+            try {
+                if (state.getState() == PlaybackStateCompat.STATE_PLAYING) {
+                    RateHelper.incrementCount(getActivity().getBaseContext(), RateHelper.PLAYBACK_COUNT);
+                }
+            } catch (Exception ex) {
+                LogHelper.e(TAG, "Failed to increment playback state.");
+            }
         }
     };
 
