@@ -8,12 +8,6 @@ commands:
         type: string
         default: "HungarianGooglePlayRelease"
 
-    docker:
-      - image: circleci/android:api-29-ndk
-
-    environment:
-      JVM_OPTS: -Xmx3200m
-
     steps:
       - run: echo << parameters.variantname >>
       - run:
