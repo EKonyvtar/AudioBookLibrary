@@ -53,6 +53,19 @@ android {
     productFlavors {
         //TODO: define paid and free dimensions
 
+        googlePlayStore {
+            dimension "store"
+            variant.buildConfigField 'String', 'APPSTORE_URL', 'http://play.google.com/store/apps/details?id=%s'
+        }
+
+        /*huaweiAppGallery {
+            dimension "store"
+            variant.buildConfigField 'String', 'APPSTORE_URL', 'http://play.google.com/store/apps/details?id=%s'
+
+        }*/
+
+
+
         hungarian {
             dimension "language"
             //applicationIdSuffix ".hu"
