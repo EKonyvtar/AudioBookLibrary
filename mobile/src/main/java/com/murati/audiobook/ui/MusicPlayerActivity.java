@@ -112,6 +112,7 @@ public class MusicPlayerActivity extends BaseActivity
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
 
+        RateHelper.incrementCount(getApplicationContext(), RateHelper.START_COUNT);
         refreshRemoteConfig();
 
         initializeFromParams(savedInstanceState, getIntent());
