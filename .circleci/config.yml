@@ -1,40 +1,38 @@
-version: 2
-jobs:
-  build:
-    #working_directory: ~/
-    docker:
-      - image: circleci/android:api-29-ndk
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
-#      - run:
-#         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-#         command: sudo chmod +x ./gradlew
-      - run: ./.circleci/pre-build.sh
-      - run:
-          name: chmod permissions
-          command: chmod +x ./gradlew
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
-      - run:
-          name: Lint source and Tests
-          command: ./gradlew lintHungarianRelease testHungarianReleaseUnitTest
+version: 2.1
+## Add reusable components
+commands:
+  test_app:
+    description: "Lint, test android app"
+    parameters:
+      variantname:
+        type: string
+        default: "HungarianGooglePlayRelease"
 
+    steps:
+      - run: echo << parameters.variantname >>
+      - run:
+          name: Lint source
+          command: ./gradlew lint<< parameters.variantname >>
+      - run:
+          name: Run tests
+          command: ./gradlew test<< parameters.variantname >>UnitTest
+
+  make_app:
+    description: "Lint, test, build and harvest android app"
+    parameters:
+      variantname:
+        type: string
+        default: "HungarianGooglePlayRelease"
+
+    steps:
+      - run: echo << parameters.variantname >>
       - run:
           name: Compile
-          command: ./gradlew compileHungarianReleaseSources
+          command: ./gradlew compile<< parameters.variantname >>Sources
 
       - run:
           name: Assemble Unsigned APK
-          command: ./gradlew assembleHungarianRelease
+          command: ./gradlew assemble<< parameters.variantname >>
 
       - store_test_results:
           path: mobile/build/test-results
@@ -47,4 +45,90 @@ jobs:
           path: mobile/build/outputs
           destination: outputs
 
+### Define actual jobs
+jobs:
+  test:
+    docker:
+      - image: circleci/android:api-29-ndk
+    parallelism: 4
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
+      - run: ./.circleci/pre-build.sh
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
+
+      ## Build apps individually
+      - test_app:
+          variantname: "HungarianGooglePlayRelease"
+
+
+  build:
+    docker:
+      - image: circleci/android:api-29-ndk
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
+      - run: ./.circleci/pre-build.sh
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "mobile/build.gradle" }}
+
+      ## Build apps individually
+      - test_app:
+          variantname: "HungarianGooglePlayRelease"
+      - make_app:
+          variantname: "HungarianGooglePlayRelease"
+
+      # - run:
+      #     name: Lint source and Tests
+      #     command: ./gradlew lintHungarianRelease testHungarianReleaseUnitTest
+
+      # - run:
+      #     name: Compile
+      #     command: ./gradlew compileHungarianReleaseSources
+
+      # - run:
+      #     name: Assemble Unsigned APK
+      #     command: ./gradlew assembleHungarianRelease
+
+      # - store_test_results:
+      #     path: mobile/build/test-results
+      
+      # - store_artifacts:
+      #     path: mobile/build/reports
+      #     destination: build-reports
+     
+      # - store_artifacts:
+      #     path: mobile/build/outputs
+      #     destination: outputs
+
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+# workflows:
+#  version: 2
+#  Example_Workflow:
+#    jobs:
+#      - Hello-World
+#      - I-Have-Code:
+#          requires:
+#            - Hello-World
+     
