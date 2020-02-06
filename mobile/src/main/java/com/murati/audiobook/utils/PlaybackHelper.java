@@ -145,7 +145,7 @@ public class PlaybackHelper {
             editor.putString(PLAYBACK_LAST_IMAGEURL, _lastImageUrl);
             editor.putString(PLAYBACK_LAST_AUTHOR, _lastAuthor);
 
-            editor.commit();
+            editor.apply();
         } catch (Exception e) {
             Log.e(TAG, "Playback info cannot be saved. " + e.toString());
         }
