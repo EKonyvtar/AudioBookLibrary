@@ -112,9 +112,32 @@
     <string name="app_label">Hangoskönyvek</string>
     <string name="search_hint">Hangoskönyvek keresése</string>
 
-    <string name="rate_title">Kérjük Értékeljen Minket</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">Visszajelzés küldése</string>
+    <string name="feedback_message">
+        Szeretné megírni véleményét nekünk, hogy
+        javíthassuk és továbbfejleszthessük ingyenes alkalmazásunkat?
+    </string>
+    <string name="feedback_ok_button">Igen</string>
+    <string name="feedback_no_button">Nem</string>
+
+    <string name="feedback_thanks">Köszönjük visszajelzését!</string>
+
+
+    <!-- Like -->
+    <string name="like_title">Tetszik az alkalmazásunk?</string>
+    <string name="like_message">
+        Visszajelzésével segíthet jobbá tenni alkalmazásunkat.
+    </string>
+    <string name="like_ok_button">Tetszik</string>
+    <string name="like_no_button">Nem igazán</string>
+
+
+    <!-- Rate -->
+    <string name="rate_title">Kérjük Értékeljen minket</string>
     <string name="rate_message">
-        Amennyiben tetszik, kérjük támogassa ingyenes alkalmazásunkat
+        Kérjük támogassa ingyenes alkalmazásunkat
         nagylelkű értékelésével az alkalmazásboltban:\n\n
          1) Kattintson itt az Értékelem gombra\n
          2) Görgessen az értékelésekig\n

@@ -141,7 +141,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_feedback:
-                        RateHelper.openRating(ActionBarCastActivity.this.getApplicationContext());
+                        //RateHelper.sendFeedback(ActionBarCastActivity.this.getApplicationContext());
                         break;
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
