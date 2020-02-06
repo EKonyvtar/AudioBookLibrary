@@ -11,14 +11,13 @@ import android.widget.Toast;
 
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
-import com.murati.audiobook.ui.BaseActivity;
 
-public class RateHelper {
-    private static final String TAG = LogHelper.makeLogTag(RateHelper.class);
+public class FeedbackHelper {
+    private static final String TAG = LogHelper.makeLogTag(FeedbackHelper.class);
 
     private static final String MILESTONE_REFERENCE_FILE = "MILESTONE_REFERENCE";
 
-    public static final String DIALOGUE_COUNT = "DIALOG_COUNT";
+    public static final String DIALOGUE_COUNT = "DIALOGUE_COUNT";
     public static final String PLAYBACK_COUNT = "PLAYBACK_COUNT";
     public static final String RATED_COUNT = "RATED_COUNT";
 
@@ -83,7 +82,7 @@ public class RateHelper {
 
     public static void tryShowDialogs(Activity activity) {
         // Show first Like/Dislike
-        if (true || shouldShowLikeDialog(activity.getApplicationContext()))
+        if (shouldShowLikeDialog(activity.getApplicationContext()))
             showLikeDialog(activity);
 
             // Show rate dialog
@@ -103,7 +102,7 @@ public class RateHelper {
             //LogHelper.d(TAG, "RateCount stats LIKE/DISLIKE:", likeCount, dislikeCount);
             if (
                 likeCount >= 1 // At least hit like once
-                && dislikeCount == 0 // Never hit dislike
+                && dislikeCount <= 1 // Maybe once hit dislike
                 && ratedCount < 2 // Never try ask more than twice to rate
                 && playbackCount >= 3 && playbackCount%3 == 0 // After every 3rd playback
                 //&& dialogueCount%2 == 1 // EVery second dialogue show opportunity

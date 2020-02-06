@@ -41,11 +41,11 @@ import android.widget.Toast;
 
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.FeatureHelper;
+import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.murati.audiobook.utils.NetworkHelper;
 import com.murati.audiobook.utils.PlaybackHelper;
-import com.murati.audiobook.utils.RateHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +120,7 @@ public class MediaBrowserFragment extends Fragment {
 
             try {
                 if (state.getState() == PlaybackStateCompat.STATE_PLAYING) {
-                    RateHelper.incrementCount(getActivity().getBaseContext(), RateHelper.PLAYBACK_COUNT);
+                    FeedbackHelper.incrementCount(getActivity().getBaseContext(), FeedbackHelper.PLAYBACK_COUNT);
                 }
             } catch (Exception ex) {
                 LogHelper.e(TAG, "Failed to increment playback state.");
