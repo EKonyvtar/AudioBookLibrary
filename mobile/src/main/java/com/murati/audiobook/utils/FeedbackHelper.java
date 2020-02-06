@@ -166,13 +166,24 @@ public class FeedbackHelper {
 
     private static void sendEmailFeedback(Context c) {
         try {
+            /*
             Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_EMAIL, BuildConfig.APPSTORE_EMAIL);
             intent.putExtra(Intent.EXTRA_SUBJECT, c.getString(R.string.feedback_title));
             intent.putExtra(Intent.EXTRA_TEXT, "");
 
             c.startActivity(Intent.createChooser(intent, c.getString(R.string.feedback_title)));
+            */
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("*/*");
+            intent.putExtra(Intent.EXTRA_EMAIL, BuildConfig.APPSTORE_EMAIL);
+            intent.putExtra(Intent.EXTRA_SUBJECT, String.format("%s v%s",
+                c.getString(R.string.feedback_title),
+                BuildConfig.VERSION_NAME));
+            c.startActivity(intent);
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error sending email", ex.getMessage());
         }
