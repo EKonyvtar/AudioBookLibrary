@@ -15,10 +15,8 @@
  */
 package com.murati.audiobook.ui;
 
-import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,9 +43,9 @@ import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.AnalyticsHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
+import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
-import com.murati.audiobook.utils.RateHelper;
 
 /**
  * Main activity for the music player.
@@ -112,7 +110,7 @@ public class MusicPlayerActivity extends BaseActivity
         //TODO: fix toolbar blink
         updateBookButtons(getMediaId());
 
-        RateHelper.incrementCount(getApplicationContext(), RateHelper.DIALOGUE_COUNT);
+        FeedbackHelper.incrementCount(getApplicationContext(), FeedbackHelper.DIALOGUE_COUNT);
         refreshRemoteConfig();
 
         initializeFromParams(savedInstanceState, getIntent());
@@ -433,6 +431,6 @@ public class MusicPlayerActivity extends BaseActivity
         updateBookButtons(getMediaId());
 
 
-        RateHelper.tryShowDialogs(this);
+        FeedbackHelper.tryShowDialogs(this);
     }
 }

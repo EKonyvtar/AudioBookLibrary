@@ -21,7 +21,6 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -42,6 +41,7 @@ import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.FavoritesHelper;
+import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LanguageHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
@@ -52,7 +52,6 @@ import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.murati.audiobook.utils.MediaIDHelper;
-import com.murati.audiobook.utils.RateHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -141,7 +140,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_feedback:
-                        RateHelper.showLikeDialog(ActionBarCastActivity.this);
+                        FeedbackHelper.showLikeDialog(ActionBarCastActivity.this);
                         break;
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);

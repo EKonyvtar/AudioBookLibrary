@@ -40,7 +40,6 @@ import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.NetworkHelper;
-import com.murati.audiobook.utils.RateHelper;
 
 /**
  * A class that shows the Media Queue to the user.
@@ -115,7 +114,7 @@ public class PlaybackControlsFragment extends Fragment {
             }
         });
 
-        //RateHelper.incrementCount(getActivity().getBaseContext(), RateHelper.PLAYBACK_COUNT);
+        //FeedbackHelper.incrementCount(getActivity().getBaseContext(), FeedbackHelper.PLAYBACK_COUNT);
         return rootView;
     }
 
