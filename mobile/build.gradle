@@ -58,6 +58,7 @@ android {
         GooglePlay {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+            buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
         /*huaweiAppGallery {
