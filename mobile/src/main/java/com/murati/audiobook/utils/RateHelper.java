@@ -28,7 +28,8 @@ public class RateHelper {
 
     public static void showLikeDialog(final Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(R.string.like_title)
+        builder.setTitle(R.string.like_title)
+            .setMessage(R.string.like_message)
             .setPositiveButton(R.string.like_ok_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     incrementCount(activity, LIKE_COUNT);
@@ -64,17 +65,17 @@ public class RateHelper {
 
     public static void showFeedbackDialog(final Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(R.string.feedback_title)
+        builder.setTitle(R.string.feedback_title)
+            .setMessage(R.string.feedback_message)
             .setPositiveButton(R.string.feedback_ok_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     sendEmailFeedback(activity);
-                    Toast.makeText(activity, R.string.feedback_thanks, Toast.LENGTH_LONG);
+                    Toast.makeText(activity, R.string.feedback_thanks, Toast.LENGTH_LONG).show();
                 }
             })
             .setNegativeButton(R.string.feedback_no_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
-                    Toast.makeText(activity, R.string.feedback_thanks, Toast.LENGTH_LONG);
+                    Toast.makeText(activity, R.string.feedback_thanks, Toast.LENGTH_LONG).show();
                 }
             });
         builder.show();
@@ -85,12 +86,12 @@ public class RateHelper {
         if (true || shouldShowLikeDialog(activity.getApplicationContext()))
             showLikeDialog(activity);
 
-        // Show rate dialog
+            // Show rate dialog
         else if (shouldShowRateDialog(activity.getApplicationContext()))
             showStoreRatingDialog(activity);
     }
 
-    public static boolean shouldShowRateDialog(Context c) {
+    private static boolean shouldShowRateDialog(Context c) {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
             Long playbackCount = sharedPref.getLong(PLAYBACK_COUNT, 0);
@@ -100,7 +101,6 @@ public class RateHelper {
             Long ratedCount = sharedPref.getLong(RATED_COUNT, 0);
 
             //LogHelper.d(TAG, "RateCount stats LIKE/DISLIKE:", likeCount, dislikeCount);
-            // More likes and max 1 dislike
             if (
                 likeCount >= 1 // At least hit like once
                 && dislikeCount == 0 // Never hit dislike
@@ -121,7 +121,7 @@ public class RateHelper {
     }
 
 
-    public static boolean shouldShowLikeDialog(Context c) {
+    private static boolean shouldShowLikeDialog(Context c) {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
             Long playbackCount = sharedPref.getLong(PLAYBACK_COUNT, 0);
@@ -134,9 +134,10 @@ public class RateHelper {
             // Haven't asked more than 2 times,
             // Played at least 3 chapters
             // Every second time
-            if ( dislikeCount == 0// Never hit dislike
-                    && likeCount < 1// Never ask twice
-                    && playbackCount >= 3 && playbackCount%3 == 0 // After every 3rd playback
+            if (
+                dislikeCount == 0// Never hit dislike
+                && likeCount < 1// Never ask twice
+                && playbackCount >= 3 && playbackCount%3 == 0 // After every 3rd playback
                     //&& dialogueCount%2 == 1 // EVery second dialogue show opportunity
             ) {
                 // To avoid re-popup, increment start-count
@@ -147,7 +148,6 @@ public class RateHelper {
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error evaluating rate-count", ex.getMessage());
         }
-
         return false;
     }
 
@@ -165,22 +165,7 @@ public class RateHelper {
         }
     }
 
-
-    public static void sendFeedback(Activity c) {
-        showStoreRatingDialog(c);
-
-        /*
-        SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
-        Long dislikeCount = sharedPref.getLong(DISLIKE_COUNT, 0);
-        if (dislikeCount > 0) // Try to protect store
-            sendEmailFeedback(c);
-        else
-            openStoreRating(c);
-        */
-    }
-
-
-    public static void sendEmailFeedback(Context c) {
+    private static void sendEmailFeedback(Context c) {
         try {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setType("text/plain");
@@ -194,7 +179,7 @@ public class RateHelper {
         }
     }
 
-    public static void openStoreRating(Context c) {
+    private static void openStoreRating(Context c) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse(
@@ -212,7 +197,7 @@ public class RateHelper {
 
             c.startActivity(intent);
         } catch (Exception ex) {
-            LogHelper.e(TAG, "Error opening appstore:", ex.getMessage());
+            LogHelper.e(TAG, "Error opening app-store:", ex.getMessage());
         }
     }
 }

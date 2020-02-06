@@ -434,6 +434,5 @@ public class MusicPlayerActivity extends BaseActivity
 
 
         RateHelper.tryShowDialogs(this);
-        //RateHelper.sendFeedback(this);
     }
 }

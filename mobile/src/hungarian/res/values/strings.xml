@@ -120,7 +120,7 @@
         javíthassuk és továbbfejleszthessük ingyenes alkalmazásunkat?
     </string>
     <string name="feedback_ok_button">Igen</string>
-    <string name="feedback_no_button">Nem</string>
+    <string name="feedback_no_button">Most nem</string>
 
     <string name="feedback_thanks">Köszönjük visszajelzését!</string>
 
@@ -128,7 +128,8 @@
     <!-- Like -->
     <string name="like_title">Tetszik az alkalmazásunk?</string>
     <string name="like_message">
-        Visszajelzésével segíthet jobbá tenni alkalmazásunkat.
+        Visszajelzésével segíthet fejleszteni és jobbá
+        tenni ingyenes alkalmazásunkat.
     </string>
     <string name="like_ok_button">Tetszik</string>
     <string name="like_no_button">Nem igazán</string>
