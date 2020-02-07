@@ -29,8 +29,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 61
-        versionName "0.14.${versionCode}"
+        versionCode 62
+        versionName "0.15.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -156,6 +156,9 @@ dependencies {
 
     //Remote Config
     implementation 'com.google.firebase:firebase-config:17.0.0'
+
+    // In-app messaging
+    //implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.0'
 
     // Test
     testImplementation 'junit:junit:4.13'

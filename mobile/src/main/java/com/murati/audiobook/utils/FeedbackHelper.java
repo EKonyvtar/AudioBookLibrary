@@ -104,8 +104,8 @@ public class FeedbackHelper {
                 likeCount >= 1 // At least hit like once
                 && dislikeCount <= 1 // Maybe once hit dislike
                 && ratedCount < 2 // Never try ask more than twice to rate
-                && playbackCount >= 3 && playbackCount%3 == 0 // After every 3rd playback
-                //&& dialogueCount%2 == 1 // EVery second dialogue show opportunity
+                && playbackCount >= 3 // After 3rd playback
+                && dialogueCount%5== 1 // EVery 5th dialogue show opportunity
             ) {
                 // To avoid re-popup, increment start-count
                 incrementCount(c, DIALOGUE_COUNT);
@@ -136,8 +136,8 @@ public class FeedbackHelper {
             if (
                 dislikeCount == 0// Never hit dislike
                 && likeCount < 1// Never ask twice
-                && playbackCount >= 3 && playbackCount%3 == 0 // After every 3rd playback
-                    //&& dialogueCount%2 == 1 // EVery second dialogue show opportunity
+                && playbackCount >= 3 // After 3rd playback
+                && dialogueCount%5== 1 // EVery 5th dialogue show opportunity
             ) {
                 // To avoid re-popup, increment start-count
                 incrementCount(c, DIALOGUE_COUNT);
