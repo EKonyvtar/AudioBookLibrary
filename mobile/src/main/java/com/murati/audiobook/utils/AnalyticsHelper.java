@@ -10,21 +10,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class AnalyticsHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
 
-    public static final String ANALYTICS_FEEDBACK_EVENT = "feedback_event";
-
-    /*private void reportFirebaseEvent(String action, MediaDescriptionCompat description) {
-        try {
-            Bundle params = new Bundle();
-            params.putString("book_title", description.getSubtitle().toString());
-            params.putString("book_author", ((String) description.getDescription()).split(",")[0]);
-            params.putString("book_chapter", ((String) description.getTitle()));
-
-            mFirebaseAnalytics.logEvent("share_image", params);
-
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
-    }*/
+    public static final String ANALYTICS_FEEDBACK_EVENT = "send_feedback";
 
     public static void selectItem(Context context, String current, String id, String name, String type) {
         if (current == null) current = "ROOT";
