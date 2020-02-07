@@ -281,7 +281,7 @@ public class MusicPlayerActivity extends BaseActivity
                 .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(
                     EXTRA_CURRENT_MEDIA_DESCRIPTION,
-                    intent.getParcelableExtra(EXTRA_CURRENT_MEDIA_DESCRIPTION)
+                    intent.getParcelableExtra(EXTRA_CURRENT_MEDIA_DESCRIPTION).toString()
                 );
             startActivity(fullScreenIntent);
         }
