@@ -10,7 +10,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class AnalyticsHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
 
-    public static final String ANALYTICS_ACTION_SELECT = "SELECT_LIST_ITEM";
+    public static final String ANALYTICS_FEEDBACK_EVENT = "feedback_event";
 
     /*private void reportFirebaseEvent(String action, MediaDescriptionCompat description) {
         try {
@@ -37,5 +37,12 @@ public class AnalyticsHelper {
 
         FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    }
+
+    public static void sentFeedback(Context context, String eventId) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, eventId);
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        mFirebaseAnalytics.logEvent(ANALYTICS_FEEDBACK_EVENT, bundle);
     }
 }
