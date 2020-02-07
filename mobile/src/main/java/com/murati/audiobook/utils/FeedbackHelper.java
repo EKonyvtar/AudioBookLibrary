@@ -42,11 +42,6 @@ public class FeedbackHelper {
                     incrementCount(activity, DISLIKE_COUNT);
                     showFeedbackDialog(activity);
                 }
-            })
-            .setNeutralButton(R.string.later_button, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    incrementCount(activity, LATER_COUNT);
-                }
             });
         builder.show();
     }
