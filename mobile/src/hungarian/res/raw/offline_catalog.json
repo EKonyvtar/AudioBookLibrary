@@ -79069,6 +79069,506 @@
       "source": "https://mek.oszk.hu/19900/19937/mp3/73.mp3",
       "title": "Pár szó az íróról",
       "trackNumber": 74
+    },
+    {
+      "album": "Baj van Rozikám?",
+      "artist": "Máté G. Péter",
+      "duration": 13,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/19900/19999/borito.jpg",
+      "source": "https://mek.oszk.hu/19900/19999/mp3/00_Baj_van_Rozikam.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Baj van Rozikám?",
+      "artist": "Máté G. Péter",
+      "duration": 3110,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/19900/19999/borito.jpg",
+      "source": "https://mek.oszk.hu/19900/19999/mp3/01_Baj_van_Rozikam.mp3",
+      "title": "Baj van Rozikám?",
+      "trackNumber": 2
+    },
+    {
+      "album": "Baj van Rozikám?",
+      "artist": "Máté G. Péter",
+      "duration": 2511,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/19900/19999/borito.jpg",
+      "source": "https://mek.oszk.hu/19900/19999/mp3/02_Baj_van_Rozikam.mp3",
+      "title": "Egyszerű történet",
+      "trackNumber": 3
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 835,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/01-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Minden jó, ha...?",
+      "trackNumber": 1
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 1328,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/02-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Közgyűlés, mérsékelt sikerrel",
+      "trackNumber": 2
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 476,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/03-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Bonyodalmak az énekpróbán",
+      "trackNumber": 3
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 736,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/04-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "A bárányfüredi kultúrpalota",
+      "trackNumber": 4
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 432,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/05-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Beszélgetés a műsorpolitikáról",
+      "trackNumber": 5
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 988,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/06-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Este a kaszinóban",
+      "trackNumber": 6
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 470,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/07-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Találkozás a vakonddal",
+      "trackNumber": 7
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 607,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/08-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "A kórus bemutatkozik",
+      "trackNumber": 8
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 810,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/09-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Leleplezik a rendbontókat",
+      "trackNumber": 9
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 577,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/10-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Az első adásnap",
+      "trackNumber": 10
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 779,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/11-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "A gigasztár-verseny",
+      "trackNumber": 11
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 520,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/12-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Egbert meghívót kap",
+      "trackNumber": 12
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 649,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/13-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Kitör a botrány",
+      "trackNumber": 13
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 552,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/14-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Egbert egér rendet teremt",
+      "trackNumber": 14
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 465,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/15-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "Pici és Csucsu",
+      "trackNumber": 15
+    },
+    {
+      "album": "Egbert egér rendet rak",
+      "artist": "Mihályi Antal",
+      "duration": 193,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20040/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20040/mp3/16-Mihalyi_Antal-Egbert_eger_rendet_rak.mp3",
+      "title": "...ha jó a vége!",
+      "trackNumber": 16
+    },
+    {
+      "album": "Nagymama lekvárja 1-4.",
+      "artist": "Engler József",
+      "duration": 2267,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20041/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20041/mp3/01-Engler-Jozsef_Nagymama-lekvarja.mp3",
+      "title": "Összpontosítás",
+      "trackNumber": 1
+    },
+    {
+      "album": "Nagymama lekvárja 1-4.",
+      "artist": "Engler József",
+      "duration": 1900,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20041/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20041/mp3/02-Engler-Jozsef_Nagymama-lekvarja.mp3",
+      "title": "Valami nem kerek...",
+      "trackNumber": 2
+    },
+    {
+      "album": "Nagymama lekvárja 1-4.",
+      "artist": "Engler József",
+      "duration": 1708,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20041/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20041/mp3/03-Engler-Jozsef_Nagymama-lekvarja.mp3",
+      "title": "Cukor az Élet, csak szopni kell tudni!",
+      "trackNumber": 3
+    },
+    {
+      "album": "Nagymama lekvárja 1-4.",
+      "artist": "Engler József",
+      "duration": 1884,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20000/20041/borito.jpg",
+      "source": "https://mek.oszk.hu/20000/20041/mp3/04-Engler-Jozsef_Nagymama-lekvarja.mp3",
+      "title": "Kommandósok bábszínháza",
+      "trackNumber": 4
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/00-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(02:29 min, 4.4 Mbyte)",
+      "trackNumber": 1
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/01-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:38 min, 14.1 Mbyte)",
+      "trackNumber": 2
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/02-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(16:33 min, 17.9 Mbyte)",
+      "trackNumber": 3
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/03-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:51 min, 13.4 Mbyte)",
+      "trackNumber": 4
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/04-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(16:19 min, 17.7 Mbyte)",
+      "trackNumber": 5
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/05-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(14:40 min, 16.1 Mbyte)",
+      "trackNumber": 6
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/06-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:06 min, 13.6 Mbyte)",
+      "trackNumber": 7
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/07-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(13:00 min, 14.5 Mbyte)",
+      "trackNumber": 8
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/08-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:16 min, 13.8 Mbyte)",
+      "trackNumber": 9
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/09-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(09:19 min, 10.9 Mbyte)",
+      "trackNumber": 10
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/10-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(10:10 min, 11.7 Mbyte)",
+      "trackNumber": 11
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/11-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:34 min, 13.1 Mbyte)",
+      "trackNumber": 12
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/12-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(14:16 min, 15.7 Mbyte)",
+      "trackNumber": 13
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/13-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:37 min, 14.1 Mbyte)",
+      "trackNumber": 14
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/14-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:38 min, 13.2 Mbyte)",
+      "trackNumber": 15
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/15-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:58 min, 13.5 Mbyte)",
+      "trackNumber": 16
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/16-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(10:14 min, 11.8 Mbyte)",
+      "trackNumber": 17
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/17-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:23 min, 12.9 Mbyte)",
+      "trackNumber": 18
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/18-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(10:45 min, 12.3 Mbyte)",
+      "trackNumber": 19
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/19-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:22 min, 13.0 Mbyte)",
+      "trackNumber": 20
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/20-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:37 min, 13.2 Mbyte)",
+      "trackNumber": 21
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/21-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:34 min, 14.1 Mbyte)",
+      "trackNumber": 22
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/22-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(10:49 min, 12.4 Mbyte)",
+      "trackNumber": 23
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/23-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(09:39 min, 11.3 Mbyte)",
+      "trackNumber": 24
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/24-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(11:25 min, 13.0 Mbyte)",
+      "trackNumber": 25
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/25-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(12:05 min, 13.6 Mbyte)",
+      "trackNumber": 26
+    },
+    {
+      "album": "Titok, hűség, hitszegés",
+      "artist": "Mihályi Antal",
+      "duration": 0,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20100/20110/borito.jpg",
+      "source": "https://mek.oszk.hu/20100/20110/mp3/26-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
+      "title": "(08:58 min, 10.6 Mbyte)",
+      "trackNumber": 27
     }
   ]
 }
