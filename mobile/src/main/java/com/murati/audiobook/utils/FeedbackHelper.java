@@ -19,7 +19,9 @@ public class FeedbackHelper {
 
     public static final String DIALOGUE_SHOWN = "DIALOGUE_SHOWN";
     public static final String PLAYBACK_COUNT = "PLAYBACK_CHANGED";
+    public static final String LATER_COUNT = "LATER_HIT";
     public static final String RATED_COUNT = "RATED_HIT";
+    public static final String EMAIL_SENT = "EMAIL_HIT";
 
     public static final String LIKE_COUNT = "LIKE_HIT";
     public static final String DISLIKE_COUNT = "DISLIKE_HIT";
@@ -40,6 +42,11 @@ public class FeedbackHelper {
                     incrementCount(activity, DISLIKE_COUNT);
                     showFeedbackDialog(activity);
                 }
+            })
+            .setNeutralButton(R.string.later_button, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    incrementCount(activity, LATER_COUNT);
+                }
             });
         builder.show();
     }
@@ -56,7 +63,7 @@ public class FeedbackHelper {
             })
             .setNegativeButton(R.string.rate_no_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    //incrementCount(getContext(), RATED_COUNT);
+                    incrementCount(activity, LATER_COUNT);
                 }
             });
         builder.show();
@@ -68,6 +75,7 @@ public class FeedbackHelper {
             .setMessage(R.string.feedback_message)
             .setPositiveButton(R.string.feedback_ok_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    incrementCount(activity, EMAIL_SENT);
                     sendEmailFeedback(activity);
                     Toast.makeText(activity, R.string.feedback_thanks, Toast.LENGTH_LONG).show();
                 }
