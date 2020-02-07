@@ -17,12 +17,12 @@ public class FeedbackHelper {
 
     private static final String MILESTONE_REFERENCE_FILE = "MILESTONE_REFERENCE";
 
-    public static final String DIALOGUE_COUNT = "DIALOGUE_COUNT";
-    public static final String PLAYBACK_COUNT = "PLAYBACK_COUNT";
-    public static final String RATED_COUNT = "RATED_COUNT";
+    public static final String DIALOGUE_SHOWN = "DIALOGUE_SHOWN";
+    public static final String PLAYBACK_COUNT = "PLAYBACK_CHANGED";
+    public static final String RATED_COUNT = "RATED_HIT";
 
-    public static final String LIKE_COUNT = "LIKE_COUNT";
-    public static final String DISLIKE_COUNT = "DISLIKE_COUNT";
+    public static final String LIKE_COUNT = "LIKE_HIT";
+    public static final String DISLIKE_COUNT = "DISLIKE_HIT";
 
 
     public static void showLikeDialog(final Activity activity) {
@@ -94,7 +94,7 @@ public class FeedbackHelper {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
             Long playbackCount = sharedPref.getLong(PLAYBACK_COUNT, 0);
-            Long dialogueCount = sharedPref.getLong(DIALOGUE_COUNT, 0);
+            Long dialogueCount = sharedPref.getLong(DIALOGUE_SHOWN, 0);
             Long dislikeCount = sharedPref.getLong(DISLIKE_COUNT, 0);
             Long likeCount = sharedPref.getLong(LIKE_COUNT, 0);
             Long ratedCount = sharedPref.getLong(RATED_COUNT, 0);
@@ -108,7 +108,7 @@ public class FeedbackHelper {
                 && dialogueCount%5== 1 // EVery 5th dialogue show opportunity
             ) {
                 // To avoid re-popup, increment start-count
-                incrementCount(c, DIALOGUE_COUNT);
+                incrementCount(c, DIALOGUE_SHOWN);
                 return true;
             }
 
@@ -124,7 +124,7 @@ public class FeedbackHelper {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
             Long playbackCount = sharedPref.getLong(PLAYBACK_COUNT, 0);
-            Long dialogueCount = sharedPref.getLong(DIALOGUE_COUNT, 0);
+            Long dialogueCount = sharedPref.getLong(DIALOGUE_SHOWN, 0);
             //Long ratedCount = sharedPref.getLong(RATED_COUNT, 0);
             Long dislikeCount = sharedPref.getLong(DISLIKE_COUNT, 0);
             Long likeCount = sharedPref.getLong(LIKE_COUNT, 0);
@@ -140,7 +140,7 @@ public class FeedbackHelper {
                 && dialogueCount%5== 1 // EVery 5th dialogue show opportunity
             ) {
                 // To avoid re-popup, increment start-count
-                incrementCount(c, DIALOGUE_COUNT);
+                incrementCount(c, DIALOGUE_SHOWN);
                 return true;
             }
 
@@ -150,14 +150,22 @@ public class FeedbackHelper {
         return false;
     }
 
-    public static void incrementCount(Context c, String CountLabel) {
+    public static void incrementCount(Context c, String countLabel) {
         try {
             SharedPreferences sharedPref = c.getSharedPreferences(MILESTONE_REFERENCE_FILE, Context.MODE_PRIVATE);
-            Long count = sharedPref.getLong(CountLabel, 0) + 1;
+            Long count = sharedPref.getLong(countLabel, 0) + 1;
 
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putLong(CountLabel, count);
+            editor.putLong(countLabel, count);
             editor.apply();
+
+
+            try { // Send events
+                if (countLabel != DIALOGUE_SHOWN)
+                    AnalyticsHelper.sentFeedback(c, countLabel);
+            } catch (Exception ex) {
+                LogHelper.e(TAG, "Error sending feedback event: %s:", ex.getMessage());
+            }
 
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error incrementing %s :", ex.getMessage());
