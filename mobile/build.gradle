@@ -39,7 +39,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    //TODO: fix CircleCI linting issues
     lintOptions {
         abortOnError false
     }
@@ -54,18 +53,18 @@ android {
     productFlavors {
         //TODO: define paid and free dimensions
 
-
         GooglePlay {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
-        /*huaweiAppGallery {
-            dimension "store"
-            variant.buildConfigField 'String', 'APPSTORE_URL', 'http://play.google.com/store/apps/details?id=%s'
-
-        }*/
+        huaweiAppGallery {
+            dimension = 'store'
+            applicationIdSuffix ".hw"
+            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+            buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
+        }
 
 
 
