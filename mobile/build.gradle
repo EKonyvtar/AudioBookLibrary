@@ -49,7 +49,7 @@ android {
         }
     }
 
-    flavorDimensions "language", 'store'
+    flavorDimensions 'catalogue', 'store'
     productFlavors {
         //TODO: define paid and free dimensions
 
@@ -61,15 +61,20 @@ android {
 
         huaweiAppGallery {
             dimension = 'store'
-            applicationIdSuffix ".hw"
+            applicationIdSuffix ".huawei"
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
+        bible_hu {
+            dimension "catalogue"
+            applicationIdSuffix ".bible.hu"
+            versionNameSuffix "-bible-hu"
+        }
 
 
         hungarian {
-            dimension "language"
+            dimension "catalogue"
             //applicationIdSuffix ".hu"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
@@ -77,25 +82,25 @@ android {
         }
 
         french {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
         }
 
         english {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
         }
 
         spanish {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
         }
 
         german {
-            dimension = 'language'
+            dimension = 'catalogue'
             applicationIdSuffix = '.de'
             versionNameSuffix = '-de'
         }
