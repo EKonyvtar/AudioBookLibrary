@@ -62,7 +62,7 @@ android {
         huaweiAppGallery {
             dimension = 'store'
             applicationIdSuffix ".huawei"
-            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
@@ -75,10 +75,9 @@ android {
 
         hungarian {
             dimension "catalogue"
-            //applicationIdSuffix ".hu"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
-            //resConfig "default"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
         }
 
         french {
