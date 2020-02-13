@@ -26,11 +26,11 @@ android {
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 17
+        minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 65
-        versionName "0.17.${versionCode}"
+        versionCode 66
+        versionName "0.18.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
