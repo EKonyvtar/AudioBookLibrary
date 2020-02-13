@@ -28,6 +28,7 @@ public class AnalyticsHelper {
     public static void sentFeedback(Context context, String eventId) {
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, eventId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, eventId);
         FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         mFirebaseAnalytics.logEvent(ANALYTICS_FEEDBACK_EVENT, bundle);
     }
