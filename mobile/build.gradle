@@ -59,9 +59,8 @@ android {
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
-        huaweiAppGallery {
+        HuaweiAppGallery {
             dimension = 'store'
-            applicationIdSuffix ".huawei"
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
