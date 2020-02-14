@@ -1,11 +1,15 @@
 package com.murati.audiobook.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.murati.audiobook.BuildConfig;
 
 import java.util.Locale;
 
@@ -58,6 +62,24 @@ public class LanguageHelper {
 
   public static void trySetSuggestedLocale(Activity activity) {
       //LocaleList.getDefault() // from API 24
+  }
+
+  public static void enforceHungarianIfNeeded(Context context) {
+      return;
+      /*try {
+          if (!BuildConfig.VERSION_NAME.endsWith("hu")) return;
+
+          //Else enforce Hungarian resources
+          Locale locale = new Locale("hu");
+          Locale.setDefault(locale);
+          Configuration config = context.getResources().getConfiguration();
+          config.locale = locale;
+          context.getResources()
+              .updateConfiguration(config, context.getResources().getDisplayMetrics()
+              );
+      } catch (Exception ex) {
+          Log.e("LANG", "Error enforcing language: " + ex.getMessage());
+      }*/
   }
 
   public static void setLanguage(Activity activity, String language) {
