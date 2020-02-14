@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AudioLibros</string>
-    <string name="app_label">Audiolibros</string>
-
     <string name="error_no_metadata">No se pueden recuperar los metadatos</string>
 
     <string name="browse_genres">Géneros</string>
@@ -20,7 +17,6 @@
     <string name="browse_track_count">%1$s pistas</string>
     <string name="browse_title_count">%1$s libros</string>
 
-    <string name="random_queue_title">Títulos al azar</string>
     <string name="error_loading_media">Nada que mostrar</string>
     <string name="casting_to_device">Casting a %1$s</string>
     <string name="currently_playing_song">Reproduciendo</string>
@@ -33,17 +29,16 @@
     <string name="touch_to_cast">Puede reproducir y emitir sus audiolibros en TV, ChromeCast, Android Auto u otros dispositivos</string>
 
     <string name="home_title">Página de inicio</string>
-    <string name="related_content_header">Libros similares</string>
-    <string name="action_listen">Reproducir</string>
+
     <string name="open_content_drawer">Abrir el menu principal</string>
     <string name="close_content_drawer">Cerrar el menu principal</string>
-    <string name="placeholder_message">En desarrollo - Próximamente ...</string>
+
     <string name="drawer_allmusic_title">Audiolibros</string>
     <string name="drawer_playlists_title">Listas de reproducción</string>
     <string name="now_playing">Jugando ahora</string>
     <string name="background_image_str">Imagen del título del libro</string>
     <string name="search_queue_title">Resultados de la búsqueda</string>
-    <string name="no_search_results">No hay resultados de búsqueda</string>
+
     <string name="loading">Cargando…</string>
     <string name="media_route_menu_title">Reproducir a …</string>
     <string name="search_title">Buscar</string>
@@ -65,8 +60,7 @@
     <string name="browse_favorites">Favoritos</string>
     <string name="confirm_cancel">Deshacer</string>
     <string name="action_favorite">Favorito</string>
-    <string name="action_favorite_add">Agregar a los favoritos</string>
-    <string name="action_favorite_remove">Remover de favoritos</string>
+
     <string name="action_download">Descargar</string>
     <string name="notification_favorite_removed">Eliminado de favoritos</string>
     <string name="notification_favorite_added">Añadido a favoritos</string>
@@ -109,7 +103,6 @@
     </string>
     <string name="like_ok_button">Me gusta</string>
     <string name="like_no_button">No exactamente</string>
-    <string name="later_button">Pregunta después</string>
 
 
     <!-- Rate -->
@@ -126,11 +119,8 @@
     <string name="rate_no_button">Ahora no</string>
 
 
-
     <!-- ADs -->
     <string name="setting_ad_switch">Habilitar anuncios</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~8227204847</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/3875405609</string>
 
     <!-- About page -->
     <string name="about_content">
@@ -138,15 +128,9 @@
         Si puede, por favor apoye el proyecto en la siguiente página:
     </string>
 
-    <string name="about_button_murati">Abrir murati.hu</string>
-    <string name="about_button_store">Abrir App Store</string>
     <string name="about_button_support">Abrir el enlace de soporte de Patreon</string>
-    <string name="about_button_oszk">Abrir Oszk - MEK</string>
 
     <string name="about_footer">Gracias por tu apoyo</string>
     <string name="about_privacy_label">Política de privacidad</string>
-
-    <string name="cast_application_id" translatable="false">CC1AD845</string>
-    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
 
 </resources>
