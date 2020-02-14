@@ -42,11 +42,6 @@ public class FeedbackHelper {
                     incrementCount(activity, DISLIKE_COUNT);
                     showFeedbackDialog(activity);
                 }
-            })
-            .setNeutralButton(R.string.later_button, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    incrementCount(activity, LATER_COUNT);
-                }
             });
         builder.show();
     }
@@ -196,9 +191,12 @@ public class FeedbackHelper {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("*/*");
             intent.putExtra(Intent.EXTRA_EMAIL, BuildConfig.APPSTORE_EMAIL);
-            intent.putExtra(Intent.EXTRA_SUBJECT, String.format("%s v%s",
+            intent.putExtra(Intent.EXTRA_SUBJECT,
+                String.format(
+                    "%s v%s (%s)",
                 c.getString(R.string.feedback_title),
-                BuildConfig.VERSION_NAME));
+                BuildConfig.VERSION_NAME,
+                BuildConfig.FLAVOR_store));
             c.startActivity(intent);
         } catch (Exception ex) {
             LogHelper.e(TAG, "Error sending email", ex.getMessage());
@@ -207,16 +205,16 @@ public class FeedbackHelper {
 
     private static void openStoreRating(Context c) {
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse(
-                    String.format(
-                        BuildConfig.APPSTORE_URL, BuildConfig.APPLICATION_ID
-                    )
-                )
-            );
+            String uri = String.format(BuildConfig.APPSTORE_URL, BuildConfig.APPLICATION_ID);
+
+            // Override appstore link for Huawei
+            if (BuildConfig.FLAVOR_store.contains("Huawei")) {
+                uri = String.format(BuildConfig.APPSTORE_URL, BuildConfig.APPSTORE_HUAWEI_ID);
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
                 Intent.FLAG_ACTIVITY_MULTIPLE_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK
             );

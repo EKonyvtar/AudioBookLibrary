@@ -25,6 +25,7 @@ import com.murati.audiobook.R;
 import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.model.MusicProviderSource;
 import com.murati.audiobook.ui.ActionBarCastActivity;
+import com.murati.audiobook.utils.AnalyticsHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 
@@ -153,6 +154,14 @@ public class OfflineBookService extends IntentService {
 
         activity.startService(intent);
         Toast.makeText(activity, R.string.notification_download, Toast.LENGTH_SHORT).show();
+
+        try {
+            // Report Analytics
+            String bookTitle = MediaIDHelper.getEBookTitle(mediaId);
+            AnalyticsHelper.downloadItem(activity.getApplicationContext(), mediaId, bookTitle);
+        }  catch (Exception ex) {
+            Log.e(TAG, "Unable to report download analytics: " + ex.getMessage());
+        }
 
         //TODO: Downloads page visible
         //Intent i = new Intent();
