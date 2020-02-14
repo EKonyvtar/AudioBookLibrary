@@ -26,7 +26,7 @@
     <string name="drawer_quit_title">Quitter</string>
     <string name="drawer_playlists_title">Liste de lecture</string>
     <string name="drawer_settings_title">Réglage</string>
-    <string name="drawer_feedback_title">Retour d\'information</string>
+    <string name="drawer_feedback_title">Envoyer des commentaires</string>
     <string name="drawer_about_title">À propos de nous</string>
     <string name="browse_ebook">Tous les livres</string>
 
@@ -74,7 +74,7 @@
     <string name="search_hint">Rechercher des livres audio</string>
     <string name="setting_ad_switch">Activer les publicités</string>
     <string name="about_content">L\'application s\'appuie sur la base de données publique de Librivox, pour laquelle nous remercions les opérateurs.  Si vous le pouvez, veuillez soutenir le projet à la page suivante:</string>
-    <string name="about_button_murati">Parcourir murati.hu</string>
+
     <string name="about_button_store">Ouvrir Play Store</string>
     <string name="about_button_support">Visitez la page Patreon</string>
     <string name="about_button_oszk">Visitez la bibliothèque</string>
@@ -85,41 +85,40 @@
     <string name="browse_queue">Liste de lecture</string>
 
 
-
     <!-- Like -->
-    <string name="like_title">Do you like our app?</string>
+    <string name="like_title">Aimez-vous notre application?</string>
     <string name="like_message">
-        You can help improve this free application
-        with your kind feedback.
+        Vous pouvez aider à améliorer cette application
+        gratuite avec vos aimables commentaires.
     </string>
-    <string name="like_ok_button">Like</string>
-    <string name="like_no_button">Not quite</string>
-    <string name="later_button">Ask later</string>
+    <string name="like_ok_button">J\'aime</string>
+    <string name="like_no_button">Pas assez</string>
+    <string name="later_button">Plus tard</string>
 
 
     <!-- Feedback -->
-    <string name="feedback_title">Send Feedback</string>
+    <string name="feedback_title">Envoyer des commentaires</string>
     <string name="feedback_message">
-        Would you like to share your feedback so
-        we can develop and improve further this free app?
+        Souhaitez-vous partager vos commentaires afin que nous
+        puissions développer et améliorer davantage cette application gratuite?
     </string>
-    <string name="feedback_ok_button">Yes</string>
-    <string name="feedback_no_button">Not now</string>
+    <string name="feedback_ok_button">Oui</string>
+    <string name="feedback_no_button">Pas maintenant</string>
 
-    <string name="feedback_thanks">Thank you for your feedback!</string>
+    <string name="feedback_thanks">Merci pour votre avis!</string>
 
 
     <!-- Rate -->
-    <string name="rate_title">Please rate us</string>
+    <string name="rate_title">Veuillez nous évaluer</string>
     <string name="rate_message">
-        Please support our free app with your
-        kind comment and review:\n\n
-         1) Click on the Rate button here\n
-         2) Scroll to Comments and Rating\n
-         3) Give ★★★★★ 5 star and write your feedback\n\n
-        Thank you for your help!
+        S\'il vous plaît soutenir notre application
+        gratuite avec votre aimable commentaire et avis:\n\n
+         1) Cliquez sur le bouton évaluer ici\n
+         2) Faites défiler jusqu'à commentaires et évaluation\n
+         3) Donnez ★★★★★ 5 étoiles et écrivez vos commentaires\n\n
+        Merci de votre aide!
     </string>
-    <string name="rate_ok_button">Rate</string>
-    <string name="rate_no_button">Not now</string>
+    <string name="rate_ok_button">Évaluer</string>
+    <string name="rate_no_button">Pas maintenant</string>
 
 </resources>
