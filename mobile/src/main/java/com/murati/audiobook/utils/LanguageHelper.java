@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.LocaleList;
 import android.text.TextUtils;
 
 import java.util.Locale;
@@ -34,6 +35,7 @@ public class LanguageHelper {
 
       return text;
   }
+
   public static final void setAppLocale(Activity activity, String language, String country) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
       Resources resources = activity.getResources();
@@ -52,6 +54,10 @@ public class LanguageHelper {
 
   public static String getPackageLanguage(Activity activity) {
       return activity.getPackageName().split("[.]")[3];
+  }
+
+  public static void trySetSuggestedLocale(Activity activity) {
+      //LocaleList.getDefault() // from API 24
   }
 
   public static void setLanguage(Activity activity, String language) {
