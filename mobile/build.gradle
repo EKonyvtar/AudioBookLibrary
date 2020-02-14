@@ -29,8 +29,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 67
-        versionName "0.19.${versionCode}"
+        versionCode 68
+        versionName "0.20.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //Universal resources
@@ -81,6 +81,7 @@ android {
         }
 
         bible_hu {
+            resConfigs "hu"
             dimension "catalogue"
             applicationIdSuffix ".bible.hu"
             versionNameSuffix "-bible-hu"
@@ -88,11 +89,13 @@ android {
 
 
         hungarian {
+            resConfigs "hu"
             dimension "catalogue"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
 
-            resConfigs "hu","en"
+            // no error but german resources are not excluded :-(
+            //android { sourceSets.main.res.filter.exclude '**/res/values-de/**'
 
             //Multidimension constants
             //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
@@ -109,14 +112,14 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
         }
 
-        english {
+        /*english {
             dimension "catalogue"
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
-        }
+        }*/
 
         spanish {
             dimension "catalogue"
