@@ -34,7 +34,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //Universal resources
-        resConfigs "en","es","fr","de"
+        resConfigs "en","es","fr","de","hu"
 
         //Universal App constants
         buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
@@ -87,18 +87,18 @@ android {
             versionNameSuffix "-bible-hu"
         }
 
-
         hungarian {
-            resConfigs "hu"
             dimension "catalogue"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
 
-            // no error but german resources are not excluded :-(
-            //android { sourceSets.main.res.filter.exclude '**/res/values-de/**'
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Hangoskönyvtár")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~7544903903")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
             //Multidimension constants
-            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101706787")
         }
 
         french {
@@ -132,8 +132,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
 
             //Multidimension constants
-            //TODO: fix this
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
         }
 
         german {
@@ -148,7 +147,7 @@ android {
 
             //Multidimension constants
             //TODO: fix this
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C")
         }
     }
 }

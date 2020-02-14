@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
@@ -199,10 +200,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             mCastContext = CastContext.getSharedInstance(this);
         }
 
-        /*LanguageHelper.setLanguage (
-            this,
-            LanguageHelper.getPackageLanguage(this)
-        );*/
+        LanguageHelper.enforceHungarianIfNeeded(this);
     }
 
     @Override
@@ -236,10 +234,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         getFragmentManager().addOnBackStackChangedListener(mBackStackChangedListener);
 
         //TODO: make a language selector
-        /*LanguageHelper.setLanguage (
-            this,
-            LanguageHelper.getPackageLanguage(this)
-        );*/
+        LanguageHelper.enforceHungarianIfNeeded(this);
     }
 
     @Override
