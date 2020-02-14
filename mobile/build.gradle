@@ -64,6 +64,18 @@ android {
 
     flavorDimensions 'catalogue', 'language_pack', 'store'
 
+    variantFilter { variant ->
+        def catalogue = variant.getFlavors().get(0).name.toLowerCase()
+        def language_pack = variant.getFlavors().get(1).name.toLowerCase()
+
+        if (
+            catalogue.contains("hu") && !language_pack.contains("hu") // Not clearly Hun
+            || !catalogue.contains("hu") && language_pack.contains("hu") //Clearly multilingual
+        ) {
+            setIgnore(true)
+        }
+    }
+
     productFlavors {
 
         def addConstantTo = {target, constantName, constantValue ->
@@ -162,6 +174,8 @@ android {
 
         //TODO: define paid and free dimensions
     }
+
+
 }
 
 repositories {
