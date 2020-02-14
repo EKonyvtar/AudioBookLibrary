@@ -64,7 +64,7 @@ android {
 
         def addConstantTo = {target, constantName, constantValue ->
             target.manifestPlaceholders += [ (constantName):constantValue]
-            target.resValue "string",  "${constantName}", "\"${constantValue}\""
+            target.resValue "string",  "${constantName}", "${constantValue}"
             target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
         }
 
@@ -127,7 +127,13 @@ android {
             versionNameSuffix "-es"
 
             // Flavor specific constants
-            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APP_NAME", "AudioLibros")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~8227204847")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
+
+            //Multidimension constants
+            //TODO: fix this
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101")
         }
 
         german {
@@ -136,7 +142,13 @@ android {
             versionNameSuffix = '-de'
 
             // Flavor specific constants
-            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APP_NAME", "Hörbücher Bibliothek")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
+
+            //Multidimension constants
+            //TODO: fix this
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101")
         }
     }
 }
