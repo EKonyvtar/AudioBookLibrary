@@ -35,6 +35,7 @@ import android.widget.SearchView;
 
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.R;
+import com.murati.audiobook.utils.LanguageHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.ResourceHelper;
 
@@ -54,6 +55,8 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         super.onCreate(savedInstanceState);
 
         LogHelper.d(TAG, "Activity onCreate");
+        LanguageHelper.enforceHungarianIfNeeded(this);
+
         //LanguageHelper.setDefaultAppLocale(this);
 
         if (Build.VERSION.SDK_INT >= 21) {

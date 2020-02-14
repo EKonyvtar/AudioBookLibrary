@@ -116,6 +116,8 @@ public class MusicProvider {
 
     }
     public MusicProvider(MusicProviderSource source, Context c) {
+        LanguageHelper.enforceHungarianIfNeeded(c);
+
         mSource = source;
         context = c;
 
