@@ -90,4 +90,40 @@
     <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~3034430096</string>
     <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/8178945564</string>
 
+
+    <!-- Feedback -->
+    <string name="feedback_title">Feedback senden</string>
+    <string name="feedback_message">
+        Willst du uns das eine Bewertung schreiben?
+        Können wir unsere kostenlose Anwendung verbessern und verbessern?
+    </string>
+    <string name="feedback_ok_button">Ja</string>
+    <string name="feedback_no_button">Nicht jetzt</string>
+
+    <string name="feedback_thanks">Vielen Dank für Ihr Feedback!</string>
+
+
+    <!-- Like -->
+    <string name="like_title">Gefällt dir unsere App?</string>
+    <string name="like_message">
+        Ihr Feedback kann Ihnen helfen, sich zu verbessern und
+        zu verbessern bewerben Sie sich kostenlos.
+    </string>
+    <string name="like_ok_button">Wie</string>
+    <string name="like_no_button">Nicht ganz</string>
+    <string name="later_button">Später</string>
+
+
+    <!-- Rate -->
+    <string name="rate_title">Bitte bewerten Sie uns</string>
+    <string name="rate_message">
+        Bitte unterstützen Sie unsere kostenlose Anwendung Bewerten Sie den App Store großzügig:\n\n
+         1) Klicken Sie hier auf die Schaltfläche Bewerten\n
+         2) Scrollen Sie nach unten zu Ratings\n
+         3) Bewertet mit ★★★★★ 5 Sternen und Bewertung\n\n
+        Vielen Dank für Ihre Hilfe!
+    </string>
+    <string name="rate_ok_button">Bewertung</string>
+    <string name="rate_no_button">Nicht jetzt</string>
+
 </resources>
