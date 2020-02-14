@@ -54,14 +54,26 @@ public class FavoritesHelper {
     }
 
     public static int toggleFavoriteWithText(String mediaId, Activity activity) {
-        boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
-        String snakeText = "";
-        if (isFavorite)
-            snakeText = activity.getString(R.string.notification_favorite_added);
-        else
-            snakeText = activity.getString(R.string.notification_favorite_removed);
+        try {
+            // Get info
+            boolean isFavorite = FavoritesHelper.toggleFavorite(mediaId);
+            String bookTitle = MediaIDHelper.getEBookTitle(mediaId);
 
-        Toast.makeText(activity, MediaIDHelper.getEBookTitle(mediaId) + " - " + snakeText, Toast.LENGTH_SHORT).show();
+            // Show feedback
+            String snakeText = "";
+            if (isFavorite)
+                snakeText = activity.getString(R.string.notification_favorite_added);
+            else
+                snakeText = activity.getString(R.string.notification_favorite_removed);
+
+            Toast.makeText(activity, bookTitle + " - " + snakeText, Toast.LENGTH_SHORT).show();
+
+            // Report Analytics
+            AnalyticsHelper.favoriteItem(activity.getApplicationContext(), isFavorite, mediaId, bookTitle);
+
+        } catch (Exception ex) {
+            Log.e(TAG, "Error toggling favorites:" + ex.getMessage());
+        }
         return getFavoriteIcon(mediaId);
     }
 
