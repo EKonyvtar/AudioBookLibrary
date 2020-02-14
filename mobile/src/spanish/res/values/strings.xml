@@ -87,6 +87,46 @@
     <string name="open_item">Abrir</string>
 
 
+
+
+    <!-- Feedback -->
+    <string name="feedback_title">Enviar comentarios</string>
+    <string name="feedback_message">
+        ¿Desea escribir una reseña para que podamos
+        mejorar y mejorar nuestra aplicación gratuita?
+    </string>
+    <string name="feedback_ok_button">Sí</string>
+    <string name="feedback_no_button">Ahora no</string>
+
+    <string name="feedback_thanks">Gracias por tus comentarios!</string>
+
+
+    <!-- Like -->
+    <string name="like_title">¿Te gusta nuestra aplicación?</string>
+    <string name="like_message">
+        Sus comentarios pueden ayudarnos a mejorar
+        y mejorar nuestra aplicación gratuita.
+    </string>
+    <string name="like_ok_button">Me gusta</string>
+    <string name="like_no_button">No exactamente</string>
+    <string name="later_button">Pregunta después</string>
+
+
+    <!-- Rate -->
+    <string name="rate_title">Por favor califícanos</string>
+    <string name="rate_message">
+        Apoye nuestra aplicación gratuita con una calificación
+        generosa en la tienda de aplicaciones:\n\n
+         1) Haga clic en el botón Calificar\n
+         2) Desplazarse a la calificación\n
+         3) Califique ★★★★★ 5 estrellas y escriba una reseña\n\n
+        Muchas gracias por tu ayuda!
+    </string>
+    <string name="rate_ok_button">Calificar</string>
+    <string name="rate_no_button">Ahora no</string>
+
+
+
     <!-- ADs -->
     <string name="setting_ad_switch">Habilitar anuncios</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~8227204847</string>
