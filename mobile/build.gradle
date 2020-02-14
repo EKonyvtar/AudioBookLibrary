@@ -29,12 +29,9 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 68
-        versionName "0.20.${versionCode}"
+        versionCode 69
+        versionName "0.21.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        //Universal resources
-        resConfigs "en","es","fr","de","hu"
 
         //Universal App constants
         buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
@@ -42,14 +39,20 @@ android {
         buildConfigField 'String', 'APPSTORE_PRIVACY_URL', '"https://ekonyvtar.github.io/audiobook-privacy_policy.html"'
     }
 
+    // TODO: Auto signing:
+    // https://developer.android.com/studio/build/build-variants
+    // System.getenv("KSTORE")
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+
     lintOptions {
         abortOnError false
     }
+
     buildTypes {
         release {
             minifyEnabled false //TODO: change
@@ -59,7 +62,8 @@ android {
 
 
 
-    flavorDimensions 'catalogue', 'store'
+    flavorDimensions 'catalogue', 'language_pack', 'store'
+
     productFlavors {
 
         def addConstantTo = {target, constantName, constantValue ->
@@ -68,24 +72,13 @@ android {
             target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
         }
 
-        //TODO: define paid and free dimensions
+        // Catalogue Definitions
 
-        GooglePlay {
-            dimension = 'store'
-            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
-        }
-
-        HuaweiAppGallery {
-            dimension = 'store'
-            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
-        }
-
-        bible_hu {
-            resConfigs "hu"
+        /*bible_hu {
             dimension "catalogue"
             applicationIdSuffix ".bible.hu"
             versionNameSuffix "-bible-hu"
-        }
+        }*/
 
         hungarian {
             dimension "catalogue"
@@ -115,12 +108,6 @@ android {
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
         }
 
-        /*english {
-            dimension "catalogue"
-            applicationIdSuffix ".en"
-            versionNameSuffix "-en"
-        }*/
-
         spanish {
             dimension "catalogue"
             applicationIdSuffix ".es"
@@ -149,6 +136,31 @@ android {
             //TODO: fix this
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C")
         }
+
+        // Language Packs
+        LangHun {
+            dimension = 'language_pack'
+            resConfigs 'hu', 'en'
+        }
+
+        LangMulti {
+            dimension = 'language_pack'
+            resConfigs 'en', 'fr', 'es', 'de'
+        }
+
+
+        // Store definitions
+        GooglePlay {
+            dimension = 'store'
+            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+        }
+
+        HuaweiAppGallery {
+            dimension = 'store'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+        }
+
+        //TODO: define paid and free dimensions
     }
 }
 
