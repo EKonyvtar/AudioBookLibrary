@@ -199,10 +199,10 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
             mCastContext = CastContext.getSharedInstance(this);
         }
 
-        LanguageHelper.setLanguage (
+        /*LanguageHelper.setLanguage (
             this,
             LanguageHelper.getPackageLanguage(this)
-        );
+        );*/
     }
 
     @Override
@@ -235,10 +235,11 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         // screens - either Activities or fragments - show the "Up" icon instead.
         getFragmentManager().addOnBackStackChangedListener(mBackStackChangedListener);
 
-        LanguageHelper.setLanguage (
+        //TODO: make a language selector
+        /*LanguageHelper.setLanguage (
             this,
             LanguageHelper.getPackageLanguage(this)
-        );
+        );*/
     }
 
     @Override
