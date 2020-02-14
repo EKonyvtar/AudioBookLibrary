@@ -32,6 +32,26 @@ android {
         versionCode 67
         versionName "0.19.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /*
+        manifestPlaceholders += [
+                APP_NAME: '',
+                ADMOB_APP_ID: '',
+                ADMOB_UNIT_ID_1: ''
+        ]
+        */
+
+        // Constunt populator
+        def addConstant = {constantName, constantValue ->
+            //resValue "string", "${constantName}", "\"${constantValue}\""
+            buildConfigField "String", "${constantName}", "\"${constantValue}\""
+        }
+
+        //Universal App constants
+        addConstant("CAST_APP_ID", "CC1AD845")
+        addConstant("APPSTORE_EMAIL", "dev@murati.hu")
+        addConstant("APPSTORE_PRIVACY_URL", "https://ekonyvtar.github.io/audiobook-privacy_policy.html")
+
     }
 
     compileOptions {
@@ -49,30 +69,29 @@ android {
         }
     }
 
-    def addConstant = {constantName, constantValue ->
-        manifestPlaceholders += [ (constantName):constantValue]
-        buildConfigField "String", "${constantName}", "\"${constantValue}\""
-    }
-
-    //Universal App constants
-    addConstant("CAST_APP_ID", "CC1AD845")
-    addConstant("APPSTORE_EMAIL", "dev@murati.hu")
-    addConstant("APPSTORE_PRIVACY_URL", "https://ekonyvtar.github.io/audiobook-privacy_policy.html")
-
 
 
     flavorDimensions 'catalogue', 'store'
     productFlavors {
+
+        def addConstantTo = {target, constantName, constantValue ->
+            target.manifestPlaceholders += [ (constantName):constantValue]
+            target.resValue "string",  "${constantName}", "\"${constantValue}\""
+            target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+        }
+
         //TODO: define paid and free dimensions
 
         GooglePlay {
             dimension = 'store'
-            addConstant("APPSTORE_URL", "http://play.google.com/store/apps/details?id=%s")
+            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+            //buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
         HuaweiAppGallery {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+            //buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
         bible_hu {
@@ -86,7 +105,9 @@ android {
             dimension "catalogue"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
+
+            //Multidimension constants
+            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
         }
 
         french {
@@ -95,12 +116,12 @@ android {
             versionNameSuffix "-fr"
 
             // Flavor specific constants
-            addConstant("APP_NAME", "Livres Audio")
-            addConstant("ADMOB_APP_ID", "ca-app-pub-2604838220069332~5194573746")
-            addConstant("ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
+            addConstantTo(owner, "APP_NAME", "Livres Audio")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~5194573746")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
 
             //Multidimension constants
-            addConstant("APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
         }
 
         english {
@@ -113,14 +134,18 @@ android {
             dimension "catalogue"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
+
+            // Flavor specific constants
+            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
         }
 
         german {
             dimension = 'catalogue'
             applicationIdSuffix = '.de'
             versionNameSuffix = '-de'
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
+
+            // Flavor specific constants
+            //addConstant("APPSTORE_HUAWEI_ID", "C101706787")
         }
     }
 }

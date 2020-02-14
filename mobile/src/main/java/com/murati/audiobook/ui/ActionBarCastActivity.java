@@ -175,7 +175,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         public void onDrawerOpened(View drawerView) {
             if (mDrawerToggle != null) mDrawerToggle.onDrawerOpened(drawerView);
             if (getSupportActionBar() != null) getSupportActionBar()
-                    .setTitle(R.string.app_name);
+                    .setTitle(R.string.APP_NAME);
         }
     };
 
