@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Livres Audio</string>
     <string name="placeholder_message">En développement - Bientôt disponible ...</string>
     <string name="drawer_allmusic_title">Tout audiolivres</string>
     <string name="error_no_metadata">Impossible de récupérer les métadonnées</string>
@@ -85,9 +84,5 @@
     <string name="currently_playing_extra_info">Plus d\'informations</string>
     <string name="browse_queue">Liste de lecture</string>
 
-    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
-    <string name="cast_application_id" translatable="false">CC1AD845</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~5194573746</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/6124512033</string>
 
 </resources>
