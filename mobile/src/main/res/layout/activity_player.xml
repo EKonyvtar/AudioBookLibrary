@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ads:adSize="BANNER"
-                    ads:adUnitId="@string/admob_unit_id_1" />
+                    ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 

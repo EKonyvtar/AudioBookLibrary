@@ -7,6 +7,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
 public class AdHelper {
@@ -18,7 +19,7 @@ public class AdHelper {
     public final static int AD_LIST = 2;
 
     public static void LoadAdvertisement(AdView adView, Context context, String ad_app_id) {
-        MobileAds.initialize(context, context.getString(R.string.admob_app_id));
+        MobileAds.initialize(context, BuildConfig.ADMOB_APP_ID);
 
         //if (!BuildConfig.DEBUG) {
         //mAdView.setAdSize(AdSize.BANNER);
