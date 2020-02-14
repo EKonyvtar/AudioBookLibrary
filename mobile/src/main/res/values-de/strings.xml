@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hörbücher Bibliothek</string>
-    <string name="placeholder_message">In Entwicklung - in Kürze ...</string>
     <string name="drawer_allmusic_title">Alle Hörbücher</string>
     <string name="error_no_metadata">Metadaten können nicht abgerufen werden</string>
     <string name="label_catalog">Catalogue</string>
@@ -10,12 +8,12 @@
     <string name="browse_writer">Autoren</string>
     <string name="browse_writer_subtitle">Autoren durchsuchen</string>
     <string name="browse_favorites">Favoriten</string>
-    <string name="action_listen">Hören</string>
+
     <string name="confirm_cancel">Stornieren</string>
-    <string name="action_favorite_add">Zu Favoriten hinzufügen</string>
+
     <string name="browse_title_count">%1$s Hörbücher</string>
     <string name="browse_track_count">%1$s Spuren</string>
-    <string name="action_favorite_remove">Aus Favoriten entfernen</string>
+
     <string name="action_download">Herunterladen</string>
     <string name="notification_favorite_removed">Aus den Favoriten entfernt</string>
     <string name="notification_favorite_added">Zu Favoriten hinzugefügt</string>
@@ -46,7 +44,7 @@
     <string name="notification_playback_track_error">Derzeit nicht verfügbar</string>
     <string name="notification_offline">Offline - Nur heruntergeladene Titel sind verfügbar</string>
     <string name="notification_playback_restored">Restaurierte Leseposition %s %s</string>
-    <string name="random_queue_title">Zufällige Titel</string>
+
     <string name="casting_to_device">Casting zu %1$s</string>
     <string name="currently_playing_song">Spielen</string>
     <string name="open_item">Offen</string>
@@ -56,13 +54,13 @@
     <string name="skip_prev">Zum vorherigen springen</string>
     <string name="touch_to_cast">Sie können Ihre Hörbücher auf einem Fernseher, ChromeCast, Android Auto oder einem anderen Gerät lesen.</string>
     <string name="home_title">Willkommen</string>
-    <string name="related_content_header">Ähnliche Bücher</string>
+
     <string name="open_content_drawer">Öffnen Sie das Hauptmenü</string>
     <string name="close_content_drawer">Schließen Sie das Hauptmenü</string>
     <string name="now_playing">Lesen läuft</string>
     <string name="background_image_str">Titel des Buchbildes</string>
     <string name="search_queue_title">Suchergebnisse</string>
-    <string name="no_search_results">Keine Ergebnisse gefunden</string>
+
     <string name="loading">Laden..</string>
     <string name="media_route_menu_title">Spielen Sie weiter…</string>
     <string name="stop_casting">Stoppen Sie das Casting</string>
@@ -71,24 +69,16 @@
     <string name="label_previous">Früher</string>
     <string name="label_next">Folgende</string>
     <string name="search_title">Suchen</string>
-    <string name="app_label">Hörbüchern</string>
+
     <string name="search_hint">Suche nach Hörbüchern</string>
     <string name="setting_ad_switch">Anzeigen aktivieren</string>
     <string name="about_content">Die Anwendung basiert auf der öffentlichen Librivox-Datenbank, für die wir uns bei den Betreibern bedanken. Wenn Sie können, unterstützen Sie das Projekt bitte auf der folgenden Seite:</string>
-    <string name="about_button_murati">Durchsuchen Sie murati.hu</string>
-    <string name="about_button_store">Öffnen Sie den Play Store</string>
     <string name="about_button_support">Besuchen Sie die Patreon-Seite</string>
-    <string name="about_button_oszk">Besuchen Sie die Bibliothek</string>
     <string name="about_footer">Vielen Dank für Ihre Unterstützung!</string>
     <string name="about_privacy_label">Datenschutzbestimmungen</string>
     <string name="currently_playing_artist">Künstler</string>
     <string name="currently_playing_extra_info">Weitere Informationen</string>
     <string name="browse_queue">Leseliste</string>
-
-    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
-    <string name="cast_application_id" translatable="false">CC1AD845</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~3034430096</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/8178945564</string>
 
 
     <!-- Feedback -->
@@ -102,7 +92,6 @@
 
     <string name="feedback_thanks">Vielen Dank für Ihr Feedback!</string>
 
-
     <!-- Like -->
     <string name="like_title">Gefällt dir unsere App?</string>
     <string name="like_message">
@@ -111,7 +100,6 @@
     </string>
     <string name="like_ok_button">Wie</string>
     <string name="like_no_button">Nicht ganz</string>
-    <string name="later_button">Später</string>
 
 
     <!-- Rate -->
