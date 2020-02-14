@@ -26,11 +26,11 @@ android {
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 17
+        minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 63
-        versionName "0.16.${versionCode}"
+        versionCode 67
+        versionName "0.19.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,7 +49,7 @@ android {
         }
     }
 
-    flavorDimensions "language", 'store'
+    flavorDimensions 'catalogue', 'store'
     productFlavors {
         //TODO: define paid and free dimensions
 
@@ -59,43 +59,48 @@ android {
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
-        huaweiAppGallery {
+        HuaweiAppGallery {
             dimension = 'store'
-            applicationIdSuffix ".hw"
-            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
             buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
+        bible_hu {
+            dimension "catalogue"
+            applicationIdSuffix ".bible.hu"
+            versionNameSuffix "-bible-hu"
+        }
 
 
         hungarian {
-            dimension "language"
-            //applicationIdSuffix ".hu"
+            dimension "catalogue"
             applicationId "com.murati.oszk.audiobook"
             versionNameSuffix "-hu"
-            //resConfig "default"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
         }
 
         french {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
         }
 
         english {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".en"
             versionNameSuffix "-en"
         }
 
         spanish {
-            dimension "language"
+            dimension "catalogue"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
         }
 
         german {
-            dimension = 'language'
+            dimension = 'catalogue'
             applicationIdSuffix = '.de'
             versionNameSuffix = '-de'
         }
