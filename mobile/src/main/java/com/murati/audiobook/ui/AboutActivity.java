@@ -32,6 +32,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.DisplayHelper;
+import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 
 /**
@@ -60,9 +61,11 @@ public class AboutActivity extends BaseActivity {
         versionText.setText(getVersion());
 
         // Button
-        final Button button = findViewById(R.id.murati);
+        final Button button = findViewById(R.id.feedback);
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { openBrowser("https://murati.hu"); }
+            public void onClick(View v) {
+                FeedbackHelper.showLikeDialog(AboutActivity.this);
+            }
         });
 
         final Button privacy = findViewById(R.id.privacy);
