@@ -86,11 +86,11 @@ android {
 
         // Catalogue Definitions
 
-        /*bible_hu {
+        bible_hu {
             dimension "catalogue"
             applicationIdSuffix ".bible.hu"
             versionNameSuffix "-bible-hu"
-        }*/
+        }
 
         hungarian {
             dimension "catalogue"
