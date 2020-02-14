@@ -137,8 +137,8 @@ foreach ($book in $audioBooks) {
 		genre='Biblia'
 		source=$trackUrl
 		trackNumber=$tCount
-		totalTrackCount=0
-		duration=0
+		#totalTrackCount=0
+		#duration=0
 		site=$full_title
    }
 
