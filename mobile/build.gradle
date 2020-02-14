@@ -29,8 +29,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 66
-        versionName "0.18.${versionCode}"
+        versionCode 67
+        versionName "0.19.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -83,6 +83,7 @@ android {
             dimension "catalogue"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
         }
 
         english {
@@ -95,6 +96,7 @@ android {
             dimension "catalogue"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
+            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
         }
 
         german {
