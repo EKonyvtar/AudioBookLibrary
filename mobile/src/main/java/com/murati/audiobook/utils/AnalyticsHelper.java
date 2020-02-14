@@ -11,6 +11,8 @@ public class AnalyticsHelper {
     private static final String TAG = LogHelper.makeLogTag(BitmapHelper.class);
 
     public static final String ANALYTICS_FEEDBACK_EVENT = "send_feedback";
+    public static final String ANALYTICS_REMOVE_FAVORITE = "remove_from_favorites";
+    public static final String ANALYTICS_ADD_FAVORITE = "added_to_favorites";
 
     public static void selectItem(Context context, String current, String id, String name, String type) {
         if (current == null) current = "ROOT";
@@ -24,6 +26,20 @@ public class AnalyticsHelper {
         FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
+
+    public static void favoriteItem(Context context, Boolean added, String id, String name) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+
+        if (added)
+            mFirebaseAnalytics.logEvent(ANALYTICS_ADD_FAVORITE, bundle);
+        else
+            mFirebaseAnalytics.logEvent(ANALYTICS_ADD_FAVORITE, bundle);
+    }
+
 
     public static void sentFeedback(Context context, String eventId) {
         Bundle bundle = new Bundle();
