@@ -12,8 +12,8 @@ public class AnalyticsHelper {
 
     public static final String ANALYTICS_FEEDBACK_EVENT = "send_feedback";
 
-    public static final String ANALYTICS_REMOVE_FAVORITE = "favorite_media";
-    public static final String ANALYTICS_ADD_FAVORITE = "unfavorite_media";
+    public static final String ANALYTICS_ADD_FAVORITE = "favorite_media";
+    public static final String ANALYTICS_REMOVE_FAVORITE = "unfavorite_media";
 
     public static final String ANALYTICS_DOWNLOAD_BOOK = "download_media";
 
