@@ -22,7 +22,7 @@
 
     <application
         android:name="com.murati.audiobook.AudioBookApp"
-        android:label="@string/app_name"
+        android:label="${APP_NAME}"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/UAmpAppTheme"
@@ -45,12 +45,12 @@
         <!-- ADMOB App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>
+            android:value="${ADMOB_APP_ID}"/>
 
         <!-- Main activity for music browsing on phone -->
         <activity
             android:name="com.murati.audiobook.ui.MusicPlayerActivity"
-            android:label="@string/app_name">
+            android:label="${APP_NAME}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -70,13 +70,13 @@
         <!-- Placeholder activity for phone settings -->
         <activity
             android:name="com.murati.audiobook.ui.SettingsActivity"
-            android:label="@string/app_name">
+            android:label="${APP_NAME}">
         </activity>
 
         <!-- Placeholder activity for About page -->
         <activity
             android:name="com.murati.audiobook.ui.AboutActivity"
-            android:label="@string/app_name">
+            android:label="${APP_NAME}">
         </activity>
 
         <!-- Proxy activity that opens either the NowPlaying TV or the mobile UI, depending on
@@ -89,7 +89,7 @@
         <!-- Main activity for Android TV user interface -->
         <activity
             android:name="com.murati.audiobook.ui.tv.TvBrowseActivity"
-            android:label="@string/app_name"
+            android:label="${APP_NAME}"
             android:theme="@style/Theme.UAmp.TVLeanback" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -159,7 +159,7 @@
              the current playing music -->
         <activity
             android:name="com.murati.audiobook.ui.FullScreenPlayerActivity"
-            android:label="@string/app_name"
+            android:label="${APP_NAME}"
             android:launchMode="singleTop"
             android:parentActivityName="com.murati.audiobook.ui.MusicPlayerActivity">
             <meta-data

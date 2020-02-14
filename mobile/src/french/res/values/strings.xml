@@ -85,4 +85,41 @@
     <string name="browse_queue">Liste de lecture</string>
 
 
+
+    <!-- Like -->
+    <string name="like_title">Do you like our app?</string>
+    <string name="like_message">
+        You can help improve this free application
+        with your kind feedback.
+    </string>
+    <string name="like_ok_button">Like</string>
+    <string name="like_no_button">Not quite</string>
+    <string name="later_button">Ask later</string>
+
+
+    <!-- Feedback -->
+    <string name="feedback_title">Send Feedback</string>
+    <string name="feedback_message">
+        Would you like to share your feedback so
+        we can develop and improve further this free app?
+    </string>
+    <string name="feedback_ok_button">Yes</string>
+    <string name="feedback_no_button">Not now</string>
+
+    <string name="feedback_thanks">Thank you for your feedback!</string>
+
+
+    <!-- Rate -->
+    <string name="rate_title">Please rate us</string>
+    <string name="rate_message">
+        Please support our free app with your
+        kind comment and review:\n\n
+         1) Click on the Rate button here\n
+         2) Scroll to Comments and Rating\n
+         3) Give ★★★★★ 5 star and write your feedback\n\n
+        Thank you for your help!
+    </string>
+    <string name="rate_ok_button">Rate</string>
+    <string name="rate_no_button">Not now</string>
+
 </resources>
