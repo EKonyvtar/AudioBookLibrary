@@ -16,7 +16,7 @@
 
 apply plugin: 'com.android.application'
 
-//Add Crashlytics and performance
+//Add Crashlytics and performance reporting
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
 
@@ -33,25 +33,10 @@ android {
         versionName "0.19.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        /*
-        manifestPlaceholders += [
-                APP_NAME: '',
-                ADMOB_APP_ID: '',
-                ADMOB_UNIT_ID_1: ''
-        ]
-        */
-
-        // Constunt populator
-        def addConstant = {constantName, constantValue ->
-            //resValue "string", "${constantName}", "\"${constantValue}\""
-            buildConfigField "String", "${constantName}", "\"${constantValue}\""
-        }
-
         //Universal App constants
-        addConstant("CAST_APP_ID", "CC1AD845")
-        addConstant("APPSTORE_EMAIL", "dev@murati.hu")
-        addConstant("APPSTORE_PRIVACY_URL", "https://ekonyvtar.github.io/audiobook-privacy_policy.html")
-
+        buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
+        buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
+        buildConfigField 'String', 'APPSTORE_PRIVACY_URL', '"https://ekonyvtar.github.io/audiobook-privacy_policy.html"'
     }
 
     compileOptions {
@@ -85,13 +70,11 @@ android {
         GooglePlay {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
-            //buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
         HuaweiAppGallery {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
-            //buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         }
 
         bible_hu {
