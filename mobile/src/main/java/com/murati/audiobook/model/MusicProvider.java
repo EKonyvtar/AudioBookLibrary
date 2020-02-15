@@ -447,7 +447,7 @@ public class MusicProvider {
                         resources.getString(R.string.APP_NAME),
                         resources.getString(R.string.label_catalog),
                         BitmapHelper.convertDrawabletoUri(
-                            resources, R.drawable.header
+                            resources, R.drawable.default_book_cover
                         ),
                         MEDIA_ID_BY_WRITER
                     )
@@ -464,7 +464,7 @@ public class MusicProvider {
                     BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
 
                 // Add Genres as group
-                if (BuildConfig.FLAVOR == "hungarian") {
+                if (BuildConfig.FLAVOR_catalogue.equals("hungarian")) {
                     mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
                         resources.getString(R.string.browse_genres),
                         resources.getString(R.string.browse_genre_subtitle),
