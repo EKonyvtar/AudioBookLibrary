@@ -107,7 +107,7 @@ android {
             versionNameSuffix "-bible-hu"
 
             // Flavor specific constants
-            addConstantTo(owner, "APP_NAME", "Szent Biblia")
+            addConstantTo(owner, "APP_NAME", "Biblia")
             //TODO: fix this
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
