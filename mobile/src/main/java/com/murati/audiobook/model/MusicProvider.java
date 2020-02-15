@@ -82,6 +82,9 @@ public class MusicProvider {
     private MusicProviderSource mSource;
     private final Context context;
 
+    // Ebook catalogue load optimisations for singles
+    private final Boolean isSingleCatalogue = BuildConfig.FLAVOR_catalogue.equals("bible_hu");
+
     // Ebook cache
     private static ConcurrentMap<String, List<MediaMetadataCompat>> mEbookList;
     private static ConcurrentMap<String, MutableMediaMetadata> mTrackListById;
@@ -358,7 +361,9 @@ public class MusicProvider {
 
                         mTrackListById.put(musicId, m);
 
-                        addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_GENRE, mEbookListByGenre);
+                        if (!isSingleCatalogue) {
+                            addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_GENRE, mEbookListByGenre);
+                        }
                         addMediaToCategory(m, MediaMetadataCompat.METADATA_KEY_WRITER, mEbookListByWriter);
                     } catch (Exception ex) {
                         Log.e(TAG, "Failed to process " + item.toString());
@@ -436,22 +441,35 @@ public class MusicProvider {
                 Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());
             }
 
-            // Catalog header
-            mediaItems.add(
-                createHeader(resources.getString(R.string.label_catalog)));
+            if (BuildConfig.FLAVOR_catalogue.equals("bible_hu")) {
+                mediaItems.add(
+                    createEbookHeaderByString(
+                        resources.getString(R.string.label_catalog),
+                        "",
+                        BitmapHelper.convertDrawabletoUri(
+                            resources, R.drawable.header
+                        ),
+                        MEDIA_ID_BY_WRITER
+                    )
+                );
+            } else {
+                // Catalog header
+                mediaItems.add(
+                    createHeader(resources.getString(R.string.label_catalog)));
 
-            // Add writers
-            mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
-                resources.getString(R.string.browse_writer),
-                resources.getString(R.string.browse_writer_subtitle),
-                BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
+                // Add writers as group
+                mediaItems.add(createGroupItem(MEDIA_ID_BY_WRITER,
+                    resources.getString(R.string.browse_writer),
+                    resources.getString(R.string.browse_writer_subtitle),
+                    BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
 
-            // Add Genres
-            if (BuildConfig.FLAVOR == "hungarian") {
-                mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
-                    resources.getString(R.string.browse_genres),
-                    resources.getString(R.string.browse_genre_subtitle),
-                    BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list)));
+                // Add Genres as group
+                if (BuildConfig.FLAVOR == "hungarian") {
+                    mediaItems.add(createGroupItem(MEDIA_ID_BY_GENRE,
+                        resources.getString(R.string.browse_genres),
+                        resources.getString(R.string.browse_genre_subtitle),
+                        BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_list)));
+                }
             }
 
             // Add EBooks
@@ -588,7 +606,7 @@ public class MusicProvider {
             // Open a specific Ebook for direct play
             else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
                 // Add header
-                mediaItems.add(createEbookHeader(mediaId, resources));
+                mediaItems.add(createEbookHeaderByMediaId(mediaId, resources));
 
                 //Add tracks
                 String ebook = MediaIDHelper.getHierarchy(mediaId)[1];
@@ -693,7 +711,7 @@ public class MusicProvider {
             MediaBrowserCompat.MediaItem.FLAG_PLAYABLE);
     }
 
-    private MediaBrowserCompat.MediaItem createEbookHeader(
+    private MediaBrowserCompat.MediaItem createEbookHeaderByMediaId(
         String ebook,
         Resources resources)
     {
@@ -712,6 +730,22 @@ public class MusicProvider {
             .setIconUri(Uri.parse(metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI)))
             //TODO: fix default image
             // .setIconBitmap(BitmapHelper.convertDrawabletoUri(R.drawable.ic_navigate_books))
+            .build();
+        return new MediaBrowserCompat.MediaItem(description,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowserCompat.MediaItem createEbookHeaderByString(
+        String title,
+        String subTitle,
+        Uri uri,
+        String mediaId)
+    {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_EBOOK_HEADER, mediaId))
+            .setTitle(title)
+            .setSubtitle(subTitle)
+            .setIconUri(uri)
             .build();
         return new MediaBrowserCompat.MediaItem(description,
             MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
