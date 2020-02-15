@@ -95,14 +95,14 @@ public class MediaIDHelper {
     public static boolean isEBookHeader(String mediaId) {
         if (TextUtils.isEmpty(mediaId))
             return false;
-        //TODO: fix header notation
+        //TODO: fix deafult_book_cover notation
         return mediaId.contains(MediaIDHelper.MEDIA_ID_EBOOK_HEADER);
     }
 
     public static boolean isItemHeader(String mediaId) {
         if (TextUtils.isEmpty(mediaId))
             return false;
-        //TODO: fix header notation
+        //TODO: fix deafult_book_cover notation
         return mediaId.contains(MediaIDHelper.MEDIA_ID_CATEGORY_HEADER);
     }
 

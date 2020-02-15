@@ -453,7 +453,7 @@ public class MusicProvider {
                     )
                 );
             } else {
-                // Catalog header
+                // Catalog deafult_book_cover
                 mediaItems.add(
                     createHeader(resources.getString(R.string.label_catalog)));
 
@@ -605,7 +605,7 @@ public class MusicProvider {
 
             // Open a specific Ebook for direct play
             else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
-                // Add header
+                // Add deafult_book_cover
                 mediaItems.add(createEbookHeaderByMediaId(mediaId, resources));
 
                 //Add tracks
@@ -722,7 +722,7 @@ public class MusicProvider {
 
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
-        //TODO: fix header notation
+        //TODO: fix deafult_book_cover notation
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
             .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
