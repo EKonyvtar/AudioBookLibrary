@@ -86,12 +86,6 @@ android {
 
         // Catalogue Definitions
 
-        bible_hu {
-            dimension "catalogue"
-            applicationIdSuffix ".bible.hu"
-            versionNameSuffix "-bible-hu"
-        }
-
         hungarian {
             dimension "catalogue"
             applicationId "com.murati.oszk.audiobook"
@@ -103,7 +97,24 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101706787")
+            //TODO: check
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+        }
+
+        bible_hu {
+            dimension "catalogue"
+            applicationIdSuffix ".bible.hu"
+            versionNameSuffix "-bible-hu"
+
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Szent Biblia")
+            //TODO: fix this
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
+
+            //Multidimension constants
+            //TODO: check
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C1")
         }
 
         french {
