@@ -15,33 +15,7 @@
     </entry>
     <entry>
         <key>book_recommendation</key>
-        <value>[
-            {
-            "album": "Fényesebb a láncnál a kard",
-            "artist": "Válogatott szerzők",
-            "image": "http://mek.oszk.hu/02200/02286/borito.jpg"
-            },
-            {
-            "album": "Az elmés nemes Don Quijote de la Mancha",
-            "artist": "Miguel de Cervantes Saavedra,Cervantes Saavedra Miguel de",
-            "image": "http://mek.oszk.hu/03700/03798/borito.jpg"
-            },
-            {
-            "album": "A kis herceg",
-            "artist": "Saint-Exupéry",
-            "image": "http://mek.oszk.hu/03100/03166/borito.jpg"
-            },
-            {
-            "album": "A jövő század regénye",
-            "artist": "Jókai Mór",
-            "image": "http://mek.oszk.hu/03300/03313/borito.jpg"
-            },
-            {
-            "album": "Büszkeség és balítélet",
-            "artist": "Jane Austen",
-            "image": "http://mek.oszk.hu/06000/06058/borito.jpg"
-            }
-            ]</value>
+        <value>[]</value>
     </entry>
 </defaultsMap>
 <!-- END xml_defaults -->

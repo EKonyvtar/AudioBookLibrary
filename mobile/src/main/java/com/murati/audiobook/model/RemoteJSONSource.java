@@ -94,8 +94,12 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         String iconUrl = json.getString(JSON_IMAGE);
 
         //int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
-        int duration = json.getInt(JSON_DURATION) * 1000; // ms
-
+        int duration = 0;
+        try {
+            duration = json.getInt(JSON_DURATION) * 1000; // ms
+        } catch (Exception ex) {
+            LogHelper.d(TAG, "Unspecified duration.");
+        }
         LogHelper.d(TAG, "Loaded tracks: ", json);
 
         // Media is stored relative to JSON file
