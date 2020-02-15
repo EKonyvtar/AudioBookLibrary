@@ -1,15 +1,6 @@
 {
   "music": [
     {
-      "album": null,
-      "artist": "",
-      "genre": "Biblia",
-      "image": "http://mek.oszk.hu/08800/08820/borito.jpg",
-      "source": "",
-      "title": " - 1. fejezet",
-      "trackNumber": 1
-    },
-    {
       "album": "01. Teremtés könyve",
       "artist": "Ótestamentum",
       "genre": "Biblia",
