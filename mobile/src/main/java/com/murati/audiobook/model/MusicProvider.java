@@ -444,8 +444,8 @@ public class MusicProvider {
             if (BuildConfig.FLAVOR_catalogue.equals("bible_hu")) {
                 mediaItems.add(
                     createEbookHeaderByString(
+                        resources.getString(R.string.APP_NAME),
                         resources.getString(R.string.label_catalog),
-                        "",
                         BitmapHelper.convertDrawabletoUri(
                             resources, R.drawable.header
                         ),
