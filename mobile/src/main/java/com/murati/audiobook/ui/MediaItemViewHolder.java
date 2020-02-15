@@ -230,6 +230,9 @@ public class MediaItemViewHolder {
                         GlideApp.
                             with(activity).
                             load(imageUri).
+                            placeholder(R.drawable.default_book_cover).
+                            fallback(R.drawable.default_book_cover).
+                            error(R.drawable.default_book_cover).
                             override(30, 30).
                             into(holder.mBackgroundImage);
                     }

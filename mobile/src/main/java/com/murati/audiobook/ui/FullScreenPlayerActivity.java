@@ -384,21 +384,27 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     }
 
     private void fetchImageAsync(@NonNull MediaDescriptionCompat description) {
-        if (description.getIconUri() == null) {
-            return;
+        try {
+            mCurrentArtUrl = description.getIconUri().toString();
+        } catch (Exception ex) {
+            Log.d(TAG, "Missing image Uri: " + ex.getMessage());
         }
-        mCurrentArtUrl = description.getIconUri().toString();
 
-        //TODO: create fallback book-title
         GlideApp.
             with(this).
             load(mCurrentArtUrl).
+            placeholder(R.drawable.default_book_cover).
+            fallback(R.drawable.default_book_cover).
+            error(R.drawable.default_book_cover).
             override(30, 30).
             into(mBackgroundImage);
 
         GlideApp.
             with(this).
             load(mCurrentArtUrl).
+            placeholder(R.drawable.default_book_cover).
+            fallback(R.drawable.default_book_cover).
+            error(R.drawable.default_book_cover).
             override(Target.SIZE_ORIGINAL).
             into(mCoverImage);
 

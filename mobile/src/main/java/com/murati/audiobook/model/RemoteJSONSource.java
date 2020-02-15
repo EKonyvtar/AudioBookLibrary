@@ -88,7 +88,15 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         String ebook = json.getString(JSON_EBOOK_TITLE);
         String title = json.getString(JSON_TRACK_TITLE);
         String source = json.getString(JSON_SOURCE);
-        String iconUrl = json.getString(JSON_IMAGE);
+
+
+        // Image fallback
+        String iconUrl = "";
+        try {
+            iconUrl = json.getString(JSON_IMAGE);
+        } catch (Exception ex) {
+            LogHelper.d(TAG, "Unable to load image from catalogue");
+        }
 
 
         // Genre-fallback
