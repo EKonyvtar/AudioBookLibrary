@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main categories and titles for those -->
+    <string name="label_catalog">Ószövetségi és Újszövetségi Szentírás</string>
+    <string name="browse_ebook_subtitle">Könyvek böngészése sorrendben</string>
+    <string name="browse_downloads_subtitle">Korábban letöltött fejezetek</string>
+</resources>

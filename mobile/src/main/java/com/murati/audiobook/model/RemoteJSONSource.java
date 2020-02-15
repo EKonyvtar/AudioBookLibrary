@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.support.v4.media.MediaMetadataCompat;
 import android.util.Log;
 
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.utils.LogHelper;
 
 import org.json.JSONArray;
@@ -33,7 +34,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Logger;
 
 /**
  * Utility class to get a list of available tracks based on a server-side JSON
@@ -44,9 +44,9 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
     protected static final String CATALOG_URL =
-            "https://s3.amazonaws.com/murati/ekonyvtar_remote.json";
+            "https://s3.amazonaws.com/murati/ekonyvtar_remote" + BuildConfig.FLAVOR_catalogue;
 
-    protected static final String JSON_MUSIC = "music";
+    protected static final String JSON_ROOT = "music";
     private static final String JSON_TRACK_TITLE = "title";
     private static final String JSON_EBOOK_TITLE = "album";
     private static final String JSON_WRITER = "artist";
@@ -54,7 +54,6 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     private static final String JSON_SOURCE = "source";
     private static final String JSON_IMAGE = "image";
     private static final String JSON_TRACK_NUMBER = "trackNumber";
-    //private static final String JSON_TOTAL_TRACK_COUNT = "totalTrackCount";
     private static final String JSON_DURATION = "duration";
 
     @Override
@@ -65,7 +64,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
             JSONObject jsonObj = fetchJSON(CATALOG_URL);
             ArrayList<MediaMetadataCompat> tracks = new ArrayList<>();
             if (jsonObj != null) {
-                JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
+                JSONArray jsonTracks = jsonObj.getJSONArray(JSON_ROOT);
 
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
@@ -83,37 +82,46 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
     }
 
     protected MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
-        String writer = json.getString(JSON_WRITER);
-        String ebook = json.getString(JSON_EBOOK_TITLE);
-
-        String title = json.getString(JSON_TRACK_TITLE);
         int trackNumber = json.getInt(JSON_TRACK_NUMBER);
 
-        String genre = json.getString(JSON_GENRE);
+        String writer = json.getString(JSON_WRITER);
+        String ebook = json.getString(JSON_EBOOK_TITLE);
+        String title = json.getString(JSON_TRACK_TITLE);
         String source = json.getString(JSON_SOURCE);
         String iconUrl = json.getString(JSON_IMAGE);
 
-        //int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
+
+        // Genre-fallback
+        String genre = "";
+        try {
+            genre = json.getString(JSON_GENRE);
+        } catch (Exception ex) {
+            genre = BuildConfig.APP_NAME;
+            LogHelper.d(TAG, "Unspecified genre, setting main.");
+        }
+
+        // Duration-fallback
         int duration = 0;
         try {
             duration = json.getInt(JSON_DURATION) * 1000; // ms
         } catch (Exception ex) {
             LogHelper.d(TAG, "Unspecified duration.");
         }
-        LogHelper.d(TAG, "Loaded tracks: ", json);
+
+        //LogHelper.d(TAG, "Loaded tracks: ", json);
 
         // Media is stored relative to JSON file
-        if (!source.startsWith("http")) {
+        /*if (!source.startsWith("http")) {
             source = basePath + source;
         }
         if (!iconUrl.startsWith("http")) {
             iconUrl = basePath + iconUrl;
-        }
+        }*/
         // Since we don't have a unique ID in the server, we fake one using the hashcode of
         // the music source. In a real world app, this could come from the server.
         String id = String.valueOf(source.hashCode());
 
-        // Adding the music source to the MediaMetadata (and consequently using it in the
+        // Adding the source to the MediaMetadata (and consequently using it in the
         // mediaSession.setMetadata) is not a good idea for a real world music app, because
         // the session metadata can be accessed by notification listeners. This is done in this
         // sample for convenience only.
