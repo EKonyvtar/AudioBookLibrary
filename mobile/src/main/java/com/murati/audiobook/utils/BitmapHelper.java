@@ -25,6 +25,7 @@ import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
+import com.murati.audiobook.R;
 import com.murati.audiobook.ui.GlideApp;
 
 public class BitmapHelper {
@@ -61,7 +62,8 @@ public class BitmapHelper {
             with(context).
             asBitmap().
             load(artUrl).
-            //diskCacheStrategy(DiskCacheStrategy.ALL)
+            fallback(R.drawable.default_book_cover).
+            error(R.drawable.default_book_cover).
             into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {

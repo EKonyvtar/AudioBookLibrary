@@ -414,6 +414,20 @@ public class MusicProvider {
 
         if (MEDIA_ID_ROOT.equals(mediaId)) {
 
+            // Show header for single catalogue app variants
+            if (isSingleCatalogue) {
+                mediaItems.add(
+                    createEbookHeaderByString(
+                        resources.getString(R.string.APP_NAME),
+                        resources.getString(R.string.label_catalog),
+                        BitmapHelper.convertDrawabletoUri(
+                            resources, R.drawable.default_book_cover
+                        ),
+                        MEDIA_ID_BY_WRITER
+                    )
+                );
+            }
+
             try {
                 // Show Last ebook
                 if (PlaybackHelper.getLastEBook() != null) {
@@ -441,18 +455,7 @@ public class MusicProvider {
                 Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());
             }
 
-            if (BuildConfig.FLAVOR_catalogue.equals("bible_hu")) {
-                mediaItems.add(
-                    createEbookHeaderByString(
-                        resources.getString(R.string.APP_NAME),
-                        resources.getString(R.string.label_catalog),
-                        BitmapHelper.convertDrawabletoUri(
-                            resources, R.drawable.default_book_cover
-                        ),
-                        MEDIA_ID_BY_WRITER
-                    )
-                );
-            } else {
+            if (!isSingleCatalogue) {
                 // Catalog deafult_book_cover
                 mediaItems.add(
                     createHeader(resources.getString(R.string.label_catalog)));
