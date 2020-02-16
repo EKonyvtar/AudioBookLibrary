@@ -456,7 +456,7 @@ public class MusicProvider {
             }
 
             if (!isSingleCatalogue) {
-                // Catalog deafult_book_cover
+                // Catalog header
                 mediaItems.add(
                     createHeader(resources.getString(R.string.label_catalog)));
 
