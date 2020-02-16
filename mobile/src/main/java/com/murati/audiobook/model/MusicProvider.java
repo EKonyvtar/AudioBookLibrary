@@ -608,7 +608,7 @@ public class MusicProvider {
 
             // Open a specific Ebook for direct play
             else if (mediaId.startsWith(MEDIA_ID_BY_EBOOK)) {
-                // Add deafult_book_cover
+                // Add header
                 mediaItems.add(createEbookHeaderByMediaId(mediaId, resources));
 
                 //Add tracks
@@ -725,7 +725,7 @@ public class MusicProvider {
 
         MediaMetadataCompat metadata = getTracksByEbook(ebook).iterator().next();
 
-        //TODO: fix deafult_book_cover notation
+        //TODO: fix header notation
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
             .setMediaId(createMediaID(MEDIA_ID_EBOOK_HEADER, MEDIA_ID_BY_EBOOK, ebook))
             .setTitle(ebook)
