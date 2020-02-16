@@ -51,6 +51,7 @@ import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.model.MusicProvider;
@@ -144,7 +145,7 @@ public class MediaItemViewHolder {
                 inflate(R.layout.fragment_list_ad, parent, false);
 
             try {
-                MobileAds.initialize(activity, activity.getString(R.string.admob_app_id));
+                MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
                 holder.mAdView = convertView.findViewById(R.id.itemAd);
                 //if (!BuildConfig.DEBUG) {
                 //mAdView.setAdSize(AdSize.BANNER);
@@ -229,6 +230,9 @@ public class MediaItemViewHolder {
                         GlideApp.
                             with(activity).
                             load(imageUri).
+                            placeholder(R.drawable.default_book_cover).
+                            fallback(R.drawable.default_book_cover).
+                            error(R.drawable.default_book_cover).
                             override(30, 30).
                             into(holder.mBackgroundImage);
                     }

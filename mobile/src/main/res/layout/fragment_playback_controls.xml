@@ -21,7 +21,7 @@
     android:padding="@dimen/playback_controls_padding">
     <ImageView
         android:id="@+id/album_art"
-        tools:src="@drawable/ic_launcher"
+        tools:src="@mipmap/ic_launcher"
         android:layout_width="@dimen/playback_controls_albumart_width"
         android:layout_height="@dimen/playback_controls_albumart_height"
         android:scaleType="centerCrop"

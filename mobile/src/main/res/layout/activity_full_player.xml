@@ -237,7 +237,7 @@ limitations under the License.
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_view_margin"
                 ads:adSize="BANNER"
-                ads:adUnitId="@string/admob_unit_id_1" />
+                ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
 
         </LinearLayout>
 

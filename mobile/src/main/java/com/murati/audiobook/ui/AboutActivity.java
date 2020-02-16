@@ -30,6 +30,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.DisplayHelper;
 import com.murati.audiobook.utils.FeedbackHelper;
@@ -70,7 +71,7 @@ public class AboutActivity extends BaseActivity {
 
         final Button privacy = findViewById(R.id.privacy);
         privacy.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { openBrowser(getString(R.string.about_privacy)); }
+            public void onClick(View v) { openBrowser(BuildConfig.APPSTORE_PRIVACY_URL); }
         });
         
         // Button
@@ -80,7 +81,7 @@ public class AboutActivity extends BaseActivity {
         });
 
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
+            MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
             mAdView = findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);

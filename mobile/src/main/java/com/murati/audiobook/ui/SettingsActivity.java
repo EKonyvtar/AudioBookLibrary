@@ -44,7 +44,7 @@ public class SettingsActivity extends BaseActivity {
         initializeToolbar();
 
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
+            MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
             mAdView = findViewById(R.id.adView);
             //if (!BuildConfig.DEBUG) {
             //mAdView.setAdSize(AdSize.BANNER);
