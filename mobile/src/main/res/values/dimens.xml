@@ -19,7 +19,7 @@
     <dimen name="error_horizontal_padding">4dp</dimen>
     <dimen name="error_vertical_padding">4dp</dimen>
 
-    <!-- TODO: move book sizes heer -->
+    <!-- TODO: move book sizes here -->
 
     <!-- playback controls -->
     <dimen name="playback_controls_albumart_horizontal_margin">8dp</dimen>
@@ -32,7 +32,7 @@
     <dimen name="drawer_item_height">48dp</dimen>
     <dimen name="drawer_item_horizontal_padding">16dp</dimen>
 
-    <!-- deafult_book_cover image -->
+    <!-- header image -->
     <dimen name="title_expanded_start">480dp</dimen>
     <dimen name="title_expanded_end">160dp</dimen>
 
