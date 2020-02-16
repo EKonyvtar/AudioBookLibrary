@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hangoskönyvtár</string>
-    <string name="placeholder_message">Fejlesztés alatt - Hamarosan ...</string>
-
     <!-- DRAWER MENU -->
     <string name="drawer_allmusic_title">Hangoskönyvek</string>
     <string name="drawer_playlists_title">Lejátszási lista</string>
@@ -38,15 +35,12 @@
     <string name="browse_title_count">%1$s könyv</string>
 
     <!-- ACTION ITEMS: Action, Notifications -->
-    <string name="action_listen">Hallgatás</string>
 
     <!-- Confirm -->
     <string name="confirm_cancel">Mégsem</string>
 
     <!-- Favorites -->
     <string name="action_favorite">Kedvenc</string>
-    <string name="action_favorite_add">Kedvencekhez adás</string>
-    <string name="action_favorite_remove">Eltávolítás Kedvencekből</string>
     <string name="notification_favorite_added">Hozzáadva a Kedvencekhez</string>
     <string name="notification_favorite_removed">Eltávolítva a Kedvencekből</string>
 
@@ -64,9 +58,6 @@
     <string name="confirm_delete">Törlés</string>
 
 
-    <!-- PLAYBACK RESOURCES -->
-    <string name="cast_application_id" translatable="false">CC1AD845</string>
-
     <!-- Notifications -->
     <string name="notification_channel">Általános Értesítések</string>
     <string name="notification_channel_description">Hangoskönytár általános értesítései</string>
@@ -77,7 +68,6 @@
     <string name="notification_offline">Offline módban csak letöltött könyvek érhetők el</string>
     <string name="notification_playback_restored">Lejátszási pozíció visszaállítva %s %s</string>
 
-    <string name="random_queue_title">Véletlen könyvek</string>
     <string name="casting_to_device">Lejátszás %1$s eszközön</string>
     <string name="currently_playing_song">Most játszik</string>
     <string name="currently_playing_artist">Szerző</string>
@@ -91,7 +81,6 @@
     <string name="touch_to_cast">Hangoskönyveit TV, ChromeCast, Android Auto vagy más eszközökön is lejátszhatja</string>
 
     <string name="home_title">Kezdőlap</string>
-    <string name="related_content_header">Hasonló könyvek</string>
 
     <string name="open_content_drawer">Főmenü megnyitása</string>
     <string name="close_content_drawer">Főmenü bezárása</string>
@@ -100,7 +89,7 @@
     <string name="now_playing">Most hallgat</string>
     <string name="background_image_str">Hangoskönyv borítója</string>
     <string name="search_queue_title">Keresés találatai</string>
-    <string name="no_search_results">Nincs találat</string>
+
     <string name="loading">Betöltés..</string>
     <string name="media_route_menu_title">Lejátszás eszközön...</string>
     <string name="stop_casting">Sugárzás leállítása..</string>
@@ -109,7 +98,7 @@
     <string name="label_previous">Előző</string>
     <string name="label_next">Következő</string>
     <string name="search_title">Keresés</string>
-    <string name="app_label">Hangoskönyvek</string>
+
     <string name="search_hint">Hangoskönyvek keresése</string>
 
 
@@ -133,7 +122,6 @@
     </string>
     <string name="like_ok_button">Tetszik</string>
     <string name="like_no_button">Nem igazán</string>
-    <string name="later_button">Kérdezz később</string>
 
 
     <!-- Rate -->
@@ -152,8 +140,6 @@
 
     <!-- ADs -->
     <string name="setting_ad_switch">Hirdetések engedélyezve</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~7544903903</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/1672919685</string>
 
     <!-- About page -->
     <string name="about_content">
@@ -166,14 +152,9 @@
         Amennyiben megteheti, kérem támogassa a projektet az alábbi oldalon:
     </string>
 
-    <string name="about_button_murati">murati.hu megnyitása</string>
-    <string name="about_button_store">Play Store megnyitása</string>
     <string name="about_button_support">Patreon - támogatói oldal megnyitása</string>
-    <string name="about_button_oszk">Oszk - MEK megnyitása</string>
 
     <string name="about_footer">Segítségüket előre is köszönjük!</string>
     <string name="about_privacy_label">Adatvédelmi nyilatkozat</string>
-
-    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
 
 </resources>

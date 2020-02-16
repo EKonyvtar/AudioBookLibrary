@@ -166,11 +166,14 @@ public class PlaybackControlsFragment extends Fragment {
             artUrl = metadata.getDescription().getIconUri().toString();
         }
 
-        Activity activity = getActivity();
-        GlideApp.with(activity).
+        //Activity activity = getActivity();
+        GlideApp.
+            with(getActivity()).
             load(artUrl).
+            placeholder(R.drawable.default_book_cover).
+            fallback(R.drawable.default_book_cover).
+            error(R.drawable.default_book_cover).
             override(Target.SIZE_ORIGINAL).
-            fallback(ContextCompat.getDrawable(activity.getBaseContext(), R.drawable.ic_navigate_books)).
             into(mAlbumArt);
     }
 

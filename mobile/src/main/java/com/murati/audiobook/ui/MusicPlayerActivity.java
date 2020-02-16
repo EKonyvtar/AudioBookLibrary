@@ -38,6 +38,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -135,7 +136,7 @@ public class MusicPlayerActivity extends BaseActivity
             mAdView = findViewById(R.id.control_ad);
             mAdView.setVisibility(View.GONE);
             if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
-                MobileAds.initialize(this, getString(R.string.admob_app_id));
+                MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
                 AdRequest adRequest = new AdRequest.Builder().build();
                 mAdView.loadAd(adRequest);
                 mAdView.setVisibility(View.VISIBLE);
@@ -223,7 +224,7 @@ public class MusicPlayerActivity extends BaseActivity
 
         // Empty or Root items
         if (mediaItem == null || MediaIDHelper.MEDIA_ID_ROOT.equals(mediaItem)) {
-            title = getString(R.string.app_name);
+            title = BuildConfig.APP_NAME;
         }
 
         // Search results

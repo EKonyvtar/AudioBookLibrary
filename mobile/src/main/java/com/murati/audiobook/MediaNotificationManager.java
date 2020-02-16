@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
@@ -285,11 +286,11 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
         notificationBuilder
             .setStyle(new MediaStyle()
-                // show only play/pause in compact view
-                .setShowActionsInCompactView(playPauseButtonPosition)
-                .setShowCancelButton(true)
-                .setCancelButtonIntent(mStopIntent)
-                .setMediaSession(mSessionToken))
+            // show only play/pause in compact view
+            .setShowActionsInCompactView(playPauseButtonPosition)
+            .setShowCancelButton(true)
+            .setCancelButtonIntent(mStopIntent)
+            .setMediaSession(mSessionToken))
             .setDeleteIntent(mStopIntent)
             .setColor(mNotificationColor)
             .setSmallIcon(R.mipmap.ic_notification_icon)
@@ -315,10 +316,10 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
         setNotificationPlaybackState(notificationBuilder);
 
-        if (description.getIconUri() != null) {
-            // This sample assumes the iconUri will be a valid URL formatted String, but
-            // it can actually be any valid Android Uri formatted String.
-            fetchBitmapFromURLAsync(description.getIconUri().toString(), notificationBuilder);
+        try {
+            fetchBitmapFromURLAsync(description.getIconUri(), notificationBuilder);
+        } catch (Exception ex) {
+            Log.e(TAG, "Notification image failed to load" + ex.getMessage());
         }
 
         /*
@@ -391,18 +392,29 @@ public class MediaNotificationManager extends BroadcastReceiver {
         builder.setOngoing(mPlaybackState.getState() == PlaybackStateCompat.STATE_PLAYING);
     }
 
-    private void fetchBitmapFromURLAsync(final String bitmapUrl,
-                                         final NotificationCompat.Builder builder) {
-        BitmapHelper.fetch(mService.getApplicationContext(), bitmapUrl, new BitmapHelper.FetchListener() {
+    private void fetchBitmapFromURLAsync(final Uri uri, final NotificationCompat.Builder builder) {
+        String bitmapUrl = "";
+        if (uri != null) bitmapUrl = uri.toString();
+
+        BitmapHelper.fetch(
+            mService.getApplicationContext(), bitmapUrl, new BitmapHelper.FetchListener() {
             @Override
             public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                if (mMetadata != null && mMetadata.getDescription().getIconUri() != null &&
-                    mMetadata.getDescription().getIconUri().toString().equals(artUrl)) {
-                    // If the media is still the same, update the notification:
-                    LogHelper.d(TAG, "fetchBitmapFromURLAsync: set bitmap to ", artUrl);
-                    builder.setLargeIcon(bitmap); //480x160x130
-                    addActions(builder);
-                    mNotificationManager.notify(NOTIFICATION_ID, builder.build());
+                try {
+                    if (
+                        mMetadata != null &&
+                        mMetadata.getDescription().getIconUri() != null &&
+                        mMetadata.getDescription().getIconUri().toString().equals(artUrl)
+                    ) {
+                        // If the media is still the same, update the notification:
+                        LogHelper.d(TAG, "fetchBitmapFromURLAsync: set bitmap to ", artUrl);
+                        builder.setLargeIcon(bitmap); //480x160x130
+                        addActions(builder);
+
+                        mNotificationManager.notify(NOTIFICATION_ID, builder.build());
+                    }
+                } catch (Exception ex) {
+                    Log.e(TAG, "Notification builder failed at image load" + ex.getMessage());
                 }
             }
         });
