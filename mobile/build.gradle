@@ -16,7 +16,7 @@
 
 apply plugin: 'com.android.application'
 
-//Add Crashlytics and performance
+//Add Crashlytics and performance reporting
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
 
@@ -29,19 +29,30 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 67
-        versionName "0.19.${versionCode}"
+        versionCode 70
+        versionName "0.22.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //Universal App constants
+        buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
+        buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
+        buildConfigField 'String', 'APPSTORE_PRIVACY_URL', '"https://ekonyvtar.github.io/audiobook-privacy_policy.html"'
     }
+
+    // TODO: Auto signing:
+    // https://developer.android.com/studio/build/build-variants
+    // System.getenv("KSTORE")
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+
     lintOptions {
         abortOnError false
     }
+
     buildTypes {
         release {
             minifyEnabled false //TODO: change
@@ -49,62 +60,132 @@ android {
         }
     }
 
-    flavorDimensions 'catalogue', 'store'
-    productFlavors {
-        //TODO: define paid and free dimensions
 
-        GooglePlay {
-            dimension = 'store'
-            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
-            buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
+
+    flavorDimensions 'catalogue', 'language_pack', 'store'
+
+    variantFilter { variant ->
+        def catalogue = variant.getFlavors().get(0).name.toLowerCase()
+        def language_pack = variant.getFlavors().get(1).name.toLowerCase()
+
+        if (
+            catalogue.contains("hu") && !language_pack.contains("hu") // Not clearly Hun
+            || !catalogue.contains("hu") && language_pack.contains("hu") //Clearly multilingual
+        ) {
+            setIgnore(true)
+        }
+    }
+
+    productFlavors {
+
+        def addConstantTo = {target, constantName, constantValue ->
+            target.manifestPlaceholders += [ (constantName):constantValue]
+            target.resValue "string",  "${constantName}", "${constantValue}"
+            target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
         }
 
-        HuaweiAppGallery {
-            dimension = 'store'
-            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
-            buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
+        // Catalogue Definitions
+
+        hungarian {
+            dimension "catalogue"
+            applicationId "com.murati.oszk.audiobook"
+            versionNameSuffix "-hu"
+
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Hangoskönyvtár")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~7544903903")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
+
+            //Multidimension constants
+            //TODO: check
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
         }
 
         bible_hu {
             dimension "catalogue"
             applicationIdSuffix ".bible.hu"
             versionNameSuffix "-bible-hu"
-        }
 
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Biblia")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~1186624167")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7627909437")
 
-        hungarian {
-            dimension "catalogue"
-            applicationId "com.murati.oszk.audiobook"
-            versionNameSuffix "-hu"
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C101706787"'
+            //Multidimension constants
+            //TODO: check
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C1")
         }
 
         french {
             dimension "catalogue"
             applicationIdSuffix ".fr"
             versionNameSuffix "-fr"
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
-        }
 
-        english {
-            dimension "catalogue"
-            applicationIdSuffix ".en"
-            versionNameSuffix "-en"
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Livres Audio")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~5194573746")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
+
+            //Multidimension constants
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
         }
 
         spanish {
             dimension "catalogue"
             applicationIdSuffix ".es"
             versionNameSuffix "-es"
-            buildConfigField 'String', 'APPSTORE_HUAWEI_ID', '"C1"'
+
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "AudioLibros")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~8227204847")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
+
+            //Multidimension constants
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
         }
 
         german {
             dimension = 'catalogue'
             applicationIdSuffix = '.de'
             versionNameSuffix = '-de'
+
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Hörbücher Bibliothek")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
+
+            //Multidimension constants
+            //TODO: fix this
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C")
         }
+
+        // Language Packs
+        LangHun {
+            dimension = 'language_pack'
+            resConfigs 'hu', 'en'
+        }
+
+        LangMulti {
+            dimension = 'language_pack'
+            resConfigs 'en', 'fr', 'es', 'de'
+        }
+
+
+        // Store definitions
+        GooglePlay {
+            dimension = 'store'
+            buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+        }
+
+        HuaweiAppGallery {
+            dimension = 'store'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+        }
+
+        //TODO: define paid and free dimensions
     }
+
+
 }
 
 repositories {

@@ -61,7 +61,7 @@ public class OfflineJSONSource extends RemoteJSONSource {
             JSONObject jsonObj = fetchJSON(CATALOG_URL);
             ArrayList<MediaMetadataCompat> tracks = new ArrayList<>();
             if (jsonObj != null) {
-                JSONArray jsonTracks = jsonObj.getJSONArray(super.JSON_MUSIC);
+                JSONArray jsonTracks = jsonObj.getJSONArray(super.JSON_ROOT);
 
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
