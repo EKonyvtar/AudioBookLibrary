@@ -159,13 +159,13 @@ public class MediaItemViewHolder {
             return convertView;
         }
         else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
-            // EBook deafult_book_cover
+            // EBook header
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_header, parent, false);
         }
         else if (MediaIDHelper.isEBookHeader(description.getMediaId())) {
-            // EBook deafult_book_cover
+            // EBook header
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_ebook_header, parent, false);
