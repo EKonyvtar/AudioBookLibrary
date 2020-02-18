@@ -6,7 +6,7 @@ commands:
     parameters:
       variantname:
         type: string
-        default: "HungarianGooglePlayRelease"
+        default: "HungarianLangHunGooglePlayDebug"
 
     steps:
       - run: echo << parameters.variantname >>
@@ -22,7 +22,7 @@ commands:
     parameters:
       variantname:
         type: string
-        default: "HungarianGooglePlayRelease"
+        default: "HungarianLangHunGooglePlayDebug"
 
     steps:
       - run: echo << parameters.variantname >>
@@ -69,7 +69,7 @@ jobs:
 
       ## Build apps individually
       - test_app:
-          variantname: "HungarianGooglePlayRelease"
+          variantname: "HungarianLangHunGooglePlayDebug"
 
 
   build:
@@ -95,9 +95,9 @@ jobs:
 
       ## Build apps individually
       - test_app:
-          variantname: "HungarianGooglePlayRelease"
+          variantname: "HungarianLangHunGooglePlayDebug"
       - make_app:
-          variantname: "HungarianGooglePlayRelease"
+          variantname: "HungarianLangHunGooglePlayDebug"
 
       # - run:
       #     name: Lint source and Tests
