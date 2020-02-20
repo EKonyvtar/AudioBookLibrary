@@ -55,6 +55,7 @@ import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.model.MusicProvider;
+import com.murati.audiobook.utils.BitmapHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
@@ -217,6 +218,13 @@ public class MediaItemViewHolder {
                     // Browsable container represented by its image
 
                     Uri imageUri = item.getDescription().getIconUri();
+
+                    if (imageUri == null || imageUri.toString() == "") {
+                        imageUri = BitmapHelper.convertDrawabletoUri(
+                            null, R.drawable.default_book_cover
+                        );
+                    }
+
                     GlideApp.
                         with(activity).
                         load(imageUri).

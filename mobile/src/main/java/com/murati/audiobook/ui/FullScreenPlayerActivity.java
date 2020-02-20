@@ -50,6 +50,7 @@ import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
+import com.murati.audiobook.utils.BitmapHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.PlaybackHelper;
 
@@ -383,11 +384,15 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mExecutorService.shutdown();
     }
 
+    //TODO: merge with (holder.mImageView != null)
     private void fetchImageAsync(@NonNull MediaDescriptionCompat description) {
         try {
             mCurrentArtUrl = description.getIconUri().toString();
         } catch (Exception ex) {
             Log.d(TAG, "Missing image Uri: " + ex.getMessage());
+            mCurrentArtUrl = BitmapHelper.convertDrawabletoUri(
+                null, R.drawable.default_book_cover
+            ).toString();
         }
 
         GlideApp.
