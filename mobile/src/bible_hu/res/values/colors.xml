@@ -24,7 +24,7 @@
     <color name="drawer_header_background">@color/bt_accent</color>
 
     <color name="drawer_item_selected_background">#feee</color>
-    <color name="drawer_item_tint_color">#ff333333</color>
+    <color name="dradwer_item_tint_color">#ff333333</color>
     <color name="fullscreen_secondary_line_color">#E5CCCCCC</color>
     <color name="fullscreen_line_color">#E5FFFFFF</color>
     <color name="tv_search_button">#ff0097A7</color>
@@ -33,9 +33,9 @@
     <color name="default_background">#0096a6</color>
 
     <!-- Re-enforced color -->
-    <color name="default_primary">#BE0224</color>
-    <color name="default_primary_dark">#A40123</color>
-    <color name="default_accent">#C00035</color>
+    <color name="default_primary">#6688B7</color>
+    <color name="default_primary_dark">#4E678B</color>
+    <color name="default_accent">#FE9774</color>
 
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
