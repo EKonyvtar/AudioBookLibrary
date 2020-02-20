@@ -25,6 +25,7 @@ import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
+import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 import com.murati.audiobook.ui.GlideApp;
 
@@ -48,10 +49,11 @@ public class BitmapHelper {
             (int) (src.getWidth() * scaleFactor), (int) (src.getHeight() * scaleFactor), false);
     }
 
+    //TODO: remove resource
     public static Uri convertDrawabletoUri(Resources resources, int resourceId) {
         return Uri.parse(
             String.format("android.resource://%s/%d",
-                resources.getResourcePackageName(resourceId),
+                BuildConfig.APPLICATION_ID,
                 resourceId)
         );
     }
