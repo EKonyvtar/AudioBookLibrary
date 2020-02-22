@@ -107,7 +107,8 @@ public final class LocalPlayback implements Playback {
                         Intent i = new Intent(context, MusicService.class);
                         i.setAction(MusicService.ACTION_CMD);
                         i.putExtra(MusicService.CMD_NAME, MusicService.CMD_PAUSE);
-                        mContext.startService(i);
+                        MusicService.startMusicService(mContext, i);
+                        //mContext.startService(i);
                     }
                 }
             }

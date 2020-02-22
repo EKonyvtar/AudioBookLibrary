@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,7 +37,6 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.media.MediaRouter;
 import android.util.Log;
 
-import com.murati.audiobook.R;
 import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.playback.CastPlayback;
 import com.murati.audiobook.playback.LocalPlayback;
@@ -57,8 +57,8 @@ import com.murati.audiobook.utils.MediaIDHelper;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.logging.Logger;
 
-import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_QUEUE;
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
 
  /**
@@ -156,6 +156,13 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
     private static WifiManager.WifiLock mWifiLock;
 
+    public static void startMusicService(Context c, Intent serviceIntent) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            c.startForegroundService(serviceIntent);
+        } else {
+            c.startService(serviceIntent);
+        }
+    }
 
     private void setWifiLock() {
         //Acquire Wifi-Lock
@@ -258,6 +265,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         try {
             mMediaNotificationManager = new MediaNotificationManager(this);
+            //startForeground(ONGOING_NOTIFICATION_ID, notification);
         } catch (RemoteException e) {
             throw new IllegalStateException("Could not create a MediaNotificationManager", e);
         }
@@ -275,6 +283,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         }
 
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
+
 
 
         registerCarConnectionReceiver();
@@ -403,8 +412,8 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // The service needs to continue running even after the bound client (usually a
         // MediaController) disconnects, otherwise the music playback will stop.
         // Calling startService(Intent) will keep the service running until it is explicitly killed.
-        startService(new Intent(getApplicationContext(), MusicService.class));
-
+        Intent serviceIntent = new Intent(getApplicationContext(), MusicService.class);
+        startMusicService(this, serviceIntent);
         PlaybackHelper.savePlaybackController(mPlaybackManager.getPlayback());
     }
 
