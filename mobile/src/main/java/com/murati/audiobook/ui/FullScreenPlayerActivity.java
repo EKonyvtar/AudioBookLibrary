@@ -303,7 +303,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
                 state.getState() == PlaybackStateCompat.STATE_BUFFERING)) {
 
             // Play/Pause for generating new event on initial state
-            if (state.getPosition() == 0 && mLastPlaybackState == null) {
+            if (state.getPosition() == 0) {
                 MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
                 controls.pause();
                 controls.play();
@@ -399,7 +399,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         try {
             mCurrentArtUrl = description.getIconUri().toString();
         } catch (Exception ex) {
-            Log.d(TAG, "Missing image Uri: " + ex.getMessage());
+            Log.d(TAG, "Defaulting image due to Missing Uri: " + ex.getMessage());
             mCurrentArtUrl = BitmapHelper.convertDrawabletoUri(
                 null, R.drawable.default_book_cover
             ).toString();
