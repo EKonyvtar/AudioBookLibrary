@@ -292,17 +292,27 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         MediaControllerCompat.setMediaController(FullScreenPlayerActivity.this, mediaController);
         mediaController.registerCallback(mCallback);
         PlaybackStateCompat state = mediaController.getPlaybackState();
-        updatePlaybackState(state);
+
         MediaMetadataCompat metadata = mediaController.getMetadata();
         if (metadata != null) {
             updateMediaDescription(metadata.getDescription());
             updateDuration(metadata);
         }
-        updateProgress();
+
         if (state != null && (state.getState() == PlaybackStateCompat.STATE_PLAYING ||
                 state.getState() == PlaybackStateCompat.STATE_BUFFERING)) {
+
+            // Play/Pause for generating new event on initial state
+            if (state.getPosition() == 0 && mLastPlaybackState == null) {
+                MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
+                controls.pause();
+                controls.play();
+            }
             scheduleSeekbarUpdate();
         }
+
+        updatePlaybackState(state);
+        updateProgress();
     }
 
     private void updateFromParams(Intent intent) {
