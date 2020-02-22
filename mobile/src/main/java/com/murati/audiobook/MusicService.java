@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -153,10 +154,43 @@ public class MusicService extends MediaBrowserServiceCompat implements
     private boolean mIsConnectedToCar;
     private BroadcastReceiver mCarConnectionReceiver;
 
-    /*
-     * (non-Javadoc)
-     * @see android.app.Service#onCreate()
-     */
+    private static WifiManager.WifiLock mWifiLock;
+
+
+    private void setWifiLock() {
+        //Acquire Wifi-Lock
+        try {
+            if (mWifiLock==null) {
+                mWifiLock = ((WifiManager) this.getApplicationContext()
+                    .getSystemService(Context.WIFI_SERVICE))
+                    .createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
+            }
+
+            if (!mWifiLock.isHeld())
+                mWifiLock.acquire();
+
+        } catch (Exception ex) {
+            LogHelper.d(TAG,"Failed to acquire Wifilock: " + ex.getMessage());
+            LogHelper.d(TAG,"Resetting Wifilock");
+
+            mWifiLock.release();
+            mWifiLock = null;
+        }
+    }
+
+     private void unsetWifiLock() {
+         //Release Wifi-Lock
+         try {
+             if (mWifiLock != null && mWifiLock.isHeld())
+                mWifiLock.release();
+
+         } catch (Exception ex) {
+             LogHelper.d(TAG,"Failed to release Wifilock: " + ex.getMessage());
+         } finally {
+             mWifiLock = null;
+         }
+     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -242,6 +276,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
 
+
         registerCarConnectionReceiver();
     }
 
@@ -269,6 +304,8 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // nothing is playing.
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mDelayedStopHandler.sendEmptyMessageDelayed(0, STOP_DELAY);
+
+        setWifiLock();
         return START_STICKY;
     }
 
@@ -291,6 +328,8 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mSession.release();
+
+       unsetWifiLock();
     }
 
     @Override
@@ -358,6 +397,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
             mSession.setActive(true);
         }
 
+        setWifiLock();
         mDelayedStopHandler.removeCallbacksAndMessages(null);
 
         // The service needs to continue running even after the bound client (usually a
@@ -374,6 +414,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
      */
     @Override
     public void onPlaybackStop() {
+        unsetWifiLock();
         // Reset the delayed stop handler, so after STOP_DELAY it will be executed again,
         // potentially stopping the service.
         mDelayedStopHandler.removeCallbacksAndMessages(null);
