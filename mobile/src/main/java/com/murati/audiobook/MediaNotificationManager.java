@@ -187,7 +187,9 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 Intent i = new Intent(context, MusicService.class);
                 i.setAction(MusicService.ACTION_CMD);
                 i.putExtra(MusicService.CMD_NAME, MusicService.CMD_STOP_CASTING);
-                mService.startService(i);
+
+                MusicService.startMusicService(mService, i);
+                //mService.startService(i);
                 break;
             default:
                 LogHelper.w(TAG, "Unknown intent ignored. Action=", action);
