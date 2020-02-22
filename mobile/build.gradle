@@ -29,8 +29,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 70
-        versionName "0.22.${versionCode}"
+        versionCode 72
+        versionName "0.23.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //Universal App constants
