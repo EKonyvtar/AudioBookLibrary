@@ -428,7 +428,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // potentially stopping the service.
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mDelayedStopHandler.sendEmptyMessageDelayed(0, STOP_DELAY);
-        stopForeground(true);
+        //stopForeground(true);
 
         //Try to persist last position
         PlaybackHelper.savePlaybackController(mPlaybackManager.getPlayback());
