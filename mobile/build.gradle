@@ -29,8 +29,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 73
-        versionName "0.23.${versionCode}"
+        versionCode 75
+        versionName "0.24.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //Universal App constants
@@ -216,7 +216,8 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:percent:28.0.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+    //
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.0' //2.9..
 
     //Graphical libraries
     implementation ('com.github.bumptech.glide:glide:4.9.0') {
