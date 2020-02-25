@@ -22,6 +22,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.os.PowerManager;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
@@ -106,7 +107,8 @@ public final class LocalPlayback implements Playback {
                         Intent i = new Intent(context, MusicService.class);
                         i.setAction(MusicService.ACTION_CMD);
                         i.putExtra(MusicService.CMD_NAME, MusicService.CMD_PAUSE);
-                        mContext.startService(i);
+                        MusicService.startMusicService(mContext, i);
+                        //mContext.startService(i);
                     }
                 }
             }
@@ -209,8 +211,12 @@ public final class LocalPlayback implements Playback {
                 mExoPlayer = ExoPlayerFactory.newSimpleInstance(
                     new DefaultRenderersFactory(mContext),
                     new DefaultTrackSelector(),
-                    new DefaultLoadControl());
+                    new DefaultLoadControl()
+                );
+                //mExoPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);
+                //mExoPlayer.
                 mExoPlayer.addListener(mEventListener);
+
             }
 
             // Android "O" makes much greater use of AudioAttributes, especially

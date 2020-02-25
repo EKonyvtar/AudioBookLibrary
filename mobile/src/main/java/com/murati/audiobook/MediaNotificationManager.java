@@ -158,11 +158,12 @@ public class MediaNotificationManager extends BroadcastReceiver {
             mController.unregisterCallback(mCb);
             try {
                 mNotificationManager.cancel(NOTIFICATION_ID);
+                mService.stopForeground(true);
                 mService.unregisterReceiver(this);
             } catch (IllegalArgumentException ex) {
                 // ignore if the receiver is not registered.
             }
-            mService.stopForeground(true);
+
         }
     }
 
@@ -187,7 +188,9 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 Intent i = new Intent(context, MusicService.class);
                 i.setAction(MusicService.ACTION_CMD);
                 i.putExtra(MusicService.CMD_NAME, MusicService.CMD_STOP_CASTING);
-                mService.startService(i);
+
+                MusicService.startMusicService(mService, i);
+                //mService.startService(i);
                 break;
             default:
                 LogHelper.w(TAG, "Unknown intent ignored. Action=", action);
@@ -235,7 +238,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
             LogHelper.d(TAG, "Received new playback state", state);
             if (state.getState() == PlaybackStateCompat.STATE_STOPPED ||
                 state.getState() == PlaybackStateCompat.STATE_NONE) {
-                stopNotification();
+                //stopNotification();
             } else {
                 Notification notification = createNotification();
                 if (notification != null) {
@@ -384,7 +387,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
         LogHelper.d(TAG, "updateNotificationPlaybackState. mPlaybackState=" + mPlaybackState);
         if (mPlaybackState == null || !mStarted) {
             LogHelper.d(TAG, "updateNotificationPlaybackState. cancelling notification!");
-            mService.stopForeground(true);
+            //mService.stopForeground(true);
             return;
         }
 
