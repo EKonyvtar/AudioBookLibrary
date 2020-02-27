@@ -8,6 +8,8 @@
 *.log
 **/output.json
 **/*.aab
+**.hprof
+
 
 **/google-services.json
 

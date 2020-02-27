@@ -32,7 +32,7 @@ buildscript {
         classpath 'com.google.gms:google-services:4.3.3'
 
         //Crashlytics
-        classpath 'io.fabric.tools:gradle:1.28.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.0.0-beta02'
 
         //Firebase performance
         classpath 'com.google.firebase:firebase-plugins:1.2.0'
