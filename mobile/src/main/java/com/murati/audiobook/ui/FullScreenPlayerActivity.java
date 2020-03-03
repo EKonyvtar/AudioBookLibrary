@@ -234,23 +234,28 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlaybackStateCompat state = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getPlaybackState();
-                if (state != null) {
-                    MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
-                    switch (state.getState()) {
-                        case PlaybackStateCompat.STATE_PLAYING: // fall through
-                        case PlaybackStateCompat.STATE_BUFFERING:
-                            controls.pause();
-                            stopSeekbarUpdate();
-                            break;
-                        case PlaybackStateCompat.STATE_PAUSED:
-                        case PlaybackStateCompat.STATE_STOPPED:
-                            controls.play();
-                            scheduleSeekbarUpdate();
-                            break;
-                        default:
-                            LogHelper.d(TAG, "onClick with state ", state.getState());
+                try {
+                    //TODO: fix try
+                    PlaybackStateCompat state = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getPlaybackState();
+                    if (state != null) {
+                        MediaControllerCompat.TransportControls controls = MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls();
+                        switch (state.getState()) {
+                            case PlaybackStateCompat.STATE_PLAYING: // fall through
+                            case PlaybackStateCompat.STATE_BUFFERING:
+                                controls.pause();
+                                stopSeekbarUpdate();
+                                break;
+                            case PlaybackStateCompat.STATE_PAUSED:
+                            case PlaybackStateCompat.STATE_STOPPED:
+                                controls.play();
+                                scheduleSeekbarUpdate();
+                                break;
+                            default:
+                                LogHelper.d(TAG, "onClick with state ", state.getState());
+                        }
                     }
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.getMessage());
                 }
             }
         });
@@ -268,8 +273,12 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls().seekTo(seekBar.getProgress());
-                scheduleSeekbarUpdate();
+                try {
+                    MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls().seekTo(seekBar.getProgress());
+                    scheduleSeekbarUpdate();
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.getMessage());
+                }
             }
         });
 
