@@ -21,16 +21,16 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "com.murati.audiobook"
         minSdkVersion 22
-        targetSdkVersion 28
+        targetSdkVersion 29
         multiDexEnabled true
-        versionCode 76
-        versionName "0.24.${versionCode}"
+        versionCode 77
+        versionName "0.25.${versionCode}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //Universal App constants
