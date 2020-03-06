@@ -155,8 +155,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
 
             //Multidimension constants
-            //TODO: fix this
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
         }
 
         // Language Packs
@@ -184,8 +183,6 @@ android {
 
         //TODO: define paid and free dimensions
     }
-
-
 }
 
 repositories {
