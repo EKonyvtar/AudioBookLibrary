@@ -23,14 +23,14 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.MediaRouteButton;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.mediarouter.app.MediaRouteButton;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,8 +60,8 @@ import com.murati.audiobook.utils.MediaIDHelper;
  *
  * The requirements for a subclass is to call {@link #initializeToolbar()} on onCreate, after
  * setContentView() is called and have three mandatory layout elements:
- * a {@link android.support.v7.widget.Toolbar} with id 'toolbar',
- * a {@link android.support.v4.widget.DrawerLayout} with id 'drawerLayout' and
+ * a {@link androidx.appcompat.widget.Toolbar} with id 'toolbar',
+ * a {@link DrawerLayout} with id 'drawerLayout' and
  * a {@link android.widget.ListView} with id 'drawerList'.
  */
 public abstract class ActionBarCastActivity extends AppCompatActivity {

@@ -13,18 +13,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.murati.audiobook.R;
 import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.model.MusicProviderSource;
-import com.murati.audiobook.ui.ActionBarCastActivity;
 import com.murati.audiobook.utils.AnalyticsHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
@@ -32,8 +29,6 @@ import com.murati.audiobook.utils.MediaIDHelper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-import java.util.logging.Logger;
 
 public class OfflineBookService extends IntentService {
 
