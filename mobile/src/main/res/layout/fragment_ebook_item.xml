@@ -137,7 +137,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:text="@string/open_item"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/dark_blue"
                         android:layout_marginLeft="12dp"
                         android:textAllCaps="true"
                         android:textStyle="bold"
@@ -151,7 +151,7 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
                         android:layout_alignParentRight="true"
                         android:text="@string/action_download"
                         style="?android:attr/borderlessButtonStyle"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/dark_blue"
                         android:focusable="false"
                         />
 
