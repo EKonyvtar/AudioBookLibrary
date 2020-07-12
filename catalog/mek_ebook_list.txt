@@ -364,3 +364,9 @@ http://mek.oszk.hu/18100/18199
 https://mek.oszk.hu/20100/20110
 https://mek.oszk.hu/20000/20041
 https://mek.oszk.hu/20000/20040
+https://mek.oszk.hu/20200/20290
+https://mek.oszk.hu/20800/20809
+https://mek.oszk.hu/20800/20808
+https://mek.oszk.hu/20700/20721
+https://mek.oszk.hu/20500/20593
+
