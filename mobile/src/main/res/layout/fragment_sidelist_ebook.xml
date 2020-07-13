@@ -19,7 +19,7 @@
 https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-item-and-how
 -->
 
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -73,4 +73,4 @@ https://stackoverflow.com/questions/30751870/can-one-use-cardview-for-listview-i
             android:textColor="?android:attr/textColorSecondary"
             tools:text="Hosszu Nevu Szerzo" />
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

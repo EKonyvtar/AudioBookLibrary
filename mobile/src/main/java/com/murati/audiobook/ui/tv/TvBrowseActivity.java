@@ -19,8 +19,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 
@@ -79,7 +79,7 @@ public class TvBrowseActivity extends FragmentActivity
             mMediaBrowser.disconnect();
         }
     }
-    
+
     @Override
     public boolean onSearchRequested() {
         startActivity(new Intent(this, TvBrowseActivity.class));
