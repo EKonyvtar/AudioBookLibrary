@@ -222,7 +222,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-core:17.4.4'
 
     //Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
@@ -234,7 +234,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:17.2.0'
 
     //Remote Config
-    implementation 'com.google.firebase:firebase-config:17.0.0'
+    implementation 'com.google.firebase:firebase-config:19.2.0'
 
     // Recommended: Add the Google Analytics SDK.
     //implementation 'com.google.firebase:firebase-analytics:17.4.4'
