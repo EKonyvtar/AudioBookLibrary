@@ -29,8 +29,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
-        versionCode 79
-        versionName "0.26.${versionCode}"
+        versionCode 80
+        versionName "0.27.${versionCode}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         //Universal App constants
@@ -97,7 +97,6 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
             //Multidimension constants
-            //TODO: check
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
         }
 
@@ -112,8 +111,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7627909437")
 
             //Multidimension constants
-            //TODO: check
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C1")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101857927")
         }
 
         french {
