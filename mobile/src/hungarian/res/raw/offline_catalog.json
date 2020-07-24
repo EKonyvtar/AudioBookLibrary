@@ -79569,6 +79569,856 @@
       "source": "https://mek.oszk.hu/20100/20110/mp3/26-Mihalyi_Antal-Titok_huseg_hitszeges.mp3",
       "title": "(08:58 min, 10.6 Mbyte)",
       "trackNumber": 27
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 46,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/01-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "Katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 83,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/02-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "Fülszöveg",
+      "trackNumber": 2
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 194,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/03-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "Előhang",
+      "trackNumber": 3
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1250,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/04-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "1. Sznofru fáraó nyakéke",
+      "trackNumber": 4
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 880,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/05-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "2. A kegyvesztett kegyenc",
+      "trackNumber": 5
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1052,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/06-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "3. A boldogtalan királynő",
+      "trackNumber": 6
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 705,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/07-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "4. A kopt szerzetesek",
+      "trackNumber": 7
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 643,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/08-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "5. A műkincskereskedő",
+      "trackNumber": 8
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 688,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/09-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "6. A piramisoknál",
+      "trackNumber": 9
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1084,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/10-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "7. A bazárban",
+      "trackNumber": 10
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 763,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/11-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "8. Új útitársak",
+      "trackNumber": 11
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 600,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/12-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "9. Az Egyiptomi Múzeumban",
+      "trackNumber": 12
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 725,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/13-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "10. Váratlan ajánlat",
+      "trackNumber": 13
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 536,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/14-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "11. Újabb ajánlat",
+      "trackNumber": 14
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1079,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/15-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "12. Szálloda a hajón",
+      "trackNumber": 15
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1141,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/16-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "13. Napkelte a templomban",
+      "trackNumber": 16
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 997,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/17-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "14. Éjszaka a hajón",
+      "trackNumber": 17
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 935,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/18-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "15. A szkarabeusz titka",
+      "trackNumber": 18
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1243,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/19-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "16. Újabb találkozások",
+      "trackNumber": 19
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 805,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/20-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "17. Kaland a templomvárosban",
+      "trackNumber": 20
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 766,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/21-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "18. Találkozás a professzorral",
+      "trackNumber": 21
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 955,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/22-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "19. A halotti templomban",
+      "trackNumber": 22
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 605,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/23-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "20. Váratlan vendégek",
+      "trackNumber": 23
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 733,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/24-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "21. Új útitársak",
+      "trackNumber": 24
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 731,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/25-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "22. Újabb meglepetés",
+      "trackNumber": 25
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 817,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/26-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "23. Szabadulás",
+      "trackNumber": 26
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 1004,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/27-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "24. Sír a hegyoldalban",
+      "trackNumber": 27
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 859,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/28-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "25. Szenenmut sírja",
+      "trackNumber": 28
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 450,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/29-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "26. A sajtófogadás",
+      "trackNumber": 29
+    },
+    {
+      "album": "A szkarabeusz titka",
+      "artist": "Mihályi Antal",
+      "duration": 142,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/20200/20290/borito.jpg",
+      "source": "https://mek.oszk.hu/20200/20290/mp3/30-Milestone_Anthony-A_szkarabeusz_titka.mp3",
+      "title": "Utóhang",
+      "trackNumber": 30
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 316,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/01-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "1. óra: Ki kerülhet az ujságíró-iskolába, miért jött létre az intézet",
+      "trackNumber": 1
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 291,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/02-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "2. óra: Hogyan kell az ujságírói pályát megkezdeni",
+      "trackNumber": 2
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 336,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/03-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "3. óra: Hogyan lehet az ujságírói pályán sokra vinni",
+      "trackNumber": 3
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 289,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/04-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "4. óra: Az ugynevezett ujságírói egyéniség",
+      "trackNumber": 4
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 327,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/05-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "5. óra: Miféle jó tulajdonságokat, hajlamokat kell az ujságíróból kiírtani",
+      "trackNumber": 5
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 280,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/06-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "6. óra: Hogyan lesz az ujságíró, mikép juthat be egy uj ember egy régi laphoz",
+      "trackNumber": 6
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 325,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/07-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "7. óra: Az igazságról, mint olyanról, a meggyőződésről, mint amolyanról",
+      "trackNumber": 7
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 427,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/08-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "8. óra: Ebben elmondódik az igazság az igazságról",
+      "trackNumber": 8
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 282,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/09-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "9. óra: A morál. Mindenféle moráliákról, politikai morálról, ujságírói morálról",
+      "trackNumber": 9
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 404,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/10-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "10. óra: Ebben elmondatik egy és más tudnivaló a címekről",
+      "trackNumber": 10
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 318,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/11-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "11. óra: Ebben szó lesz a cikkek aláírásáról",
+      "trackNumber": 11
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 312,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/12-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "12. óra: Valami a vezércikkről",
+      "trackNumber": 12
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 329,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/13-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "13. óra: A szinházi kritikáról, mint a műitészet fontos részéről",
+      "trackNumber": 13
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 380,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/14-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "14. óra: A riportról és a riporterektől",
+      "trackNumber": 14
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 314,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/15-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "15. óra: A kopertás ember, aki \"a nagy visszaemlékező\"",
+      "trackNumber": 15
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 291,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/16-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "16. óra: Az adomás emberről",
+      "trackNumber": 16
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 338,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/17-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "17. óra: A szomoru emberről",
+      "trackNumber": 17
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 400,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/18-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "18. óra: A vidám emberről",
+      "trackNumber": 18
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 291,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/19-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "19. óra: Mégegyszer a humorista",
+      "trackNumber": 19
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 292,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/20-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "20. óra: Egy sokszor megénekelt, közismert alak: a \"lapunk barátja\"",
+      "trackNumber": 20
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 279,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/21-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "21. óra: Bemutatjuk a báli tudósítót",
+      "trackNumber": 21
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 445,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/22-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "22. óra: A szerkesztői üzenetekről",
+      "trackNumber": 22
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 382,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/23-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "23. óra: A szociológusról",
+      "trackNumber": 23
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 326,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/24-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "24. óra: A sportemberről",
+      "trackNumber": 24
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 285,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/25-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "25. óra: A törvényszéki riporterről",
+      "trackNumber": 25
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 329,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/26-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "26. óra: A beszéltető vagy megszólaltató ujságíróról",
+      "trackNumber": 26
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 271,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/27-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "27. óra: Az ujságíró-kisasszonyról",
+      "trackNumber": 27
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 249,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/28-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "28. óra: Egy és más az ugynevezett szakiróról",
+      "trackNumber": 28
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 322,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/29-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "29. óra: Az álhirlapíró",
+      "trackNumber": 29
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 304,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/30-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "30. óra: Bankett, utca, társaság",
+      "trackNumber": 30
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 280,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/31-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "31. óra: Az ujságíró otthon",
+      "trackNumber": 31
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 271,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/32-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "32. óra: Hivatottak és választottak",
+      "trackNumber": 32
+    },
+    {
+      "album": "Újságíró-iskola",
+      "artist": "Kálnoki Izidor",
+      "duration": 355,
+      "genre": "könyv",
+      "image": "https://mek.oszk.hu/20500/20593/borito.jpg",
+      "source": "https://mek.oszk.hu/20500/20593/mp3/33-Kalnoki_Izidor_Vulpes-Ujsagiro_iskola.mp3",
+      "title": "33. óra: Az ujságíró halála",
+      "trackNumber": 33
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 128,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/00-Craz-8-novella.mp3",
+      "title": "Impresszum / Fülszöveg",
+      "trackNumber": 1
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 570,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/01-Craz-8-novella.mp3",
+      "title": "Craz: Sellő",
+      "trackNumber": 2
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 1028,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/02-Craz-8-novella.mp3",
+      "title": "Craz: A színes macskák becsapódási pillanatai festménysorozat",
+      "trackNumber": 3
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 1989,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/03-Craz-8-novella.mp3",
+      "title": "Craz: Jegenye Brúnó, a vámpírvadász",
+      "trackNumber": 4
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 1121,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/04-Craz-8-novella.mp3",
+      "title": "Craz: A nappap",
+      "trackNumber": 5
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 646,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/05-Craz-8-novella.mp3",
+      "title": "Craz: Harmincholdas Pagony",
+      "trackNumber": 6
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 2782,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/06-Craz-8-novella.mp3",
+      "title": "Craz - Kristálysólyom: A nagy zombifutam",
+      "trackNumber": 7
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 1181,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/07-Craz-8-novella.mp3",
+      "title": "Craz - Vihartáncos: ZomBerry interjú",
+      "trackNumber": 8
+    },
+    {
+      "album": "8 novella",
+      "artist": "Varga Tamás József",
+      "duration": 2193,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/20700/20721/borito.jpg",
+      "source": "https://mek.oszk.hu/20700/20721/mp3/08-Craz-8-novella.mp3",
+      "title": "Craz: Jegenye Brúnó, a zombivadász",
+      "trackNumber": 9
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 329,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/01-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "A virtua-digitalizáló",
+      "trackNumber": 1
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 401,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/02-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "Séta Robo-Cityben",
+      "trackNumber": 2
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 540,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/03-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "Utazás Holli-Bolliába",
+      "trackNumber": 3
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 405,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/04-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "Holli-Bolliában",
+      "trackNumber": 4
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 736,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/05-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "A váróteremben",
+      "trackNumber": 5
+    },
+    {
+      "album": "Digitelló Holli-Bolliában",
+      "artist": "Pálnagy László",
+      "duration": 699,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20808/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20808/mp3/06-Palnagy_Laszlo-Digitello_Holli-Bolliaban.mp3",
+      "title": "Ismét Holli-Bolliában",
+      "trackNumber": 6
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 673,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/01-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Belengyógyiában",
+      "trackNumber": 1
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 384,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/02-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "A Fogaskerék-tenger",
+      "trackNumber": 2
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 534,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/03-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Hómolypumpiában",
+      "trackNumber": 3
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 512,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/04-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Icir Picir Ősdínó-mukkancs",
+      "trackNumber": 4
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 313,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/05-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Sompolygó Hómorgó",
+      "trackNumber": 5
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 478,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/06-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Hózordosz Áspis Gaxírisz",
+      "trackNumber": 6
+    },
+    {
+      "album": "Digitelló Hómolypumpiában",
+      "artist": "Pálnagy László",
+      "duration": 475,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/20800/20809/borito.jpg",
+      "source": "https://mek.oszk.hu/20800/20809/mp3/07-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
+      "title": "Hófüllencs Galádor",
+      "trackNumber": 7
     }
   ]
 }
