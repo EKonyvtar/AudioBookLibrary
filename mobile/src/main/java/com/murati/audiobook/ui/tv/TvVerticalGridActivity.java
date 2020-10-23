@@ -17,7 +17,6 @@ package com.murati.audiobook.ui.tv;
 
 import android.content.ComponentName;
 import android.os.Bundle;
-import android.os.RemoteException;
 import androidx.fragment.app.FragmentActivity;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
@@ -89,7 +88,7 @@ public class TvVerticalGridActivity extends FragmentActivity
                                 TvVerticalGridActivity.this, mMediaBrowser.getSessionToken());
                         MediaControllerCompat.setMediaController(TvVerticalGridActivity.this, mediaController);
                         browse();
-                    } catch (RemoteException e) {
+                    } catch (Exception e) {
                         LogHelper.e(TAG, e, "could not connect media controller");
                     }
                 }
