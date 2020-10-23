@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_EBOOK;
@@ -49,6 +50,7 @@ public class RecommendationHelper {
     public static List<MediaBrowserCompat.MediaItem> getRecommendations() { //(FirebaseRemoteConfig mFirebaseRemoteConfig) {
         //if (recommendations == null)
         //    refreshRemoteRecommendation(mFirebaseRemoteConfig);
+        Collections.shuffle(recommendations);
         return  recommendations;
     }
 
