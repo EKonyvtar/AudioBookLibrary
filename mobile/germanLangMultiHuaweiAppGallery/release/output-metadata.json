@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.murati.audiobook.de",
+  "variantName": "germanLangMultiHuaweiAppGalleryRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 81,
+      "versionName": "0.28.81-de",
+      "enabled": true,
+      "outputFile": "mobile-german-LangMulti-HuaweiAppGallery-release.apk"
+    }
+  ]
+}

@@ -89,7 +89,7 @@ public class TvPlaybackActivity extends FragmentActivity {
                             mPlaybackFragment.updateMetadata(metadata);
                             mPlaybackFragment.updatePlaybackState(mediaController.getPlaybackState());
                         }
-                    } catch (RemoteException e) {
+                    } catch (Exception e) {
                         LogHelper.e(TAG, e, "could not connect media controller");
                     }
                 }

@@ -114,7 +114,7 @@ public class TvBrowseActivity extends FragmentActivity
                                 TvBrowseActivity.this, mMediaBrowser.getSessionToken());
                         MediaControllerCompat.setMediaController(TvBrowseActivity.this, mediaController);
                         navigateToBrowser(mMediaId);
-                    } catch (RemoteException e) {
+                    } catch (Exception e) {
                         LogHelper.e(TAG, e, "could not connect media controller");
                     }
                 }

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.murati.audiobook.fr",
+  "variantName": "frenchLangMultiHuaweiAppGalleryRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 81,
+      "versionName": "0.28.81-fr",
+      "enabled": true,
+      "outputFile": "mobile-french-LangMulti-HuaweiAppGallery-release.apk"
+    }
+  ]
+}
