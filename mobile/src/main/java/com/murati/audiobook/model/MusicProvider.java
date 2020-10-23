@@ -452,7 +452,7 @@ public class MusicProvider {
                         BitmapHelper.convertDrawabletoUri(resources, R.drawable.ic_navigate_writer)));
                 }
             } catch (Exception ex) {
-                Log.d(TAG, "Error restoring last-ebook tile" + ex.getMessage());
+                Log.d(TAG, "Error restoring recommended tiles" + ex.getMessage());
             }
 
             if (!isSingleCatalogue) {
