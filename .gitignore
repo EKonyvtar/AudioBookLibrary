@@ -11,6 +11,6 @@
 **.hprof
 
 
+# Exclude store and framework build configs
 **/google-services.json
-**/output-metadata.json
-
+**/agconnect-services.json
