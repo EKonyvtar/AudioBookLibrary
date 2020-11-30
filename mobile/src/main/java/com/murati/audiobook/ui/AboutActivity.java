@@ -27,23 +27,25 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
-import com.murati.audiobook.utils.DisplayHelper;
+
 import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 
-/**
- * Placeholder activity for features that are not implemented in this sample, but
- * are in the navigation drawer.
- */
+import com.huawei.hms.ads.AdParam;
+import com.huawei.hms.ads.banner.BannerView;
+import com.huawei.hms.ads.AdListener;
+
+import com.murati.audiobook.utils.MobileServicesHelper;
+
+
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
     private AdView mAdView;
-
+    private BannerView huaweiAdView;
 
     private void openBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -73,13 +75,65 @@ public class AboutActivity extends BaseActivity {
         privacy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser(BuildConfig.APPSTORE_PRIVACY_URL); }
         });
-        
+
         // Button
         final Button patreon = findViewById(R.id.patreon);
         patreon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
+        // TODO: Ad loader
+        // Huawei load as a fragment
+        try {
+            if(true || MobileServicesHelper.isHmsAvailable(this)) {
+                huaweiAdView = findViewById(R.id.huaweiAdView);
+                huaweiAdView.setVisibility(View.VISIBLE);
+                // Create an ad request to load an ad.
+                AdParam adParam = new AdParam.Builder().build();
+                huaweiAdView.loadAd(adParam);
+                huaweiAdView.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdLoaded() {
+                        // Called when an ad is loaded successfully.
+                        Log.d(TAG, "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailed(int errorCode) {
+                        // Called when an ad fails to be loaded.
+                        Log.d(TAG, "onAdFailed");
+                    }
+
+                    @Override
+                    public void onAdOpened() {
+                        // Called when an ad is opened.
+                        Log.d(TAG, "onAdOpened");
+                    }
+
+                    @Override
+                    public void onAdClicked() {
+                        // Called when a user taps an ad.
+                        Log.d(TAG, "onAdClicked");
+                    }
+
+                    @Override
+                    public void onAdLeave() {
+                        // Called when a user has left the app.
+                        Log.d(TAG, "onAdLeave");
+                    }
+
+                    @Override
+                    public void onAdClosed() {
+                        // Called when an ad is closed.
+                        Log.d(TAG, "onAdClosed");
+                    }
+                });
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+
+        // Google
         try {
             MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
             mAdView = findViewById(R.id.adView);

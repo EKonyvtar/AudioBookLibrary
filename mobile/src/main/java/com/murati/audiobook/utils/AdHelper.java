@@ -18,6 +18,7 @@ public class AdHelper {
     public final static int AD_EVERYWHERE = 1;
     public final static int AD_LIST = 2;
 
+    //TODO make it generic fragment loader
     public static void LoadAdvertisement(AdView adView, Context context, String ad_app_id) {
         MobileAds.initialize(context, BuildConfig.ADMOB_APP_ID);
 
@@ -35,7 +36,7 @@ public class AdHelper {
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-        return AD_DEFAULT;
+        return AD_EVERYWHERE;
     }
 
 }
