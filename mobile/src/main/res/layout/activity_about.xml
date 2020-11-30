@@ -18,6 +18,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+    xmlns:hwads="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -69,6 +72,17 @@
                     android:layout_below="@+id/header"
                     android:gravity="center"
                     android:text="v0.0.0" />
+
+                <com.huawei.hms.ads.banner.BannerView
+                    android:id="@+id/huaweiAdView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    hwads:adId="testw6vs28auh3"
+                    hwads:bannerSize="BANNER_SIZE_360_57"
+                    android:minHeight="60dp"
+                    tools:visibility="visible" />
+
 
                 <TextView
                     android:id="@+id/about_content"

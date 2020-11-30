@@ -189,9 +189,12 @@ repositories {
     }
     google()
     jcenter()
+    maven { url 'http://developer.huawei.com/repo/' }
 }
 
 dependencies {
+    // def task = gradle.startParameter.taskNames[0] ?: "" // Get "assembleNoDyntraceDebug"
+
     implementation 'androidx.multidex:multidex:2.0.1'
 
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
@@ -224,7 +227,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:19.0.9'
 
     //Admob
-    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+
+    //TODO: Adkit condition to variants
+    // if (!task.toLowerCase().contains("huawei")) {
+        implementation 'com.huawei.hms:ads-lite:13.4.30.307'
+        implementation 'com.huawei.hms:base:4.0.2.300'
+    // }
+    //HMS stuff
+    //huaweiappgalleryImplementation 'com.huawei.agconnect:agconnect-core:1.0.0.300'
 
     //Remote Config
     implementation 'com.google.firebase:firebase-config:19.2.0'
@@ -245,6 +256,12 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+// TODO: hmss
+// if (getGradle().getStartParameter().getTaskRequests().toString().contains("huawei")) {
+//    apply plugin: 'com.huawei.agconnect'
+// } else {
+//    apply plugin: 'com.google.gms.google-services'
+// }
 
 allprojects {
     gradle.projectsEvaluated {
