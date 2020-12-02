@@ -22,6 +22,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
@@ -44,6 +45,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
+import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.BitmapHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
@@ -134,14 +136,7 @@ public class MediaItemViewHolder {
                 inflate(R.layout.fragment_list_ad, parent, false);
 
             try {
-                MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
-                holder.mAdView = convertView.findViewById(R.id.itemAd);
-                //if (!BuildConfig.DEBUG) {
-                //mAdView.setAdSize(AdSize.BANNER);
-                //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
-                adRequest = new AdRequest.Builder().build();
-                holder.mAdView.loadAd(adRequest);
-                //}
+                AdHelper.loadGoogleAdmodToView((AppCompatActivity) activity, R.id.itemAd);
             } catch (Exception ex) {
                 Log.e(TAG, ex.getMessage());
             }

@@ -133,14 +133,7 @@ public class MusicPlayerActivity extends BaseActivity
         */
 
         try {
-            mAdView = findViewById(R.id.control_ad);
-            mAdView.setVisibility(View.GONE);
-            if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
-                MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-                mAdView.setVisibility(View.VISIBLE);
-            }
+            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
@@ -266,6 +259,7 @@ public class MusicPlayerActivity extends BaseActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         LogHelper.d(TAG, "onNewIntent, intent=" + intent);
         initializeFromParams(null, intent);
         startFullScreenActivityIfNeeded(intent);
