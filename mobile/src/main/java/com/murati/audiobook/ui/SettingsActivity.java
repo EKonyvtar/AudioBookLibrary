@@ -24,6 +24,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
+import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.LogHelper;
 
 /**
@@ -44,18 +45,10 @@ public class SettingsActivity extends BaseActivity {
         initializeToolbar();
 
         try {
-            MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
-            mAdView = findViewById(R.id.adView);
-            //if (!BuildConfig.DEBUG) {
-            //mAdView.setAdSize(AdSize.BANNER);
-            //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-            //}
+            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-
 
 
         /*
