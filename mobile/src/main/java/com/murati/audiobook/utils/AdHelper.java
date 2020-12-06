@@ -65,10 +65,6 @@ public class AdHelper {
     };
 
     public static void tryLoadAds(AppCompatActivity activity, String tag) {
-        // TODO make it generic fragment loader
-        // Todo: Huawei load as a fragment
-        // huaweiAdView.addView(bannerView);
-
         try {
             AdHelper.loadGoogleAdmodToView(activity, R.id.googleAdView);
         } catch (Exception ex) {
@@ -81,7 +77,6 @@ public class AdHelper {
         }
     }
 
-    //TODO: pass bannerview
     public static void loadHuaweiAdkitToView(AppCompatActivity activity, int resourceId) {
         BannerView huaweiAdView = activity.findViewById(resourceId);
 
@@ -89,7 +84,7 @@ public class AdHelper {
         // if (BuildConfig.DEBUG) // TEST banner
         //    huaweiAdView.setAdId("testw6vs28auh3");
         // else
-            huaweiAdView.setAdId(BuildConfig.HUAWEI_BANNER_ID);
+        huaweiAdView.setAdId(BuildConfig.HUAWEI_BANNER_ID);
 
         huaweiAdView.setAdListener(adListener);
         huaweiAdView.setBannerRefresh(30);

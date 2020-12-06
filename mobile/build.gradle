@@ -178,11 +178,13 @@ android {
 
         // Store definitions
         GooglePlay {
+            versionNameSuffix = '-google'
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
         }
 
         HuaweiAppGallery {
+            versionNameSuffix = '-huawei'
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
 
