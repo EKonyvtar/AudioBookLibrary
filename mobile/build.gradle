@@ -230,7 +230,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:19.0.9'
 
     //Admob
-    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+    implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
     //TODO: Adkit condition to variants
     // if (!task.toLowerCase().contains("huawei")) {
