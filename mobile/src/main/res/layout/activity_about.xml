@@ -57,7 +57,6 @@
                     android:id="@+id/header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageView"
                     android:gravity="center"
                     android:text="@string/APP_NAME"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
@@ -66,8 +65,6 @@
                     android:id="@+id/version"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/header"
                     android:gravity="center"
                     android:text="v0.0.0" />
 
@@ -76,8 +73,6 @@
                     android:id="@+id/about_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/version"
                     android:layout_gravity="center"
                     android:gravity="clip_horizontal"
                     android:padding="12dp"
@@ -95,16 +90,12 @@
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView"
                     android:text="@string/about_button_support" />
 
                 <TextView
                     android:id="@+id/about_footer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/version"
                     android:layout_gravity="center"
                     android:gravity="clip_horizontal"
                     android:padding="12dp"
@@ -115,8 +106,6 @@
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/patreon"
                     android:text="@string/drawer_feedback_title" />
 
                 <Button
@@ -124,8 +113,6 @@
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/feedback"
                     android:text="@string/about_privacy_label" />
 
             </LinearLayout>
