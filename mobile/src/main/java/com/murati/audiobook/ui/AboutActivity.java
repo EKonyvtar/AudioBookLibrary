@@ -79,21 +79,7 @@ public class AboutActivity extends BaseActivity {
             public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
-        // Todo: Huawei load as a fragment
-        try {
-            AdHelper.loadHuaweiAdkitToView(this, R.id.huaweiAdView);
-            // MobileServicesHelper.isHmsAvailable(this)
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
-
-        // Google
-        try {
-            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
-
+        AdHelper.tryLoadAds(this, TAG);
     }
 
     @Override

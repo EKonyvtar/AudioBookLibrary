@@ -158,11 +158,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         setContentView(R.layout.activity_full_player);
         initializeToolbar();
 
-        try {
-            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
+        AdHelper.tryLoadAds(this, TAG);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

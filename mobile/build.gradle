@@ -29,7 +29,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
-        versionCode 82
+        versionCode 83
         versionName "0.29.${versionCode}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -95,6 +95,9 @@ android {
             addConstantTo(owner, "APP_NAME", "Hangoskönyvtár")
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~7544903903")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
+
+            //TODO: Replace test AD ID
+            addConstantTo(owner, "HUAWEI_BANNER_ID","testw6vs28auh3")
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
