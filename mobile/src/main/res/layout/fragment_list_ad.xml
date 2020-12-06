@@ -28,21 +28,11 @@
     app:cardUseCompatPadding="false"
     >
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/googleAdView"
-        android:visibility="visible"
+    <!-- ADVIEWS -->
+    <fragment android:name="com.murati.audiobook.ui.AdFragment"
+        android:id="@+id/fragment_ad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_view"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
-
-    <com.huawei.hms.ads.banner.BannerView
-        android:id="@+id/huaweiAdView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:bannerSize="BANNER_SIZE_360_57"
-        app:adId="@string/HUAWEI_BANNER_ID" />
+        tools:layout="@layout/fragment_playback_controls" />
 
 </androidx.cardview.widget.CardView>
