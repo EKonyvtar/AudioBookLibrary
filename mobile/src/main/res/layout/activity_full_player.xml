@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pageView"
     android:layout_width="match_parent"
@@ -234,12 +234,22 @@ limitations under the License.
             </LinearLayout>
 
             <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
+                android:id="@+id/googleAdView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_view_margin"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
+                app:adSize="BANNER"
+                app:adUnitId="@string/ADMOB_UNIT_ID_1"
+            />
+
+            <com.huawei.hms.ads.banner.BannerView
+                android:id="@+id/huaweiAdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:bannerSize="BANNER_SIZE_360_57"
+                app:adId="@string/HUAWEI_BANNER_ID"
+                android:minHeight="60dp" />
 
         </LinearLayout>
 

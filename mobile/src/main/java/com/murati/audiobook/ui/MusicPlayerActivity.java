@@ -131,12 +131,7 @@ public class MusicPlayerActivity extends BaseActivity
         msg.what = STOPSPLASH;
         splashHandler.sendMessageDelayed(msg, SPLASHTIME);
         */
-
-        try {
-            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
+        AdHelper.tryLoadAds(this, TAG);
     }
 
     //TODO: move to base

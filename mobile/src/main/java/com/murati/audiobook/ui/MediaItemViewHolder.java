@@ -135,11 +135,7 @@ public class MediaItemViewHolder {
                 from(activity).
                 inflate(R.layout.fragment_list_ad, parent, false);
 
-            try {
-                AdHelper.loadGoogleAdmodToView((AppCompatActivity) activity, R.id.itemAd);
-            } catch (Exception ex) {
-                Log.e(TAG, ex.getMessage());
-            }
+            AdHelper.tryLoadAds((AppCompatActivity) activity, TAG);
             return convertView;
         }
         else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
