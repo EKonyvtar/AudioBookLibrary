@@ -20,13 +20,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdView;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
@@ -34,15 +32,9 @@ import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 
-import com.huawei.hms.ads.banner.BannerView;
-
-import com.murati.audiobook.utils.MobileServicesHelper;
-
 
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
-    private AdView mAdView;
-    private BannerView huaweiAdView;
 
     private void openBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
