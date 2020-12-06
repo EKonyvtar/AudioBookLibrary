@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+//def task = project.outgoingVariants
+//def isHuaweiTask = getGradle().getStartParameter().getTaskRequests().toString().contains("huawei")
+
+//project.logger.lifecycle("TASK: ${task} isHuawei = ${isHuaweiTask}")
+
 apply plugin: 'com.android.application'
 
 // Add Crashlytics and performance reporting
@@ -29,7 +34,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
-        versionCode 83
+        versionCode 84
         versionName "0.29.${versionCode}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -180,6 +185,12 @@ android {
         HuaweiAppGallery {
             dimension = 'store'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+
+            dependencies {
+                implementation 'com.huawei.hms:ads-lite:13.4.30.307'
+                implementation 'com.huawei.hms:base:4.0.2.300'
+                //implementation 'com.huawei.agconnect:agconnect-core:1.0.0.300'
+            }
         }
 
         //TODO: define paid and free dimensions
@@ -192,12 +203,12 @@ repositories {
     }
     google()
     jcenter()
-    maven { url 'http://developer.huawei.com/repo/' }
+    //if (isHuaweiTask) {
+        maven { url 'http://developer.huawei.com/repo/' }
+    //}
 }
 
 dependencies {
-    // def task = gradle.startParameter.taskNames[0] ?: "" // Get "assembleNoDyntraceDebug"
-
     implementation 'androidx.multidex:multidex:2.0.1'
 
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
@@ -232,14 +243,6 @@ dependencies {
     //Admob
     implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
-    //TODO: Adkit condition to variants
-    // if (!task.toLowerCase().contains("huawei")) {
-        implementation 'com.huawei.hms:ads-lite:13.4.30.307'
-        implementation 'com.huawei.hms:base:4.0.2.300'
-    // }
-    //HMS stuff
-    //huaweiappgalleryImplementation 'com.huawei.agconnect:agconnect-core:1.0.0.300'
-
     //Remote Config
     implementation 'com.google.firebase:firebase-config:19.2.0'
 
@@ -259,8 +262,8 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
-// TODO: hmss
-// if (getGradle().getStartParameter().getTaskRequests().toString().contains("huawei")) {
+// TODO: evaluate HuaweiTask
+// if (isHuawei) {
 //    apply plugin: 'com.huawei.agconnect'
 // } else {
 //    apply plugin: 'com.google.gms.google-services'

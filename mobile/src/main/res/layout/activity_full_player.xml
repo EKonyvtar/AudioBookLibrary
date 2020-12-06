@@ -16,6 +16,7 @@ limitations under the License.
 -->
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pageView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -221,7 +222,6 @@ limitations under the License.
                     android:contentDescription="@string/skip_next"
                     android:src="@drawable/ic_play_forward" />
 
-
                 <ImageView
                     android:id="@+id/next"
                     android:layout_width="0dp"
@@ -233,23 +233,12 @@ limitations under the License.
 
             </LinearLayout>
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/googleAdView"
+            <!-- ADVIEWS -->
+            <fragment android:name="com.murati.audiobook.ui.AdFragment"
+                android:id="@+id/fragment_ad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_view_margin"
-                app:adSize="BANNER"
-                app:adUnitId="@string/ADMOB_UNIT_ID_1"
-            />
-
-            <com.huawei.hms.ads.banner.BannerView
-                android:id="@+id/huaweiAdView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                app:bannerSize="BANNER_SIZE_360_57"
-                app:adId="@string/HUAWEI_BANNER_ID"
-                android:minHeight="60dp" />
+                tools:layout="@layout/fragment_playback_controls" />
 
         </LinearLayout>
 
