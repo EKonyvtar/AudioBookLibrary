@@ -44,11 +44,7 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
         initializeToolbar();
 
-        try {
-            AdHelper.loadGoogleAdmodToView(this, R.id.adView);
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
+        AdHelper.tryLoadAds(this, TAG);
 
 
         /*

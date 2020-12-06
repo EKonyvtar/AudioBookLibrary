@@ -17,68 +17,96 @@ import com.huawei.hms.ads.banner.BannerView;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
+import java.util.Locale;
+
 public class AdHelper {
 
     private static final String TAG = LogHelper.makeLogTag(AdHelper.class);
 
-    public final static int AD_DEFAULT = 0;
     public final static int AD_EVERYWHERE = 1;
     public final static int AD_LIST = 2;
 
-    //TODO make it generic fragment loader
+    private static AdListener adListener = new AdListener() {
+        @Override
+        public void onAdLoaded() {
+            // Called when an ad is loaded successfully.
+             Log.d(TAG, "Ad loaded.");
+        }
+
+        @Override
+        public void onAdFailed(int errorCode) {
+            // Called when an ad fails to be loaded.
+             Log.e(TAG, String.format(Locale.ROOT, "Ad failed to load with error code %d.", errorCode));
+        }
+
+        @Override
+        public void onAdOpened() {
+            // Called when an ad is opened.
+             Log.d(TAG, String.format("Ad opened "));
+        }
+
+        @Override
+        public void onAdClicked() {
+            // Called when a user taps an ad.
+             Log.d(TAG, "Ad clicked");
+        }
+
+        @Override
+        public void onAdLeave() {
+            // Called when a user has left the app.
+             Log.d(TAG, "Ad Leave");
+        }
+
+        @Override
+        public void onAdClosed() {
+            // Called when an ad is closed.
+             Log.d(TAG, "Ad closed");
+        }
+    };
+
+    public static void tryLoadAds(AppCompatActivity activity, String tag) {
+        // TODO make it generic fragment loader
+        // Todo: Huawei load as a fragment
+        // huaweiAdView.addView(bannerView);
+
+        try {
+            AdHelper.loadGoogleAdmodToView(activity, R.id.googleAdView);
+        } catch (Exception ex) {
+            Log.e(tag, ex.getMessage());
+        }
+        try {
+            AdHelper.loadHuaweiAdkitToView(activity, R.id.huaweiAdView);
+        } catch (Exception ex) {
+            Log.e(tag, ex.getMessage());
+        }
+    }
+
+    //TODO: pass bannerview
     public static void loadHuaweiAdkitToView(AppCompatActivity activity, int resourceId) {
-        // Ref: https://forums.developer.huawei.com/forumPortal/en/topicview?tid=0201308778868370129&fid=0101188387844930001
-
         BannerView huaweiAdView = activity.findViewById(resourceId);
-        huaweiAdView.setVisibility(View.VISIBLE);
 
-        // Create an ad request to load an ad.
+        // ADKit: https://forums.developer.huawei.com/forumPortal/en/topicview?tid=0201308778868370129&fid=0101188387844930001
+        // if (BuildConfig.DEBUG) // TEST banner
+        //    huaweiAdView.setAdId("testw6vs28auh3");
+        // else
+            huaweiAdView.setAdId(BuildConfig.HUAWEI_BANNER_ID);
+
+        huaweiAdView.setAdListener(adListener);
+        huaweiAdView.setBannerRefresh(30);
         AdParam adParam = new AdParam.Builder().build();
         huaweiAdView.loadAd(adParam);
-        huaweiAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Called when an ad is loaded successfully.
-                Log.d(TAG, "onAdLoaded");
-            }
-
-            @Override
-            public void onAdFailed(int errorCode) {
-                // Called when an ad fails to be loaded.
-                Log.d(TAG, "onAdFailed");
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Called when an ad is opened.
-                Log.d(TAG, "onAdOpened");
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Called when a user taps an ad.
-                Log.d(TAG, "onAdClicked");
-            }
-
-            @Override
-            public void onAdLeave() {
-                // Called when a user has left the app.
-                Log.d(TAG, "onAdLeave");
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Called when an ad is closed.
-                Log.d(TAG, "onAdClosed");
-            }
-        });
+        huaweiAdView.setVisibility(View.VISIBLE);
     }
     public static void loadGoogleAdmodToView(AppCompatActivity activity, int resourceId) {
-        // Ad testing: https://developers.google.com/admob/android/test-ads
-        // TEST banner: ca-app-pub-3940256099942544/6300978111
-        AdView adView = activity.findViewById(resourceId);
-        //adView.setVisibility(View.GONE);
         MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
+        AdView adView = activity.findViewById(resourceId);
+
+        // Admob testing: https://developers.google.com/admob/android/test-ads
+        // if (BuildConfig.DEBUG) // TEST banner
+        //     adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        // else
+        //     adView.setAdUnitId(BuildConfig.ADMOB_UNIT_ID_1);
+
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setVisibility(View.VISIBLE);

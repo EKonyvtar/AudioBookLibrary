@@ -18,7 +18,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
 
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -77,13 +76,22 @@
                     android:layout_alignParentBottom="true"
                     tools:layout="@layout/fragment_playback_controls" />
 
+                <!-- ADVIEWS -->
                 <com.google.android.gms.ads.AdView
-                    android:id="@+id/adView"
+                    android:id="@+id/googleAdView"
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
+                    app:adSize="BANNER"
+                    app:adUnitId="@string/ADMOB_UNIT_ID_1" />
+
+                <com.huawei.hms.ads.banner.BannerView
+                    android:id="@+id/huaweiAdView"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bannerSize="BANNER_SIZE_360_57"
+                    app:adId="@string/HUAWEI_BANNER_ID" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
