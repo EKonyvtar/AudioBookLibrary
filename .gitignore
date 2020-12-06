@@ -9,8 +9,9 @@
 **/output.json
 **/*.aab
 **.hprof
+**/output-metadata.json 
 
 
-# Exclude store and framework build configs
+# Exclude store and framework configs
 **/google-services.json
 **/agconnect-services.json
