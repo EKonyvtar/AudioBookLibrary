@@ -43,10 +43,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.target.Target;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
@@ -77,8 +73,6 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private static final long PLAY_SHIFT = 30000;
 
     private static final long PROGRESS_UPDATE_INITIAL_INTERVAL = 100;
-
-    private AdView mAdView;
 
     private ImageView mSkipPrev;
     private ImageView mPlayBackward;
