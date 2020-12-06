@@ -1,7 +1,5 @@
 package com.murati.audiobook.utils;
 
-import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
@@ -77,7 +75,7 @@ public class AdHelper {
         }
     }
 
-    public static void loadHuaweiAdkitToView(AppCompatActivity activity, int resourceId) {
+    private static void loadHuaweiAdkitToView(AppCompatActivity activity, int resourceId) {
         BannerView huaweiAdView = activity.findViewById(resourceId);
 
         // ADKit: https://forums.developer.huawei.com/forumPortal/en/topicview?tid=0201308778868370129&fid=0101188387844930001
@@ -92,7 +90,7 @@ public class AdHelper {
         huaweiAdView.loadAd(adParam);
         huaweiAdView.setVisibility(View.VISIBLE);
     }
-    public static void loadGoogleAdmodToView(AppCompatActivity activity, int resourceId) {
+    private static void loadGoogleAdmodToView(AppCompatActivity activity, int resourceId) {
         MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
         AdView adView = activity.findViewById(resourceId);
 
