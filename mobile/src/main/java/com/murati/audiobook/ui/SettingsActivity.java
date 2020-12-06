@@ -16,13 +16,6 @@
 package com.murati.audiobook.ui;
 
 import android.os.Bundle;
-import android.util.Log;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.LogHelper;
@@ -34,7 +27,6 @@ import com.murati.audiobook.utils.LogHelper;
 public class SettingsActivity extends BaseActivity {
 
     private static final String TAG = LogHelper.makeLogTag(SettingsActivity.class);
-    private AdView mAdView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +37,6 @@ public class SettingsActivity extends BaseActivity {
         initializeToolbar();
 
         AdHelper.tryLoadAds(this, TAG);
-
 
         /*
         Button crashButton = new Button(this);

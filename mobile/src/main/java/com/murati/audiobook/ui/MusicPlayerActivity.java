@@ -32,9 +32,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -67,7 +64,6 @@ public class MusicPlayerActivity extends BaseActivity
     private static final long SPLASHTIME = 200;
 
     private ImageView splash;
-    private AdView mAdView;
 
 
     public static final String EXTRA_START_FULLSCREEN =
