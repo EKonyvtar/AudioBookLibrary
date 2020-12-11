@@ -34,7 +34,9 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
-        versionCode 85
+
+        //TODO: Autoincrement props: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
+        versionCode 86
         versionName "0.29.${versionCode}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -100,9 +102,6 @@ android {
             addConstantTo(owner, "APP_NAME", "Hangoskönyvtár")
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~7544903903")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
-
-            //TODO: Replace test AD ID
-            addConstantTo(owner, "HUAWEI_BANNER_ID","testw6vs28auh3")
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
@@ -178,20 +177,22 @@ android {
 
         // Store definitions
         GooglePlay {
-            versionNameSuffix = '-google'
             dimension = 'store'
+            versionNameSuffix = '-google'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
         }
 
         HuaweiAppGallery {
-            versionNameSuffix = '-huawei'
             dimension = 'store'
+            versionNameSuffix = '-huawei'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+
+            //TODO: Replace Huawei Test Banner ID, once merch services are approved
+            addConstantTo(owner, "HUAWEI_BANNER_ID","testw6vs28auh3")
 
             dependencies {
                 implementation 'com.huawei.hms:ads-lite:13.4.30.307'
                 implementation 'com.huawei.hms:base:4.0.2.300'
-                //implementation 'com.huawei.agconnect:agconnect-core:1.0.0.300'
             }
         }
 

@@ -9,7 +9,6 @@ import com.huawei.hms.api.HuaweiApiAvailability;
 public class MobileServicesHelper {
     private static final String TAG = LogHelper.makeLogTag(MobileServicesHelper.class);
 
-    //TODO
     public static boolean isHmsAvailable(Context context) {
         boolean isAvailable = false;
         if (null != context) {
