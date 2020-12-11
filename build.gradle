@@ -18,17 +18,10 @@
 // all sub-projects/modules.
 
 buildscript {
-    // def task = gradle.startParameter.taskNames[0] ?: "" // Get "assembleNoDyntraceDebug"
-    // https://stackoverflow.com/questions/59974428/have-both-gms-and-hms-in-the-project
     repositories {
         google()
         jcenter()
         maven { url 'http://developer.huawei.com/repo/' }
-
-        //TODO: repo condition
-        //if (!task.toLowerCase().contains("huawei")) {
-
-        //}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
