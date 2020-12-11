@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     >
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/googleAdView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
-
     <com.huawei.hms.ads.banner.BannerView
         android:id="@+id/huaweiAdView"
         android:visibility="gone"
