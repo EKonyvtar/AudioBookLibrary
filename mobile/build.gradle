@@ -30,15 +30,16 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        //TODO: Autoincrement: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
-        versionCode 86
+        versionCode 87
         versionName "0.29.${versionCode}"
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
         buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
         buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         buildConfigField 'String', 'APPSTORE_PRIVACY_URL', '"https://ekonyvtar.github.io/audiobook-privacy_policy.html"'
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     // TODO: Auto signing:
@@ -175,6 +176,10 @@ android {
             dimension = 'store'
             versionNameSuffix = '-google'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+
+            dependencies {
+                implementation 'com.google.android.gms:play-services-ads:19.6.0'
+            }
         }
 
         HuaweiAppGallery {
@@ -235,9 +240,6 @@ dependencies {
 
     //Performance
     implementation 'com.google.firebase:firebase-perf:19.0.9'
-
-    //Admob
-    implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
     //Remote Config
     implementation 'com.google.firebase:firebase-config:19.2.0'
