@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-//def task = project.outgoingVariants
-//def isHuaweiTask = getGradle().getStartParameter().getTaskRequests().toString().contains("huawei")
-
-//project.logger.lifecycle("TASK: ${task} isHuawei = ${isHuaweiTask}")
-
 apply plugin: 'com.android.application'
 
 // Add Crashlytics and performance reporting
@@ -35,7 +30,7 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        //TODO: Autoincrement props: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
+        //TODO: Autoincrement: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
         versionCode 86
         versionName "0.29.${versionCode}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -206,9 +201,7 @@ repositories {
     }
     google()
     jcenter()
-    //if (isHuaweiTask) {
-        maven { url 'http://developer.huawei.com/repo/' }
-    //}
+    maven { url 'http://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -265,12 +258,6 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
-// TODO: evaluate HuaweiTask
-// if (isHuawei) {
-//    apply plugin: 'com.huawei.agconnect'
-// } else {
-//    apply plugin: 'com.google.gms.google-services'
-// }
 
 allprojects {
     gradle.projectsEvaluated {
