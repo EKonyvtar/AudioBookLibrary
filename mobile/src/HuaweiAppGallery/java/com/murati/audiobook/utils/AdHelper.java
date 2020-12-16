@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.huawei.hms.ads.AdListener;
 import com.huawei.hms.ads.AdParam;
+import com.huawei.hms.ads.HwAds;
 import com.huawei.hms.ads.banner.BannerView;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
@@ -63,6 +64,7 @@ public class AdHelper {
 
     public static void tryLoadAds(AppCompatActivity activity, String tag) {
         try {
+            HwAds.init(activity);
             AdHelper.loadHuaweiAdkitToView(activity, R.id.huaweiAdView);
         } catch (Exception ex) {
             Log.e(tag, ex.getMessage());
