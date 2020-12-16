@@ -30,7 +30,7 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 87
+        versionCode 88
         versionName "0.29.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
@@ -101,6 +101,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","x5jdt6zn9c")
         }
 
         bible_hu {
@@ -115,6 +116,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101857927")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","d1oieu7987")
         }
 
         french {
@@ -129,6 +131,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","")
         }
 
         spanish {
@@ -143,6 +146,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","")
         }
 
         german {
@@ -157,6 +161,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
         }
 
         // Language Packs
@@ -178,7 +183,7 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
-                implementation 'com.google.android.gms:play-services-ads:19.6.0'
+                implementation 'com.google.android.gms:play-services-ads:19.5.0'
             }
         }
 
@@ -186,9 +191,6 @@ android {
             dimension = 'store'
             versionNameSuffix = '-huawei'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
-
-            //TODO: Replace Huawei Test Banner ID, once merch services are approved
-            addConstantTo(owner, "HUAWEI_BANNER_ID","testw6vs28auh3")
 
             dependencies {
                 implementation 'com.huawei.hms:ads-lite:13.4.30.307'
