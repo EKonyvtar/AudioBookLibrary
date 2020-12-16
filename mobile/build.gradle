@@ -131,7 +131,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
-            addConstantTo(owner, "HUAWEI_BANNER_ID","")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","j8ku8drrjy")
         }
 
         spanish {
@@ -146,7 +146,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
-            addConstantTo(owner, "HUAWEI_BANNER_ID","")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","g9vvf24tyb")
         }
 
         german {
