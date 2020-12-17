@@ -20,30 +20,21 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
-import com.murati.audiobook.utils.DisplayHelper;
+
+import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 
-/**
- * Placeholder activity for features that are not implemented in this sample, but
- * are in the navigation drawer.
- */
+
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
-    private AdView mAdView;
-
 
     private void openBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -73,22 +64,14 @@ public class AboutActivity extends BaseActivity {
         privacy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser(BuildConfig.APPSTORE_PRIVACY_URL); }
         });
-        
+
         // Button
         final Button patreon = findViewById(R.id.patreon);
         patreon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
-        try {
-            MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
-
+        AdHelper.tryLoadAds(this, TAG);
     }
 
     @Override

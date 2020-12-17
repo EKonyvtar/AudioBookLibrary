@@ -1,7 +1,9 @@
 package com.murati.audiobook.utils;
 
-import android.content.Context;
 import android.util.Log;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -14,18 +16,32 @@ public class AdHelper {
 
     private static final String TAG = LogHelper.makeLogTag(AdHelper.class);
 
-    public final static int AD_DEFAULT = 0;
     public final static int AD_EVERYWHERE = 1;
     public final static int AD_LIST = 2;
 
-    public static void LoadAdvertisement(AdView adView, Context context, String ad_app_id) {
-        MobileAds.initialize(context, BuildConfig.ADMOB_APP_ID);
 
-        //if (!BuildConfig.DEBUG) {
-        //mAdView.setAdSize(AdSize.BANNER);
-        //mAdView.setAdUnitId(getString(R.string.admob_unit_id_1));
+
+    public static void tryLoadAds(AppCompatActivity activity, String tag) {
+        try {
+            AdHelper.loadGoogleAdmodToView(activity, R.id.googleAdView);
+        } catch (Exception ex) {
+            Log.e(tag, ex.getMessage());
+        }
+    }
+
+    private static void loadGoogleAdmodToView(AppCompatActivity activity, int resourceId) {
+        MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
+        AdView adView = activity.findViewById(resourceId);
+
+        // Admob testing: https://developers.google.com/admob/android/test-ads
+        // if (BuildConfig.DEBUG) // TEST banner
+        //     adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        // else
+        //     adView.setAdUnitId(BuildConfig.ADMOB_UNIT_ID_1);
+
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+        adView.setVisibility(View.VISIBLE);
     }
 
     public static int getAdPosition(FirebaseRemoteConfig mFirebaseRemoteConfig) {
@@ -35,7 +51,7 @@ public class AdHelper {
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-        return AD_DEFAULT;
+        return AD_EVERYWHERE;
     }
 
 }
