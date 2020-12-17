@@ -18,7 +18,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
 
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -74,16 +73,15 @@
                     android:id="@+id/fragment_playback_controls"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     tools:layout="@layout/fragment_playback_controls" />
 
-                <com.google.android.gms.ads.AdView
-                    android:id="@+id/control_ad"
-                    android:visibility="gone"
+                <!-- ADVIEWS -->
+                <fragment android:name="com.murati.audiobook.ui.AdFragment"
+                    android:id="@+id/fragment_ad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
+                    tools:layout="@layout/fragment_playback_controls" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

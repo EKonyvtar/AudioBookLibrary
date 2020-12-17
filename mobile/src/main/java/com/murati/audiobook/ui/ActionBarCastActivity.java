@@ -37,7 +37,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;

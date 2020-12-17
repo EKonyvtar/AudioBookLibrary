@@ -29,14 +29,17 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
-        versionCode 82
+
+        versionCode 88
         versionName "0.29.${versionCode}"
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
         buildConfigField 'String', 'CAST_APP_ID', '"CC1AD845"'
         buildConfigField 'String', 'APPSTORE_EMAIL', '"dev@murati.hu"'
         buildConfigField 'String', 'APPSTORE_PRIVACY_URL', '"https://ekonyvtar.github.io/audiobook-privacy_policy.html"'
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     // TODO: Auto signing:
@@ -98,6 +101,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","x5jdt6zn9c")
         }
 
         bible_hu {
@@ -112,6 +116,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101857927")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","d1oieu7987")
         }
 
         french {
@@ -126,6 +131,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","j8ku8drrjy")
         }
 
         spanish {
@@ -140,6 +146,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","g9vvf24tyb")
         }
 
         german {
@@ -154,6 +161,7 @@ android {
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
         }
 
         // Language Packs
@@ -171,12 +179,23 @@ android {
         // Store definitions
         GooglePlay {
             dimension = 'store'
+            versionNameSuffix = '-google'
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
+
+            dependencies {
+                implementation 'com.google.android.gms:play-services-ads:19.5.0'
+            }
         }
 
         HuaweiAppGallery {
             dimension = 'store'
+            versionNameSuffix = '-huawei'
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+
+            dependencies {
+                implementation 'com.huawei.hms:ads-lite:13.4.30.307'
+                implementation 'com.huawei.hms:base:4.0.2.300'
+            }
         }
 
         //TODO: define paid and free dimensions
@@ -189,6 +208,7 @@ repositories {
     }
     google()
     jcenter()
+    maven { url 'http://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -222,9 +242,6 @@ dependencies {
 
     //Performance
     implementation 'com.google.firebase:firebase-perf:19.0.9'
-
-    //Admob
-    implementation 'com.google.android.gms:play-services-ads:19.5.0'
 
     //Remote Config
     implementation 'com.google.firebase:firebase-config:19.2.0'

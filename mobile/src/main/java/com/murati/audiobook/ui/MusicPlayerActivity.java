@@ -32,9 +32,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -67,7 +64,6 @@ public class MusicPlayerActivity extends BaseActivity
     private static final long SPLASHTIME = 200;
 
     private ImageView splash;
-    private AdView mAdView;
 
 
     public static final String EXTRA_START_FULLSCREEN =
@@ -131,19 +127,7 @@ public class MusicPlayerActivity extends BaseActivity
         msg.what = STOPSPLASH;
         splashHandler.sendMessageDelayed(msg, SPLASHTIME);
         */
-
-        try {
-            mAdView = findViewById(R.id.control_ad);
-            mAdView.setVisibility(View.GONE);
-            if (AdHelper.getAdPosition(mFirebaseRemoteConfig) == AdHelper.AD_EVERYWHERE) {
-                MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-                mAdView.setVisibility(View.VISIBLE);
-            }
-        } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
-        }
+        AdHelper.tryLoadAds(this, TAG);
     }
 
     //TODO: move to base
@@ -266,6 +250,7 @@ public class MusicPlayerActivity extends BaseActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         LogHelper.d(TAG, "onNewIntent, intent=" + intent);
         initializeFromParams(null, intent);
         startFullScreenActivityIfNeeded(intent);
