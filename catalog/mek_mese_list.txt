@@ -82,61 +82,28 @@ https://mek.oszk.hu/02900/02971
 
 
 
-[20041] Engler József: Nagymama lekvárja 1-4. [Hangoskönyv] 
-Harry Potter fanfiction
-https://mek.oszk.hu/20000/20041
-
-Árvay Mária: Dorka-történetek [Hangoskönyv] 
-https://mek.oszk.hu/18100/18152
-
-Rejtő Jenő: A boszorkánymester [Hangoskönyv] 
-https://mek.oszk.hu/16000/16012
 
 Pásztor Árpád: A Muzi [Hangoskönyv] 
 A múzeumkerti fiúk
-https://mek.oszk.hu/15300/15349
+## https://mek.oszk.hu/15300/15349
 
 Kéri Katalin: Decemberi csillagok [Hangoskönyv] 
 https://mek.oszk.hu/14700/14727
 
-Rejtő Jenő: Tigrisvér [Hangoskönyv] 
-https://mek.oszk.hu/12700/12723
 
-Rejtő Jenő: A Nevada szelleme [Hangoskönyv] 
-https://mek.oszk.hu/12700/12722
-Rejtő Jenő: Ezen egy éjszaka [Hangoskönyv] 
-https://mek.oszk.hu/12400/12471
+[20041] Engler József: Nagymama lekvárja 1-4. [Hangoskönyv] 
+Harry Potter fanfiction
+## https://mek.oszk.hu/20000/20041
 
-Rejtő Jenő: Az ellopott század [Hangoskönyv] 
-https://mek.oszk.hu/12400/12464
-
-Rejtő Jenő: Vér és mahagóni [Hangoskönyv] 
-https://mek.oszk.hu/12400/12463
-
-Rejtő Jenő: Pokol a hegyek között [Hangoskönyv] 
-https://mek.oszk.hu/12400/12462
-
-Rejtő Jenő: Nincs kegyelem [Hangoskönyv] 
-https://mek.oszk.hu/12400/12454
-
-Rejtő Jenő: Gyilkos?! [Hangoskönyv] 
-https://mek.oszk.hu/12400/12453
-
-Rejtő Jenő: Vissza a pokolba [Hangoskönyv] 
-https://mek.oszk.hu/12400/12447
-
-Rejtő Jenő: Jó üzlet a halál [Hangoskönyv] 
-https://mek.oszk.hu/12400/12446
-
-Rejtő Jenő: El a pokolból [Hangoskönyv] 
-https://mek.oszk.hu/12400/12445
+Árvay Mária: Dorka-történetek [Hangoskönyv] 
+https://mek.oszk.hu/18100/18152
 
 Swift, Jonathan: Gulliver utazásai [Hangoskönyv] 
 https://mek.oszk.hu/12100/12199
 
 Austen, Jane: Büszkeség és balítélet 
 MVGYOSZ hangoskönyvek
-https://mek.oszk.hu/06000/06058
+## https://mek.oszk.hu/06000/06058
 
 Saint-Exupéry, Antoine de: A kis herceg 
 MVGYOSZ hangoskönyvek
@@ -191,11 +158,11 @@ https://mek.oszk.hu/02300/02389
 
 Passuth László: A harmadik udvarmester 
 MVGYOSZ hangoskönyvek
-https://mek.oszk.hu/02400/02423
+## https://mek.oszk.hu/02400/02423
 
 Passuth László: Esőisten siratja Mexikót 
 MVGYOSZ hangoskönyvek
-https://mek.oszk.hu/02400/02417
+## https://mek.oszk.hu/02400/02417
 
 Dumas, Alexandre: Korzikai testvérek 
 MVGYOSZ hangoskönyvek
@@ -203,4 +170,10 @@ https://mek.oszk.hu/02400/02402
 
 Passuth László: A bíborbanszületett 
 MVGYOSZ hangoskönyvek
-https://mek.oszk.hu/02300/02368
+## https://mek.oszk.hu/02300/02368
+
+
+
+
+### KISERLETEK
+https://lll.ijjiii.is/8f6289a5e4051a0a0568e44ccde2ae8b/-q2FMib1Dk0/cuuvemuveiavcmr
