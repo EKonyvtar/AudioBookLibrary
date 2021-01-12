@@ -17,29 +17,14 @@
         <key>book_recommendation</key>
         <value>[
             {
-            "album": "Le Comte de Monte-Cristo",
-            "artist": "Alexandre Dumas",
-            "image": "http://www.archive.org/download/comte_monte_cristo_jg_librivox/__ia_thumb.jpg"
+            "album": "Válogatott mesék",
+            "artist": "Benedek Elek",
+            "image": "https://mek.oszk.hu/15200/15200/borito.jpg",
             },
             {
-            "album": "Le Tour du monde en quatre-vingts jours",
-            "artist": "Jules Verne",
-            "image": "http://www.archive.org/download/tour_du_monde_en_80_jours_librivox/le_tour_du_monde_en_quatre-vingts_jours.jpg"
-            },
-            {
-            "album": "Les Contes de la bécasse",
-            "artist": "Guy de Maupassant",
-            "image": "http://www.archive.org/download/les_contes_de_la_becasse_0809_librivox/contesdelabecasse_1011_thumb.jpg"
-            },
-            {
-            "album": "Les Trois Mousquetaires",
-            "artist": "Alexandre Dumas",
-            "image": "http://www.archive.org/download/trois_mousquetaires_0810_librivox/troismousquetaires_dumas_1008_thumb.jpg"
-            },
-            {
-            "album": "Fables de La Fontaine livre 01",
-            "artist": "La Fontaine",
-            "image": "http://www.archive.org/download/fables_lafontaine_01_librivox/fables01_1007.jpg"
+            "album": "Tücsök, Zöld Manó és a többiek",
+            "artist": "Szente B. Levente",
+            "image": "https://mek.oszk.hu/19300/19341/borito.jpg",
             }
             ]</value>
     </entry>
