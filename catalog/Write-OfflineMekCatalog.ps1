@@ -4,17 +4,17 @@ param (
 	[string]$CatalogFile = './mek_ebook_list.txt',
 	[string]$File = './release/offline_catalog-Hungarian.json',
 	[string]$Separator = ',',
-	$fixes=@{
-		"0900af032"="0900af022"
+	$fixes = @{
+		"0900af032" = "0900af022"
 	}
 )
 
 
 function Get-RemoteFile($remotefile) {
 	$cacheFile = $remotefile
-	$cacheFile = $cacheFile -ireplace "http://",""
-	$cacheFile = $cacheFile -ireplace "/","|"
-	$cacheFile = $cacheFile -ireplace "\?","#"
+	$cacheFile = $cacheFile -ireplace "http://", ""
+	$cacheFile = $cacheFile -ireplace "/", "|"
+	$cacheFile = $cacheFile -ireplace "\?", "#"
 	$missingFile = "./cache/missing/$cacheFile"
 	$cacheFile = "./cache/$cacheFile"
 
@@ -25,7 +25,8 @@ function Get-RemoteFile($remotefile) {
 		$content = Get-Content $cacheFile -Raw
 		Remove-item -Path $missingFile -EA 0 -Force
 		return $content
-	} catch {
+	}
+ catch {
 		Set-Content -Path $missingFile -Value $remotefile -Force -EA 0
 	}
 
@@ -49,7 +50,7 @@ $skipList = ""
 
 foreach ($book in $audioBooks) {
 	$count++
-	if ($book -match "^#") {
+	if ($book -notmatch "^http") {
 		$msg = "$count - Skipping $($book)."
 		Write-Host $msg -ForegroundColor Yellow
 		$skipList += "$msg `n`n"
@@ -60,27 +61,28 @@ foreach ($book in $audioBooks) {
 	Write-Host "$count - Processing $($id).." -ForegroundColor Magenta
 
 	$ebookObject = New-Object psobject -Property @{
-		title=''
-		image="$book/borito.jpg"
-		album=''
-		artist=''
-		genre='Novella'
-		source=''
-		trackNumber=0
-		totalTrackCount=0
-		duration=0
-		site=''
+		title           = ''
+		image           = "$book/borito.jpg"
+		album           = ''
+		artist          = ''
+		genre           = 'Novella'
+		source          = ''
+		trackNumber     = 0
+		totalTrackCount = 0
+		duration        = 0
+		site            = ''
 	}
 
 	$trackUrl = "$CatalogUrl/$($id)"
 	$ebookObject.site = $trackUrl
-    Write-Host "`t $trackUrl" -ForegroundColor Magenta
+	Write-Host "`t $trackUrl" -ForegroundColor Magenta
 
-    # Get Audiobook details
+	# Get Audiobook details
 	$trackDetails = $null
 	try {
 		$trackDetails = Invoke-CachedRestMethod $trackUrl
-	} catch {
+	}
+ catch {
 		$trackDetails = $null
 	}
 
@@ -97,19 +99,20 @@ foreach ($book in $audioBooks) {
 
 	try {
 		if ($trackDetails.creators[0].isFamilyFirst -eq $false) {
-			$ebookObject.artist = $ebookObject.artist + $Separator + $trackDetails.creators[0].familyName + " " +  $trackDetails.creators[0].givenName
+			$ebookObject.artist = $ebookObject.artist + $Separator + $trackDetails.creators[0].familyName + " " + $trackDetails.creators[0].givenName
 		}
 		Write-Warning "Expanded name to $($ebookObject.artist)"
-	} catch {
+	}
+ catch {
 		$_  | Out-Null
 	}
 
-    # Override Genre
-    if ($trackDetails | Get-Member type) {
-        $ebookObject.genre = [string]::Join($Separator,($trackDetails.type | Where-Object { $_ -notmatch 'hang'}))
-    }
+	# Override Genre
+	if ($trackDetails | Get-Member type) {
+		$ebookObject.genre = [string]::Join($Separator, ($trackDetails.type | Where-Object { $_ -notmatch 'hang' }))
+	}
 
-    # Populate tracks
+	# Populate tracks
 	$trackNumber = 0
 	foreach ($t in $trackDetails.tracks) {
 		$trackNumber++
@@ -119,13 +122,13 @@ foreach ($book in $audioBooks) {
 		$trackObject.trackNumber = $trackNumber
 		$trackObject.totalTrackCount = $trackDetails.tracks | Measure-Object | Select-Object -Expand Count
 
-        if ($t | Get-Member lengthTotalSeconds) {
-            $trackObject.duration = $t.lengthTotalSeconds
-        }
+		if ($t | Get-Member lengthTotalSeconds) {
+			$trackObject.duration = $t.lengthTotalSeconds
+		}
 
 		# Fix individual issues
 		foreach ($k in $fixes.Keys) {
-			$trackObject.source = $trackObject.source -replace $k,$fixes.$k
+			$trackObject.source = $trackObject.source -replace $k, $fixes.$k
 		}
 
 		$catalog += $trackObject
@@ -144,8 +147,8 @@ Write-Host "----- Items skipped ------"
 $skipList
 
 Write-Host "----- Writing catalogue ----- "
-$sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name) | Where-object {$_ -notmatch "site|total"}
+$sortedProperty = ($catalog[0] | Get-Member -Type NoteProperty | Select-Object -Expand Name) | Where-object { $_ -notmatch "site|total" }
 
-$sorted = New-object psobject -Property @{music=$catalog}
-$sorted.music = $sorted.music | Sort-Object image,trackNumber,source | Select-Object -Property $sortedProperty 
+$sorted = New-object psobject -Property @{music = $catalog }
+$sorted.music = $sorted.music | Sort-Object image, trackNumber, source | Select-Object -Property $sortedProperty 
 Set-Content -Path $File -Value ($sorted | ConvertTo-Json) -Force -Encoding UTF8
