@@ -30,7 +30,7 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 89
+        versionCode 90
         versionName "0.30.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
@@ -100,7 +100,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101706787")
             addConstantTo(owner, "HUAWEI_BANNER_ID","x5jdt6zn9c")
         }
 
@@ -115,7 +115,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7627909437")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101857927")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101857927")
             addConstantTo(owner, "HUAWEI_BANNER_ID","d1oieu7987")
         }
 
@@ -131,8 +131,8 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
-            addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "103673505")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","q84sxmouil")
         }
 
         french {
@@ -146,7 +146,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101723805")
             addConstantTo(owner, "HUAWEI_BANNER_ID","j8ku8drrjy")
         }
 
@@ -161,7 +161,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101720491")
             addConstantTo(owner, "HUAWEI_BANNER_ID","g9vvf24tyb")
         }
 
@@ -176,7 +176,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101777037")
             addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
         }
 
@@ -207,7 +207,7 @@ android {
         HuaweiAppGallery {
             dimension = 'store'
             versionNameSuffix = '-huawei'
-            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/C%s"'
 
             dependencies {
                 implementation 'com.huawei.hms:ads-lite:13.4.30.307'
