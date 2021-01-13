@@ -6429,6 +6429,16 @@
       "source": "https://mek.oszk.hu/20800/20809/mp3/07-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
       "title": "Hófüllencs Galádor",
       "trackNumber": 7
+    },
+    {
+      "album": "Öreg néne őzikéje",
+      "artist": "Fazekas Anna",
+      "duration": 356,
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/oreg_nene_ozikeje/10121342.jpg",
+      "source": "https://archive.org/download/oreg_nene_ozikeje/background_mek_ozszgy.mp3",
+      "title": "Öreg néne őzikéje",
+      "trackNumber": 1
     }
   ]
 }
