@@ -6,6 +6,10 @@
         <value>1</value>
     </entry>
     <entry>
+        <key>donation</key>
+        <value>0</value>
+    </entry>
+    <entry>
         <key>settings_menu</key>
         <value>0</value>
     </entry>

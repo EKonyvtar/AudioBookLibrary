@@ -25,16 +25,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
 import com.murati.audiobook.utils.AdHelper;
+import com.murati.audiobook.utils.FeatureHelper;
 import com.murati.audiobook.utils.FeedbackHelper;
 import com.murati.audiobook.utils.LogHelper;
 
 
 public class AboutActivity extends BaseActivity {
     private static final String TAG = LogHelper.makeLogTag(AboutActivity.class);
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
 
     private void openBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -65,11 +69,17 @@ public class AboutActivity extends BaseActivity {
             public void onClick(View v) { openBrowser(BuildConfig.APPSTORE_PRIVACY_URL); }
         });
 
-        // Button
+        // Donation
         final Button patreon = findViewById(R.id.patreon);
-        patreon.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
-        });
+        if (FeatureHelper.canShowDonation(mFirebaseRemoteConfig)) {
+            patreon.setVisibility(View.VISIBLE);
+            patreon.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
+            });
+        } else {
+            patreon.setVisibility(View.GONE);
+        }
+
 
         AdHelper.tryLoadAds(this, TAG);
     }
