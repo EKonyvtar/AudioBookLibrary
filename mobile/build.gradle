@@ -30,8 +30,8 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 90
-        versionName "0.30.${versionCode}"
+        versionCode 91
+        versionName "0.31.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -127,8 +127,8 @@ android {
             // Flavor specific constants
             addConstantTo(owner, "APP_NAME", "Mesekönyvtár")
             //TODO: add
-            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
-            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3156427012")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7661173454")
 
             //Multidimension constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "103673505")
