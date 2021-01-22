@@ -21,6 +21,16 @@
         <key>book_recommendation</key>
         <value>[
             {
+            "album": "Öreg néne őzikéje",
+            "artist": "Fazekas Anna",
+            "image": "https://archive.org/download/oreg_nene_ozikeje/10121342.jpg"
+            },
+            {
+            "album": "Kisgyermekek nagy mesekönyve",
+            "artist": "Zelk Zoltán",
+            "image": "https://ia802506.us.archive.org/14/items/05KisgyermekekNagyMesekonyveValogatas2014/00-Kisgyermekek_nagy_mesekonyve-Valogatas-2014.jpg"
+            },
+            {
             "album": "Alice Csodaországban",
             "artist": "Lewis Carroll",
             "image": "https://mek.oszk.hu/02900/02952/borito.jpg"
@@ -64,11 +74,6 @@
             "album": "Tücsök, Zöld Manó és a többiek",
             "artist": "Szente B. Levente",
             "image": "https://mek.oszk.hu/19300/19341/borito.jpg"
-            },
-            {
-            "album": "A csendkirály",
-            "artist": "Vig Balázs",
-            "image": "https://mek.oszk.hu/16800/16878/borito.jpg"
             }
             ]</value>
     </entry>

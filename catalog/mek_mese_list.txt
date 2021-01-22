@@ -128,11 +128,11 @@ https://mek.oszk.hu/02200/02287
 
 ------------------------
 On Sai: Sose szólj be varázslónak! [Hangoskönyv] 
-https://mek.oszk.hu/12200/12231
+# https://mek.oszk.hu/12200/12231
 
 Manópörkölt hokedlival
 Magyar humor a sci-fi és fantasy világában
-https://mek.oszk.hu/12000/12080
+# https://mek.oszk.hu/12000/12080
 
 Gárdonyi Géza: Vakarts [Hangoskönyv] 
 Vagyis a zutosó könyvem
