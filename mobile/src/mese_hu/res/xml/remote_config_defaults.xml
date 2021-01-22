@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>ad_position</key>
+        <value>1</value>
+    </entry>
+    <entry>
+        <key>donation</key>
+        <value>0</value>
+    </entry>
+    <entry>
+        <key>settings_menu</key>
+        <value>0</value>
+    </entry>
+    <entry>
+        <key>audiobook_server_url</key>
+        <value>http://www.archive.org/</value>
+    </entry>
+    <entry>
+        <key>book_recommendation</key>
+        <value>[
+            {
+            "album": "Öreg néne őzikéje",
+            "artist": "Fazekas Anna",
+            "image": "https://archive.org/download/oreg_nene_ozikeje/10121342.jpg"
+            },
+            {
+            "album": "Kisgyermekek nagy mesekönyve",
+            "artist": "Zelk Zoltán",
+            "image": "https://ia802506.us.archive.org/14/items/05KisgyermekekNagyMesekonyveValogatas2014/00-Kisgyermekek_nagy_mesekonyve-Valogatas-2014.jpg"
+            },
+            {
+            "album": "Alice Csodaországban",
+            "artist": "Lewis Carroll",
+            "image": "https://mek.oszk.hu/02900/02952/borito.jpg"
+            },
+            {
+            "album": "A kis herceg",
+            "artist": "Antoine de Saint-Exupéry",
+            "image": "https://mek.oszk.hu/03100/03166/borito.jpg"
+            },
+            {
+            "album": "Gulliver utazásai",
+            "artist": "Jonathan Swift",
+            "image": "https://mek.oszk.hu/12100/12199/borito.jpg"
+            },
+            {
+            "album": "Öt magyar népmese hangillusztrációval",
+            "artist": "Népmese",
+            "image": "https://mek.oszk.hu/06400/06439/borito.jpg"
+            },
+            {
+            "album": "Többsincs királyfi és más mesék",
+            "artist": "Benedek Elek",
+            "image": "https://mek.oszk.hu/02900/02972/borito.jpg"
+            },
+            {
+            "album": "Lúdas Matyi",
+            "artist": "Fazekas Mihály",
+            "image": "https://mek.oszk.hu/07100/07120/borito.jpg"
+            },
+            {
+            "album": "János vitéz",
+            "artist": "Petőfi Sándor",
+            "image": "https://mek.oszk.hu/08700/08789/borito.jpg"
+            },
+            {
+            "album": "Válogatott mesék",
+            "artist": "Benedek Elek",
+            "image": "https://mek.oszk.hu/15200/15200/borito.jpg"
+            },
+            {
+            "album": "Tücsök, Zöld Manó és a többiek",
+            "artist": "Szente B. Levente",
+            "image": "https://mek.oszk.hu/19300/19341/borito.jpg"
+            }
+            ]</value>
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->
