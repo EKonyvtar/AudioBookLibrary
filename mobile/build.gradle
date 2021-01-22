@@ -30,8 +30,8 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 88
-        versionName "0.29.${versionCode}"
+        versionCode 91
+        versionName "0.31.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -100,7 +100,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101706787")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101706787")
             addConstantTo(owner, "HUAWEI_BANNER_ID","x5jdt6zn9c")
         }
 
@@ -115,8 +115,24 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7627909437")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101857927")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101857927")
             addConstantTo(owner, "HUAWEI_BANNER_ID","d1oieu7987")
+        }
+
+        mese_hu {
+            dimension "catalogue"
+            applicationIdSuffix ".mese.hu"
+            versionNameSuffix "-mese-hu"
+
+            // Flavor specific constants
+            addConstantTo(owner, "APP_NAME", "Mesekönyvtár")
+            //TODO: add
+            addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3156427012")
+            addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7661173454")
+
+            //Multidimension constants
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "103673505")
+            addConstantTo(owner, "HUAWEI_BANNER_ID","q84sxmouil")
         }
 
         french {
@@ -130,7 +146,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/6124512033")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101723805")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101723805")
             addConstantTo(owner, "HUAWEI_BANNER_ID","j8ku8drrjy")
         }
 
@@ -145,7 +161,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101720491")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101720491")
             addConstantTo(owner, "HUAWEI_BANNER_ID","g9vvf24tyb")
         }
 
@@ -160,7 +176,7 @@ android {
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
 
             //Multidimension constants
-            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "C101777037")
+            addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101777037")
             addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
         }
 
@@ -183,6 +199,7 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
+                //implementation platform('com.google.firebase:firebase-bom:26.2.0')
                 implementation 'com.google.android.gms:play-services-ads:19.5.0'
             }
         }
@@ -190,7 +207,7 @@ android {
         HuaweiAppGallery {
             dimension = 'store'
             versionNameSuffix = '-huawei'
-            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/%s"'
+            buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/C%s"'
 
             dependencies {
                 implementation 'com.huawei.hms:ads-lite:13.4.30.307'
@@ -253,9 +270,9 @@ dependencies {
     //implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.0'
 
     // Test
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:2.15.0'
-    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test:rules:1.3.0'
