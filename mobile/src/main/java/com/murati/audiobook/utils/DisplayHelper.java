@@ -1,6 +1,8 @@
 package com.murati.audiobook.utils;
 
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
+import android.text.format.DateUtils;
 
 public class DisplayHelper {
     public static String visualSeparator = ",";
@@ -16,5 +18,18 @@ public class DisplayHelper {
 
     public static String getFirstVisual(String input) {
         return input.split(visualSeparator)[0];
+    }
+
+    public static String getDuration(MediaDescriptionCompat description) {
+        try {
+            long duration  = description.getExtras().getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+            if (duration > 0) {
+                String durationText = DateUtils.formatElapsedTime(duration);
+                return durationText;
+            }
+        } catch (Exception ex) {
+            //Log duration experiment issues
+        }
+       return "";
     }
 }
