@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.BitmapHelper;
+import com.murati.audiobook.utils.DisplayHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
@@ -64,6 +66,7 @@ public class MediaItemViewHolder {
     private static ColorStateList sColorStateNotPlaying;
 
     private ImageView mImageView;
+    private TextView mDurationView;
     private ImageView mBackgroundImage;
     private TextView mTitleView;
     private TextView mDescriptionView;
@@ -171,6 +174,7 @@ public class MediaItemViewHolder {
         holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
         holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
         holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
+        holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
 
         // Set values
         if (holder.mTitleView != null) {
@@ -179,6 +183,10 @@ public class MediaItemViewHolder {
 
         if (holder.mDescriptionView != null) {
             holder.mDescriptionView.setText(description.getSubtitle());
+        }
+
+        if (holder.mDurationView != null) {
+            holder.mDurationView.setText(DisplayHelper.getDuration(description));
         }
 
 
