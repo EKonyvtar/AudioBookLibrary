@@ -230,6 +230,7 @@ repositories {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
     implementation 'com.google.android.support:wearable:2.8.1'
