@@ -111,7 +111,7 @@ public class RemoteJSONSource extends Activity implements MusicProviderSource {
         // Duration-fallback
         int duration = 0;
         try {
-            duration = json.getInt(JSON_DURATION) * 1000; // ms
+            duration = json.getInt(JSON_DURATION); // seconds an not ms
         } catch (Exception ex) {
             LogHelper.d(TAG, "Unspecified duration.");
         }

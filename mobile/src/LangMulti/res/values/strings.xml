@@ -75,7 +75,7 @@
     <string name="notification_playback_restored">Playback position restored %s %s</string>
     <string name="open_item">Open</string>
     <string name="setting_ad_switch">Enable Advertisements</string>
-    <string name="about_content">The Audio Library application builds on the public database of Librivox, which we would like to thank the operators for.  If you can, please support the project on the following page:</string>
+    <string name="about_content">The Audio Library application provides audiobook recordings that are public domain books, free to download and distribute via LibriVox. Please support the project if you can.</string>
 
     <string name="about_button_support">Visit Patreon page</string>
     <string name="about_footer">Thank you for your kind support!</string>

@@ -19,6 +19,7 @@ package com.murati.audiobook.model;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.media.MediaDescription;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -774,11 +775,36 @@ public class MusicProvider {
         String ebook = metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
         String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
                 metadata.getDescription().getMediaId(), MEDIA_ID_BY_EBOOK, ebook);
-        MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
-                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
-                .build();
-        return new MediaBrowserCompat.MediaItem(copy.getDescription(),
+
+        // Add enriched extras
+        Bundle extra = new Bundle();
+        try {
+            extra.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION));
+        } catch (Exception ex) {
+            //Failed bundling up extra data
+        }
+
+        MediaDescriptionCompat cd = metadata.getDescription();
+        MediaDescriptionCompat desc = new MediaDescriptionCompat.Builder()
+            .setMediaId(hierarchyAwareMediaID)
+            .setTitle(cd.getTitle())
+            .setSubtitle(cd.getSubtitle())
+            .setDescription(cd.getDescription())
+            .setIconBitmap(cd.getIconBitmap())
+            .setIconUri(cd.getIconUri())
+            .setExtras(extra)
+            .setMediaUri(cd.getMediaUri())
+            .build();
+
+
+        // Old copy method
+        //MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
+        //        .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
+        //        .build();
+
+        MediaBrowserCompat.MediaItem m = new MediaBrowserCompat.MediaItem(desc,
                 MediaBrowserCompat.MediaItem.FLAG_PLAYABLE);
+        return m;
 
     }
 
