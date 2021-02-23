@@ -30,8 +30,8 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 91
-        versionName "0.31.${versionCode}"
+        versionCode 93
+        versionName "0.33.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -200,7 +200,7 @@ android {
 
             dependencies {
                 //implementation platform('com.google.firebase:firebase-bom:26.2.0')
-                implementation 'com.google.android.gms:play-services-ads:19.5.0'
+                implementation 'com.google.android.gms:play-services-ads:19.7.0'
             }
         }
 
@@ -240,9 +240,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.mediarouter:mediarouter:1.2.0'
+    implementation 'androidx.mediarouter:mediarouter:1.2.2'
     implementation 'androidx.leanback:leanback:1.0.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
     //Exoplayer
