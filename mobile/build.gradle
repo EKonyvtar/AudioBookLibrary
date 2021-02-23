@@ -262,6 +262,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:19.0.9'
 
     //Remote Config
+    // Upgrade error: FirebaseRemoteConfig.setDefaults
     implementation 'com.google.firebase:firebase-config:19.2.0'
 
     // Recommended: Add the Google Analytics SDK.

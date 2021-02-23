@@ -72,7 +72,7 @@
 
     <string name="search_hint">Suche nach Hörbüchern</string>
     <string name="setting_ad_switch">Anzeigen aktivieren</string>
-    <string name="about_content">Die Anwendung basiert auf der öffentlichen Librivox-Datenbank, für die wir uns bei den Betreibern bedanken. Wenn Sie können, unterstützen Sie das Projekt bitte auf der folgenden Seite:</string>
+    <string name="about_content">Die Audio Library-Anwendung bietet Hörbuchaufnahmen, die gemeinfreie Bücher sind und kostenlos heruntergeladen und über LibriVox verteilt werden können. Bitte unterstützen Sie das Projekt, wenn Sie können.</string>
     <string name="about_button_support">Besuchen Sie die Patreon-Seite</string>
     <string name="about_footer">Vielen Dank für Ihre Unterstützung!</string>
     <string name="about_privacy_label">Datenschutzbestimmungen</string>
