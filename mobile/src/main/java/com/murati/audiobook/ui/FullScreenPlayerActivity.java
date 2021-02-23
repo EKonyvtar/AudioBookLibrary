@@ -247,7 +247,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mStart.setText(DateUtils.formatElapsedTime(progress / 1000));
+                mStart.setText(DateUtils.formatElapsedTime(progress));
             }
 
             @Override
@@ -258,7 +258,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 try {
-                    MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls().seekTo(seekBar.getProgress());
+                    MediaControllerCompat.getMediaController(FullScreenPlayerActivity.this).getTransportControls().seekTo(1000 * seekBar.getProgress());
                     scheduleSeekbarUpdate();
                 } catch (Exception ex) {
                     Log.e(TAG, ex.getMessage());
@@ -436,7 +436,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             return;
         }
         LogHelper.d(TAG, "updateDuration called ");
-        int duration = (int) metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+        long duration = metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
 
         if (duration == 0) {
             try {
@@ -449,13 +449,15 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
                     retriever.setDataSource(mediaUrl);
                 String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
                 duration = Integer.parseInt(time);
+                duration = duration/1000;
                 retriever.release();
             } catch (Exception ex) {
                 Log.e(TAG, "Error retrieving the length of the mediafile: \n" + ex.getMessage());
             }
         }
-        mSeekbar.setMax(duration);
-        mEnd.setText(DateUtils.formatElapsedTime(duration/1000));
+        mSeekbar.setMax((int)duration);
+        //mEnd.setText(DateUtils.formatElapsedTime(duration));
+        mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()));
     }
 
     private void updatePlaybackState(PlaybackStateCompat state) {
@@ -528,15 +530,17 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
                     mLastPlaybackState.getLastPositionUpdateTime();
             currentPosition += (long) timeDelta * mLastPlaybackState.getPlaybackSpeed();
         }
-        mSeekbar.setProgress((int) currentPosition);
+        int secondProgress = (int) currentPosition / 1000;
+        mSeekbar.setProgress(secondProgress);
 
         try {
-            if (mSeekbar.getMax() < currentPosition) {
-                mSeekbar.setMax((int) currentPosition + 30000);
-                mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()/1000));
+            if (mSeekbar.getMax() < secondProgress) {
+                mSeekbar.setMax((int) secondProgress + 30);
             }
+            mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()));
         } catch (Exception ex) {
             //TODO: fix length detection
         }
+
     }
 }
