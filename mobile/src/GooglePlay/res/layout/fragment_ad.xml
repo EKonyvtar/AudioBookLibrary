@@ -12,7 +12,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/ADMOB_UNIT_ID_1" />
 
 </LinearLayout>
