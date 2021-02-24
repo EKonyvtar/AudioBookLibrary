@@ -58,11 +58,13 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false //TODO: change
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile(
+                'proguard-android.txt'),
+                'proguard-rules.pro'
         }
     }
-
 
 
     flavorDimensions 'catalogue', 'language_pack', 'store'
