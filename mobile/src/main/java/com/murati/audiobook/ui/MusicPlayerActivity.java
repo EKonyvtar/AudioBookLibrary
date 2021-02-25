@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
@@ -135,15 +136,18 @@ public class MusicPlayerActivity extends BaseActivity
         //Load remote config defaults
         // https://firebase.google.com/docs/remote-config/android/start/
 
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        mFirebaseRemoteConfig.fetch(600)
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder().build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        //mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetch(3600)
             .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         // After config data is successfully fetched, it must be activated before newly fetched
                         // values are returned.
-                        mFirebaseRemoteConfig.activateFetched();
+                        mFirebaseRemoteConfig.activate();
                         Log.d(TAG, "Remote config fetched successfully.");
                     } else {
                         Log.d(TAG, "There was an issue fetching Remote config.");
