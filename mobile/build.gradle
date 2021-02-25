@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.application'
 
-// Add Crashlytics and performance reporting
+// Google Services plugin
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
@@ -30,8 +31,8 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 94
-        versionName "0.34.${versionCode}"
+        versionCode 95
+        versionName "0.35.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -254,24 +255,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-    //Firebase
-    implementation 'com.google.firebase:firebase-core:17.5.1'
+    // Firebase BoM and its services
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-perf'
 
-    //Crashlytics
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
-
-    //Performance
-    implementation 'com.google.firebase:firebase-perf:19.0.9'
-
-    //Remote Config
-    // Upgrade error: FirebaseRemoteConfig.setDefaults
-    implementation 'com.google.firebase:firebase-config:19.2.0'
-
-    // Recommended: Add the Google Analytics SDK.
-    implementation 'com.google.firebase:firebase-analytics:17.6.0'
-
-    // In-app messaging
-    //implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.0'
 
     // Test
     testImplementation 'junit:junit:4.13.1'
@@ -281,8 +271,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test:rules:1.3.0'
 }
-
-apply plugin: 'com.google.gms.google-services'
 
 allprojects {
     gradle.projectsEvaluated {
