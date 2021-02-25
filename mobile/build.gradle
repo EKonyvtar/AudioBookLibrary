@@ -202,8 +202,8 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
-                //implementation platform('com.google.firebase:firebase-bom:26.2.0')
                 implementation 'com.google.android.gms:play-services-ads:19.7.0'
+
             }
         }
 
