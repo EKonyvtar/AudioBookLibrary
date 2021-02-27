@@ -149,9 +149,13 @@ public class MediaIDHelper {
 
     public static String getCategoryValueFromMediaID(@NonNull String mediaID) {
         String[] hierarchy = getHierarchy(mediaID);
-        if (hierarchy.length == 2) {
-            return hierarchy[1];
-        }
+        if (hierarchy.length == 2) return hierarchy[1];
+        return null;
+    }
+
+    public static String getTrackId(String mediaId) {
+        if (mediaId != null)
+            return mediaId.split("[|]")[1];
         return null;
     }
 

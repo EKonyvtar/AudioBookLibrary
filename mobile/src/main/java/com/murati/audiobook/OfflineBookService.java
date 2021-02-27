@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.provider.MediaStore;
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,7 +37,7 @@ public class OfflineBookService extends IntentService {
 
     private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
 
-    public static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
+    private static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
 
     private static final String OFFLINE_ROOT = "Hangoskonyvek";
 
@@ -184,7 +187,15 @@ public class OfflineBookService extends IntentService {
         return new File(getDownloadDirectory(), book);
     }
 
-    public static boolean isOfflineBookTrackExist(String book, String source) {
+    public static boolean isOfflineTrackExist(String mediaId) {
+        String book = MediaIDHelper.getEBookTitle(mediaId);
+        String trackId = MediaIDHelper.getTrackId(mediaId);
+        MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+        String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+        return isOfflineTrackExist(book, source);
+    }
+
+    private static boolean isOfflineTrackExist(String book, String source) {
 
         Log.d(TAG, "Checking Offline Track " + source);
         File file = getOfflineSource(book, source);
@@ -209,7 +220,7 @@ public class OfflineBookService extends IntentService {
             Log.d(TAG, "Checking all tracks");
             for (MediaMetadataCompat track : tracks) {
                 String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-                if (!isOfflineBookTrackExist(book, source))
+                if (!isOfflineTrackExist(book, source))
                     return false;
             }
         } catch (Exception ex) {
@@ -257,7 +268,7 @@ public class OfflineBookService extends IntentService {
 
 
     //Grabbing fileName from sourceUrl
-    public static String getFileName(String source) {
+    private static String getFileName(String source) {
         String fileName = null;
         if (!TextUtils.isEmpty(source)) {
             String[] strings = source.split("/");
@@ -266,7 +277,7 @@ public class OfflineBookService extends IntentService {
         return fileName;
     }
 
-    public static File getOfflineSource(String book, String source) {
+    private static File getOfflineSource(String book, String source) {
         String fileName = getFileName(source);
         File bookFolder = new File(getDownloadDirectory(), book);
         return new File(bookFolder, fileName);
@@ -291,7 +302,7 @@ public class OfflineBookService extends IntentService {
         return onlineSource;
     }
 
-    public static File getDownloadDirectory() {
+    private static File getDownloadDirectory() {
         return new File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
             OFFLINE_ROOT);
@@ -364,8 +375,7 @@ public class OfflineBookService extends IntentService {
                 }
             }
         } catch (Exception e) {
-            // Restore interrupt status.
-            //TODO: e
+            //TODO: e - Restore interrupt status
         }
     }
 }
