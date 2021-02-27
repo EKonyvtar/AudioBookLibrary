@@ -215,12 +215,12 @@ public class MusicProvider {
     //endregion
 
     /**
-     * Return the MediaMetadataCompat for the given musicID.
+     * Return the MediaMetadataCompat for the given trackID.
      *
-     * @param musicId The unique, non-hierarchical music ID.
+     * @param trackId The unique, non-hierarchical track ID.
      */
-    public static MediaMetadataCompat getTrack(String musicId) {
-        return mTrackListById.containsKey(musicId) ? mTrackListById.get(musicId).metadata : null;
+    public static MediaMetadataCompat getTrack(String trackId) {
+        return mTrackListById.containsKey(trackId) ? mTrackListById.get(trackId).metadata : null;
     }
 
     public synchronized void updateTrackArt(String musicId, Bitmap albumArt, Bitmap icon) {
