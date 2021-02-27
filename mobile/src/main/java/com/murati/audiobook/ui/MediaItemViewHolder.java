@@ -18,6 +18,7 @@ package com.murati.audiobook.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -48,6 +49,7 @@ import com.murati.audiobook.utils.DisplayHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
+import com.murati.audiobook.utils.NetworkHelper;
 import com.murati.audiobook.utils.RecommendationHelper;
 
 import java.util.List;
@@ -74,6 +76,7 @@ public class MediaItemViewHolder {
     private Button mDownloadButton;
     private Button mOpenButton;
     private ImageView mFavoriteButton;
+    private ImageView mItemDownloadView;
 
     private AdView mAdView;
     private static AdRequest adRequest;
@@ -138,7 +141,7 @@ public class MediaItemViewHolder {
             return convertView;
         }
         else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
-            // EBook header
+            // EBook Item header
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_header, parent, false);
@@ -162,35 +165,27 @@ public class MediaItemViewHolder {
                 inflate(R.layout.fragment_ebook_item, parent, false);
         }
         else {
-            // Everything else
+            // List Item - Everything else
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_item, parent, false);
         }
         convertView.setTag(holder);
 
-        //Lookup the standard fields
-        holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
-        holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
-        holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
-        holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
-        holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
 
         // Set values
+        holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
         if (holder.mTitleView != null) {
             holder.mTitleView.setText(description.getTitle());
         }
 
+        holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
         if (holder.mDescriptionView != null) {
             holder.mDescriptionView.setText(description.getSubtitle());
         }
 
-        if (holder.mDurationView != null) {
-            holder.mDurationView.setText(DisplayHelper.getDuration(description));
-        }
-
-
         // Load images
+        holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
         if (holder.mImageView != null) {
             // If the state of convertView is different, we need to adapt it
             int state = getMediaItemState(activity, item);
@@ -217,6 +212,7 @@ public class MediaItemViewHolder {
                         into(holder.mImageView);
 
                     // Load blur background
+                    holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
                     if (holder.mBackgroundImage != null) {
                         GlideApp.
                             with(activity).
@@ -229,7 +225,7 @@ public class MediaItemViewHolder {
                     }
 
 
-                    // In addition to being browsable add quick-controls too
+                    // In addition to being browseable add quick-controls too
                     if (MediaIDHelper.isEBook(description.getMediaId())) {
                         holder.mDownloadButton= (Button) convertView.findViewById(R.id.card_download);
                         if (holder.mDownloadButton !=null) {
@@ -260,21 +256,32 @@ public class MediaItemViewHolder {
                     }
 
                 } else {
+                    // ######### PLAYABLE ITEM #################
+                    holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
+                    if (holder.mDurationView != null) {
+                        holder.mDurationView.setText(DisplayHelper.getDuration(description));
+                    }
+
                     // Playable item represented by its state
                     Drawable drawable = getDrawableByState(activity, state);
                     if (drawable != null)
                         holder.mImageView.setImageDrawable(drawable);
 
-                    //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
+                    // If offline and not available
+                    boolean isOffline = !NetworkHelper.isOnline(parent.getContext());
+                    boolean itemAvailable = OfflineBookService.isOfflineTrackExist(description.getMediaId());
 
-                    //If offline and not available
-                    /*if (!NetworkHelper.isOnline(parent.getContext())) {
-                        String source = OfflineBookService.getTrackSource(
-                            MusicProvider.getTrack(description.getMediaId()));
-                        holder.mTitleView.setTextColor(Color.CYAN);
+                    holder.mItemDownloadView = (ImageView) convertView.findViewById(R.id.item_offline_action);
+                    if (holder.mItemDownloadView != null) {
+                        holder.mItemDownloadView.setVisibility(View.VISIBLE);
+                        //TODO: make download later message
+                    }
 
-
-                    }*/
+                    if (isOffline && !itemAvailable) {
+                        holder.mTitleView.setTextColor(Color.RED);
+                    } else {
+                        holder.mTitleView.setTextColor(Color.GREEN);
+                    }
                 }
                 holder.mImageView.setVisibility(View.VISIBLE);
                 convertView.setTag(R.id.tag_mediaitem_state_cache, state);
