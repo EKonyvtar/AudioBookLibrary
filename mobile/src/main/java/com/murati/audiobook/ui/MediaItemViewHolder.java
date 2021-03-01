@@ -24,10 +24,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+
+import android.os.Build;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,8 +41,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.cast.MediaLiveSeekableRange;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -77,9 +78,7 @@ public class MediaItemViewHolder {
     private Button mOpenButton;
     private ImageView mFavoriteButton;
     private ImageView mItemDownloadView;
-
-    private AdView mAdView;
-    private static AdRequest adRequest;
+    private ImageView mItemAvailabilityIcon;
 
     private RecyclerView mRecyclerView;
 
@@ -255,33 +254,59 @@ public class MediaItemViewHolder {
                         }
                     }
 
-                } else {
+                }
+                else
+                {
                     // ######### PLAYABLE ITEM #################
-                    holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
-                    if (holder.mDurationView != null) {
-                        holder.mDurationView.setText(DisplayHelper.getDuration(description));
-                    }
 
                     // Playable item represented by its state
                     Drawable drawable = getDrawableByState(activity, state);
-                    if (drawable != null)
-                        holder.mImageView.setImageDrawable(drawable);
+                    if (drawable != null) holder.mImageView.setImageDrawable(drawable);
 
                     // If offline and not available
-                    boolean isOffline = !NetworkHelper.isOnline(parent.getContext());
-                    boolean itemAvailable = OfflineBookService.isOfflineTrackExist(description.getMediaId());
+                    boolean isOnline = NetworkHelper.isOnline(parent.getContext());
+                    boolean itemAvailableOffline = OfflineBookService.isOfflineTrackExist(description.getMediaId());
+                    boolean itemAvailable = isOnline || itemAvailableOffline;
 
                     holder.mItemDownloadView = (ImageView) convertView.findViewById(R.id.item_offline_action);
                     if (holder.mItemDownloadView != null) {
-                        holder.mItemDownloadView.setVisibility(View.VISIBLE);
-                        //TODO: make download later message
+                        if (itemAvailableOffline)
+                            holder.mItemDownloadView.setImageResource(R.drawable.ic_action_delete);
+                        else
+                            holder.mItemDownloadView.setImageResource(R.drawable.ic_action_download);
+
+                        // TODO: make download later messages
+                        holder.mItemDownloadView.setVisibility(View.INVISIBLE);
                     }
 
-                    if (isOffline && !itemAvailable) {
-                        holder.mTitleView.setTextColor(Color.RED);
-                    } else {
-                        holder.mTitleView.setTextColor(Color.GREEN);
+                    // Set availability icon
+                    holder.mItemAvailabilityIcon = (ImageView) convertView.findViewById(R.id.item_availability_icon);
+                    if (holder.mItemAvailabilityIcon != null) {
+                        holder.mItemAvailabilityIcon.setVisibility(View.VISIBLE);
+
+                        if (itemAvailableOffline) {
+                            holder.mItemAvailabilityIcon.setImageResource(R.drawable.ic_memorycard);
+                        }
+                        else if (isOnline) {
+                            holder.mItemAvailabilityIcon.setImageResource(R.drawable.ic_cloud_on);
+                        } else {
+                            holder.mItemAvailabilityIcon.setImageResource(R.drawable.ic_cloud_off);
+                        }
                     }
+
+                    int availabilityColor = itemAvailable ?
+                        ResourcesCompat.getColor(
+                            activity.getResources(), R.color.default_card_active_text, null)
+                        : ResourcesCompat.getColor(
+                        activity.getResources(), R.color.default_card_inactive_text, null);
+
+                    holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
+                    if (holder.mDurationView != null) {
+                        holder.mDurationView.setText(DisplayHelper.getDuration(description));
+                        holder.mDurationView.setTextColor(availabilityColor);
+                    }
+                    holder.mTitleView.setTextColor(availabilityColor);
+                    holder.mDescriptionView.setTextColor(availabilityColor);
                 }
                 holder.mImageView.setVisibility(View.VISIBLE);
                 convertView.setTag(R.id.tag_mediaitem_state_cache, state);
