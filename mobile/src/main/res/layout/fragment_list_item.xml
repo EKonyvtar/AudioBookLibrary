@@ -49,6 +49,17 @@
            app:tint="@color/media_item_icon_not_playing" />
 
 
+       <ImageView
+           android:id="@+id/item_availability_icon"
+           android:layout_width="12dp"
+           android:layout_height="12dp"
+           android:contentDescription="@string/play_item"
+           android:src="@drawable/ic_cloud_on"
+           android:tintMode="src_in"
+           app:layout_constraintBottom_toBottomOf="@+id/play_eq"
+           app:layout_constraintEnd_toEndOf="@+id/play_eq"
+           app:tint="@color/media_item_icon_not_playing" />
+
        <TextView
            android:id="@+id/title"
            android:layout_width="0dp"
