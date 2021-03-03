@@ -16,8 +16,6 @@ import android.os.Environment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.provider.MediaStore;
-import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,6 +29,7 @@ import com.murati.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class OfflineBookService extends IntentService {
@@ -231,6 +230,27 @@ public class OfflineBookService extends IntentService {
         return true;
     }
 
+    public static void removeOfflineTrack(String mediaId) {
+        String book = MediaIDHelper.getEBookTitle(mediaId);
+        String trackId = MediaIDHelper.getTrackId(mediaId);
+        MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+        String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+
+        File file = getOfflineSource(book, source);
+        if (!file.exists())
+            Log.d(TAG, source + " is not found, no-op to delete");
+        else
+            try {
+                if (file.delete()) {
+                    Log.d(TAG, "File Deleted " + file.toString());
+                } else {
+                    Log.e(TAG, "File NOT Deleted " + file.toString());
+                }
+            }
+            catch (Exception ex) {
+                Log.e(TAG, "Error deleting Track " + trackId);
+            }
+    }
     public static void removeOfflineBook(String book) {
         book = MediaIDHelper.getEBookTitle(book);
         File bookFolder = getBookDirectory(book);
@@ -315,6 +335,7 @@ public class OfflineBookService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
+        // TODO: Redo full download mgmt
         // Normally we would do some work here, like download a file.
         // For our sample, we just sleep for 5 seconds.
         try {
@@ -330,17 +351,23 @@ public class OfflineBookService extends IntentService {
                 return;
             }
 
-            Iterable<MediaMetadataCompat> tracks = null;
+            ArrayList<MediaMetadataCompat> tracksToDownload = new ArrayList<>();
             String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
 
             Log.d(TAG, "Creating folder for " + book);
             File bookFolder = new File(getDownloadDirectory(), book);
             if (!bookFolder.exists()) bookFolder.mkdirs();
 
-            Log.d(TAG, "Tracks");
-            tracks = MusicProvider.getTracksByEbook(book);
+            if (MediaIDHelper.isBrowseable(mediaId)) {
+                Iterator<MediaMetadataCompat> allBookTracksIterator = MusicProvider.getTracksByEbook(book).iterator();
+                while (allBookTracksIterator.hasNext()) tracksToDownload.add(allBookTracksIterator.next());
+            } else {
+                String trackId = MediaIDHelper.getTrackId(mediaId);
+                MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+                tracksToDownload.add(track);
+            }
             int count = 0;
-            for (MediaMetadataCompat track : tracks) {
+            for (MediaMetadataCompat track : tracksToDownload) {
                 count++;
                 try {
                     String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
@@ -354,7 +381,7 @@ public class OfflineBookService extends IntentService {
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
 
-                    request.setTitle(String.format("%s (%d)", book, count));
+                    request.setTitle(String.format("%s %s (%d)", track.getDescription().getTitle(),  book, count));
                     request.setDescription(file.getPath());
                     request.setDestinationUri(Uri.fromFile(file));
 
