@@ -329,24 +329,11 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         //Delete button
         if (item != null && mediaId != null && item.getItemId() == R.id.option_delete) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.confirm_delete_question)
-                .setTitle(R.string.action_delete)
-                .setCancelable(false)
-                .setPositiveButton(R.string.confirm_delete,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            ActionBarCastActivity.this.deleteEbook();
-                        }
-                    }
-                )
-                .setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-            AlertDialog alert = builder.create();
-            alert.show();
+            OfflineBookService.confirmDelete(this, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    ActionBarCastActivity.this.deleteEbook();
+                }
+            });
             return true;
         }
 
