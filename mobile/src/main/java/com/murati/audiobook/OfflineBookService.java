@@ -2,10 +2,12 @@ package com.murati.audiobook;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.model.MusicProviderSource;
+import com.murati.audiobook.ui.ActionBarCastActivity;
 import com.murati.audiobook.utils.AnalyticsHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
@@ -250,6 +253,21 @@ public class OfflineBookService extends IntentService {
             catch (Exception ex) {
                 Log.e(TAG, "Error deleting Track " + trackId);
             }
+    }
+
+    public static void confirmDelete(Activity activity, DialogInterface.OnClickListener deleteAction) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.confirm_delete_question)
+            .setTitle(R.string.action_delete)
+            .setCancelable(false)
+            .setPositiveButton(R.string.confirm_delete, deleteAction)
+            .setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
     public static void removeOfflineBook(String book) {
         book = MediaIDHelper.getEBookTitle(book);

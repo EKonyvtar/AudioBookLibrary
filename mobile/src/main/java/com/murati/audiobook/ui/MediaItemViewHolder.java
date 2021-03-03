@@ -17,6 +17,7 @@ package com.murati.audiobook.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -272,22 +273,27 @@ public class MediaItemViewHolder {
                     // Set availability icon
                     holder.mItemOfflineAction = (ImageView) convertView.findViewById(R.id.item_offline_action);
                     if (holder.mItemOfflineAction != null) {
-                        holder.mItemOfflineAction.setVisibility(View.VISIBLE);
-                        if (itemAvailableOffline) {
+
+                        // Set the appropriate action icon
+                        if (itemAvailableOffline)
                             holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_tick);
-                        }
-                        else if (isOnline) {
+                        else if (isOnline)
                             holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_download);
-                        } else {
+                        else
                             holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_off);
-                        }
+
+                        holder.mItemOfflineAction.setVisibility(View.VISIBLE);
                         holder.mItemOfflineAction.setTag(description.getMediaId());
                         holder.mItemOfflineAction.setOnClickListener(v -> {
                             String mediaId = (String) v.getTag();
                             boolean itemAvailableOfflineLocal = OfflineBookService.isOfflineTrackExist(mediaId);
                             if (itemAvailableOfflineLocal) {
-                                //TODO: get validation
-                                OfflineBookService.removeOfflineTrack(mediaId);
+                                OfflineBookService.confirmDelete(activity,
+                                    new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        OfflineBookService.removeOfflineTrack(mediaId);
+                                    }
+                                });
                                 holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_download);
                             } else {
                                 if (!NetworkHelper.isOnline(v.getContext())) {
@@ -296,7 +302,6 @@ public class MediaItemViewHolder {
                                 OfflineBookService.downloadWithActivity(mediaId, activity);
                                 holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_queue);
                             }
-                            //v.setVisibility(View.INVISIBLE);
                         });
                     }
 
@@ -313,7 +318,9 @@ public class MediaItemViewHolder {
                         holder.mDurationView.setTextColor(availabilityColor);
                     }
                     holder.mTitleView.setTextColor(availabilityColor);
-                    //holder.mDescriptionView.setTextColor(availabilityColor);
+
+                    if (!itemAvailable)
+                        holder.mDescriptionView.setTextColor(availabilityColor);
                 }
                 holder.mImageView.setVisibility(View.VISIBLE);
                 convertView.setTag(R.id.tag_mediaitem_state_cache, state);
