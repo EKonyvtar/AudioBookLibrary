@@ -134,17 +134,17 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     }
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallback =
-            new MediaBrowserCompat.ConnectionCallback() {
-        @Override
-        public void onConnected() {
-            LogHelper.d(TAG, "onConnected");
-            try {
-                connectToSession(mMediaBrowser.getSessionToken());
-            } catch (RemoteException e) {
-                LogHelper.e(TAG, e, "could not connect media controller");
+        new MediaBrowserCompat.ConnectionCallback() {
+            @Override
+            public void onConnected() {
+                LogHelper.d(TAG, "onConnected");
+                try {
+                    connectToSession(mMediaBrowser.getSessionToken());
+                } catch (RemoteException e) {
+                    LogHelper.e(TAG, e, "could not connect media controller");
+                }
             }
-        }
-    };
+        };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -277,7 +277,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
 
     private void connectToSession(MediaSessionCompat.Token token) throws RemoteException {
         MediaControllerCompat mediaController = new MediaControllerCompat(
-                FullScreenPlayerActivity.this, token);
+            FullScreenPlayerActivity.this, token);
         if (mediaController.getMetadata() == null) {
             finish();
             return;
@@ -293,7 +293,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         }
 
         if (state != null && (state.getState() == PlaybackStateCompat.STATE_PLAYING ||
-                state.getState() == PlaybackStateCompat.STATE_BUFFERING)) {
+            state.getState() == PlaybackStateCompat.STATE_BUFFERING)) {
 
             // Play/Pause for generating new event on initial state
             if (state.getPosition() == 0) {
@@ -322,13 +322,13 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         stopSeekbarUpdate();
         if (!mExecutorService.isShutdown()) {
             mScheduleFuture = mExecutorService.scheduleAtFixedRate(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            mHandler.post(mUpdateProgressTask);
-                        }
-                    }, PROGRESS_UPDATE_INITIAL_INTERVAL,
-                    PROGRESS_UPDATE_INTERNAL, TimeUnit.MILLISECONDS);
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        mHandler.post(mUpdateProgressTask);
+                    }
+                }, PROGRESS_UPDATE_INITIAL_INTERVAL,
+                PROGRESS_UPDATE_INTERNAL, TimeUnit.MILLISECONDS);
         }
     }
 
@@ -436,28 +436,25 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             return;
         }
         LogHelper.d(TAG, "updateDuration called ");
-        long duration = metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+        int durationSeconds = (int) metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
 
-        if (duration == 0) {
+        if (durationSeconds == 0) {
             try {
                 MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-                //String mediaUrl = metadata.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
                 String mediaUrl = OfflineBookService.getTrackSource(metadata);
-                if (Build.VERSION.SDK_INT >= 14)
-                    retriever.setDataSource(mediaUrl, new HashMap<String, String>());
-                else
+                if (mediaUrl != null && mediaUrl.startsWith("/"))
                     retriever.setDataSource(mediaUrl);
+                else
+                    retriever.setDataSource(mediaUrl, new HashMap<String, String>());
                 String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-                duration = Integer.parseInt(time);
-                duration = duration/1000;
+                durationSeconds = Integer.parseInt(time) / 1000;
                 retriever.release();
             } catch (Exception ex) {
                 Log.e(TAG, "Error retrieving the length of the mediafile: \n" + ex.getMessage());
             }
         }
-        mSeekbar.setMax((int)duration);
-        //mEnd.setText(DateUtils.formatElapsedTime(duration));
-        mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()));
+        mSeekbar.setMax(durationSeconds);
+        mEnd.setText(DateUtils.formatElapsedTime(durationSeconds));
     }
 
     private void updatePlaybackState(PlaybackStateCompat state) {
@@ -472,7 +469,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (controllerCompat != null && controllerCompat.getExtras() != null) {
             String castName = controllerCompat.getExtras().getString(MusicService.EXTRA_CONNECTED_CAST);
             String line3Text = castName == null ? "" : getResources()
-                        .getString(R.string.casting_to_device, castName);
+                .getString(R.string.casting_to_device, castName);
             mLine3.setText(line3Text);
         }
 
@@ -519,28 +516,26 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
             return;
         }
 
-        //TODO: fix current position
-        long currentPosition = mLastPlaybackState.getPosition();
+        //TODO: fix current position initialisation
+        long currentPositionMiliSecond = mLastPlaybackState.getPosition();
         if (mLastPlaybackState.getState() == PlaybackStateCompat.STATE_PLAYING) {
             // Calculate the elapsed time between the last position update and now and unless
             // paused, we can assume (delta * speed) + current position is approximately the
             // latest position. This ensure that we do not repeatedly call the getPlaybackState()
             // on MediaControllerCompat.
-            long timeDelta = SystemClock.elapsedRealtime() -
-                    mLastPlaybackState.getLastPositionUpdateTime();
-            currentPosition += (long) timeDelta * mLastPlaybackState.getPlaybackSpeed();
+            long timeDeltaMiliSecond = (SystemClock.elapsedRealtime() - mLastPlaybackState.getLastPositionUpdateTime());
+            currentPositionMiliSecond += (long) timeDeltaMiliSecond * mLastPlaybackState.getPlaybackSpeed();
         }
-        int secondProgress = (int) currentPosition / 1000;
-        mSeekbar.setProgress(secondProgress);
+        long currentPositionSecond = currentPositionMiliSecond /1000;
+        mSeekbar.setProgress((int) currentPositionSecond);
 
         try {
-            if (mSeekbar.getMax() < secondProgress) {
-                mSeekbar.setMax((int) secondProgress + 30);
+            if (mSeekbar.getMax() < currentPositionSecond) {
+                mSeekbar.setMax((int) currentPositionSecond + 30);
+                mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()));
             }
-            mEnd.setText(DateUtils.formatElapsedTime(mSeekbar.getMax()));
         } catch (Exception ex) {
             //TODO: fix length detection
         }
-
     }
 }
