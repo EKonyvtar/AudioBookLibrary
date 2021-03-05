@@ -380,6 +380,8 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 mService.getString(R.string.label_next), mNextIntent);
         }
 
+        // TODO: NEW QUIT
+        // notificationBuilder.addAction(new NotificationCompat.Action(R.drawable.exo_icon_stop, mService.getString(R.string.drawer_quit_title), mStopIntent));
         return playPauseButtonPosition;
     }
 

@@ -403,7 +403,7 @@ public class OfflineBookService extends IntentService {
                     request.setDescription(file.getPath());
                     request.setDestinationUri(Uri.fromFile(file));
 
-                    request.setVisibleInDownloadsUi(false);
+                    //request.setVisibleInDownloadsUi(false);
                     request.setNotificationVisibility(
                         DownloadManager.Request.VISIBILITY_VISIBLE
                     );
