@@ -2,10 +2,12 @@ package com.murati.audiobook;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -15,6 +17,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,19 +25,21 @@ import android.widget.Toast;
 
 import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.model.MusicProviderSource;
+import com.murati.audiobook.ui.ActionBarCastActivity;
 import com.murati.audiobook.utils.AnalyticsHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class OfflineBookService extends IntentService {
 
     private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
 
-    public static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
+    private static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
 
     private static final String OFFLINE_ROOT = "Hangoskonyvek";
 
@@ -184,7 +189,15 @@ public class OfflineBookService extends IntentService {
         return new File(getDownloadDirectory(), book);
     }
 
-    public static boolean isOfflineBookTrackExist(String book, String source) {
+    public static boolean isOfflineTrackExist(String mediaId) {
+        String book = MediaIDHelper.getEBookTitle(mediaId);
+        String trackId = MediaIDHelper.getTrackId(mediaId);
+        MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+        String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+        return isOfflineTrackExist(book, source);
+    }
+
+    private static boolean isOfflineTrackExist(String book, String source) {
 
         Log.d(TAG, "Checking Offline Track " + source);
         File file = getOfflineSource(book, source);
@@ -209,7 +222,7 @@ public class OfflineBookService extends IntentService {
             Log.d(TAG, "Checking all tracks");
             for (MediaMetadataCompat track : tracks) {
                 String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-                if (!isOfflineBookTrackExist(book, source))
+                if (!isOfflineTrackExist(book, source))
                     return false;
             }
         } catch (Exception ex) {
@@ -220,6 +233,42 @@ public class OfflineBookService extends IntentService {
         return true;
     }
 
+    public static void removeOfflineTrack(String mediaId) {
+        String book = MediaIDHelper.getEBookTitle(mediaId);
+        String trackId = MediaIDHelper.getTrackId(mediaId);
+        MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+        String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+
+        File file = getOfflineSource(book, source);
+        if (!file.exists())
+            Log.d(TAG, source + " is not found, no-op to delete");
+        else
+            try {
+                if (file.delete()) {
+                    Log.d(TAG, "File Deleted " + file.toString());
+                } else {
+                    Log.e(TAG, "File NOT Deleted " + file.toString());
+                }
+            }
+            catch (Exception ex) {
+                Log.e(TAG, "Error deleting Track " + trackId);
+            }
+    }
+
+    public static void confirmDelete(Activity activity, DialogInterface.OnClickListener deleteAction) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.confirm_delete_question)
+            .setTitle(R.string.action_delete)
+            .setCancelable(false)
+            .setPositiveButton(R.string.confirm_delete, deleteAction)
+            .setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
     public static void removeOfflineBook(String book) {
         book = MediaIDHelper.getEBookTitle(book);
         File bookFolder = getBookDirectory(book);
@@ -257,7 +306,7 @@ public class OfflineBookService extends IntentService {
 
 
     //Grabbing fileName from sourceUrl
-    public static String getFileName(String source) {
+    private static String getFileName(String source) {
         String fileName = null;
         if (!TextUtils.isEmpty(source)) {
             String[] strings = source.split("/");
@@ -266,7 +315,7 @@ public class OfflineBookService extends IntentService {
         return fileName;
     }
 
-    public static File getOfflineSource(String book, String source) {
+    private static File getOfflineSource(String book, String source) {
         String fileName = getFileName(source);
         File bookFolder = new File(getDownloadDirectory(), book);
         return new File(bookFolder, fileName);
@@ -291,7 +340,7 @@ public class OfflineBookService extends IntentService {
         return onlineSource;
     }
 
-    public static File getDownloadDirectory() {
+    private static File getDownloadDirectory() {
         return new File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
             OFFLINE_ROOT);
@@ -304,6 +353,7 @@ public class OfflineBookService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
+        // TODO: Redo full download mgmt
         // Normally we would do some work here, like download a file.
         // For our sample, we just sleep for 5 seconds.
         try {
@@ -319,17 +369,23 @@ public class OfflineBookService extends IntentService {
                 return;
             }
 
-            Iterable<MediaMetadataCompat> tracks = null;
+            ArrayList<MediaMetadataCompat> tracksToDownload = new ArrayList<>();
             String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
 
             Log.d(TAG, "Creating folder for " + book);
             File bookFolder = new File(getDownloadDirectory(), book);
             if (!bookFolder.exists()) bookFolder.mkdirs();
 
-            Log.d(TAG, "Tracks");
-            tracks = MusicProvider.getTracksByEbook(book);
+            if (MediaIDHelper.isBrowseable(mediaId)) {
+                Iterator<MediaMetadataCompat> allBookTracksIterator = MusicProvider.getTracksByEbook(book).iterator();
+                while (allBookTracksIterator.hasNext()) tracksToDownload.add(allBookTracksIterator.next());
+            } else {
+                String trackId = MediaIDHelper.getTrackId(mediaId);
+                MediaMetadataCompat track = MusicProvider.getTrack(trackId);
+                tracksToDownload.add(track);
+            }
             int count = 0;
-            for (MediaMetadataCompat track : tracks) {
+            for (MediaMetadataCompat track : tracksToDownload) {
                 count++;
                 try {
                     String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
@@ -343,11 +399,11 @@ public class OfflineBookService extends IntentService {
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
 
-                    request.setTitle(String.format("%s (%d)", book, count));
+                    request.setTitle(String.format("%s %s (%d)", track.getDescription().getTitle(),  book, count));
                     request.setDescription(file.getPath());
                     request.setDestinationUri(Uri.fromFile(file));
 
-                    request.setVisibleInDownloadsUi(false);
+                    //request.setVisibleInDownloadsUi(false);
                     request.setNotificationVisibility(
                         DownloadManager.Request.VISIBILITY_VISIBLE
                     );
@@ -364,8 +420,7 @@ public class OfflineBookService extends IntentService {
                 }
             }
         } catch (Exception e) {
-            // Restore interrupt status.
-            //TODO: e
+            //TODO: e - Restore interrupt status
         }
     }
 }
