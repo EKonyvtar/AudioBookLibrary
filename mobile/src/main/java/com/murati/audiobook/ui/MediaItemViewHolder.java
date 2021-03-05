@@ -17,16 +17,18 @@ package com.murati.audiobook.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,8 +40,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -48,6 +48,7 @@ import com.murati.audiobook.utils.DisplayHelper;
 import com.murati.audiobook.utils.FavoritesHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
+import com.murati.audiobook.utils.NetworkHelper;
 import com.murati.audiobook.utils.RecommendationHelper;
 
 import java.util.List;
@@ -74,9 +75,10 @@ public class MediaItemViewHolder {
     private Button mDownloadButton;
     private Button mOpenButton;
     private ImageView mFavoriteButton;
-
-    private AdView mAdView;
-    private static AdRequest adRequest;
+    private ImageView mItemDownloadView;
+    private ImageView mItemDeleteView;
+    private ImageView mItemAvailabilityIcon;
+    private ImageView mItemOfflineAction;
 
     private RecyclerView mRecyclerView;
 
@@ -138,7 +140,7 @@ public class MediaItemViewHolder {
             return convertView;
         }
         else if (MediaIDHelper.isItemHeader(description.getMediaId())) {
-            // EBook header
+            // EBook Item header
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_header, parent, false);
@@ -162,35 +164,27 @@ public class MediaItemViewHolder {
                 inflate(R.layout.fragment_ebook_item, parent, false);
         }
         else {
-            // Everything else
+            // List Item - Everything else
             convertView = LayoutInflater.
                 from(activity).
                 inflate(R.layout.fragment_list_item, parent, false);
         }
         convertView.setTag(holder);
 
-        //Lookup the standard fields
-        holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
-        holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
-        holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
-        holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
-        holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
 
         // Set values
+        holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
         if (holder.mTitleView != null) {
             holder.mTitleView.setText(description.getTitle());
         }
 
+        holder.mDescriptionView = (TextView) convertView.findViewById(R.id.description);
         if (holder.mDescriptionView != null) {
             holder.mDescriptionView.setText(description.getSubtitle());
         }
 
-        if (holder.mDurationView != null) {
-            holder.mDurationView.setText(DisplayHelper.getDuration(description));
-        }
-
-
         // Load images
+        holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
         if (holder.mImageView != null) {
             // If the state of convertView is different, we need to adapt it
             int state = getMediaItemState(activity, item);
@@ -217,6 +211,7 @@ public class MediaItemViewHolder {
                         into(holder.mImageView);
 
                     // Load blur background
+                    holder.mBackgroundImage = (ImageView) convertView.findViewById(R.id.background_blur);
                     if (holder.mBackgroundImage != null) {
                         GlideApp.
                             with(activity).
@@ -229,7 +224,7 @@ public class MediaItemViewHolder {
                     }
 
 
-                    // In addition to being browsable add quick-controls too
+                    // In addition to being browseable add quick-controls too
                     if (MediaIDHelper.isEBook(description.getMediaId())) {
                         holder.mDownloadButton= (Button) convertView.findViewById(R.id.card_download);
                         if (holder.mDownloadButton !=null) {
@@ -259,22 +254,73 @@ public class MediaItemViewHolder {
                         }
                     }
 
-                } else {
+                }
+                else
+                {
+                    // ######### PLAYABLE ITEM #################
+
                     // Playable item represented by its state
                     Drawable drawable = getDrawableByState(activity, state);
-                    if (drawable != null)
-                        holder.mImageView.setImageDrawable(drawable);
+                    if (drawable != null) holder.mImageView.setImageDrawable(drawable);
 
-                    //holder.mImageView.setImageTintMode(PorterDuff.Mode.SRC_IN);
-
-                    //If offline and not available
-                    /*if (!NetworkHelper.isOnline(parent.getContext())) {
-                        String source = OfflineBookService.getTrackSource(
-                            MusicProvider.getTrack(description.getMediaId()));
-                        holder.mTitleView.setTextColor(Color.CYAN);
+                    // If offline and not available
+                    boolean isOnline = NetworkHelper.isOnline(parent.getContext());
+                    boolean itemAvailableOffline = OfflineBookService.isOfflineTrackExist(description.getMediaId());
+                    boolean itemAvailable = isOnline || itemAvailableOffline;
 
 
-                    }*/
+                    // Download or Delete Item
+                    // Set availability icon
+                    holder.mItemOfflineAction = (ImageView) convertView.findViewById(R.id.item_offline_action);
+                    if (holder.mItemOfflineAction != null) {
+
+                        // Set the appropriate action icon
+                        if (itemAvailableOffline)
+                            holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_tick);
+                        else if (isOnline)
+                            holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_download);
+                        else
+                            holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_off);
+
+                        holder.mItemOfflineAction.setVisibility(View.VISIBLE);
+                        holder.mItemOfflineAction.setTag(description.getMediaId());
+                        holder.mItemOfflineAction.setOnClickListener(v -> {
+                            String mediaId = (String) v.getTag();
+                            boolean itemAvailableOfflineLocal = OfflineBookService.isOfflineTrackExist(mediaId);
+                            if (itemAvailableOfflineLocal) {
+                                OfflineBookService.confirmDelete(activity,
+                                    new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        OfflineBookService.removeOfflineTrack(mediaId);
+                                    }
+                                });
+                                holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_download);
+                            } else {
+                                if (!NetworkHelper.isOnline(v.getContext())) {
+                                    //TODO: Show will be downloaded later
+                                }
+                                OfflineBookService.downloadWithActivity(mediaId, activity);
+                                holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_queue);
+                            }
+                        });
+                    }
+
+
+                    int availabilityColor = itemAvailable ?
+                        ResourcesCompat.getColor(
+                            activity.getResources(), R.color.default_card_active_text, null)
+                        : ResourcesCompat.getColor(
+                        activity.getResources(), R.color.default_card_inactive_text, null);
+
+                    holder.mDurationView = (TextView) convertView.findViewById(R.id.duration);
+                    if (holder.mDurationView != null) {
+                        holder.mDurationView.setText(DisplayHelper.getDuration(description));
+                        holder.mDurationView.setTextColor(availabilityColor);
+                    }
+                    holder.mTitleView.setTextColor(availabilityColor);
+
+                    if (!itemAvailable)
+                        holder.mDescriptionView.setTextColor(availabilityColor);
                 }
                 holder.mImageView.setVisibility(View.VISIBLE);
                 convertView.setTag(R.id.tag_mediaitem_state_cache, state);

@@ -48,7 +48,19 @@
            android:layout_margin="12dp"
            app:tint="@color/media_item_icon_not_playing" />
 
+        <!--
+       <ImageView
+           android:id="@+id/item_availability_icon"
+           android:layout_width="12dp"
+           android:layout_height="12dp"
+           android:contentDescription="@string/play_item"
+           android:src="@drawable/ic_cloud_on"
+           android:tintMode="src_in"
+           app:layout_constraintBottom_toBottomOf="@+id/play_eq"
+           app:layout_constraintEnd_toEndOf="@+id/play_eq"
+           app:tint="@color/media_item_icon_not_playing" />
 
+-->
        <TextView
            android:id="@+id/title"
            android:layout_width="0dp"
@@ -91,21 +103,69 @@
            android:textAppearance="?android:attr/textAppearanceSmall"
            android:textColor="?android:attr/textColorSecondary"
            app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toStartOf="@+id/item_offline"
+           app:layout_constraintEnd_toStartOf="@+id/item_offline_action"
            app:layout_constraintTop_toTopOf="parent"
-           tools:text="00:00:00" />
+           android:layout_marginRight="8dp"
+           tools:text="00:00" />
+
 
        <ImageView
+           android:id="@+id/item_offline_action"
+           android:visibility="invisible"
+           android:layout_width="32dp"
+           android:layout_height="32dp"
+           android:layout_margin="8dp"
+           android:layout_marginTop="@dimen/drawer_item_horizontal_padding"
+           android:layout_marginBottom="@dimen/drawer_item_horizontal_padding"
+           android:src="@drawable/ic_cloud_download"
+           app:tint="@color/media_item_icon_not_playing"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           />
+
+
+       <!--
+
+       <ImageButton
            android:id="@+id/item_offline"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/drawer_item_horizontal_padding"
+           android:layout_marginBottom="@dimen/drawer_item_horizontal_padding"
+           android:src="@drawable/ic_action_download"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           >
+
+       </ImageButton> -->
+       <!--
+        <ImageView
+           android:id="@+id/item_download_action"
            android:visibility="invisible"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_centerVertical="true"
-           android:layout_margin="@dimen/drawer_item_horizontal_padding"
+           android:layout_marginTop="@dimen/drawer_item_horizontal_padding"
+           android:layout_marginBottom="@dimen/drawer_item_horizontal_padding"
            android:src="@drawable/ic_action_download"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toTopOf="parent"
            app:tint="@color/media_item_icon_not_playing" />
+
+       <ImageView
+           android:id="@+id/item_delete_action"
+           android:visibility="invisible"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toTopOf="@id/item_download_action"
+           app:layout_constraintLeft_toLeftOf="@id/item_download_action"
+           android:layout_centerVertical="true"
+           android:src="@drawable/ic_action_delete"
+           app:tint="@color/media_item_icon_not_playing" />
+
+           -->
    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

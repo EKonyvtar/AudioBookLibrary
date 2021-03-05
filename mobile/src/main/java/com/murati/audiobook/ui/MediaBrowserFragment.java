@@ -150,6 +150,7 @@ public class MediaBrowserFragment extends Fragment {
 
                     //TODO: make this properly event driven
                     //Try re-instantiating player if we are in the queue
+                    //TODO: NEW Dialog an UI change
                     if (PlaybackHelper.canContinuePlayback(parentId)) {
                         PlaybackHelper.restorePlaybackController(getActivity());
                     }
