@@ -6,7 +6,7 @@ param (
 )
 
 Set-Location $PSScriptRoot
-#./Write-OfflineMekCatalog.ps1 -CatalogFile $MekFile -File $File
+./Write-OfflineMekCatalog.ps1 -CatalogFile $MekFile -File $File
 
 $catalogContent = Get-Content  -Path $File -Raw
 $catalog = ConvertFrom-Json -InputObject $catalogContent
