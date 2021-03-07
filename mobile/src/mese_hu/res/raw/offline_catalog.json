@@ -1,6 +1,146 @@
 {
   "music": [
     {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "823",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andra%CC%81s%20Moha%20ba%CC%81csi%20mese%CC%81i%20-%20Mi%20ko%CC%88zo%CC%88d%20hozza%CC%81%20%28Szabo%CC%81%20Gyula%20elo%CC%8Bada%CC%81sa%CC%81ban%29.mp3",
+      "title": "Mi közöd hozzá",
+      "trackNumber": "1"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "938",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20H%C3%B3kuszp%C3%B3kusz%20%28K%C5%91m%C3%ADves%20S%C3%A1ndor%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Hókuszpókusz",
+      "trackNumber": "10"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "1022",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20L%C3%A1nyka%20n%C3%A9ni%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Lányka néni",
+      "trackNumber": "11"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "905",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20Mi%20van%20a%20csomagban%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Mi van a csomagban",
+      "trackNumber": "12"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "991",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20T%C3%B3csa%20%28K%C5%91m%C3%ADves%20S%C3%A1ndor%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Tócsa",
+      "trackNumber": "13"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "951",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20%C3%89desanya%20%28K%C5%91m%C3%ADves%20S%C3%A1ndor%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Édesanya",
+      "trackNumber": "14"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "1121",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20A%20legboldogabb%20%C3%A9vek%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "A legboldogabb évek",
+      "trackNumber": "2"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "898",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20A%20mogyor%C3%B3kir%C3%A1ly%20%C3%A9s%20a%20di%C3%B3kir%C3%A1ly%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "A mogyorókirály és a diókirály",
+      "trackNumber": "3"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "732",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20A%20stikli%20%28K%C5%91m%C3%ADves%20S%C3%A1ndor%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "A stikli",
+      "trackNumber": "4"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "899",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20A%20zsineg%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "A zsineg",
+      "trackNumber": "5"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "817",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20Alm%C3%A1cska%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Almácska",
+      "trackNumber": "6"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "971",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20Az%20%C3%BCnnepl%C3%A9s%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Az ünneplés",
+      "trackNumber": "7"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "1053",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20Elenged%C3%A9s%20%C3%A9s%20megfog%C3%A1s.%20Er%C5%91pr%C3%B3ba%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1sban%29.mp3",
+      "title": "Elengedés és megfogás",
+      "trackNumber": "8"
+    },
+    {
+      "album": "Moha bácsi meséi",
+      "artist": "Leszkai András",
+      "duration": "779",
+      "genre": "mese(k)",
+      "image": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/mohabacsi.jpg",
+      "source": "https://archive.org/download/leszkai-andras-moha-bacsi-mesei-tocsa-komives-sandor-eloadasaban/Leszkai%20Andr%C3%A1s%20Moha%20b%C3%A1csi%20mes%C3%A9i%20-%20Gyop%C3%A1r%20nevel%20%28Szab%C3%B3%20Gyula%20el%C5%91ad%C3%A1s%C3%A1ban%29.mp3",
+      "title": "Gyopár nevel",
+      "trackNumber": "9"
+    },
+    {
       "album": "Öreg néne őzikéje",
       "artist": "Fazekas Anna",
       "duration": "356",
@@ -4141,136 +4281,6 @@
       "trackNumber": 5
     },
     {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 436,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/01-Manoporkolt-hokedlival.mp3",
-      "title": "Fazekas Zsolt: Hagyományok",
-      "trackNumber": 1
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 1795,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/02-Manoporkolt-hokedlival.mp3",
-      "title": "Szenczi Gergely: Elit mágusok csapata",
-      "trackNumber": 2
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 614,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/03-Manoporkolt-hokedlival.mp3",
-      "title": "Tölgyesi Zoltán: Galamb Béla találkozása",
-      "trackNumber": 3
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 370,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/04-Manoporkolt-hokedlival.mp3",
-      "title": "Craz: Egy mondat, néhány vessző segedelmével",
-      "trackNumber": 4
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 2356,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/05-Manoporkolt-hokedlival.mp3",
-      "title": "Cyrus Livingstone: Leharcolt legendák",
-      "trackNumber": 5
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 548,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/06-Manoporkolt-hokedlival.mp3",
-      "title": "Nyíri Eszter (Stiga): Vihar egy kád vízben",
-      "trackNumber": 6
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 3446,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/07-Manoporkolt-hokedlival.mp3",
-      "title": "Varga Bea (OnSai): Jóvágású vérfarkas nősülne",
-      "trackNumber": 7
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 384,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/08-Manoporkolt-hokedlival.mp3",
-      "title": "Kapitány: Vader és a rendszergazda",
-      "trackNumber": 8
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 1843,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/09-Manoporkolt-hokedlival.mp3",
-      "title": "Bukros Zsolt (Maggoth): A Múltba Zuhant Ûrhajós",
-      "trackNumber": 9
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 410,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/10-Manoporkolt-hokedlival.mp3",
-      "title": "Jimmy: Bambatök problémája",
-      "trackNumber": 10
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 878,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/11-Manoporkolt-hokedlival.mp3",
-      "title": "Balázsi Gábor (Xenoteph): Gyakorlat teszi a mestert",
-      "trackNumber": 11
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 310,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/12-Manoporkolt-hokedlival.mp3",
-      "title": "Kapitány: Pista bácsi és a Predator",
-      "trackNumber": 12
-    },
-    {
-      "album": "Manópörkölt hokedlival",
-      "artist": "",
-      "duration": 446,
-      "genre": "elbeszélés(ek)",
-      "image": "https://mek.oszk.hu/12000/12080/borito.jpg",
-      "source": "https://mek.oszk.hu/12000/12080/mp3/13-Manoporkolt-hokedlival.mp3",
-      "title": "Cyrus Livingstone: Egy aprócska tévedés",
-      "trackNumber": 13
-    },
-    {
       "album": "Gulliver utazásai",
       "artist": "Jonathan Swift,Swift Jonathan",
       "duration": 1282,
@@ -4659,16 +4669,6 @@
       "source": "https://mek.oszk.hu/12100/12199/mp3/39-Gulliver_utazasai.mp3",
       "title": "IV. Utazás Hauhnhnm országba - 12. fejezet",
       "trackNumber": 39
-    },
-    {
-      "album": "Sose szólj be varázslónak!",
-      "artist": "On Sai ",
-      "duration": 4726,
-      "genre": "kisregény",
-      "image": "https://mek.oszk.hu/12200/12231/borito.jpg",
-      "source": "https://mek.oszk.hu/12200/12231/mp3/Sose_szolj_be_varazslonak.mp3",
-      "title": "Sose szólj be varázslónak!",
-      "trackNumber": 1
     },
     {
       "album": "Decemberi csillagok",

@@ -31,7 +31,7 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 96
+        versionCode 97
         versionName "0.36.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
