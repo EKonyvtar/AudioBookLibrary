@@ -31,6 +31,8 @@ import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 
 import java.io.File;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -311,6 +313,7 @@ public class OfflineBookService extends IntentService {
         if (!TextUtils.isEmpty(source)) {
             String[] strings = source.split("/");
             fileName = strings[strings.length-1];
+            fileName = URLDecoder.decode(fileName);
         }
         return fileName;
     }
@@ -327,6 +330,7 @@ public class OfflineBookService extends IntentService {
         String onlineSource = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
         if (onlineSource != null) {
             onlineSource = onlineSource.replaceAll(" ", "%20"); // Fix spaces for URLs
+            //TODO: NEW check edgecases - onlineSource = URLEncoder.encode(onlineSource);
         }
 
         // Check offline version on storage
@@ -399,7 +403,7 @@ public class OfflineBookService extends IntentService {
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
 
-                    request.setTitle(String.format("%s %s (%d)", track.getDescription().getTitle(),  book, count));
+                    request.setTitle(String.format("%s - %s (%d)", track.getDescription().getTitle(),  book, count));
                     request.setDescription(file.getPath());
                     request.setDestinationUri(Uri.fromFile(file));
 
