@@ -273,6 +273,8 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
 
         mMediaBrowser = new MediaBrowserCompat(this,
             new ComponentName(this, MusicService.class), mConnectionCallback, null);
+
+        //mPlayPause.callOnClick();
     }
 
     private void connectToSession(MediaSessionCompat.Token token) throws RemoteException {
@@ -344,6 +346,9 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         if (mMediaBrowser != null) {
             mMediaBrowser.connect();
         }
+
+        //TODO: NEW - reset playback position
+        //mPlayPause.callOnClick();
     }
 
     @Override
