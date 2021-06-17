@@ -50,6 +50,11 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${ADMOB_APP_ID}"/>
 
+        <!-- HUAWEI App ID -->
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="${APPSTORE_HUAWEI_ID}" />
+
         <!-- Main activity for music browsing on phone -->
         <activity
             android:name="com.murati.audiobook.ui.MusicPlayerActivity"
