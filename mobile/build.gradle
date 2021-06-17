@@ -27,11 +27,11 @@ android {
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 22
+        minSdkVersion 24
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 98
+        versionCode 99
         versionName "0.36.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
@@ -213,8 +213,8 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"https://appgallery.cloud.huawei.com/marketshare/app/C%s"'
 
             dependencies {
-                implementation 'com.huawei.hms:ads-lite:13.4.30.307'
-                implementation 'com.huawei.hms:base:4.0.2.300'
+                implementation 'com.huawei.hms:ads-lite:13.4.41.304'
+                implementation 'com.huawei.hms:base:5.0.3.300'
             }
         }
 
@@ -228,7 +228,7 @@ repositories {
     }
     google()
     jcenter()
-    maven { url 'http://developer.huawei.com/repo/' }
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {

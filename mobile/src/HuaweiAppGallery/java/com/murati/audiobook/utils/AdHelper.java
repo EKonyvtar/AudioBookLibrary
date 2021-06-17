@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.huawei.hms.ads.AdListener;
 import com.huawei.hms.ads.AdParam;
+import com.huawei.hms.ads.BannerAdSize;
 import com.huawei.hms.ads.HwAds;
 import com.huawei.hms.ads.banner.BannerView;
 import com.murati.audiobook.BuildConfig;
@@ -75,11 +76,12 @@ public class AdHelper {
         BannerView huaweiAdView = activity.findViewById(resourceId);
 
         // ADKit: https://forums.developer.huawei.com/forumPortal/en/topicview?tid=0201308778868370129&fid=0101188387844930001
-        // if (BuildConfig.DEBUG) // TEST banner
-        //    huaweiAdView.setAdId("testw6vs28auh3");
-        // else
-        huaweiAdView.setAdId(BuildConfig.HUAWEI_BANNER_ID);
+        if (BuildConfig.DEBUG) // TEST banner
+            huaweiAdView.setAdId("testw6vs28auh3");
+        else
+            huaweiAdView.setAdId(BuildConfig.HUAWEI_BANNER_ID);
 
+        huaweiAdView.setBannerAdSize(BannerAdSize.BANNER_SIZE_SMART);
         huaweiAdView.setAdListener(adListener);
         huaweiAdView.setBannerRefresh(30);
         AdParam adParam = new AdParam.Builder().build();
