@@ -36,3 +36,9 @@ buildscript {
         classpath 'com.google.firebase:perf-plugin:1.3.4'
     }
 }
+
+allprojects {
+    repositories {
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+}

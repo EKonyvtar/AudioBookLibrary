@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -78,6 +79,22 @@ public class AboutActivity extends BaseActivity {
             });
         } else {
             patreon.setVisibility(View.GONE);
+        }
+
+
+        if (BuildConfig.DEBUG) {
+            EditText info = findViewById(R.id.debugInfoText);
+            String infoText = String.format(
+                "%s v%s (%s) - DEBUG:%s\n\nAds --- \nAppID: %s\nAdId: %s",
+                BuildConfig.APP_NAME,
+                BuildConfig.VERSION_NAME,
+                BuildConfig.FLAVOR_store,
+                BuildConfig.DEBUG,
+
+                BuildConfig.APPSTORE_HUAWEI_ID,
+                BuildConfig.HUAWEI_BANNER_ID
+            );
+            info.setText(infoText);
         }
 
 

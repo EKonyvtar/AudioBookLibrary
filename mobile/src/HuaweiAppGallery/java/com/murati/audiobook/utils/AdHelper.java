@@ -10,17 +10,26 @@ import com.huawei.hms.ads.AdListener;
 import com.huawei.hms.ads.AdParam;
 import com.huawei.hms.ads.BannerAdSize;
 import com.huawei.hms.ads.HwAds;
+import com.huawei.hms.ads.RequestOptions;
 import com.huawei.hms.ads.banner.BannerView;
+import com.huawei.hms.ads.consent.*;
+import com.huawei.hms.ads.consent.bean.AdProvider;
+import com.huawei.hms.ads.consent.constant.ConsentStatus;
+import com.huawei.hms.ads.consent.inter.Consent;
+import com.huawei.hms.ads.consent.inter.ConsentUpdateListener;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
+import java.util.List;
 import java.util.Locale;
 
-import static com.murati.audiobook.utils.MobileServicesHelper.isHmsAvailable;
+import static com.huawei.hms.ads.UnderAge.PROMISE_TRUE;
 
 public class AdHelper {
 
     private static final String TAG = LogHelper.makeLogTag(AdHelper.class);
+
+    private static boolean Initialised = false;
 
     public final static int AD_EVERYWHERE = 1;
     public final static int AD_LIST = 2;
@@ -65,15 +74,36 @@ public class AdHelper {
 
     public static void tryLoadAds(AppCompatActivity activity, String tag) {
         try {
-            HwAds.init(activity);
+            if (!Initialised) {
+                HwAds.init(activity);
+                // Setting for users under the age of consent, indicating that you want the ad request to meet the ad standard for users in the EEA under the age of consent
+                RequestOptions requestOptions = HwAds.getRequestOptions().toBuilder().setTagForUnderAgeOfPromise(PROMISE_TRUE).build();
+                HwAds.setRequestOptions(requestOptions);
+                checkConsentStatus(activity);
+                Initialised = true;
+            }
             AdHelper.loadHuaweiAdkitToView(activity, R.id.huaweiAdView);
         } catch (Exception ex) {
             Log.e(tag, ex.getMessage());
         }
     }
 
+    private static void checkConsentStatus(AppCompatActivity activity ) {
+        Consent consentInfo = Consent.getInstance(activity);
+        consentInfo.requestConsentUpdate(new ConsentUpdateListener() {
+            @Override
+            public void onSuccess(ConsentStatus consentStatus, boolean isNeedConsent, List<AdProvider> adProviders) {
+                // User's consent status successfully updated.
+            }
+            @Override
+            public void onFail(String errorDescription){
+                // User's consent status failed to update.
+            }
+        });
+    }
     private static void loadHuaweiAdkitToView(AppCompatActivity activity, int resourceId) {
         BannerView huaweiAdView = activity.findViewById(resourceId);
+        huaweiAdView.setVisibility(View.VISIBLE);
 
         // ADKit: https://forums.developer.huawei.com/forumPortal/en/topicview?tid=0201308778868370129&fid=0101188387844930001
         //if (BuildConfig.DEBUG) // TEST banner
@@ -86,7 +116,7 @@ public class AdHelper {
         huaweiAdView.setBannerRefresh(30);
         AdParam adParam = new AdParam.Builder().build();
         huaweiAdView.loadAd(adParam);
-        huaweiAdView.setVisibility(View.VISIBLE);
+        //huaweiAdView.setVisibility(View.VISIBLE);
     }
 
     public static int getAdPosition(FirebaseRemoteConfig mFirebaseRemoteConfig) {

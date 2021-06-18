@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.murati.audiobook" >
+    package="com.murati.audiobook">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- Offline Ebook listening -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Offline Ebook listening -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- android.software.leanback=false, so the APK is available to both TV and regular -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- android.software.leanback=false, so the APK is available to both TV and regular -->
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
@@ -22,100 +18,86 @@
         android:required="false" />
 
     <application
-        android:name="com.murati.audiobook.AudioBookApp"
-        android:label="${APP_NAME}"
+        android:name=".AudioBookApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:theme="@style/UAmpAppTheme"
         android:banner="@drawable/tv_banner"
-
+        android:icon="@mipmap/ic_launcher"
+        android:label="${APP_NAME}"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
-        >
+        android:theme="@style/UAmpAppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.DebugInfoActivity"></activity>
 
-        <service android:name=".OfflineBookService"/>
-
-        <!--AUTO
+        <service android:name=".OfflineBookService" />
+        <!--
+AUTO
         <meta-data
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
         -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <!-- ADMOB App ID -->
+            android:value="@integer/google_play_services_version" /> <!-- ADMOB App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${ADMOB_APP_ID}"/>
-
-        <!-- HUAWEI App ID -->
+            android:value="${ADMOB_APP_ID}" /> <!-- HUAWEI App ID -->
         <meta-data
             android:name="com.huawei.hms.client.appid"
-            android:value="${APPSTORE_HUAWEI_ID}" />
-
-        <!-- Main activity for music browsing on phone -->
+            android:value="${APPSTORE_HUAWEI_ID}" /> <!-- Main activity for music browsing on phone -->
         <activity
-            android:name="com.murati.audiobook.ui.MusicPlayerActivity"
+            android:name=".ui.MusicPlayerActivity"
             android:label="${APP_NAME}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
 
             <!-- Use this intent filter to get voice searches, like "Play Ábel a rengetegben" -->
             <intent-filter>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!-- Placeholder activity for phone settings -->
+        </activity> <!-- Placeholder activity for phone settings -->
         <activity
-            android:name="com.murati.audiobook.ui.SettingsActivity"
-            android:label="${APP_NAME}">
-        </activity>
-
-        <!-- Placeholder activity for About page -->
+            android:name=".ui.SettingsActivity"
+            android:label="${APP_NAME}"></activity> <!-- Placeholder activity for About page -->
         <activity
-            android:name="com.murati.audiobook.ui.AboutActivity"
-            android:label="${APP_NAME}">
-        </activity>
-
-        <!-- Proxy activity that opens either the NowPlaying TV or the mobile UI, depending on
-        the current environment -->
+            android:name=".ui.AboutActivity"
+            android:label="${APP_NAME}"></activity>
+        <!--
+ Proxy activity that opens either the NowPlaying TV or the mobile UI, depending on
+        the current environment
+        -->
         <activity
-            android:name="com.murati.audiobook.ui.NowPlayingActivity"
-            android:icon="@mipmap/ic_launcher">
-        </activity>
-
-        <!-- Main activity for Android TV user interface -->
+            android:name=".ui.NowPlayingActivity"
+            android:icon="@mipmap/ic_launcher"></activity> <!-- Main activity for Android TV user interface -->
         <activity
-            android:name="com.murati.audiobook.ui.tv.TvBrowseActivity"
+            android:name=".ui.tv.TvBrowseActivity"
             android:label="${APP_NAME}"
-            android:theme="@style/Theme.UAmp.TVLeanback" >
+            android:theme="@style/Theme.UAmp.TVLeanback">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.murati.audiobook.ui.tv.TvVerticalGridActivity"
-            android:theme="@style/Theme.UAmp.TVLeanback"
-            android:parentActivityName="com.murati.audiobook.ui.tv.TvBrowseActivity" />
-
-        <!-- Android TV UI when playing a song -->
+            android:name=".ui.tv.TvVerticalGridActivity"
+            android:parentActivityName=".ui.tv.TvBrowseActivity"
+            android:theme="@style/Theme.UAmp.TVLeanback" /> <!-- Android TV UI when playing a song -->
         <activity
-            android:name="com.murati.audiobook.ui.tv.TvPlaybackActivity"
-            android:theme="@style/Theme.UAmp.TVLeanback"
-            android:parentActivityName="com.murati.audiobook.ui.tv.TvBrowseActivity" />
-
+            android:name=".ui.tv.TvPlaybackActivity"
+            android:parentActivityName=".ui.tv.TvBrowseActivity"
+            android:theme="@style/Theme.UAmp.TVLeanback" />
         <!--
              (OPTIONAL) use this meta data to indicate which icon should be
              used in Android Auto media notifications (for example, when the
@@ -124,7 +106,6 @@
         <meta-data
             android:name="com.google.android.gms.car.notification.SmallIcon"
             android:resource="@mipmap/ic_launcher" />
-
         <!--
              (OPTIONAL) use this meta data to override the theme from which Android Auto will
              look for colors. If you don't set this, Android Auto will look
@@ -133,7 +114,6 @@
         <meta-data
             android:name="com.google.android.gms.car.application.theme"
             android:resource="@style/CarTheme" />
-
         <!--
              (OPTIONAL) use this meta data to override the theme from which Android Wear will
              look for colors. Currently, only background color of the media cards can be set, via
@@ -143,48 +123,47 @@
         <meta-data
             android:name="com.google.android.wearable.media.theme"
             android:resource="@style/WearTheme" />
-
-        <!-- Main music service, provides media browsing and media playback services to
+        <!--
+ Main music service, provides media browsing and media playback services to
          consumers through MediaBrowserService and MediaSession. Consumers connect to it through
-         MediaBrowser (for browsing) and MediaController (for play session control) -->
+         MediaBrowser (for browsing) and MediaController (for play session control)
+        -->
         <service
-            android:name="com.murati.audiobook.MusicService"
+            android:name=".MusicService"
             android:exported="true"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
-
-        <!--
-             (REQUIRED) use this meta data to to declare the app OptionsProvider.
-        -->
+        <!--              (REQUIRED) use this meta data to to declare the app OptionsProvider. -->
         <meta-data
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
             android:value="com.murati.audiobook.CastOptionsProvider" />
-
-        <!-- A full screen activity showing controls and a seek bar for
-             the current playing music -->
+        <!--
+ A full screen activity showing controls and a seek bar for
+             the current playing music
+        -->
         <activity
-            android:name="com.murati.audiobook.ui.FullScreenPlayerActivity"
+            android:name=".ui.FullScreenPlayerActivity"
             android:label="${APP_NAME}"
             android:launchMode="singleTop"
-            android:parentActivityName="com.murati.audiobook.ui.MusicPlayerActivity">
+            android:parentActivityName=".ui.MusicPlayerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.murati.audiobook.ui.MusicPlayerActivity"/>
+                android:value="com.murati.audiobook.ui.MusicPlayerActivity" />
         </activity>
-
-        <!-- A receiver that will receive media buttons and send as
+        <!--
+ A receiver that will receive media buttons and send as
             intents to your MediaBrowserServiceCompat implementation.
             Required on pre-Lollipop. More information at
-            http://developer.android.com/reference/android/support/v4/media/session/MediaButtonReceiver.html -->
-        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
+            http://developer.android.com/reference/android/support/v4/media/session/MediaButtonReceiver.html
+        -->
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
