@@ -9,10 +9,10 @@
 
     <com.huawei.hms.ads.banner.BannerView
         android:id="@+id/huaweiAdView"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:bannerSize="BANNER_SIZE_360_57"
-        ads:adId="@string/HUAWEI_BANNER_ID" />
+        ads:bannerSize="BANNER_SIZE_SMART"
+        ads:adId="@string/HUAWEI_BANNER_ID"
+        />
 
 </LinearLayout>
