@@ -37,12 +37,9 @@
     <color name="default_primary_dark">#4E678B</color>
     <color name="default_accent">#FE9774</color>
 
-<<<<<<< HEAD
-=======
     <color name="default_card_active_text">#000000</color>
     <color name="default_card_inactive_text">#dddd</color>
 
->>>>>>> 5f4d3b200680ea3acacd49c50f4b5321d396e767
     <color name="message_background">#d8fa9995</color>
     <color name="message_foreground">@color/default_primary_dark</color>
 
