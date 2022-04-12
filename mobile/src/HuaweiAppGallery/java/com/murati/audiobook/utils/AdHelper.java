@@ -16,7 +16,7 @@ import com.murati.audiobook.R;
 
 import java.util.Locale;
 
-import static com.murati.audiobook.utils.MobileServicesHelper.isHmsAvailable;
+//import static com.murati.audiobook.utils.MobileServicesHelper.isHmsAvailable;
 
 public class AdHelper {
 
