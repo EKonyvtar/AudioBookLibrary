@@ -208,6 +208,7 @@ public final class LocalPlayback implements Playback {
             String source = OfflineBookService.getTrackSource(track);
 
             if (mExoPlayer == null) {
+                //TODO: fix exoplayerfactory to support newer versions
                 mExoPlayer = ExoPlayerFactory.newSimpleInstance(
                     new DefaultRenderersFactory(mContext),
                     new DefaultTrackSelector(),
