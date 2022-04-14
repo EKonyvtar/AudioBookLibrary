@@ -58,7 +58,8 @@
         <!-- Main activity for music browsing on phone -->
         <activity
             android:name="com.murati.audiobook.ui.MusicPlayerActivity"
-            android:label="${APP_NAME}">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -78,13 +79,13 @@
         <!-- Placeholder activity for phone settings -->
         <activity
             android:name="com.murati.audiobook.ui.SettingsActivity"
-            android:label="${APP_NAME}">
+        >
         </activity>
 
         <!-- Placeholder activity for About page -->
         <activity
             android:name="com.murati.audiobook.ui.AboutActivity"
-            android:label="${APP_NAME}">
+        >
         </activity>
 
         <!-- Proxy activity that opens either the NowPlaying TV or the mobile UI, depending on
@@ -97,8 +98,9 @@
         <!-- Main activity for Android TV user interface -->
         <activity
             android:name="com.murati.audiobook.ui.tv.TvBrowseActivity"
-            android:label="${APP_NAME}"
-            android:theme="@style/Theme.UAmp.TVLeanback" >
+            android:theme="@style/Theme.UAmp.TVLeanback"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
@@ -164,10 +166,10 @@
             android:value="com.murati.audiobook.CastOptionsProvider" />
 
         <!-- A full screen activity showing controls and a seek bar for
-             the current playing music -->
+             the current pl
+             aying music -->
         <activity
             android:name="com.murati.audiobook.ui.FullScreenPlayerActivity"
-            android:label="${APP_NAME}"
             android:launchMode="singleTop"
             android:parentActivityName="com.murati.audiobook.ui.MusicPlayerActivity">
             <meta-data
@@ -179,7 +181,10 @@
             intents to your MediaBrowserServiceCompat implementation.
             Required on pre-Lollipop. More information at
             http://developer.android.com/reference/android/support/v4/media/session/MediaButtonReceiver.html -->
-        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
+        <receiver
+            android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
