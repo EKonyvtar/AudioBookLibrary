@@ -139,9 +139,10 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
                         break;
 
-                    case R.id.navigation_feedback:
-                        FeedbackHelper.showLikeDialog(ActionBarCastActivity.this);
-                        break;
+                    // case R.id.navigation_feedback:
+                    //    FeedbackHelper.showLikeDialog(ActionBarCastActivity.this);
+                    //    break;
+
                     case R.id.navigation_about:
                         intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
                         break;

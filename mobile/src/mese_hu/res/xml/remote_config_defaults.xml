@@ -14,6 +14,10 @@
         <value>0</value>
     </entry>
     <entry>
+        <key>enable_review_api</key>
+        <value>false</value>
+    </entry>
+    <entry>
         <key>audiobook_server_url</key>
         <value>http://www.archive.org/</value>
     </entry>
