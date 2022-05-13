@@ -6409,6 +6409,196 @@
       "source": "https://mek.oszk.hu/20800/20809/mp3/07-Palnagy_Laszlo-Digitello_Homolypumpiaban.mp3",
       "title": "Hófüllencs Galádor",
       "trackNumber": 7
+    },
+    {
+      "album": "Válogatás Arany László Magyar népmesék című gyűjteményéből",
+      "artist": "Arany László",
+      "duration": 2689,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22100/22163/borito.jpg",
+      "source": "https://mek.oszk.hu/22100/22163/mp3/Arany_Laszlo-Magyar_nepmesek_01.mp3",
+      "title": "1. rész",
+      "trackNumber": 1
+    },
+    {
+      "album": "Válogatás Arany László Magyar népmesék című gyűjteményéből",
+      "artist": "Arany László",
+      "duration": 2702,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22100/22163/borito.jpg",
+      "source": "https://mek.oszk.hu/22100/22163/mp3/Arany_Laszlo-Magyar_nepmesek_02.mp3",
+      "title": "2. rész",
+      "trackNumber": 2
+    },
+    {
+      "album": "Válogatás Arany László Magyar népmesék című gyűjteményéből",
+      "artist": "Arany László",
+      "duration": 2687,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22100/22163/borito.jpg",
+      "source": "https://mek.oszk.hu/22100/22163/mp3/Arany_Laszlo-Magyar_nepmesek_03.mp3",
+      "title": "3. rész",
+      "trackNumber": 3
+    },
+    {
+      "album": "Válogatás Arany László Magyar népmesék című gyűjteményéből",
+      "artist": "Arany László",
+      "duration": 2710,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22100/22163/borito.jpg",
+      "source": "https://mek.oszk.hu/22100/22163/mp3/Arany_Laszlo-Magyar_nepmesek_04.mp3",
+      "title": "4. rész",
+      "trackNumber": 4
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 774,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/01-Mesepelyhek.mp3",
+      "title": "Palásthy Ágnes: Rudolf, a Télapó szarvasa",
+      "trackNumber": 1
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 890,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/02-Mesepelyhek.mp3",
+      "title": "Erdei Barbara: Borz Bonifác karácsonya",
+      "trackNumber": 2
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 1194,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/03-Mesepelyhek.mp3",
+      "title": "Balla Kálmán: Öcsi, az Északi sark őre",
+      "trackNumber": 3
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 430,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/04-Mesepelyhek.mp3",
+      "title": "Aux Eliza: Krampuszok karácsonya",
+      "trackNumber": 4
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 1807,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/05-Mesepelyhek.mp3",
+      "title": "Engler József: Ünnepi kalamajka",
+      "trackNumber": 5
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 1128,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/06-Mesepelyhek.mp3",
+      "title": "Bank Eszter Katalin: Az elveszett lista",
+      "trackNumber": 6
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 399,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/07-Mesepelyhek.mp3",
+      "title": "K. László Szilvia: A karácsonyfa",
+      "trackNumber": 7
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 877,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/08-Mesepelyhek.mp3",
+      "title": "Földi Kinga: Dércsípte Benő és a játékbaba",
+      "trackNumber": 8
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 526,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/09-Mesepelyhek.mp3",
+      "title": "Váczi B. Nikoletta: Az elveszett csengettyű",
+      "trackNumber": 9
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 1277,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/10-Mesepelyhek.mp3",
+      "title": "Gergely-Péch Éva: Az eltévedt pingvin",
+      "trackNumber": 10
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 731,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/11-Mesepelyhek.mp3",
+      "title": "Sütő Fanni: A hóember karácsonya",
+      "trackNumber": 11
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 221,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/12-Mesepelyhek.mp3",
+      "title": "Bubrik Zseraldina: Száncsengő",
+      "trackNumber": 12
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 877,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/13-Mesepelyhek.mp3",
+      "title": "Váczy Virág: A fatündérek karácsonya",
+      "trackNumber": 13
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 682,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/14-Mesepelyhek.mp3",
+      "title": "Galambos Tamás: Télapó és Krampusz",
+      "trackNumber": 14
+    },
+    {
+      "album": "Mesepelyhek",
+      "artist": "",
+      "duration": 1730,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/22600/22667/borito.jpg",
+      "source": "https://mek.oszk.hu/22600/22667/mp3/15-Mesepelyhek.mp3",
+      "title": "L. J. Wesley: Jesse Jones, a Mikulás küldetés",
+      "trackNumber": 15
     }
   ]
 }
