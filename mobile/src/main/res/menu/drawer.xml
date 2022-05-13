@@ -46,10 +46,13 @@
             android:visible="false"
 
             />
+        <!--
         <item
             android:id="@+id/navigation_feedback"
+            android:visibility="invisible"
             android:icon="@drawable/ic_menu_feedback"
             android:title="@string/drawer_feedback_title"/>
+        -->
         <item
             android:id="@+id/navigation_about"
             android:icon="@drawable/ic_menu_about"

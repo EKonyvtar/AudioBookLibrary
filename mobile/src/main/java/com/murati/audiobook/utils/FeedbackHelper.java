@@ -9,11 +9,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
 public class FeedbackHelper {
     private static final String TAG = LogHelper.makeLogTag(FeedbackHelper.class);
+    private static FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     private static final String MILESTONE_REFERENCE_FILE = "MILESTONE_REFERENCE";
 
@@ -28,22 +31,28 @@ public class FeedbackHelper {
 
 
     public static void showLikeDialog(final Activity activity) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(R.string.like_title)
-            .setMessage(R.string.like_message)
-            .setPositiveButton(R.string.like_ok_button, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    incrementCount(activity, LIKE_COUNT);
-                    showStoreRatingDialog(activity);
-                }
-            })
-            .setNegativeButton(R.string.like_no_button, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    incrementCount(activity, DISLIKE_COUNT);
-                    showFeedbackDialog(activity);
-                }
-            });
-        builder.show();
+
+        Boolean enable_review_api = mFirebaseRemoteConfig.getBoolean("enable_review_api");
+        if (!enable_review_api) {
+            openStoreRatingUrl(activity);
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle(R.string.like_title)
+                .setMessage(R.string.like_message)
+                .setPositiveButton(R.string.like_ok_button, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        incrementCount(activity, LIKE_COUNT);
+                        showStoreRatingDialog(activity);
+                    }
+                })
+                .setNegativeButton(R.string.like_no_button, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        incrementCount(activity, DISLIKE_COUNT);
+                        showFeedbackDialog(activity);
+                    }
+                });
+            builder.show();
+        }
     }
 
     public static void showStoreRatingDialog(final Activity activity) {
@@ -53,7 +62,7 @@ public class FeedbackHelper {
             .setPositiveButton(R.string.rate_ok_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     incrementCount(activity, RATED_COUNT);
-                    openStoreRating(activity);
+                    openStoreRatingUrl(activity);
                 }
             })
             .setNegativeButton(R.string.rate_no_button, new DialogInterface.OnClickListener() {
@@ -203,7 +212,7 @@ public class FeedbackHelper {
         }
     }
 
-    private static void openStoreRating(Context c) {
+    private static void openStoreRatingUrl(Context c) {
         try {
             String uri = String.format(BuildConfig.APPSTORE_URL, BuildConfig.APPLICATION_ID);
 

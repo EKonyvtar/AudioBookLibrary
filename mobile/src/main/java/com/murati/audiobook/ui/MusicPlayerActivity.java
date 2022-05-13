@@ -420,7 +420,7 @@ public class MusicPlayerActivity extends BaseActivity
         getBrowseFragment().onConnected();
         updateBookButtons(getMediaId());
 
-
-        FeedbackHelper.tryShowDialogs(this);
+        // Remove scheduled feedback helper
+        // FeedbackHelper.tryShowDialogs(this);
     }
 }
