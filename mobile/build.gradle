@@ -27,11 +27,11 @@ android {
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 24
+        minSdkVersion 22
         targetSdkVersion 30
         multiDexEnabled true
 
-        versionCode 100
+        versionCode 101
         versionName "0.37.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
