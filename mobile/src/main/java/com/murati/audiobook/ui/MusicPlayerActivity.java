@@ -19,8 +19,6 @@ import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
@@ -28,7 +26,6 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -79,22 +76,6 @@ public class MusicPlayerActivity extends BaseActivity
         "com.murati.audiobook.CURRENT_MEDIA_DESCRIPTION";
 
     private Bundle mSearchParams;
-
-    private Handler splashHandler = new Handler() {
-        /* (non-Javadoc)
-         * @see android.os.Handler#handleMessage(android.os.Message)
-         */
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case STOPSPLASH:
-                    //remove SplashScreen from view
-                    splash.setVisibility(View.GONE);
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
