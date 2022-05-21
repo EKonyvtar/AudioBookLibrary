@@ -238,7 +238,7 @@ dependencies {
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
     implementation 'com.google.android.support:wearable:2.9.0'
 
-    implementation 'com.google.android.gms:play-services-cast-framework:19.0.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:21.0.1'
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     // 1.4.1 - The minCompileSdk (31) specified in a
     //     dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)
