@@ -46,7 +46,7 @@
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent"
            android:layout_margin="12dp"
-           app:tint="@color/media_item_icon_not_playing" />
+           app:tint="@color/default_card_inactive_text" />
 
         <!--
        <ImageView
@@ -118,7 +118,7 @@
            android:layout_marginTop="@dimen/drawer_item_horizontal_padding"
            android:layout_marginBottom="@dimen/drawer_item_horizontal_padding"
            android:src="@drawable/ic_cloud_download"
-           app:tint="@color/media_item_icon_not_playing"
+           app:tint="@color/default_card_inactive_text"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toTopOf="parent"

@@ -332,9 +332,9 @@ public class MediaItemViewHolder {
 
     private static void initializeColorStateLists(Context ctx) {
         sColorStateNotPlaying = ColorStateList.valueOf(ctx.getResources().getColor(
-            R.color.media_item_icon_not_playing));
+            R.color.default_card_inactive_text));
         sColorStatePlaying = ColorStateList.valueOf(ctx.getResources().getColor(
-            R.color.media_item_icon_playing));
+            R.color.default_card_active_text));
     }
 
     public static Drawable getDrawableByState(Context context, int state) {

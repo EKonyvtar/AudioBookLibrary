@@ -15,19 +15,12 @@
   limitations under the License.
   -->
 <resources>
-    <color name="fullscreen_secondary_line_color">#E5CCCCCC</color>
-    <color name="fullscreen_line_color">#E5FFFFFF</color>
-
-
     <!-- Reevaluated TV colors -->
     <color name="default_background">#272525</color>
-    <color name="bt_accent">#00B8D4</color>
+    <color name="fullscreen_line_color">#E5FFFFFF</color>
+    <color name="fullscreen_secondary_line_color">#E5CCCCCC</color>
 
-    <color name="media_item_icon_playing">@color/bt_accent</color>
-    <color name="media_item_icon_not_playing">#ccc</color>
-
-
-    <!-- Re-enforced color -->
+    <!-- Re-enforced colors -->
     <color name="default_primary">#BE0224</color>
     <color name="default_primary_dark">#A40123</color>
     <color name="default_accent">#C00035</color>

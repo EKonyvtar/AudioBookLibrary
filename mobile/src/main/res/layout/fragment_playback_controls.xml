@@ -77,5 +77,5 @@
         android:src="@drawable/ic_play_arrow_black_36dp"
         android:contentDescription="@string/play_pause"
         android:tintMode="src_in"
-        android:tint="@color/bt_accent"/>
+        android:tint="@color/default_primary"/>
 </RelativeLayout>
