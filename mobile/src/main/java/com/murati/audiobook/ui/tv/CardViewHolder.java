@@ -16,6 +16,9 @@
 
 package com.murati.audiobook.ui.tv;
 
+import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_GENRE;
+import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_BY_WRITER;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -95,12 +98,18 @@ public class CardViewHolder extends Presenter.ViewHolder {
 
         // The try to load extra if present
         if (description.getIconUri() != null) {
+            //TODO: readjust scaling for TV
             BitmapHelper.fetch(context, description.getIconUri().toString(), new BitmapHelper.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
                     setCardImage(context, bitmap);
                 }
             });
+        } else {
+            if (description.getMediaId().startsWith(MEDIA_ID_BY_GENRE))
+                setCardImage(context, description.getIconBitmap());
+            else if (description.getMediaId().startsWith(MEDIA_ID_BY_WRITER))
+                setCardImage(context, description.getIconBitmap());
         }
     }
 

@@ -47,6 +47,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
+import com.murati.audiobook.R;
 import com.murati.audiobook.utils.BitmapHelper;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.QueueHelper;
@@ -191,7 +192,8 @@ public class TvPlaybackFragment extends PlaybackSupportFragment {
             if (controller != null && controller.getQueue() != null) {
                 queueSize = controller.getQueue().size();
             }
-            HeaderItem header = new HeaderItem(0, queueSize + " song(s) in this playlist");
+            HeaderItem header = new HeaderItem(0, String.format(getString(R.string.browse_track_count), ""+queueSize)); //queueSize + " song(s) in this playlist");
+
 
             mPresenterSelector.addClassPresenter(ListRow.class, new ListRowPresenter());
 
