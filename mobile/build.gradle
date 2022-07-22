@@ -22,7 +22,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     buildToolsVersion '30.0.3'
 
     defaultConfig {
@@ -48,14 +48,10 @@ android {
     // System.getenv("KSTORE")
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        //sourceCompatibility JavaVersion.VERSION_1_8
+        //targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
-    lintOptions {
-        abortOnError false
-    }
 
     buildTypes {
         release {
@@ -220,12 +216,15 @@ android {
 
         //TODO: define paid and free dimensions
     }
+    lint {
+        abortOnError false
+    }
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
+    //flatDir {
+    //    dirs 'libs'
+    //}
     google()
     jcenter()
     maven { url 'https://developer.huawei.com/repo/' }
