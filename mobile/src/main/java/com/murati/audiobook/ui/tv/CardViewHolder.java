@@ -36,13 +36,15 @@ import androidx.leanback.widget.Presenter;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.view.View;
 
+import com.murati.audiobook.BuildConfig;
+import com.murati.audiobook.R;
 import com.murati.audiobook.ui.MediaItemViewHolder;
 import com.murati.audiobook.utils.BitmapHelper;
 
 public class CardViewHolder extends Presenter.ViewHolder {
 
-    private static final int CARD_WIDTH = 300;
-    private static final int CARD_HEIGHT = 250;
+    private static final int CARD_WIDTH = 192; //300;
+    private static final int CARD_HEIGHT = 236; //250;
 
     private final ImageCardView mCardView;
     private int mItemState;
@@ -84,7 +86,15 @@ public class CardViewHolder extends Presenter.ViewHolder {
      *
      **/
     public void setupCardView(final Context context, MediaDescriptionCompat description) {
-        mCardView.setTitleText(description.getTitle());
+
+        String title = String.valueOf(description.getTitle());
+        // Hack for shorter titles for Bible TV
+        if ("bible_hu".equals(BuildConfig.FLAVOR_catalogue)) {
+            if (title.contains("-"))
+                title = title.split("-")[1];
+        }
+
+        mCardView.setTitleText(title);
         mCardView.setContentText(description.getSubtitle());
         mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
 
@@ -118,13 +128,18 @@ public class CardViewHolder extends Presenter.ViewHolder {
             return;
         }
         Drawable artDrawable = null;
+
         if (art != null) {
             artDrawable = new BitmapDrawable(context.getResources(), art);
         } else {
-            CharSequence title = mCardView.getTitleText();
+            artDrawable = context.getDrawable(R.drawable.default_book_cover);
+
+            /* CharSequence title = mCardView.getTitleText();
             if (title != null && title.length() > 0) {
-                artDrawable = new TextDrawable(String.valueOf(title.charAt(0)));
-            }
+                String text = String.valueOf(title);
+                //text = text.replace(" ", "\n");
+                artDrawable = new TextDrawable(text);
+            } */
         }
         mCardView.setMainImage(artDrawable);
     }
@@ -142,11 +157,12 @@ public class CardViewHolder extends Presenter.ViewHolder {
             this.text = text;
             this.paint = new Paint();
             paint.setColor(Color.WHITE);
-            paint.setTextSize(280f);
+            paint.setTextSize(20f);
             paint.setAntiAlias(true);
             paint.setFakeBoldText(true);
             paint.setStyle(Paint.Style.FILL);
-            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setShadowLayer(6f, 0, 0, Color.BLACK);
+            paint.setTextAlign(Paint.Align.LEFT);
         }
 
         @Override
@@ -154,9 +170,10 @@ public class CardViewHolder extends Presenter.ViewHolder {
             Rect r = getBounds();
             int count = canvas.save();
             canvas.translate(r.left, r.top);
-            float midW = r.width() / 2;
-            float midH = r.height() / 2 - ((paint.descent() + paint.ascent()) / 2);
-            canvas.drawText(text, midW, midH, paint);
+            //float midW = r.width() / 2;
+            //float midH = r.height() / 2 - ((paint.descent() + paint.ascent()) / 2);
+            //canvas.drawText(text, midW, midH, paint);
+            canvas.drawText(text, 30, 170, paint);
             canvas.restoreToCount(count);
         }
 

@@ -33,8 +33,8 @@
     <dimen name="drawer_item_horizontal_padding">16dp</dimen>
 
     <!-- header image -->
-    <dimen name="title_expanded_start">480dp</dimen>
-    <dimen name="title_expanded_end">160dp</dimen>
+    <!-- <dimen name="title_expanded_start">480dp</dimen>
+    <dimen name="title_expanded_end">160dp</dimen> -->
 
     <!-- media browser listview -->
     <dimen name="media_item_height">72dp</dimen>

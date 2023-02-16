@@ -25,6 +25,8 @@ import com.murati.audiobook.MusicService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.LogHelper;
 
+// Dark item listing
+
 public class TvVerticalGridActivity extends FragmentActivity
         implements TvVerticalGridFragment.MediaFragmentListener {
 

@@ -78,6 +78,7 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
 
     protected void setMediaId(String mediaId) {
         LogHelper.d(TAG, "setMediaId: ", mediaId);
+        mediaId = mediaId.split("\\|")[0];
         if (TextUtils.equals(mMediaId, mediaId)) {
             return;
         }
@@ -156,7 +157,9 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
 
                 if (!item.isPlayable()) {
                     //LogHelper.e(TAG, "Cannot show non-playable items. Ignoring ", item.getMediaId());
-                    mAdapter.add(item);
+                    //if (item.isBrowsable()) {
+                        mAdapter.add(item);
+                    //}
                 } else {
                     mAdapter.add(item);
                 }
