@@ -56006,7 +56006,7 @@
       "duration": 38,
       "genre": "vers(ek)",
       "image": "http://mek.oszk.hu/11300/11327/borito.jpg",
-      "source": "https://mek.oszk.hu/11300/11327/mp3/00_Az_obsitos.mp3",
+      "source": "https://mek.oszk.hu/11300/11327/mp3/00_Garay_Janos-Az_obsitos.mp3",
       "title": "Hangos katalóguscédula",
       "trackNumber": 1
     },
@@ -56016,7 +56016,7 @@
       "duration": 398,
       "genre": "vers(ek)",
       "image": "http://mek.oszk.hu/11300/11327/borito.jpg",
-      "source": "https://mek.oszk.hu/11300/11327/mp3/01_Az_obsitos.mp3",
+      "source": "https://mek.oszk.hu/11300/11327/mp3/01_Garay_Janos-Az_obsitos.mp3",
       "title": "I. Az obsitos és Napóleon",
       "trackNumber": 2
     },
@@ -56026,7 +56026,7 @@
       "duration": 403,
       "genre": "vers(ek)",
       "image": "http://mek.oszk.hu/11300/11327/borito.jpg",
-      "source": "https://mek.oszk.hu/11300/11327/mp3/02_Az_obsitos.mp3",
+      "source": "https://mek.oszk.hu/11300/11327/mp3/02_Garay_Janos-Az_obsitos.mp3",
       "title": "II. Az obsitos látogatása",
       "trackNumber": 3
     },
@@ -56036,7 +56036,7 @@
       "duration": 65,
       "genre": "vers(ek)",
       "image": "http://mek.oszk.hu/11300/11327/borito.jpg",
-      "source": "https://mek.oszk.hu/11300/11327/mp3/03_Az_obsitos.mp3",
+      "source": "https://mek.oszk.hu/11300/11327/mp3/03_Garay_Janos-Az_obsitos.mp3",
       "title": "Jegyzetek",
       "trackNumber": 4
     },
@@ -85869,6 +85869,1486 @@
       "source": "https://mek.oszk.hu/22600/22667/mp3/15-Mesepelyhek.mp3",
       "title": "L. J. Wesley: Jesse Jones, a Mikulás küldetés",
       "trackNumber": 15
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 84,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/00-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 271,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/01-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "1. rész",
+      "trackNumber": 2
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 450,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/02-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "2. rész",
+      "trackNumber": 3
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 420,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/03-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "3. rész",
+      "trackNumber": 4
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 387,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/04-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "4. rész",
+      "trackNumber": 5
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 463,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/05-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "5. rész",
+      "trackNumber": 6
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 240,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/06-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "6. rész",
+      "trackNumber": 7
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 239,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/07-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "7. rész",
+      "trackNumber": 8
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 425,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/08-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "8. rész",
+      "trackNumber": 9
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 254,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/09-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "9. rész",
+      "trackNumber": 10
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 551,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/10-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "10. rész",
+      "trackNumber": 11
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 504,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/11-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "11. rész",
+      "trackNumber": 12
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 91,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/12-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "12. rész",
+      "trackNumber": 13
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 262,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/13-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "13. rész",
+      "trackNumber": 14
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 99,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/14-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "14. rész",
+      "trackNumber": 15
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 139,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/15-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "15. rész",
+      "trackNumber": 16
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 176,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/16-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "16. rész",
+      "trackNumber": 17
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 73,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/17-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "17. rész",
+      "trackNumber": 18
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 107,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/18-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "18. rész",
+      "trackNumber": 19
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 251,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/19-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "19. rész",
+      "trackNumber": 20
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 943,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/20-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "20. rész",
+      "trackNumber": 21
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 973,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/21-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "21. rész",
+      "trackNumber": 22
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 117,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/22-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "22. rész",
+      "trackNumber": 23
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 72,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/23-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "23. rész",
+      "trackNumber": 24
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 327,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/24-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "24. rész",
+      "trackNumber": 25
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 113,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/25-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "25. rész",
+      "trackNumber": 26
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 149,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/26-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "26. rész",
+      "trackNumber": 27
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 164,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/27-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "27. rész",
+      "trackNumber": 28
+    },
+    {
+      "album": "Halime",
+      "artist": "Braun Krisztina",
+      "duration": 61,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/23100/23187/borito.jpg",
+      "source": "https://mek.oszk.hu/23100/23187/mp3/28-Brown_C_C-Halime-Sensara_utolso_elete.mp3",
+      "title": "28. rész",
+      "trackNumber": 29
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 98,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/00-Brown_C_C-Sorscsapda.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 342,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/01-Brown_C_C-Sorscsapda.mp3",
+      "title": "01. Prológus",
+      "trackNumber": 2
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 443,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/02-Brown_C_C-Sorscsapda.mp3",
+      "title": "02.",
+      "trackNumber": 3
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 568,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/03-Brown_C_C-Sorscsapda.mp3",
+      "title": "03.",
+      "trackNumber": 4
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 904,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/04-Brown_C_C-Sorscsapda.mp3",
+      "title": "04.",
+      "trackNumber": 5
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1094,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/05-Brown_C_C-Sorscsapda.mp3",
+      "title": "05.",
+      "trackNumber": 6
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1380,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/06-Brown_C_C-Sorscsapda.mp3",
+      "title": "06.",
+      "trackNumber": 7
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 952,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/07-Brown_C_C-Sorscsapda.mp3",
+      "title": "07.",
+      "trackNumber": 8
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1107,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/08-Brown_C_C-Sorscsapda.mp3",
+      "title": "08. Második rész",
+      "trackNumber": 9
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1034,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/09-Brown_C_C-Sorscsapda.mp3",
+      "title": "09. Öt évvel ezelőtt - András",
+      "trackNumber": 10
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 942,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/10-Brown_C_C-Sorscsapda.mp3",
+      "title": "10.",
+      "trackNumber": 11
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1063,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/11-Brown_C_C-Sorscsapda.mp3",
+      "title": "11.",
+      "trackNumber": 12
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 718,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/12-Brown_C_C-Sorscsapda.mp3",
+      "title": "12.",
+      "trackNumber": 13
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 381,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/13-Brown_C_C-Sorscsapda.mp3",
+      "title": "13.",
+      "trackNumber": 14
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 607,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/14-Brown_C_C-Sorscsapda.mp3",
+      "title": "14. Gábor",
+      "trackNumber": 15
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 626,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/15-Brown_C_C-Sorscsapda.mp3",
+      "title": "15.",
+      "trackNumber": 16
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 837,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/16-Brown_C_C-Sorscsapda.mp3",
+      "title": "16.",
+      "trackNumber": 17
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1115,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/17-Brown_C_C-Sorscsapda.mp3",
+      "title": "17.",
+      "trackNumber": 18
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 588,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/18-Brown_C_C-Sorscsapda.mp3",
+      "title": "18. Gábor",
+      "trackNumber": 19
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 197,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/19-Brown_C_C-Sorscsapda.mp3",
+      "title": "19. Tonka",
+      "trackNumber": 20
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 190,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/20-Brown_C_C-Sorscsapda.mp3",
+      "title": "20. Egy héttel ezelőtt",
+      "trackNumber": 21
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1047,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/21-Brown_C_C-Sorscsapda.mp3",
+      "title": "21.",
+      "trackNumber": 22
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 368,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/22-Brown_C_C-Sorscsapda.mp3",
+      "title": "22. Gábor",
+      "trackNumber": 23
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 2013,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/23-Brown_C_C-Sorscsapda.mp3",
+      "title": "23. Tonka",
+      "trackNumber": 24
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 544,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/24-Brown_C_C-Sorscsapda.mp3",
+      "title": "24. Gábor",
+      "trackNumber": 25
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 597,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/25-Brown_C_C-Sorscsapda.mp3",
+      "title": "25. Tonka",
+      "trackNumber": 26
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 1000,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/26-Brown_C_C-Sorscsapda.mp3",
+      "title": "26.",
+      "trackNumber": 27
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 572,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/27-Brown_C_C-Sorscsapda.mp3",
+      "title": "27. Gábor",
+      "trackNumber": 28
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 135,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/28-Brown_C_C-Sorscsapda.mp3",
+      "title": "28. Tonka",
+      "trackNumber": 29
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 803,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/29-Brown_C_C-Sorscsapda.mp3",
+      "title": "29. Gábor",
+      "trackNumber": 30
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 449,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/30-Brown_C_C-Sorscsapda.mp3",
+      "title": "30. Tonka",
+      "trackNumber": 31
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 238,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/31-Brown_C_C-Sorscsapda.mp3",
+      "title": "31. Gábor",
+      "trackNumber": 32
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 406,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/32-Brown_C_C-Sorscsapda.mp3",
+      "title": "32.",
+      "trackNumber": 33
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 397,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/33-Brown_C_C-Sorscsapda.mp3",
+      "title": "33. Gábor",
+      "trackNumber": 34
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 539,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/34-Brown_C_C-Sorscsapda.mp3",
+      "title": "34. Tonka",
+      "trackNumber": 35
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 446,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/35-Brown_C_C-Sorscsapda.mp3",
+      "title": "35. Tonka",
+      "trackNumber": 36
+    },
+    {
+      "album": "Sorscsapda",
+      "artist": "Braun Krisztina",
+      "duration": 145,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23200/23227/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23227/mp3/36-Brown_C_C-Sorscsapda.mp3",
+      "title": "36.",
+      "trackNumber": 37
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 115,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/01-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Hatvan évesen",
+      "trackNumber": 1
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 311,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/02-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Éjszakai villódzó árnyak",
+      "trackNumber": 2
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 55,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/03-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Egy...",
+      "trackNumber": 3
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 107,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/04-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Anyámnak",
+      "trackNumber": 4
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 177,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/05-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Hokedli",
+      "trackNumber": 5
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 94,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/06-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Villanykörte",
+      "trackNumber": 6
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 116,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/07-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Mit ér az orvos, ha nyugdíjas",
+      "trackNumber": 7
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 145,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/08-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Száz év",
+      "trackNumber": 8
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 91,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/09-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "A kövek az életünk részei",
+      "trackNumber": 9
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 68,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/10-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Az anyákról",
+      "trackNumber": 10
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 148,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/11-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "A varázslatos hegedű",
+      "trackNumber": 11
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 198,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/12-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Klezmer",
+      "trackNumber": 12
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 171,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/13-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "A drogista",
+      "trackNumber": 13
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 398,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/14-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Történet",
+      "trackNumber": 14
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 153,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/15-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Név és emlékezet",
+      "trackNumber": 15
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 130,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/16-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Cipők és csontok",
+      "trackNumber": 16
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 43,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/17-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Mindegy",
+      "trackNumber": 17
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 145,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/18-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Advent",
+      "trackNumber": 18
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 127,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/19-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Juju",
+      "trackNumber": 19
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 128,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/20-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Ági és Juju",
+      "trackNumber": 20
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 126,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/21-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Zongora",
+      "trackNumber": 21
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 137,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/22-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Vízcseppek",
+      "trackNumber": 22
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 76,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/23-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Halok megfele",
+      "trackNumber": 23
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 92,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/24-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Piac",
+      "trackNumber": 24
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 101,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/25-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "Az óra",
+      "trackNumber": 25
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 462,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/26-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "A fiam és az unokám",
+      "trackNumber": 26
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 136,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/27-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "2002 Karácsony",
+      "trackNumber": 27
+    },
+    {
+      "album": "A csend mellém ül",
+      "artist": "Dolinay Tamás",
+      "duration": 223,
+      "genre": "elbeszélés(ek),cikk(ek),vers(ek)",
+      "image": "https://mek.oszk.hu/23200/23237/borito.jpg",
+      "source": "https://mek.oszk.hu/23200/23237/mp3/28-Dolinay_Tamas-A_csend_mellem_ul.mp3",
+      "title": "A csend mellém ül",
+      "trackNumber": 28
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 314,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/00-Kato_mint_asszony.mp3",
+      "title": "Impresszum / Bevezető",
+      "trackNumber": 1
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 810,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/01-Kato_mint_asszony.mp3",
+      "title": "01. Egy",
+      "trackNumber": 2
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 559,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/02-Kato_mint_asszony.mp3",
+      "title": "02. Kettő",
+      "trackNumber": 3
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 620,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/03-Kato_mint_asszony.mp3",
+      "title": "03. Három",
+      "trackNumber": 4
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 599,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/04-Kato_mint_asszony.mp3",
+      "title": "04. Négy",
+      "trackNumber": 5
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 713,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/05-Kato_mint_asszony.mp3",
+      "title": "05. Öt",
+      "trackNumber": 6
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 623,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/06-Kato_mint_asszony.mp3",
+      "title": "06. Hat",
+      "trackNumber": 7
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 836,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/07-Kato_mint_asszony.mp3",
+      "title": "07. Hét",
+      "trackNumber": 8
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 704,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/08-Kato_mint_asszony.mp3",
+      "title": "08. Nyolc",
+      "trackNumber": 9
+    },
+    {
+      "album": "Kató mint asszony",
+      "artist": "",
+      "duration": 732,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/23300/23314/borito.jpg",
+      "source": "https://mek.oszk.hu/23300/23314/mp3/09-Kato_mint_asszony.mp3",
+      "title": "09. Kilenc",
+      "trackNumber": 10
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 57,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/00-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1831,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/01-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "1. fejezet",
+      "trackNumber": 2
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1163,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/02-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "2. fejezet",
+      "trackNumber": 3
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1016,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/03-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "3. fejezet",
+      "trackNumber": 4
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1628,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/04-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "4. fejezet",
+      "trackNumber": 5
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1139,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/05-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "5. fejezet",
+      "trackNumber": 6
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 3223,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/06-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "6. fejezet",
+      "trackNumber": 7
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 2847,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/07-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "7. fejezet",
+      "trackNumber": 8
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1742,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/08-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "8. fejezet",
+      "trackNumber": 9
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 582,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/09-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "9. fejezet",
+      "trackNumber": 10
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 2761,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/10-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "10. fejezet",
+      "trackNumber": 11
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 928,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/11-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "11. fejezet",
+      "trackNumber": 12
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1670,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/12-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "12. fejezet",
+      "trackNumber": 13
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1018,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/13-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "13. fejezet",
+      "trackNumber": 14
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1385,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/14-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "14. fejezet",
+      "trackNumber": 15
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1122,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/15-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "15. fejezet",
+      "trackNumber": 16
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1085,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/16-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "16. fejezet",
+      "trackNumber": 17
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 891,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/17-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "17. fejezet",
+      "trackNumber": 18
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 995,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/18-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "18. fejezet",
+      "trackNumber": 19
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1217,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/19-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "19. fejezet",
+      "trackNumber": 20
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1687,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/20-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "20. fejezet",
+      "trackNumber": 21
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1670,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/21-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "21. fejezet",
+      "trackNumber": 22
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1227,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/22-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "22. fejezet",
+      "trackNumber": 23
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 2313,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/23-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "23. fejezet",
+      "trackNumber": 24
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 2859,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/24-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "24. fejezet",
+      "trackNumber": 25
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1132,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/25-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "25. fejezet",
+      "trackNumber": 26
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 4556,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/26-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "26. fejezet",
+      "trackNumber": 27
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 702,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/27-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "27. fejezet",
+      "trackNumber": 28
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 913,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/28-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "28. fejezet",
+      "trackNumber": 29
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1871,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/29-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "29. fejezet",
+      "trackNumber": 30
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 546,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/30-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "30. fejezet",
+      "trackNumber": 31
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1103,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/31-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "31. fejezet",
+      "trackNumber": 32
+    },
+    {
+      "album": "Úri muri",
+      "artist": "Móricz Zsigmond",
+      "duration": 1301,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23600/23604/borito.jpg",
+      "source": "https://mek.oszk.hu/23600/23604/mp3/32-Moricz_Zsigmond-Uri_muri.mp3",
+      "title": "32. fejezet",
+      "trackNumber": 33
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 62,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/00-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 2178,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/01-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "I. fejezet",
+      "trackNumber": 2
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 2415,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/02-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "II. fejezet",
+      "trackNumber": 3
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 4063,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/03-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "III. fejezet",
+      "trackNumber": 4
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 3282,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/04-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "IV. fejezet<",
+      "trackNumber": 5
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 1889,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/05-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "V. fejezet<",
+      "trackNumber": 6
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 3719,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/06-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "VI. fejezet<",
+      "trackNumber": 7
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 2334,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/07-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "VII. fejezet<",
+      "trackNumber": 8
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 5411,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/08-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "VIII. fejezet<",
+      "trackNumber": 9
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 508,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/09-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "IX. fejezet<",
+      "trackNumber": 10
+    },
+    {
+      "album": "A Pál utcai fiúk",
+      "artist": "Molnár Ferenc",
+      "duration": 4106,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/23700/23762/borito.jpg",
+      "source": "https://mek.oszk.hu/23700/23762/mp3/10-Molnar_Ferenc-A_Pal_utcai_fiuk.mp3",
+      "title": "X. fejezet<",
+      "trackNumber": 11
     }
   ]
 }
