@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param (
 	[string]$CatalogUrl = 'http://localhost:5009/api/AudioBooks',
+	#[string]$CatalogUrl = 'https://127.0.0.1:7068/api/AudioBooks',
 	[string]$CatalogFile = './mek_ebook_list.txt',
 	[string]$File = './release/offline_catalog-Hungarian.json',
 	[string]$Separator = ',',
@@ -12,9 +13,10 @@ param (
 
 function Get-RemoteFile($remotefile) {
 	$cacheFile = $remotefile
-	$cacheFile = $cacheFile -ireplace "http://", ""
-	$cacheFile = $cacheFile -ireplace "/", "|"
-	$cacheFile = $cacheFile -ireplace "\?", "#"
+	$cacheFile = $cacheFile -ireplace "http.*://", ""
+	$cacheFile = $cacheFile -ireplace "[:]", "-"
+	$cacheFile = $cacheFile -ireplace "/", "-"
+	$cacheFile = $cacheFile -ireplace "\?", "-"
 	$missingFile = "./cache/missing/$cacheFile"
 	$cacheFile = "./cache/$cacheFile"
 
@@ -40,6 +42,7 @@ function Invoke-CachedRestMethod($remotefile) {
 }
 
 Set-Location $PSScriptRoot
+New-Item -ItemType Directory -Path "./cache/missing/" -Force
 
 $catalog = @()
 $audioBooks = Get-Content -Path $CatalogFile
@@ -87,7 +90,7 @@ foreach ($book in $audioBooks) {
 	}
 
 	Write-Verbose "Adding fullTitle"
-	if ($trackDetails | Get-Member author) { $ebookObject.artist = $trackDetails.author }
+	if ($trackDetails | Get-Member author) { $ebookObject.artist = "" + $trackDetails.author }
 	if ($trackDetails | Get-Member title) { $ebookObject.album = $trackDetails.title }
 
 	if (!$trackDetails -or !$ebookObject.album) {
