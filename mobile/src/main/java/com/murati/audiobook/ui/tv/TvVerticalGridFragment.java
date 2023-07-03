@@ -15,6 +15,8 @@
  */
 package com.murati.audiobook.ui.tv;
 
+import static com.murati.audiobook.utils.MediaIDHelper.MEDIA_ID_ROOT;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 
+import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 
@@ -75,6 +78,7 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
 
     protected void setMediaId(String mediaId) {
         LogHelper.d(TAG, "setMediaId: ", mediaId);
+        mediaId = mediaId.split("\\|")[0];
         if (TextUtils.equals(mMediaId, mediaId)) {
             return;
         }
@@ -142,10 +146,20 @@ public class TvVerticalGridFragment extends VerticalGridSupportFragment {
         public void onChildrenLoaded(@NonNull String parentId, @NonNull
                 List<MediaBrowserCompat.MediaItem> children) {
             mAdapter.clear();
+
             for (int i = 0; i < children.size(); i++) {
                 MediaBrowserCompat.MediaItem item = children.get(i);
+
+                if (MEDIA_ID_ROOT.equals(parentId)) {
+                    if (item.getMediaId().contains("_HEADER_"))
+                        continue;
+                }
+
                 if (!item.isPlayable()) {
-                    LogHelper.e(TAG, "Cannot show non-playable items. Ignoring ", item.getMediaId());
+                    //LogHelper.e(TAG, "Cannot show non-playable items. Ignoring ", item.getMediaId());
+                    //if (item.isBrowsable()) {
+                        mAdapter.add(item);
+                    //}
                 } else {
                     mAdapter.add(item);
                 }

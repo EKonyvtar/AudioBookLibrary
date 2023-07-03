@@ -25,6 +25,8 @@ import com.murati.audiobook.MusicService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.LogHelper;
 
+// Dark item listing
+
 public class TvVerticalGridActivity extends FragmentActivity
         implements TvVerticalGridFragment.MediaFragmentListener {
 
@@ -37,13 +39,15 @@ public class TvVerticalGridActivity extends FragmentActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        // View for openiing playable or browsable items
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tv_vertical_grid);
 
         mMediaId = getIntent().getStringExtra(TvBrowseActivity.SAVED_MEDIA_ID);
         mTitle = getIntent().getStringExtra(TvBrowseActivity.BROWSE_TITLE);
 
-        getWindow().setBackgroundDrawableResource(R.drawable.tv_background);
+        //getWindow().setBackgroundDrawableResource(R.drawable.tv_background);
+        getWindow().setBackgroundDrawableResource(R.drawable.fullscreen_bg_gradient);
 
         mMediaBrowser = new MediaBrowserCompat(this,
                 new ComponentName(this, MusicService.class),
@@ -64,6 +68,7 @@ public class TvVerticalGridActivity extends FragmentActivity
     }
 
     protected void browse() {
+        //TODO: Fix browsable by artists
         LogHelper.d(TAG, "navigateToBrowser, mediaId=" + mMediaId);
         TvVerticalGridFragment fragment = (TvVerticalGridFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.vertical_grid_fragment);

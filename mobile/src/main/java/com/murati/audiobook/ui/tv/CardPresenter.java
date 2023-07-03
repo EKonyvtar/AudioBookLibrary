@@ -58,6 +58,10 @@ public class CardPresenter extends Presenter {
         if (item instanceof  MediaBrowserCompat.MediaItem) {
             MediaBrowserCompat.MediaItem mediaItem = (MediaBrowserCompat.MediaItem) item;
             LogHelper.d(TAG, "onBindViewHolder MediaItem: ", mediaItem.toString());
+            String mediaId = mediaItem.getMediaId();
+
+            if (mediaItem.isPlayable()) return;
+
             description = mediaItem.getDescription();
             cardViewHolder.setState(MediaItemViewHolder.getMediaItemState(mContext, mediaItem));
         } else if (item instanceof MediaSessionCompat.QueueItem) {

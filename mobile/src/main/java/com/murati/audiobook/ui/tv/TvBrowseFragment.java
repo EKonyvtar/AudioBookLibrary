@@ -222,7 +222,7 @@ public class TvBrowseFragment extends BrowseSupportFragment {
         mSubscribedMediaIds = new HashSet<>();
 
         // set search icon color
-        setSearchAffordanceColor(getResources().getColor(R.color.tv_search_button));
+        setSearchAffordanceColor(getResources().getColor(R.color.default_primary_dark));
 
         loadRows();
         setupEventListeners();

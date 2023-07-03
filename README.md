@@ -7,11 +7,11 @@ audiobook listener and catalog app for mobiles, tablets, Android
 Auto, Android Wear, Android TV and Chrome/Google Cast devices.
 
 Supported Language Flavors:
-
--   French
--   Spanish
--   German
--   Hungarian
+- French
+- Spanish
+- German
+- English
+- Hungarian
 
 Supported App Store Flavors:
 
