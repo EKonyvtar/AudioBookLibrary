@@ -24,15 +24,22 @@ buildscript {
         //maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath 'com.android.tools.build:gradle:8.0.2'
 
         // Google Services
         classpath 'com.google.gms:google-services:4.3.15'
 
         // Crashlytics
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.6'
 
         // Performance Monitoring
         classpath 'com.google.firebase:perf-plugin:1.4.2'
     }
 }
+
+/*
+plugins {
+    // Add the dependency for the Google services Gradle plugin
+    id("com.google.gms.google-services") version "4.3.15" apply false
+}
+*/

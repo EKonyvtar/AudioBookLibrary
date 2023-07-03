@@ -38,7 +38,7 @@ public class AdHelper {
     }
 
     private static void loadGoogleAdmodToView(AppCompatActivity activity, int resourceId) {
-        MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
+        //MobileAds.initialize(activity, BuildConfig.ADMOB_APP_ID);
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(activity, new OnInitializationCompleteListener() {
             @Override
@@ -53,18 +53,19 @@ public class AdHelper {
 
         AdRequest adRequest;
         // Admob testing: https://developers.google.com/admob/android/test-ads
-        if (BuildConfig.DEBUG) // TEST banner
+   /*     if (BuildConfig.DEBUG) // TEST banner
             adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
              //adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
         else adRequest = new AdRequest.Builder().build();
              //adView.setAdUnitId(BuildConfig.ADMOB_UNIT_ID_1);
-
+*/
         try {
             AdSize adSize = getAdSize(activity);
             adView.setAdSize(adSize);
         } catch (Exception ex) {
             adView.setAdSize(AdSize.SMART_BANNER);
         }
+        adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setVisibility(View.VISIBLE);
     }
