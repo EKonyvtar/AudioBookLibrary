@@ -49,8 +49,7 @@ commands:
 jobs:
   test:
     docker:
-      - image: circleci/android:api-34-ndk
-      # cimg/android:2023.06
+      - image: cimg/android:2023.06-ndk
     parallelism: 4
     steps:
       - checkout
@@ -75,7 +74,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/android:api-34-ndk
+      - image: cimg/android:2023.06-ndk
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
