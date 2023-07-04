@@ -25,16 +25,16 @@ plugins {
 
 android {
     compileSdkVersion 34
-    buildToolsVersion '30.0.3'
+    buildToolsVersion '34.0.0'
 
     defaultConfig {
         applicationId "com.murati.audiobook"
         minSdkVersion 22
-        targetSdkVersion 34
+        targetSdkVersion 31
         multiDexEnabled true
 
-        versionCode 110
-        versionName "0.45.${versionCode}"
+        versionCode 113
+        versionName "0.46.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -241,6 +241,8 @@ dependencies {
     implementation 'com.google.android.support:wearable:2.9.0'
 
     implementation 'com.google.android.gms:play-services-cast-framework:21.3.0'
+
+    implementation("androidx.core:core:1.9.0")
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     // 1.4.1 - The minCompileSdk (31) specified in a
     //     dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)
