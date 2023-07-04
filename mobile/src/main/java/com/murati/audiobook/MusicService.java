@@ -29,6 +29,8 @@ import android.os.Message;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat.MediaItem;
+
+import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import androidx.media.session.MediaButtonReceiver;
@@ -250,8 +252,16 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         Context context = getApplicationContext();
         Intent intent = new Intent(context, NowPlayingActivity.class);
+
+        int pendingFlags;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE;
+        } else {
+            pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
+        }
+
         PendingIntent pi = PendingIntent.getActivity(context, 99 /*request code*/,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                intent, pendingFlags);
         mSession.setSessionActivity(pi);
 
         mSessionExtras = new Bundle();
@@ -454,7 +464,11 @@ public class MusicService extends MediaBrowserServiceCompat implements
                         " isConnectedToCar=", mIsConnectedToCar);
             }
         };
-        registerReceiver(mCarConnectionReceiver, filter);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            registerReceiver(mCarConnectionReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        else
+            registerReceiver(mCarConnectionReceiver, filter);
     }
 
     private void unregisterCarConnectionReceiver() {

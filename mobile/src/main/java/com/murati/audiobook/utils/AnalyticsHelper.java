@@ -23,7 +23,8 @@ public class AnalyticsHelper {
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id);
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_LOCATION_ID, current);
+        //TODO: review location analytics
+        bundle.putString(FirebaseAnalytics.Param.LOCATION_ID, current);
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, type);
 
         FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);

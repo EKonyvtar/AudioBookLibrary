@@ -101,19 +101,25 @@ public class MediaNotificationManager extends BroadcastReceiver {
         mNotificationManager = (NotificationManager) mService.getSystemService(Context.NOTIFICATION_SERVICE);
 
         String pkg = mService.getPackageName();
+        int cancelPendingFlags;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ) {
+            cancelPendingFlags = PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE;
+        } else {
+            cancelPendingFlags = PendingIntent.FLAG_CANCEL_CURRENT;
+        }
+
         mPauseIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_PAUSE).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_PAUSE).setPackage(pkg), cancelPendingFlags);
         mPlayIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_PLAY).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_PLAY).setPackage(pkg), cancelPendingFlags);
         mPreviousIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_PREV).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_PREV).setPackage(pkg), cancelPendingFlags);
         mNextIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_NEXT).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_NEXT).setPackage(pkg), cancelPendingFlags);
         mStopIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_STOP).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_STOP).setPackage(pkg), cancelPendingFlags);
         mStopCastIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-            new Intent(ACTION_STOP_CASTING).setPackage(pkg),
-            PendingIntent.FLAG_CANCEL_CURRENT);
+            new Intent(ACTION_STOP_CASTING).setPackage(pkg), cancelPendingFlags);
 
         // Cancel all notifications to handle the case where the Service was killed and
         // restarted by the system.
@@ -140,7 +146,11 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 filter.addAction(ACTION_PLAY);
                 filter.addAction(ACTION_PREV);
                 filter.addAction(ACTION_STOP_CASTING);
-                mService.registerReceiver(this, filter);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                    mService.registerReceiver(this, filter, Context.RECEIVER_EXPORTED);
+                else
+                    mService.registerReceiver(this, filter);
 
                 mService.startForeground(NOTIFICATION_ID, notification);
                 mStarted = true;
@@ -227,8 +237,12 @@ public class MediaNotificationManager extends BroadcastReceiver {
         if (description != null) {
             openUI.putExtra(MusicPlayerActivity.EXTRA_CURRENT_MEDIA_DESCRIPTION, description);
         }
-        return PendingIntent.getActivity(mService, REQUEST_CODE, openUI,
-            PendingIntent.FLAG_CANCEL_CURRENT);
+
+        int cancelFlags = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ) ?
+            PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE :
+            PendingIntent.FLAG_CANCEL_CURRENT;
+
+        return PendingIntent.getActivity(mService, REQUEST_CODE, openUI, cancelFlags);
     }
 
     private final MediaControllerCompat.Callback mCb = new MediaControllerCompat.Callback() {
@@ -344,7 +358,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
     private int addActions(final NotificationCompat.Builder notificationBuilder) {
         LogHelper.d(TAG, "updatePlayPauseAction");
 
-        notificationBuilder.mActions.clear();
+        notificationBuilder.clearActions(); // .mActions.clear();
 
         int playPauseButtonPosition = 0;
         // If skip to previous action is enabled
