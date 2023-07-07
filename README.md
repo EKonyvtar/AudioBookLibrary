@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/EKonyvtar/AudioBookLibrary.svg?style=svg&circle-token=af20ac1f8d0eb0fcd0c100c7efbc736e443e301b)](https://circleci.com/gh/EKonyvtar/AudioBookLibrary)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/EKonyvtar/AudioBookLibrary/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/EKonyvtar/AudioBookLibrary/tree/master)
 
 # AudioBook Library App
 
@@ -14,9 +14,9 @@ Supported Language Flavors:
 - Hungarian
 
 Supported App Store Flavors:
-
--   Huawei App Gallery
 -   Google Play Store
+-   Huawei App Gallery
+
 
 The source code is based on the original Java based Google Android Universal Music Player:
 
