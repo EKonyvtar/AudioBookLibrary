@@ -174,8 +174,7 @@
             android:value="com.murati.audiobook.CastOptionsProvider" />
 
         <!-- A full screen activity showing controls and a seek bar for
-             the current pl
-             aying music -->
+             the current playing music -->
         <activity
             android:name="com.murati.audiobook.ui.FullScreenPlayerActivity"
             android:launchMode="singleTop"
