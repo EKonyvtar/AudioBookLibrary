@@ -257,7 +257,7 @@
       "genre": "szöveggyűjtemény",
       "image": "http://mek.oszk.hu/02200/02286/borito.jpg",
       "source": "https://mek.oszk.hu/02200/02286/mp3/2700af10.mp3",
-      "title": "Jakov Ignjatoviæ: Damjanich",
+      "title": "Jakov Ignjatović: Damjanich",
       "trackNumber": 11
     },
     {
@@ -8099,6 +8099,16 @@
       "source": "https://mek.oszk.hu/02400/02423/mp3/2704ag00.mp3",
       "title": "Az író utószava",
       "trackNumber": 82
+    },
+    {
+      "album": "Summa",
+      "artist": "Gubcsi Lajos",
+      "duration": 0,
+      "genre": "vers(ek),esszé(k)",
+      "image": "http://mek.oszk.hu/02400/02426/borito.jpg",
+      "source": "https://mek.oszk.hu/02400/02426/02426.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "A láthatatlan légió",
@@ -33231,6 +33241,16 @@
       "trackNumber": 37
     },
     {
+      "album": "Harér námaiva kévalam",
+      "artist": "Bakaja Zoltán",
+      "duration": 0,
+      "genre": "tanulmány(ok)",
+      "image": "http://mek.oszk.hu/04000/04085/borito.jpg",
+      "source": "https://mek.oszk.hu/04000/04085/04085.mp3",
+      "title": null,
+      "trackNumber": 1
+    },
+    {
       "album": "François Villon balladái",
       "artist": "François Villon,Villon François",
       "duration": 0,
@@ -36677,7 +36697,7 @@
       "genre": "emlékiratok",
       "image": "http://mek.oszk.hu/04700/04763/borito.jpg",
       "source": "https://mek.oszk.hu/04700/04763/mp3/065.mp3",
-      "title": "Dunðerski kastély",
+      "title": "Dunđerski kastély",
       "trackNumber": 65
     },
     {
@@ -36967,7 +36987,7 @@
       "genre": "emlékiratok",
       "image": "http://mek.oszk.hu/04700/04763/borito.jpg",
       "source": "https://mek.oszk.hu/04700/04763/mp3/094.mp3",
-      "title": "Karaðorðevo",
+      "title": "Karađorđevo",
       "trackNumber": 94
     },
     {
@@ -37327,7 +37347,7 @@
       "genre": "emlékiratok",
       "image": "http://mek.oszk.hu/04700/04763/borito.jpg",
       "source": "https://mek.oszk.hu/04700/04763/mp3/130.mp3",
-      "title": "Leánykút (Devojaèki bunar)",
+      "title": "Leánykút (Devojački bunar)",
       "trackNumber": 130
     },
     {
@@ -37337,7 +37357,7 @@
       "genre": "emlékiratok",
       "image": "http://mek.oszk.hu/04700/04763/borito.jpg",
       "source": "https://mek.oszk.hu/04700/04763/mp3/131.mp3",
-      "title": "Ljiljana Petroviæ-show",
+      "title": "Ljiljana Petrović-show",
       "trackNumber": 131
     },
     {
@@ -37497,7 +37517,7 @@
       "genre": "emlékiratok",
       "image": "http://mek.oszk.hu/04700/04763/borito.jpg",
       "source": "https://mek.oszk.hu/04700/04763/mp3/147.mp3",
-      "title": "A Maslaæ család",
+      "title": "A Maslać család",
       "trackNumber": 147
     },
     {
@@ -42797,7 +42817,7 @@
       "genre": "útikönyv",
       "image": "http://mek.oszk.hu/06400/06447/borito.jpg",
       "source": "https://mek.oszk.hu/06400/06447/mp3/020.mp3",
-      "title": "Repüléstörténeti és Ûrhajózási Kiállítás",
+      "title": "Repüléstörténeti és Űrhajózási Kiállítás",
       "trackNumber": 20
     },
     {
@@ -45887,7 +45907,7 @@
       "genre": "vers(ek)",
       "image": "http://mek.oszk.hu/07600/07603/borito.jpg",
       "source": "https://mek.oszk.hu/07600/07603/mp3/hmvasarhely-14.mp3",
-      "title": "CSORCSÁN SZÛCS IMRE saját versét mondja",
+      "title": "CSORCSÁN SZŰCS IMRE saját versét mondja",
       "trackNumber": 14
     },
     {
@@ -46469,6 +46489,26 @@
       "source": "https://mek.oszk.hu/07700/07736/mp3/3140af032.mp3",
       "title": "Életem",
       "trackNumber": 34
+    },
+    {
+      "album": "Egy kun Budán és Pesten",
+      "artist": "Gubcsi Lajos",
+      "duration": 0,
+      "genre": "emlékiratok,elbeszélés(ek),levél(ek)",
+      "image": "http://mek.oszk.hu/07700/07793/borito.jpg",
+      "source": "https://mek.oszk.hu/07700/07793/07793.mp3",
+      "title": null,
+      "trackNumber": 1
+    },
+    {
+      "album": "Nagy Pál visszaemlékezései",
+      "artist": "Nagy Pál",
+      "duration": 0,
+      "genre": "emlékiratok",
+      "image": "http://mek.oszk.hu/08300/08399/borito.jpg",
+      "source": "https://mek.oszk.hu/08300/08399/08399.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "János vitéz",
@@ -53977,7 +54017,7 @@
       "genre": "elbeszélés(ek)",
       "image": "http://mek.oszk.hu/11000/11029/borito.jpg",
       "source": "https://mek.oszk.hu/11000/11029/mp3/09_Pozarevacka_9_1.mp3",
-      "title": "Požarevaèka 9 1.",
+      "title": "Požarevačka 9 1.",
       "trackNumber": 10
     },
     {
@@ -53987,7 +54027,7 @@
       "genre": "elbeszélés(ek)",
       "image": "http://mek.oszk.hu/11000/11029/borito.jpg",
       "source": "https://mek.oszk.hu/11000/11029/mp3/10_Pozarevacka_9_2.mp3",
-      "title": "Požarevaèka 9 2.",
+      "title": "Požarevačka 9 2.",
       "trackNumber": 11
     },
     {
@@ -54127,7 +54167,7 @@
       "genre": "elbeszélés(ek)",
       "image": "http://mek.oszk.hu/11000/11029/borito.jpg",
       "source": "https://mek.oszk.hu/11000/11029/mp3/24_Osvrt_na_Arpadove_price.mp3",
-      "title": "Osvrt na Arpadove prièe",
+      "title": "Osvrt na Arpadove priče",
       "trackNumber": 25
     },
     {
@@ -54137,7 +54177,7 @@
       "genre": "elbeszélés(ek)",
       "image": "http://mek.oszk.hu/11000/11029/borito.jpg",
       "source": "https://mek.oszk.hu/11000/11029/mp3/25_Autobiografija_i_imaginacija_u_pricama_Arpada_Nemeta.mp3",
-      "title": "Autobiografija i imaginacija u prièama Arpada Nemeta",
+      "title": "Autobiografija i imaginacija u pričama Arpada Nemeta",
       "trackNumber": 26
     },
     {
@@ -57997,7 +58037,7 @@
       "genre": "elbeszélés(ek)",
       "image": "http://mek.oszk.hu/12000/12080/borito.jpg",
       "source": "https://mek.oszk.hu/12000/12080/mp3/09-Manoporkolt-hokedlival.mp3",
-      "title": "Bukros Zsolt (Maggoth): A Múltba Zuhant Ûrhajós",
+      "title": "Bukros Zsolt (Maggoth): A Múltba Zuhant Űrhajós",
       "trackNumber": 9
     },
     {
@@ -59519,6 +59559,16 @@
       "source": "https://mek.oszk.hu/12200/12244/mp3/10-Fekete_muzsak.mp3",
       "title": "Outro",
       "trackNumber": 10
+    },
+    {
+      "album": "Magyar pokol - 1514",
+      "artist": "Gubcsi Lajos",
+      "duration": 0,
+      "genre": "regény",
+      "image": "http://mek.oszk.hu/12200/12297/borito.jpg",
+      "source": "https://mek.oszk.hu/12200/12297/12297.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "A fekete kapitány",
@@ -62819,6 +62869,16 @@
       "source": "https://mek.oszk.hu/12800/12892/mp3/06-A_sarga_pokol.mp3",
       "title": "V. fejezet",
       "trackNumber": 6
+    },
+    {
+      "album": "Görög katolikus magyar mise",
+      "artist": "Fekete Kiss Sándor",
+      "duration": 0,
+      "genre": "kotta(k)",
+      "image": "http://mek.oszk.hu/13600/13632/borito.jpg",
+      "source": "https://mek.oszk.hu/13600/13632/13632.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "Tengercseppek",
@@ -69529,6 +69589,16 @@
       "source": "https://mek.oszk.hu/16000/16012/mp3/11-Rejto_Jeno-A_boszorkanymester.mp3",
       "title": "Wallenstein főorvos 12 menetben a halállal",
       "trackNumber": 11
+    },
+    {
+      "album": "Sziklarajzok",
+      "artist": "Lipcsey Emőke",
+      "duration": 0,
+      "genre": "vers(ek)",
+      "image": "http://mek.oszk.hu/16000/16079/borito.jpg",
+      "source": "https://mek.oszk.hu/16000/16079/16079.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "Holt zendülő",
@@ -78541,6 +78611,16 @@
       "trackNumber": 16
     },
     {
+      "album": "A király álma [Hangjáték]",
+      "artist": "NTK Horváth Sándor",
+      "duration": 0,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/19800/19874/borito.jpg",
+      "source": "https://mek.oszk.hu/19800/19874/19874.mp3",
+      "title": null,
+      "trackNumber": 1
+    },
+    {
       "album": "Egbert egér intézkedik",
       "artist": "Mihályi Antal",
       "duration": 1208,
@@ -85717,7 +85797,7 @@
       "genre": "elbeszélés(ek)",
       "image": "https://mek.oszk.hu/22500/22591/borito.jpg",
       "source": "https://mek.oszk.hu/22500/22591/mp3/Nemeth_Arpad-Kamena kapija_31.mp3",
-      "title": "Tragom Arpadove nepresušne pripovedaèke inspiracije (Velibor Piliæ)",
+      "title": "Tragom Arpadove nepresušne pripovedačke inspiracije (Velibor Pilić)",
       "trackNumber": 63
     },
     {
@@ -86909,6 +86989,16 @@
       "source": "https://mek.oszk.hu/23300/23314/mp3/09-Kato_mint_asszony.mp3",
       "title": "09. Kilenc",
       "trackNumber": 10
+    },
+    {
+      "album": "Erdélyi útiképek",
+      "artist": "Rozványi Dávid",
+      "duration": 0,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/23500/23596/borito.jpg",
+      "source": "https://mek.oszk.hu/23500/23596/23596.mp3",
+      "title": null,
+      "trackNumber": 1
     },
     {
       "album": "Úri muri",
@@ -88569,6 +88659,1386 @@
       "source": "https://mek.oszk.hu/24600/24657/mp3/17-Rejto_Jeno-Legeny_a_talpan.mp3",
       "title": "XVII. fejezet",
       "trackNumber": 18
+    },
+    {
+      "album": "Rímeskönyv",
+      "artist": "Darvas László",
+      "duration": 1343,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/24700/24799/borito.jpg",
+      "source": "https://mek.oszk.hu/24700/24799/mp3/01_Darvas_Laszlo_Rimeskonyv_I_Allatok.mp3",
+      "title": "Állatok",
+      "trackNumber": 1
+    },
+    {
+      "album": "Rímeskönyv",
+      "artist": "Darvas László",
+      "duration": 1318,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/24700/24799/borito.jpg",
+      "source": "https://mek.oszk.hu/24700/24799/mp3/02_Darvas_Laszlo_Rimeskonyv_II_Haboru_es_beka.mp3",
+      "title": "Háború és béka",
+      "trackNumber": 2
+    },
+    {
+      "album": "Rímeskönyv",
+      "artist": "Darvas László",
+      "duration": 1543,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/24700/24799/borito.jpg",
+      "source": "https://mek.oszk.hu/24700/24799/mp3/03_Darvas_Laszlo_Rimeskonyv_III_Felmajmok.mp3",
+      "title": "Félmajmok",
+      "trackNumber": 3
+    },
+    {
+      "album": "Rímeskönyv",
+      "artist": "Darvas László",
+      "duration": 1480,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/24700/24799/borito.jpg",
+      "source": "https://mek.oszk.hu/24700/24799/mp3/04_Darvas_Laszlo_Rimeskonyv_IV_Feltamadas.mp3",
+      "title": "Feltámadás",
+      "trackNumber": 4
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 57,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/00-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 355,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/01-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Bevezetés",
+      "trackNumber": 2
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 2153,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/02-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Estella 1",
+      "trackNumber": 3
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1907,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/03-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Estella 2",
+      "trackNumber": 4
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1698,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/04-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Estella 3",
+      "trackNumber": 5
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1195,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/05-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Estella 4",
+      "trackNumber": 6
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1829,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/06-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Estella 5",
+      "trackNumber": 7
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1570,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/07-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Kedélyes atyafiak 1",
+      "trackNumber": 8
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1083,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/08-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Kedélyes atyafiak 2",
+      "trackNumber": 9
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1778,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/09-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Kedélyes atyafiak 3",
+      "trackNumber": 10
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1904,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/10-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Kedélyes atyafiak 4",
+      "trackNumber": 11
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1090,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/11-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Kedélyes atyafiak 5",
+      "trackNumber": 12
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1985,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/12-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 1",
+      "trackNumber": 13
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1761,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/13-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 2",
+      "trackNumber": 14
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1581,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/14-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 3",
+      "trackNumber": 15
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1818,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/15-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 4",
+      "trackNumber": 16
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1846,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/16-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 5",
+      "trackNumber": 17
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1600,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/17-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "A túsz 6",
+      "trackNumber": 18
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1516,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/18-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Az éj 1",
+      "trackNumber": 19
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 2066,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/19-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Az éj 2",
+      "trackNumber": 20
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1951,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/20-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Az éj 3",
+      "trackNumber": 21
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1916,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/21-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Az éj 4",
+      "trackNumber": 22
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 1575,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/22-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Az éj 5",
+      "trackNumber": 23
+    },
+    {
+      "album": "Beszterce ostroma",
+      "artist": "Mikszáth Kálmán",
+      "duration": 843,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/24800/24803/borito.jpg",
+      "source": "https://mek.oszk.hu/24800/24803/mp3/23-Mikszath_Kalman-Beszterce_ostroma.mp3",
+      "title": "Függelék",
+      "trackNumber": 24
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 63,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/00-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 6012,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/01-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "A hírlapíró és a halál",
+      "trackNumber": 2
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 4852,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/02-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "A pincér álma",
+      "trackNumber": 3
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 4366,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/03-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "A fogadósné, vagy az elvarázsolt vendégek",
+      "trackNumber": 4
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1590,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/04-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "A tetszhalott",
+      "trackNumber": 5
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1782,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/05-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Emeletes lak a Duna mentében",
+      "trackNumber": 6
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 3842,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/06-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Böske, vagy a szerkesztőség pesztonkája",
+      "trackNumber": 7
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 649,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/07-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 1",
+      "trackNumber": 8
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 547,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/08-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 2",
+      "trackNumber": 9
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 608,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/09-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 3",
+      "trackNumber": 10
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 435,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/10-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 4",
+      "trackNumber": 11
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1550,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/11-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 5",
+      "trackNumber": 12
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 648,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/12-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 6",
+      "trackNumber": 13
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 294,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/13-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 7",
+      "trackNumber": 14
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 524,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/14-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 8",
+      "trackNumber": 15
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1539,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/15-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 9",
+      "trackNumber": 16
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1075,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/16-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 10",
+      "trackNumber": 17
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 455,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/17-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 11",
+      "trackNumber": 18
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 572,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/18-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 12",
+      "trackNumber": 19
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 1050,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/19-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Zöld ász 13",
+      "trackNumber": 20
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 2272,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/20-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "Egy pohár borovicska és következményei",
+      "trackNumber": 21
+    },
+    {
+      "album": "Az élet álom",
+      "artist": "Krúdy Gyula",
+      "duration": 2078,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/24900/24935/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24935/mp3/21-Krudy_Gyula-Az_elet_alom.mp3",
+      "title": "A kidobott vendég",
+      "trackNumber": 22
+    },
+    {
+      "album": "Felvidéki útiképek (Hangoskönyv)",
+      "artist": "Rozványi Dávid",
+      "duration": 0,
+      "genre": "vers(ek)",
+      "image": "https://mek.oszk.hu/24900/24991/borito.jpg",
+      "source": "https://mek.oszk.hu/24900/24991/24991.mp3",
+      "title": null,
+      "trackNumber": 1
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 61,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/00-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 540,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/01-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "I. Ferenc József utazik",
+      "trackNumber": 2
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 632,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/02-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Hol várták a császárt?",
+      "trackNumber": 3
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 501,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/03-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Milyen volt Rózsa Sándor?",
+      "trackNumber": 4
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 336,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/04-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Milyen volt Rózsa Sándor, a megjövendölt betyár?",
+      "trackNumber": 5
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 806,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/05-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Ferenc Józsefet üdvözli Rózsa Sándor",
+      "trackNumber": 6
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 386,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/06-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Félt-e Ferenc József e pusztai kalandban?",
+      "trackNumber": 7
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 769,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/07-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Hogyan tervezett Rózsa Sándor?",
+      "trackNumber": 8
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 2389,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/08-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "A postarablás",
+      "trackNumber": 9
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 1072,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/09-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Juliska a Bibliát olvassa...",
+      "trackNumber": 10
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 1987,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/10-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Rózsa Sándor diadalmas bevonulása Szegedre",
+      "trackNumber": 11
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 1503,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/11-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Rózsa Sándor - a szabadságért",
+      "trackNumber": 12
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 677,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/12-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Kossuth megbízása",
+      "trackNumber": 13
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 926,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/13-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Kossuth összevont szemöldöke",
+      "trackNumber": 14
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 2023,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/14-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Visszafelé az út a szép betyáréletbe",
+      "trackNumber": 15
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 869,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/15-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Rózsa Sándort csábítgatják a szép betyáréletre...",
+      "trackNumber": 16
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 156,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/16-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Az út kövei Kufstein felé",
+      "trackNumber": 17
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 2909,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/17-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Álom a budai börtönben",
+      "trackNumber": 18
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 1748,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/18-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Búcsú a szabadságtól, a cimboráktól",
+      "trackNumber": 19
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 892,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/19-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Rózsa Sándor estéje",
+      "trackNumber": 20
+    },
+    {
+      "album": "Rózsa Sándor",
+      "artist": "Krúdy Gyula",
+      "duration": 988,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25100/25113/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25113/mp3/20-Krudy_Gyula-Rozsa_Sandor.mp3",
+      "title": "Az utolsó stikli: a vonatrablás",
+      "trackNumber": 21
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 76,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/00-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 386,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/01-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Első fejezet",
+      "trackNumber": 2
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1514,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/02-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Második fejezet",
+      "trackNumber": 3
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1221,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/03-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Harmadik fejezet",
+      "trackNumber": 4
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1508,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/04-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Negyedik fejezet",
+      "trackNumber": 5
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 855,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/05-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Ötödik fejezet",
+      "trackNumber": 6
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 627,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/06-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Hatodik fejezet",
+      "trackNumber": 7
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 566,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/07-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Hetedik fejezet",
+      "trackNumber": 8
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 776,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/08-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Nyolcadik fejezet",
+      "trackNumber": 9
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 525,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/09-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Kilencedik fejezet",
+      "trackNumber": 10
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 499,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/10-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizedik fejezet",
+      "trackNumber": 11
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 793,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/11-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenegyedik fejezet",
+      "trackNumber": 12
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 636,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/12-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenkettedik fejezet",
+      "trackNumber": 13
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 740,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/13-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenharmadik fejezet",
+      "trackNumber": 14
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 804,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/14-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizennegyedik fejezet",
+      "trackNumber": 15
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 529,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/15-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenötödik fejezet",
+      "trackNumber": 16
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 577,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/16-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenhatodik fejezet",
+      "trackNumber": 17
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1108,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/17-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenhetedik fejezet",
+      "trackNumber": 18
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1258,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/18-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizennyolcadik fejezet",
+      "trackNumber": 19
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 877,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/19-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Tizenkilencedik fejezet",
+      "trackNumber": 20
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 437,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/20-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszadik fejezet",
+      "trackNumber": 21
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 717,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/21-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszonegyedik fejezet",
+      "trackNumber": 22
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1246,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/22-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszonkettedik fejezet",
+      "trackNumber": 23
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 968,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/23-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszonharmadik fejezet",
+      "trackNumber": 24
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 640,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/24-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszonnegyedik fejezet",
+      "trackNumber": 25
+    },
+    {
+      "album": "Münchhausen",
+      "artist": "Gaál Mózes",
+      "duration": 1544,
+      "genre": "mese(k)",
+      "image": "https://mek.oszk.hu/25100/25126/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25126/mp3/25-Gaal_Mozes-Munchhausen.mp3",
+      "title": "Huszonötödik fejezet",
+      "trackNumber": 26
+    },
+    {
+      "album": "A köpönyeg",
+      "artist": "Nyikolaj Vasziljevics Gogol,Gogol Nyikolaj Vasziljevics",
+      "duration": 0,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/25100/25185/borito.jpg",
+      "source": "https://mek.oszk.hu/25100/25185/25185.mp3",
+      "title": null,
+      "trackNumber": 1
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1318,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/01-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "1. fejezet: Az otthon melege",
+      "trackNumber": 1
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1721,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/02-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "2. fejezet: Konvektorkrisztus",
+      "trackNumber": 2
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 2049,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/03-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "3. fejezet: A limuzin, ami él",
+      "trackNumber": 3
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1895,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/04-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "4. fejezet: A vályogkastély és a vályútrón",
+      "trackNumber": 4
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1871,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/05-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "5. fejezet: Máglyaünnep",
+      "trackNumber": 5
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1747,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/06-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "6. fejezet: Magyalzombik",
+      "trackNumber": 6
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1461,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/07-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "7. fejezet: Kastélymenzesz",
+      "trackNumber": 7
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1950,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/08-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "8. fejezet: Kletyhi-kle-klon-klenyhe",
+      "trackNumber": 8
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1684,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/09-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "9. fejezet: Egy temetés, egy hamvasztás",
+      "trackNumber": 9
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 1706,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/10-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "10. fejezet: Limuzintor, válságtanács",
+      "trackNumber": 10
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 2109,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/11-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "11. fejezet: Szívrodeó",
+      "trackNumber": 11
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 2422,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/12-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "12. fejezet: Polaroidhavazás",
+      "trackNumber": 12
+    },
+    {
+      "album": "Magyalország",
+      "artist": "Komor Zoltán",
+      "duration": 746,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/25200/25201/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25201/mp3/13-Komor_Zoltan-Magyalorszag.mp3",
+      "title": "13. Epilógus",
+      "trackNumber": 13
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 64,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/00-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Hangos katalóguscédula",
+      "trackNumber": 1
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1221,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/01-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Tájékoztató 1",
+      "trackNumber": 2
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2256,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/02-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Tájékoztató 2",
+      "trackNumber": 3
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1978,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/03-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A virtus 1",
+      "trackNumber": 4
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2074,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/04-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A virtus 2",
+      "trackNumber": 5
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2787,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/05-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A virtus 3",
+      "trackNumber": 6
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1852,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/06-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A virtus 4",
+      "trackNumber": 7
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2089,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/07-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A virtus 5",
+      "trackNumber": 8
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1168,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/08-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A szentgáli nemzetes asszony",
+      "trackNumber": 9
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1006,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/09-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A faragó béres",
+      "trackNumber": 10
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 976,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/10-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Boronya halála",
+      "trackNumber": 11
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1245,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/11-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Ük",
+      "trackNumber": 12
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1107,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/12-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Atyafi-látogatás",
+      "trackNumber": 13
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1098,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/13-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Ez is válópör!",
+      "trackNumber": 14
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 969,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/14-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "Kikből állt a tábor?",
+      "trackNumber": 15
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2225,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/15-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 1",
+      "trackNumber": 16
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 3664,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/16-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 2",
+      "trackNumber": 17
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 3370,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/17-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 3",
+      "trackNumber": 18
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2872,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/18-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 4",
+      "trackNumber": 19
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2064,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/19-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 5",
+      "trackNumber": 20
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2461,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/20-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 6",
+      "trackNumber": 21
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1926,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/21-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 7",
+      "trackNumber": 22
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2146,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/22-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 8",
+      "trackNumber": 23
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 2280,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/23-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 9",
+      "trackNumber": 24
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 970,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/24-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A Kerkapolyak 10",
+      "trackNumber": 25
+    },
+    {
+      "album": "A Bakony",
+      "artist": "Eötvös Károly",
+      "duration": 1215,
+      "genre": "elbeszélés(ek),anekdota(k)",
+      "image": "https://mek.oszk.hu/25200/25246/borito.jpg",
+      "source": "https://mek.oszk.hu/25200/25246/mp3/25-Eotvos_Karoly-A_Bakony-I_kotet.mp3",
+      "title": "A taplószedő",
+      "trackNumber": 26
     }
   ]
 }

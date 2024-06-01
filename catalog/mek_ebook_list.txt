@@ -181,7 +181,6 @@ http://mek.oszk.hu/08700/08789
 http://mek.oszk.hu/08700/08799
 http://mek.oszk.hu/08800/08820
 http://mek.oszk.hu/08800/08839
-http://mek.oszk.hu/08900/08956
 http://mek.oszk.hu/08900/08958
 http://mek.oszk.hu/08900/08959
 http://mek.oszk.hu/09000/09059
@@ -414,3 +413,18 @@ https://mek.oszk.hu/24600/24626
 https://mek.oszk.hu/24600/24657
 https://mek.oszk.hu/24500/24579
 https://mek.oszk.hu/24400/24460
+
+#2024
+https://mek.oszk.hu/25200/25246
+https://mek.oszk.hu/25200/25201
+https://mek.oszk.hu/25100/25185
+https://mek.oszk.hu/25100/25135
+https://mek.oszk.hu/25100/25133
+https://mek.oszk.hu/25100/25132
+https://mek.oszk.hu/25100/25131
+https://mek.oszk.hu/25100/25126
+https://mek.oszk.hu/25100/25113
+https://mek.oszk.hu/24900/24991
+https://mek.oszk.hu/24900/24935
+https://mek.oszk.hu/24800/24803
+https://mek.oszk.hu/24700/24799
