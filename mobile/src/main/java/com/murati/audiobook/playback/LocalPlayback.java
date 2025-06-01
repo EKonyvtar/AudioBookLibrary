@@ -27,6 +27,8 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
 
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.PlaybackException;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.model.MusicProvider;
@@ -36,15 +38,16 @@ import com.murati.audiobook.utils.MediaIDHelper;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.ExoPlayer.Builder;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -52,6 +55,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.exoplayer2.Player.Listener;
 
 import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
 import static com.google.android.exoplayer2.C.CONTENT_TYPE_MUSIC;
@@ -88,7 +92,7 @@ public final class LocalPlayback implements Playback {
 
     private int mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
     private final AudioManager mAudioManager;
-    private SimpleExoPlayer mExoPlayer;
+    private ExoPlayer mExoPlayer;
     private final ExoPlayerEventListener mEventListener = new ExoPlayerEventListener();
 
     // Whether to return STATE_NONE or STATE_STOPPED when mExoPlayer is null;
@@ -208,16 +212,12 @@ public final class LocalPlayback implements Playback {
             String source = OfflineBookService.getTrackSource(track);
 
             if (mExoPlayer == null) {
-                //TODO: fix exoplayerfactory to support newer versions
-                mExoPlayer = ExoPlayerFactory.newSimpleInstance(
-                    new DefaultRenderersFactory(mContext),
-                    new DefaultTrackSelector(),
-                    new DefaultLoadControl()
-                );
-                //mExoPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);
-                //mExoPlayer.
+                mExoPlayer = new ExoPlayer.Builder(mContext)
+                    .setRenderersFactory(new DefaultRenderersFactory(mContext))
+                    .setTrackSelector(new DefaultTrackSelector(mContext))
+                    .setLoadControl(new DefaultLoadControl())
+                    .build();
                 mExoPlayer.addListener(mEventListener);
-
             }
 
             // Android "O" makes much greater use of AudioAttributes, especially
@@ -226,27 +226,15 @@ public final class LocalPlayback implements Playback {
             // then the content type should be set to CONTENT_TYPE_SPEECH for those
             // tracks.
             final AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setContentType(CONTENT_TYPE_MUSIC)
+                .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
                 .setUsage(USAGE_MEDIA)
                 .build();
-            mExoPlayer.setAudioAttributes(audioAttributes);
+            mExoPlayer.setAudioAttributes(audioAttributes,true);
 
-            // Produces DataSource instances through which media data is loaded.
-            DataSource.Factory dataSourceFactory =
-                new DefaultDataSourceFactory(
-                    mContext, Util.getUserAgent(mContext, "uamp"), null);
-            // Produces Extractor instances for parsing the media data.
-            ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-            // The MediaSource represents the media to be played.
-            ExtractorMediaSource.Factory extractorMediaFactory =
-                new ExtractorMediaSource.Factory(dataSourceFactory);
-            extractorMediaFactory.setExtractorsFactory(extractorsFactory);
-            MediaSource mediaSource =
-                extractorMediaFactory.createMediaSource(Uri.parse(source));
-
-            // Prepares media to play (happens on background thread) and triggers
-            // {@code onPlayerStateChanged} callback when the stream is ready to play.
-            mExoPlayer.prepare(mediaSource);
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(mContext, Util.getUserAgent(mContext, "AudioBookLibrary"));
+            ProgressiveMediaSource mediaSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(MediaItem.fromUri(Uri.parse(source)));
+            mExoPlayer.setMediaSource(mediaSource);
+            mExoPlayer.prepare();
 
             // If we are streaming from the internet, we want to hold a
             // Wifi lock, which prevents the Wifi radio from going to
@@ -413,20 +401,9 @@ public final class LocalPlayback implements Playback {
         }
     }
 
-    private final class ExoPlayerEventListener implements Player.EventListener {
+    private final class ExoPlayerEventListener implements Listener {
         @Override
-        public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
-            // Nothing to do.
-        }
-
-        @Override
-        public void onTracksChanged(
-            TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-            // Nothing to do.
-        }
-
-        @Override
-        public void onLoadingChanged(boolean isLoading) {
+        public void onTimelineChanged(Timeline timeline, int reason) {
             // Nothing to do.
         }
 
@@ -441,7 +418,6 @@ public final class LocalPlayback implements Playback {
                     }
                     break;
                 case Player.STATE_ENDED:
-                    // The media player finished playing the current song.
                     if (mCallback != null) {
                         mCallback.onCompletion();
                     }
@@ -450,22 +426,8 @@ public final class LocalPlayback implements Playback {
         }
 
         @Override
-        public void onPlayerError(ExoPlaybackException error) {
-            final String what;
-            switch (error.type) {
-                case ExoPlaybackException.TYPE_SOURCE:
-                    what = error.getSourceException().getMessage();
-                    break;
-                case ExoPlaybackException.TYPE_RENDERER:
-                    what = error.getRendererException().getMessage();
-                    break;
-                case ExoPlaybackException.TYPE_UNEXPECTED:
-                    what = error.getUnexpectedException().getMessage();
-                    break;
-                default:
-                    what = "Unknown: " + error;
-            }
-
+        public void onPlayerError(PlaybackException error) {
+            final String what = error.getMessage();
             LogHelper.e(TAG, "ExoPlayer error: what=" + what);
             if (mCallback != null) {
                 mCallback.onError("ExoPlayer error " + what);
@@ -477,23 +439,12 @@ public final class LocalPlayback implements Playback {
             // Nothing to do.
         }
 
-        @Override
-        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-            // Nothing to do.
-        }
-
-        @Override
         public void onSeekProcessed() {
             // Nothing to do.
         }
 
         @Override
-        public void onRepeatModeChanged(int repeatMode) {
-            // Nothing to do.
-        }
-
-        @Override
-        public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
             // Nothing to do.
         }
     }

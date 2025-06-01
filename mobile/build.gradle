@@ -230,6 +230,7 @@ repositories {
     //}
     google()
     jcenter()
+    mavenCentral()
     maven { url 'https://developer.huawei.com/repo/' }
 }
 
@@ -256,7 +257,7 @@ dependencies {
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
     //Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.0'
 
     //Graphical libraries
     implementation 'com.github.bumptech.glide:glide:4.11.0'
