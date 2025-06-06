@@ -157,17 +157,18 @@ public final class LocalPlayback implements Playback {
         }
         switch (mExoPlayer.getPlaybackState()) {
             case Player.STATE_IDLE:
-                return PlaybackStateCompat.STATE_PAUSED;
-            case Player.STATE_BUFFERING:
-                return PlaybackStateCompat.STATE_BUFFERING;
-            case Player.STATE_READY:
-                return mExoPlayer.getPlayWhenReady()
-                    ? PlaybackStateCompat.STATE_PLAYING
-                    : PlaybackStateCompat.STATE_PAUSED;
             case Player.STATE_ENDED:
                 return PlaybackStateCompat.STATE_PAUSED;
+            case Player.STATE_BUFFERING:
+                //return PlaybackStateCompat.STATE_BUFFERING;
+            case Player.STATE_READY:
+                //return PlaybackStateCompat.STATE_PLAYING;
+                return mExoPlayer.getPlayWhenReady()
+                    ? PlaybackStateCompat.STATE_PLAYING
+                   : PlaybackStateCompat.STATE_PAUSED;
             default:
-                return PlaybackStateCompat.STATE_NONE;
+                return PlaybackStateCompat.STATE_PAUSED;
+                //return PlaybackStateCompat.STATE_NONE;
         }
     }
 
