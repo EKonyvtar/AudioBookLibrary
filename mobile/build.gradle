@@ -65,7 +65,6 @@ android {
         }
     }
 
-
     flavorDimensions 'catalogue', 'language_pack', 'store'
 
     variantFilter { variant ->
@@ -225,11 +224,7 @@ android {
 }
 
 repositories {
-    //flatDir {
-    //    dirs 'libs'
-    //}
     google()
-    jcenter()
     mavenCentral()
     maven { url 'https://developer.huawei.com/repo/' }
 }
@@ -283,9 +278,11 @@ dependencies {
 
 allprojects {
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked"
-            options.compilerArgs << "-Xlint:deprecation"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << "-Xlint:unchecked"
+                options.compilerArgs << "-Xlint:deprecation"
+            }
         }
     }
 }
