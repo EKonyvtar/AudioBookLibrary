@@ -54,6 +54,9 @@ android {
         //targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        buildConfig true
+    }
 
     buildTypes {
         release {
@@ -226,6 +229,7 @@ android {
 repositories {
     google()
     mavenCentral()
+    jcenter()
     maven { url 'https://developer.huawei.com/repo/' }
 }
 
