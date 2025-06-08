@@ -214,7 +214,7 @@ public final class LocalPlayback implements Playback {
         mExoPlayer.addListener(mEventListener);
 
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-            .setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
+            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
             .setUsage(USAGE_MEDIA)
             .build();
         mExoPlayer.setAudioAttributes(audioAttributes, true);
