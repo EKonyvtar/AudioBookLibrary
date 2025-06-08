@@ -66,69 +66,54 @@ import static com.google.android.exoplayer2.C.USAGE_MEDIA;
  * com.google.android.exoplayer2.ExoPlayer}
  */
 public final class LocalPlayback implements Playback {
-
     private static final String TAG = LogHelper.makeLogTag(LocalPlayback.class);
 
-    // The volume we set the media player to when we lose audio focus, but are
-    // allowed to reduce the volume instead of stopping playback.
-    public static final float VOLUME_DUCK = 0.2f;
-    // The volume we set the media player when we have audio focus.
-    public static final float VOLUME_NORMAL = 1.0f;
-
-    // we don't have audio focus, and can't duck (play at a low volume)
-    private static final int AUDIO_NO_FOCUS_NO_DUCK = 0;
-    // we don't have focus, but can duck (play at a low volume)
-    private static final int AUDIO_NO_FOCUS_CAN_DUCK = 1;
-    // we have full audio focus
-    private static final int AUDIO_FOCUSED = 2;
-
+    // Core components
     private final Context mContext;
-    private final WifiManager.WifiLock mWifiLock;
-    private boolean mPlayOnFocusGain;
-    private Callback mCallback;
     private final MusicProvider mMusicProvider;
-    private boolean mAudioNoisyReceiverRegistered;
-    private String mCurrentMediaId;
+    private final WifiManager.WifiLock mWifiLock;
 
-    private int mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
-    private final AudioManager mAudioManager;
+    // Player state
     private ExoPlayer mExoPlayer;
+    private String mCurrentMediaId;
+    private boolean mPlayOnFocusGain;
+    private boolean mExoPlayerNullIsStopped = false;
+    private Callback mCallback;
     private final ExoPlayerEventListener mEventListener = new ExoPlayerEventListener();
 
-    // Whether to return STATE_NONE or STATE_STOPPED when mExoPlayer is null;
-    private boolean mExoPlayerNullIsStopped =  false;
-
-    private final IntentFilter mAudioNoisyIntentFilter =
-        new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-
-    private final BroadcastReceiver mAudioNoisyReceiver =
-        new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(intent.getAction())) {
-                    LogHelper.d(TAG, "Headphones disconnected.");
-                    if (isPlaying()) {
-                        Intent i = new Intent(context, MusicService.class);
-                        i.setAction(MusicService.ACTION_CMD);
-                        i.putExtra(MusicService.CMD_NAME, MusicService.CMD_PAUSE);
-                        MusicService.startMusicService(mContext, i);
-                        //mContext.startService(i);
-                    }
-                }
-            }
-        };
+    // Audio noisy handling
+    private boolean mAudioNoisyReceiverRegistered;
+    private final IntentFilter mAudioNoisyIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+    private final BroadcastReceiver mAudioNoisyReceiver = createAudioNoisyReceiver();
 
     public LocalPlayback(Context context, MusicProvider musicProvider) {
         Context applicationContext = context.getApplicationContext();
         this.mContext = applicationContext;
         this.mMusicProvider = musicProvider;
+        this.mWifiLock = createWifiLock(applicationContext);
+    }
 
-        this.mAudioManager =
-            (AudioManager) applicationContext.getSystemService(Context.AUDIO_SERVICE);
-        // Create the Wifi lock (this does not acquire the lock, this just creates it)
-        this.mWifiLock =
-            ((WifiManager) applicationContext.getSystemService(Context.WIFI_SERVICE))
-                .createWifiLock(WifiManager.WIFI_MODE_FULL, "uAmp_lock");
+    private WifiManager.WifiLock createWifiLock(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        return wifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL, "uAmp_lock");
+    }
+
+    private BroadcastReceiver createAudioNoisyReceiver() {
+        return new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(intent.getAction()) && isPlaying()) {
+                    pausePlayback();
+                }
+            }
+        };
+    }
+
+    private void pausePlayback() {
+        Intent i = new Intent(mContext, MusicService.class);
+        i.setAction(MusicService.ACTION_CMD);
+        i.putExtra(MusicService.CMD_NAME, MusicService.CMD_PAUSE);
+        MusicService.startMusicService(mContext, i);
     }
 
     @Override
@@ -138,7 +123,6 @@ public final class LocalPlayback implements Playback {
 
     @Override
     public void stop(boolean notifyListeners) {
-        giveUpAudioFocus();
         unregisterAudioNoisyReceiver();
         releaseResources(true);
     }
@@ -160,15 +144,12 @@ public final class LocalPlayback implements Playback {
             case Player.STATE_ENDED:
                 return PlaybackStateCompat.STATE_PAUSED;
             case Player.STATE_BUFFERING:
-                //return PlaybackStateCompat.STATE_BUFFERING;
             case Player.STATE_READY:
-                //return PlaybackStateCompat.STATE_PLAYING;
                 return mExoPlayer.getPlayWhenReady()
                     ? PlaybackStateCompat.STATE_PLAYING
-                   : PlaybackStateCompat.STATE_PAUSED;
+                    : PlaybackStateCompat.STATE_PAUSED;
             default:
-                return PlaybackStateCompat.STATE_PAUSED;
-                //return PlaybackStateCompat.STATE_NONE;
+                return PlaybackStateCompat.STATE_NONE;
         }
     }
 
@@ -195,55 +176,62 @@ public final class LocalPlayback implements Playback {
     @Override
     public void play(QueueItem item) {
         mPlayOnFocusGain = true;
-        tryToGetAudioFocus();
         registerAudioNoisyReceiver();
+
         String mediaId = item.getDescription().getMediaId();
         boolean mediaHasChanged = !TextUtils.equals(mediaId, mCurrentMediaId);
-        if (mediaHasChanged) {
-            mCurrentMediaId = mediaId;
-        }
 
         if (mediaHasChanged || mExoPlayer == null) {
-            releaseResources(false); // release everything except the player
-            MediaMetadataCompat track =
-                mMusicProvider.getTrack(
-                    MediaIDHelper.extractMusicIDFromMediaID(
-                        item.getDescription().getMediaId()));
-
-            String source = OfflineBookService.getTrackSource(track);
-
-            if (mExoPlayer == null) {
-                mExoPlayer = new ExoPlayer.Builder(mContext)
-                    .setRenderersFactory(new DefaultRenderersFactory(mContext))
-                    .setTrackSelector(new DefaultTrackSelector(mContext))
-                    .setLoadControl(new DefaultLoadControl())
-                    .build();
-                mExoPlayer.addListener(mEventListener);
-            }
-
-            // Android "O" makes much greater use of AudioAttributes, especially
-            // with regards to AudioFocus. All of UAMP's tracks are music, but
-            // if your content includes spoken word such as audiobooks or podcasts
-            // then the content type should be set to CONTENT_TYPE_SPEECH for those
-            // tracks.
-            final AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                .setUsage(USAGE_MEDIA)
-                .build();
-            mExoPlayer.setAudioAttributes(audioAttributes,true);
-
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(mContext, Util.getUserAgent(mContext, "AudioBookLibrary"));
-            ProgressiveMediaSource mediaSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(MediaItem.fromUri(Uri.parse(source)));
-            mExoPlayer.setMediaSource(mediaSource);
-            mExoPlayer.prepare();
-
-            // If we are streaming from the internet, we want to hold a
-            // Wifi lock, which prevents the Wifi radio from going to
-            // sleep while the song is playing.
-            mWifiLock.acquire();
+            setupPlayback(item, mediaId);
         }
 
-        configurePlayerState();
+        if (mExoPlayer != null) {
+            mExoPlayer.setPlayWhenReady(true);
+        }
+    }
+
+    private void setupPlayback(QueueItem item, String mediaId) {
+        releaseResources(false);
+        mCurrentMediaId = mediaId;
+
+        if (mExoPlayer == null) {
+            createExoPlayer();
+        }
+
+        prepareMediaSource(item);
+
+        if (!mWifiLock.isHeld()) {
+            mWifiLock.acquire();
+        }
+    }
+
+    private void createExoPlayer() {
+        mExoPlayer = new ExoPlayer.Builder(mContext)
+            .setRenderersFactory(new DefaultRenderersFactory(mContext))
+            .setTrackSelector(new DefaultTrackSelector(mContext))
+            .setLoadControl(new DefaultLoadControl())
+            .build();
+        mExoPlayer.addListener(mEventListener);
+
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+            .setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
+            .setUsage(USAGE_MEDIA)
+            .build();
+        mExoPlayer.setAudioAttributes(audioAttributes, true);
+    }
+
+    private void prepareMediaSource(QueueItem item) {
+        MediaMetadataCompat track = mMusicProvider.getTrack(
+            MediaIDHelper.extractMusicIDFromMediaID(item.getDescription().getMediaId()));
+        String source = OfflineBookService.getTrackSource(track);
+
+        DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(mContext,
+            Util.getUserAgent(mContext, "AudioBookLibrary"));
+        ProgressiveMediaSource mediaSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
+            .createMediaSource(MediaItem.fromUri(Uri.parse(source)));
+
+        mExoPlayer.setMediaSource(mediaSource);
+        mExoPlayer.prepare();
     }
 
     @Override
@@ -252,7 +240,7 @@ public final class LocalPlayback implements Playback {
         if (mExoPlayer != null) {
             mExoPlayer.setPlayWhenReady(false);
         }
-        // While paused, retain the player instance, but give up audio focus.
+        // While paused, retain the player instance.
         releaseResources(false);
         unregisterAudioNoisyReceiver();
     }
@@ -280,90 +268,6 @@ public final class LocalPlayback implements Playback {
     public String getCurrentMediaId() {
         return mCurrentMediaId;
     }
-
-    private void tryToGetAudioFocus() {
-        LogHelper.d(TAG, "tryToGetAudioFocus");
-        int result =
-            mAudioManager.requestAudioFocus(
-                mOnAudioFocusChangeListener,
-                AudioManager.STREAM_MUSIC,
-                AudioManager.AUDIOFOCUS_GAIN);
-        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            mCurrentAudioFocusState = AUDIO_FOCUSED;
-        } else {
-            mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
-        }
-    }
-
-    private void giveUpAudioFocus() {
-        LogHelper.d(TAG, "giveUpAudioFocus");
-        if (mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener)
-            == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
-        }
-    }
-
-    /**
-     * Reconfigures the player according to audio focus settings and starts/restarts it. This method
-     * starts/restarts the ExoPlayer instance respecting the current audio focus state. So if we
-     * have focus, it will play normally; if we don't have focus, it will either leave the player
-     * paused or set it to a low volume, depending on what is permitted by the current focus
-     * settings.
-     */
-    private void configurePlayerState() {
-        LogHelper.d(TAG, "configurePlayerState. mCurrentAudioFocusState=", mCurrentAudioFocusState);
-        if (mCurrentAudioFocusState == AUDIO_NO_FOCUS_NO_DUCK) {
-            // We don't have audio focus and can't duck, so we have to pause
-            pause();
-        } else {
-            registerAudioNoisyReceiver();
-
-            if (mCurrentAudioFocusState == AUDIO_NO_FOCUS_CAN_DUCK) {
-                // We're permitted to play, but only if we 'duck', ie: play softly
-                mExoPlayer.setVolume(VOLUME_DUCK);
-            } else {
-                mExoPlayer.setVolume(VOLUME_NORMAL);
-            }
-
-            // If we were playing when we lost focus, we need to resume playing.
-            if (mPlayOnFocusGain) {
-                mExoPlayer.setPlayWhenReady(true);
-                mPlayOnFocusGain = false;
-            }
-        }
-    }
-
-    private final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
-        new AudioManager.OnAudioFocusChangeListener() {
-            @Override
-            public void onAudioFocusChange(int focusChange) {
-                LogHelper.d(TAG, "onAudioFocusChange. focusChange=", focusChange);
-                switch (focusChange) {
-                    case AudioManager.AUDIOFOCUS_GAIN:
-                        mCurrentAudioFocusState = AUDIO_FOCUSED;
-                        break;
-                    case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                        // Audio focus was lost, but it's possible to duck (i.e.: play quietly)
-                        mCurrentAudioFocusState = AUDIO_NO_FOCUS_CAN_DUCK;
-                        break;
-                    case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                        // Lost audio focus, but will gain it back (shortly), so note whether
-                        // playback should resume
-                        mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
-                        mPlayOnFocusGain = mExoPlayer != null && mExoPlayer.getPlayWhenReady();
-                        break;
-                    case AudioManager.AUDIOFOCUS_LOSS:
-                        // Lost audio focus, probably "permanently"
-                        mCurrentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK;
-                        break;
-                }
-
-                if (mExoPlayer != null) {
-                    // Update the player state based on the change
-                    configurePlayerState();
-                }
-            }
-        };
 
     /**
      * Releases resources used by the service for playback, which is mostly just the WiFi lock for
