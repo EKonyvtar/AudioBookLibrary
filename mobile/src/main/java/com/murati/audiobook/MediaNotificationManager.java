@@ -16,6 +16,8 @@
 
 package com.murati.audiobook;
 
+import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -152,7 +154,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 else
                     mService.registerReceiver(this, filter);
 
-                mService.startForeground(NOTIFICATION_ID, notification);
+                mService.startForeground(NOTIFICATION_ID, notification, FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
                 mStarted = true;
             }
         }

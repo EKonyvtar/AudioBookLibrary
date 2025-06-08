@@ -24,7 +24,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     // buildToolsVersion '34.0.0'
 
     defaultConfig {
@@ -200,7 +200,7 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
-                implementation 'com.google.android.gms:play-services-ads:20.6.0'
+                implementation 'com.google.android.gms:play-services-ads:24.3.0'
 
             }
         }
@@ -236,7 +236,7 @@ repositories {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
     implementation 'com.google.android.support:wearable:2.9.0'
