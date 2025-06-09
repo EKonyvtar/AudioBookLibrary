@@ -29,12 +29,12 @@ android {
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 26
+        minSdkVersion 29
         targetSdkVersion 33
         multiDexEnabled true
 
-        versionCode 117
-        versionName "0.51.${versionCode}"
+        versionCode 120
+        versionName "0.61.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -133,7 +133,7 @@ android {
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3156427012")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7661173454")
 
-            //Multidimension constants
+            //Multidimensional constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "103673505")
             addConstantTo(owner, "HUAWEI_BANNER_ID","q84sxmouil")
         }
@@ -288,5 +288,10 @@ allprojects {
                 options.compilerArgs << "-Xlint:deprecation"
             }
         }
+    }
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
