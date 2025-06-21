@@ -15,6 +15,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
+import android.os.Build;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -41,7 +43,8 @@ public class OfflineBookService extends IntentService {
 
     private static final String TAG = LogHelper.makeLogTag(OfflineBookService.class);
 
-    private static int PERMISSION_WRITE_EXTERNAL_STORAGE = 010;
+    // Permission request codes
+    private static final int PERMISSION_REQUEST_CODE = 1001;
 
     private static final String OFFLINE_ROOT = "Hangoskonyvek";
 
@@ -113,40 +116,52 @@ public class OfflineBookService extends IntentService {
         super.onDestroy();
     }
 
-    // https://developer.android.com/training/permissions/requesting.html#java
+    // Permission handling
+    // Helper to check and request permissions
     public static boolean isPermissionGranted(Activity activity) {
-        if (ContextCompat.checkSelfPermission(activity,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+ (API 33+): request READ_MEDIA_AUDIO
+            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_AUDIO)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{Manifest.permission.READ_MEDIA_AUDIO},
+                        PERMISSION_REQUEST_CODE);
+                return false;
             }
-
-            ActivityCompat.requestPermissions(activity,
-                new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
-                OfflineBookService.PERMISSION_WRITE_EXTERNAL_STORAGE);
-
-            // PERMISSION_WRITE_EXTERNAL_STORAGE is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-
-        } else {
-            return true;
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            // API < 29: request WRITE_EXTERNAL_STORAGE
+            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        PERMISSION_REQUEST_CODE);
+                return false;
+            }
         }
-
-        return false;
+        // For API 29-32, DownloadManager to Downloads does not require permission
+        return true;
     }
 
+    // Show dialog to help user grant permissions
+    public static void showPermissionDialog(final Activity activity) {
+        new AlertDialog.Builder(activity)
+            .setTitle(R.string.notification_storage_permission_required)
+            .setMessage(R.string.notification_storage_permission_required)
+            .setCancelable(false)
+            .setPositiveButton(R.string.open_item, (dialog, which) -> {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.setData(Uri.parse("package:" + activity.getPackageName()));
+                activity.startActivity(intent);
+            })
+            .setNegativeButton(R.string.confirm_cancel, (dialog, which) -> dialog.dismiss())
+            .show();
+    }
+
+    // Call this from your Activity before starting the download
     public static boolean downloadWithActivity(String mediaId, Activity activity) {
-        if (!OfflineBookService.isPermissionGranted(activity)) {
-            Toast.makeText(activity, R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
-            return true;
+        if (!isPermissionGranted(activity)) {
+            showPermissionDialog(activity);
+            return false;
         }
 
         //The app is permissioned, proceeding with the book download
@@ -396,35 +411,32 @@ public class OfflineBookService extends IntentService {
                     Log.d(TAG, "Track " + source);
 
                     File file = getOfflineSource(book, source);
-                    if(file.exists()){
+                    if (file.exists()) {
                         Log.d(TAG, source + " is already downloaded");
                         continue;
                     }
 
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
-
-                    request.setTitle(String.format("%s - %s (%d)", track.getDescription().getTitle(),  book, count));
+                    request.setTitle(String.format("%s - %s", track.getDescription().getTitle(), book));
                     request.setDescription(file.getPath());
-                    request.setDestinationUri(Uri.fromFile(file));
 
-                    //request.setVisibleInDownloadsUi(false);
-                    request.setNotificationVisibility(
-                        DownloadManager.Request.VISIBILITY_VISIBLE
-                    );
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        // API 29+: Use setDestinationInExternalPublicDir for Downloads
+                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS + "/" + OFFLINE_ROOT + "/" + book, getFileName(source));
+                    } else {
+                        // Legacy
+                        request.setDestinationUri(Uri.fromFile(file));
+                    }
 
-                    //TODO: Add download options from new settings
-                    //request.setAllowedOverMetered(false);
-                    //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-                    //request.addRequestHeader("User-Agent", System.getProperty("http.agent") + " my_app/" + Utils.appVersionNumber());
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
 
-                    //TODO: Set extra for identification
                     enqueue = dm.enqueue(request);
                 } catch (Exception ex) {
                     Log.e(TAG, ex.getMessage());
                 }
             }
         } catch (Exception e) {
-            //TODO: e - Restore interrupt status
+            Log.e(TAG, "Download error: " + e.getMessage());
         }
     }
 }
