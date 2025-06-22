@@ -103,8 +103,12 @@ public class OfflineBookService extends IntentService {
         };
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), RECEIVER_EXPORTED);
+            registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), Context.RECEIVER_EXPORTED);
         } else {
+            // For older versions, no explicit export flag is needed or available for all cases.
+            // The default behavior depends on whether the receiver has an intent filter.
+            // If it has an intent filter, it's exported by default.
+            // Since we are using an intent filter, this is effectively exported.
             registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
     }
@@ -431,7 +435,7 @@ public class OfflineBookService extends IntentService {
                         request.setDestinationUri(Uri.fromFile(file));
                     }
 
-                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE+DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
                     enqueue = dm.enqueue(request);
                 } catch (Exception ex) {
