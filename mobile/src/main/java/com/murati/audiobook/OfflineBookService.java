@@ -46,7 +46,7 @@ public class OfflineBookService extends IntentService {
     // Permission request codes
     private static final int PERMISSION_REQUEST_CODE = 1001;
 
-    private static final String OFFLINE_ROOT = "Hangoskonyvek";
+    public static final String OFFLINE_ROOT = "Hangoskonyvek";
 
     private long enqueue;
     private DownloadManager dm;
@@ -60,138 +60,6 @@ public class OfflineBookService extends IntentService {
      */
     public OfflineBookService() {
         super("OfflineBookService");
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                try {
-                    String action = intent.getAction();
-                    if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
-                        long downloadId = intent.getLongExtra(
-                            DownloadManager.EXTRA_DOWNLOAD_ID, 0);
-                        DownloadManager.Query query = new DownloadManager.Query();
-                        query.setFilterById(enqueue);
-                        Cursor c = dm.query(query);
-                        if (c.moveToFirst()) {
-                            int columnIndex = c
-                                .getColumnIndex(DownloadManager.COLUMN_STATUS);
-                            if (DownloadManager.STATUS_SUCCESSFUL == c
-                                .getInt(columnIndex)) {
-
-                                //Intent i = new Intent();
-                                //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
-                                //startActivity(i);
-
-                                //TODO: fill local URL
-                                //ImageView view = (ImageView) findViewById(R.id.imageView1);
-                                //String uriString = c
-                                //    .getString(c
-                                //        .getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
-                                //view.setImageURI(Uri.parse(uriString));
-                            }
-                        }
-                    }
-                } catch (Exception ex) {
-                    LogHelper.e(ex.getMessage());
-                }
-            }
-        };
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), Context.RECEIVER_EXPORTED);
-        } else {
-            // For older versions, no explicit export flag is needed or available for all cases.
-            // The default behavior depends on whether the receiver has an intent filter.
-            // If it has an intent filter, it's exported by default.
-            // Since we are using an intent filter, this is effectively exported.
-            registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        try {
-            unregisterReceiver(receiver);
-        } catch (Exception ex) {
-            Log.d(TAG, ex.getMessage());
-        }
-        super.onDestroy();
-    }
-
-    // Permission handling
-    // Helper to check and request permissions
-    public static boolean isPermissionGranted(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ (API 33+): request READ_MEDIA_AUDIO
-            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_AUDIO)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{Manifest.permission.READ_MEDIA_AUDIO},
-                        PERMISSION_REQUEST_CODE);
-                return false;
-            }
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            // API < 29: request WRITE_EXTERNAL_STORAGE
-            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        PERMISSION_REQUEST_CODE);
-                return false;
-            }
-        }
-        // For API 29-32, DownloadManager to Downloads does not require permission
-        return true;
-    }
-
-    // Show dialog to help user grant permissions
-    public static void showPermissionDialog(final Activity activity) {
-        new AlertDialog.Builder(activity)
-            .setTitle(R.string.notification_storage_permission_required)
-            .setMessage(R.string.notification_storage_permission_required)
-            .setCancelable(false)
-            .setPositiveButton(R.string.open_item, (dialog, which) -> {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                intent.setData(Uri.parse("package:" + activity.getPackageName()));
-                activity.startActivity(intent);
-            })
-            .setNegativeButton(R.string.confirm_cancel, (dialog, which) -> dialog.dismiss())
-            .show();
-    }
-
-    // Call this from your Activity before starting the download
-    public static boolean downloadWithActivity(String mediaId, Activity activity) {
-        if (!isPermissionGranted(activity)) {
-            showPermissionDialog(activity);
-            return false;
-        }
-
-        //The app is permissioned, proceeding with the book download
-        Intent intent = new Intent(activity, OfflineBookService.class);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, mediaId);
-
-        activity.startService(intent);
-        Toast.makeText(activity, R.string.notification_download, Toast.LENGTH_SHORT).show();
-
-        try {
-            // Report Analytics
-            String bookTitle = MediaIDHelper.getEBookTitle(mediaId);
-            AnalyticsHelper.downloadItem(activity.getApplicationContext(), mediaId, bookTitle);
-        }  catch (Exception ex) {
-            Log.e(TAG, "Unable to report download analytics: " + ex.getMessage());
-        }
-
-        //TODO: Downloads page visible
-        //Intent i = new Intent();
-        //i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
-        //startActivity(i);
-        return true;
     }
 
     public static List<String> getOfflineBooks() {
@@ -330,7 +198,7 @@ public class OfflineBookService extends IntentService {
 
 
     //Grabbing fileName from sourceUrl
-    private static String getFileName(String source) {
+    public static String getFileName(String source) {
         String fileName = null;
         if (!TextUtils.isEmpty(source)) {
             String[] strings = source.split("/");
@@ -340,7 +208,7 @@ public class OfflineBookService extends IntentService {
         return fileName;
     }
 
-    private static File getOfflineSource(String book, String source) {
+    public static File getOfflineSource(String book, String source) {
         String fileName = getFileName(source);
         File bookFolder = new File(getDownloadDirectory(), book);
         return new File(bookFolder, fileName);
@@ -366,7 +234,7 @@ public class OfflineBookService extends IntentService {
         return onlineSource;
     }
 
-    private static File getDownloadDirectory() {
+    public static File getDownloadDirectory() {
         return new File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
             OFFLINE_ROOT);
@@ -382,68 +250,6 @@ public class OfflineBookService extends IntentService {
         // TODO: Redo full download mgmt
         // Normally we would do some work here, like download a file.
         // For our sample, we just sleep for 5 seconds.
-        try {
-            dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-
-            String action = intent.getAction();
-            Bundle extra = intent.getExtras();
-
-            String mediaId = (String)extra.get(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
-
-            if (mediaId == null) {
-                //TODO: notify failiure
-                return;
-            }
-
-            ArrayList<MediaMetadataCompat> tracksToDownload = new ArrayList<>();
-            String book = MediaIDHelper.getCategoryValueFromMediaID(mediaId);
-
-            Log.d(TAG, "Creating folder for " + book);
-            File bookFolder = new File(getDownloadDirectory(), book);
-            if (!bookFolder.exists()) bookFolder.mkdirs();
-
-            if (MediaIDHelper.isBrowseable(mediaId)) {
-                Iterator<MediaMetadataCompat> allBookTracksIterator = MusicProvider.getTracksByEbook(book).iterator();
-                while (allBookTracksIterator.hasNext()) tracksToDownload.add(allBookTracksIterator.next());
-            } else {
-                String trackId = MediaIDHelper.getTrackId(mediaId);
-                MediaMetadataCompat track = MusicProvider.getTrack(trackId);
-                tracksToDownload.add(track);
-            }
-            int count = 0;
-            for (MediaMetadataCompat track : tracksToDownload) {
-                count++;
-                try {
-                    String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
-                    Log.d(TAG, "Track " + source);
-
-                    File file = getOfflineSource(book, source);
-                    if (file.exists()) {
-                        Log.d(TAG, source + " is already downloaded");
-                        continue;
-                    }
-
-                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(source));
-                    request.setTitle(String.format("%s - %s", track.getDescription().getTitle(), book));
-                    request.setDescription(file.getPath());
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        // API 29+: Use setDestinationInExternalPublicDir for Downloads
-                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS + "/" + OFFLINE_ROOT + "/" + book, getFileName(source));
-                    } else {
-                        // Legacy
-                        request.setDestinationUri(Uri.fromFile(file));
-                    }
-
-                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE+DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-
-                    enqueue = dm.enqueue(request);
-                } catch (Exception ex) {
-                    Log.e(TAG, ex.getMessage());
-                }
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Download error: " + e.getMessage());
-        }
+        return;
     }
 }

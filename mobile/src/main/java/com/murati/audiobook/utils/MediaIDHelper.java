@@ -210,4 +210,18 @@ public class MediaIDHelper {
         }
         return false;
     }
+
+    /**
+     * Returns the online source URL for a given mediaId, using the original logic from OfflineBookService.
+     */
+    public static String getMediaUrl(String mediaId) {
+        String trackId = getTrackId(mediaId);
+        android.support.v4.media.MediaMetadataCompat track = com.murati.audiobook.model.MusicProvider.getTrack(trackId);
+        if (track == null) return null;
+        String onlineSource = track.getString(com.murati.audiobook.model.MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
+        if (onlineSource != null) {
+            onlineSource = onlineSource.replaceAll(" ", "%20"); // Fix spaces for URLs
+        }
+        return onlineSource;
+    }
 }

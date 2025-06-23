@@ -40,6 +40,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.murati.audiobook.DownloadHelper;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -231,7 +232,7 @@ public class MediaItemViewHolder {
                             holder.mDownloadButton.setTag(description.getMediaId());
                             holder.mDownloadButton.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    OfflineBookService.downloadWithActivity((String) v.getTag(), activity);
+                                    DownloadHelper.downloadWithActivity((String) v.getTag(), activity);
                                 }
                             });
                         }
@@ -299,7 +300,7 @@ public class MediaItemViewHolder {
                                 if (!NetworkHelper.isOnline(v.getContext())) {
                                     //TODO: Show will be downloaded later
                                 }
-                                OfflineBookService.downloadWithActivity(mediaId, activity);
+                                DownloadHelper.downloadWithActivity(mediaId, activity);
                                 holder.mItemOfflineAction.setImageResource(R.drawable.ic_cloud_queue);
                             }
                         });

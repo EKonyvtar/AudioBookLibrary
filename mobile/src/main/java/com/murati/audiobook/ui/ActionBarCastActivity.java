@@ -52,6 +52,7 @@ import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.murati.audiobook.utils.MediaIDHelper;
+import com.murati.audiobook.DownloadHelper;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -125,7 +126,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
                     case R.id.navigation_downloads:
 
-                        if (!OfflineBookService.isPermissionGranted(ActionBarCastActivity.this)) {
+                        if (!DownloadHelper.isPermissionGranted(ActionBarCastActivity.this)) {
                             Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -279,7 +280,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
     }
 
     private void deleteEbook() {
-        if (!OfflineBookService.isPermissionGranted(this)) {
+        if (!DownloadHelper.isPermissionGranted(this)) {
             Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -325,7 +326,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         //Download button
         //TODO: if not downloaded yet
         if (item != null && mediaId != null && item.getItemId() == R.id.option_download) {
-            return OfflineBookService.downloadWithActivity(mediaId,ActionBarCastActivity.this);
+            return DownloadHelper.downloadWithActivity(mediaId,ActionBarCastActivity.this);
         }
 
         //Delete button
