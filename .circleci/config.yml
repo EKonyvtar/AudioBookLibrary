@@ -49,7 +49,7 @@ commands:
 jobs:
   test:
     docker:
-      - image: cimg/android:2023.06-ndk
+      - image: cimg/android:2025.04
     parallelism: 4
     steps:
       - checkout
@@ -74,7 +74,7 @@ jobs:
 
   build:
     docker:
-      - image: cimg/android:2023.06-ndk
+      - image: cimg/android:2025.04
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
