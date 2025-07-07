@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param (
-	[string]$CatalogUrl = 'https://localhost:7068/api/AudioBooks',
+	[string]$CatalogUrl = 'http://localhost:5009/api/AudioBooks',
 	[string]$CatalogFile = './mek_ebook_list.txt',
 	[string]$File = './release/offline_catalog-Hungarian.json',
 	[string]$Separator = ',',

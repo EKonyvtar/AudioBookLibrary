@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.murati.audiobook.BuildConfig;
+import com.murati.audiobook.DownloadHelper;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
@@ -174,7 +175,7 @@ public class MusicPlayerActivity extends BaseActivity
         else if (item.isBrowsable()) {
             // Don't navigate to downloads if permissions are not granted
             if (item.getMediaId().startsWith(MediaIDHelper.MEDIA_ID_BY_DOWNLOADS)) {
-                if (!OfflineBookService.isPermissionGranted(this)) {
+                if (!DownloadHelper.isPermissionGranted(this)) {
                     Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
                     return;
                 }

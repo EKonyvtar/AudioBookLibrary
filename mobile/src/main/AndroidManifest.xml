@@ -2,21 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <!-- Offline Ebook listening -->
+    <!-- Network access -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- NETWORK Permissions -->
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- audioplayer & exoplayer -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.ACTION_AUDIO_BECOMING_NOISY" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <!-- If your app doesn't need to access media files that other apps created,
+         set the "maxSdkVersion" attribute to "28" instead. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+
+    <!-- Ads -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+
 
     <!--
     Available to both TV and regular mobile/tablet apps:
@@ -42,7 +53,10 @@
         android:requestLegacyExternalStorage="true"
         >
 
-        <service android:name=".OfflineBookService"/>
+        <service
+            android:name=".OfflineBookService"
+            android:foregroundServiceType="dataSync"
+        />
 
         <!--AUTO
         <meta-data
@@ -158,8 +172,9 @@
          consumers through MediaBrowserService and MediaSession. Consumers connect to it through
          MediaBrowser (for browsing) and MediaController (for play session control) -->
         <service
-            android:name="com.murati.audiobook.MusicService"
+            android:name=".MusicService"
             android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
@@ -197,6 +212,9 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".ModernDownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
     </application>
-
 </manifest>

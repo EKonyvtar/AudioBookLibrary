@@ -24,7 +24,7 @@ buildscript {
         //maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath 'com.android.tools.build:gradle:8.10.1'
 
         // Google Services
         classpath 'com.google.gms:google-services:4.4.1'

@@ -415,6 +415,17 @@ https://mek.oszk.hu/24500/24579
 https://mek.oszk.hu/24400/24460
 
 #2024
+https://mek.oszk.hu/25800/25889
+https://mek.oszk.hu/25800/25888
+https://mek.oszk.hu/25800/25887
+https://mek.oszk.hu/25800/25886
+https://mek.oszk.hu/25800/25885
+https://mek.oszk.hu/25800/25883
+https://mek.oszk.hu/25800/25882
+https://mek.oszk.hu/25800/25884
+https://mek.oszk.hu/25800/25878
+https://mek.oszk.hu/25800/25874
+https://mek.oszk.hu/25200/25246
 https://mek.oszk.hu/25200/25246
 https://mek.oszk.hu/25200/25201
 https://mek.oszk.hu/25100/25185
@@ -428,3 +439,8 @@ https://mek.oszk.hu/24900/24991
 https://mek.oszk.hu/24900/24935
 https://mek.oszk.hu/24800/24803
 https://mek.oszk.hu/24700/24799
+
+#2025
+https://mek.oszk.hu/27000/27056
+https://mek.oszk.hu/27000/27055
+https://mek.oszk.hu/02400/02401

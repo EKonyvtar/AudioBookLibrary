@@ -24,17 +24,17 @@ plugins {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     // buildToolsVersion '34.0.0'
 
     defaultConfig {
         applicationId "com.murati.audiobook"
-        minSdkVersion 22
-        targetSdkVersion 33
+        minSdkVersion 29
+        targetSdkVersion 34
         multiDexEnabled true
 
-        versionCode 117
-        versionName "0.51.${versionCode}"
+        versionCode 123
+        versionName "0.63.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -54,6 +54,9 @@ android {
         //targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        buildConfig true
+    }
 
     buildTypes {
         release {
@@ -64,7 +67,6 @@ android {
                 'proguard-rules.pro'
         }
     }
-
 
     flavorDimensions 'catalogue', 'language_pack', 'store'
 
@@ -131,7 +133,7 @@ android {
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3156427012")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/7661173454")
 
-            //Multidimension constants
+            //Multidimensional constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "103673505")
             addConstantTo(owner, "HUAWEI_BANNER_ID","q84sxmouil")
         }
@@ -200,7 +202,7 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
-                implementation 'com.google.android.gms:play-services-ads:20.6.0'
+                implementation 'com.google.android.gms:play-services-ads:24.3.0'
 
             }
         }
@@ -225,38 +227,36 @@ android {
 }
 
 repositories {
-    //flatDir {
-    //    dirs 'libs'
-    //}
     google()
+    mavenCentral()
     jcenter()
     maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
     implementation 'com.google.android.support:wearable:2.9.0'
 
-    implementation 'com.google.android.gms:play-services-cast-framework:21.3.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:22.1.0'
 
-    implementation("androidx.core:core:1.9.0")
+    implementation("androidx.core:core:1.16.0")
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     // 1.4.1 - The minCompileSdk (31) specified in a
     //     dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)
     //     is greater than this module's compileSdkVersion (android-30).
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.0'
-    implementation 'androidx.mediarouter:mediarouter:1.4.0'
-    implementation 'androidx.leanback:leanback:1.0.0'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.mediarouter:mediarouter:1.8.0'
+    implementation 'androidx.leanback:leanback:1.2.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
     //Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
 
     //Graphical libraries
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -264,7 +264,7 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
-    implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-config'
     implementation("com.google.firebase:firebase-analytics")
@@ -275,16 +275,23 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:2.15.0'
     androidTestImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.annotation:annotation:1.5.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.9.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
 }
 
 allprojects {
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked"
-            options.compilerArgs << "-Xlint:deprecation"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << "-Xlint:unchecked"
+                options.compilerArgs << "-Xlint:deprecation"
+            }
         }
+    }
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }

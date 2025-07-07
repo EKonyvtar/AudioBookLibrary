@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.target.Target;
+import com.murati.audiobook.DownloadHelper;
 import com.murati.audiobook.MusicService;
 import com.murati.audiobook.OfflineBookService;
 import com.murati.audiobook.R;
@@ -214,7 +215,13 @@ public class PlaybackControlsFragment extends Fragment {
                             getString(R.string.notification_playback_track_error),
                             getString(R.string.notification_storage_permission_required));
 
-                        OfflineBookService.isPermissionGranted(this.getActivity());
+                        if (!DownloadHelper.isPermissionGranted(this.getActivity())) {
+                            // Offline playback requires storage permission
+                            message = String.format(
+                                "%s - %s",
+                                getString(R.string.notification_playback_track_error),
+                                getString(R.string.notification_storage_permission_required));
+                        }
                     }
 
                     if (offline && message.contains("Unable to connect to http")) {
