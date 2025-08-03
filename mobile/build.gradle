@@ -33,8 +33,8 @@ android {
         targetSdkVersion 34
         multiDexEnabled true
 
-        versionCode 123
-        versionName "0.63.${versionCode}"
+        versionCode 125
+        versionName "0.70.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants

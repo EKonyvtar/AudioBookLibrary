@@ -24,8 +24,8 @@ The source code is based on the original Java based Google Android Universal Mus
 
 ## Pre-requisites
 
--   Android SDK v30
--   Android Studio v3 or later
+-   Android SDK v35
+-   Android Studio 2025 or later
 
 ## License and Legal
 
