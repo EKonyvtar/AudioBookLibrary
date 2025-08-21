@@ -24,17 +24,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 35
-    // buildToolsVersion '34.0.0'
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "com.murati.audiobook"
         minSdkVersion 29
-        targetSdkVersion 34
+        targetSdkVersion 36
         multiDexEnabled true
 
-        versionCode 125
-        versionName "0.70.${versionCode}"
+        versionCode 126
+        versionName "0.71.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -47,7 +46,6 @@ android {
 
     // TODO: Auto signing:
     // https://developer.android.com/studio/build/build-variants
-    // System.getenv("KSTORE")
 
     compileOptions {
         //sourceCompatibility JavaVersion.VERSION_1_8
