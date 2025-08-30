@@ -100,7 +100,7 @@ android {
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~7544903903")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/1672919685")
 
-            //Multidimension constants
+            //Multidimensional constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101706787")
             addConstantTo(owner, "HUAWEI_BANNER_ID","x5jdt6zn9c")
         }
@@ -161,7 +161,7 @@ android {
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~8227204847")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/3875405609")
 
-            //Multidimension constants
+            //Multidimensional constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101720491")
             addConstantTo(owner, "HUAWEI_BANNER_ID","g9vvf24tyb")
         }
