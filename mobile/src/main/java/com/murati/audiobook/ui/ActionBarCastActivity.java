@@ -368,12 +368,16 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         }
 
         // Otherwise, it may return to the previous fragment stack
-    FragmentManager fragmentManager = getSupportFragmentManager();
+        androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();
         } else {
             // Lastly, it will rely on the system behavior for back
-            super.onBackPressed();
+            if (getOnBackPressedDispatcher() != null) {
+                getOnBackPressedDispatcher().onBackPressed();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

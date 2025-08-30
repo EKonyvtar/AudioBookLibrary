@@ -35,7 +35,7 @@ import com.murati.audiobook.utils.LogHelper;
 import com.murati.audiobook.utils.MediaIDHelper;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Timeline;
@@ -62,7 +62,7 @@ public final class LocalPlayback implements Playback {
     private final WifiManager.WifiLock mWifiLock;
 
     // Player state
-    private ExoPlayer mExoPlayer;
+    private SimpleExoPlayer mExoPlayer;
     private String mCurrentMediaId;
     private boolean mPlayOnFocusGain;
     private boolean mExoPlayerNullIsStopped = false;
@@ -194,8 +194,10 @@ public final class LocalPlayback implements Playback {
     }
 
     private void createExoPlayer() {
-        mExoPlayer = new ExoPlayer.Builder(mContext)
-            .setRenderersFactory(new DefaultRenderersFactory(mContext))
+        mExoPlayer = new SimpleExoPlayer.Builder(
+            mContext,
+            new DefaultRenderersFactory(mContext)
+        )
             .setTrackSelector(new DefaultTrackSelector(mContext))
             .setLoadControl(new DefaultLoadControl())
             .build();
