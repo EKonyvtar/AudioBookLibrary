@@ -44,10 +44,10 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.google.android.exoplayer2.Player.Listener;
+// import com.google.android.exoplayer2.Player.Listener; // deprecated
 
 import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
-import static com.google.android.exoplayer2.C.USAGE_MEDIA;
+import static android.media.AudioAttributes.USAGE_MEDIA;
 
 /**
  * A class that implements local media playback using {@link
@@ -294,7 +294,7 @@ public final class LocalPlayback implements Playback {
         }
     }
 
-    private final class ExoPlayerEventListener implements Listener {
+    private final class ExoPlayerEventListener implements com.google.android.exoplayer2.Player.Listener {
         @Override
         public void onTimelineChanged(Timeline timeline, int reason) {
             // Nothing to do.

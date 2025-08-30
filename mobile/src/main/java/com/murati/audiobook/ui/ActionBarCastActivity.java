@@ -16,13 +16,13 @@
 package com.murati.audiobook.ui;
 
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.view.GravityCompat;
@@ -57,7 +57,6 @@ import com.murati.audiobook.DownloadHelper;
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
  * any activity that wants to be shown as a top level activity.
- *
  * The requirements for a subclass is to call {@link #initializeToolbar()} on onCreate, after
  * setContentView() is called and have three mandatory layout elements:
  * a {@link androidx.appcompat.widget.Toolbar} with id 'toolbar',
@@ -84,7 +83,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         @Override
         public void onCastStateChanged(int newState) {
             if (newState != CastState.NO_DEVICES_AVAILABLE) {
-                new Handler().postDelayed(new Runnable() {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (mMediaRouteMenuItem.isVisible()) {
@@ -232,7 +231,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         // Whenever the fragment back stack changes, we may need to update the
         // action bar toggle: only top level screens show the hamburger-like icon, inner
         // screens - either Activities or fragments - show the "Up" icon instead.
-        getFragmentManager().addOnBackStackChangedListener(mBackStackChangedListener);
+    getSupportFragmentManager().addOnBackStackChangedListener(mBackStackChangedListener);
 
         //TODO: make a language selector
         LanguageHelper.enforceHungarianIfNeeded(this);
@@ -253,7 +252,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         if (mCastContext != null) {
             mCastContext.removeCastStateListener(mCastStateListener);
         }
-        getFragmentManager().removeOnBackStackChangedListener(mBackStackChangedListener);
+    getSupportFragmentManager().removeOnBackStackChangedListener(mBackStackChangedListener);
     }
 
     @Override
@@ -369,7 +368,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
         }
 
         // Otherwise, it may return to the previous fragment stack
-        FragmentManager fragmentManager = getFragmentManager();
+    FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();
         } else {
