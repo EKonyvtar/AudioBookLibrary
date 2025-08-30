@@ -271,7 +271,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
     private static final String FRAGMENT_TAG = "uamp_list_container";
     public String getMediaId() {
         //TODO: cast by main activity
-        MediaBrowserFragment fragment = (MediaBrowserFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    MediaBrowserFragment fragment = (MediaBrowserFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (fragment == null) {
             return null;
         }

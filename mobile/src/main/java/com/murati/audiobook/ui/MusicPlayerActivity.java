@@ -15,7 +15,7 @@
  */
 package com.murati.audiobook.ui;
 
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -306,7 +306,7 @@ public class MusicPlayerActivity extends BaseActivity
 
         if (fragment == null || !TextUtils.equals(fragment.getMediaId(), mediaId)) {
             // Create Transaction
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left,
                 R.animator.slide_in_from_left, R.animator.slide_out_to_right);
@@ -382,7 +382,7 @@ public class MusicPlayerActivity extends BaseActivity
     }
 
     private MediaBrowserFragment getBrowseFragment() {
-        return (MediaBrowserFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    return (MediaBrowserFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 
     @Override

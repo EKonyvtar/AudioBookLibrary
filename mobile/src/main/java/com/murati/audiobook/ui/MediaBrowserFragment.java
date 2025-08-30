@@ -16,7 +16,7 @@
 package com.murati.audiobook.ui;
 
 import android.app.Activity;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -60,7 +60,7 @@ import java.util.concurrent.ConcurrentMap;
  * Once connected, the fragment subscribes to get all the children.
  * All {@link MediaBrowserCompat.MediaItem}'s that can be browsed are shown in a ListView.
  */
-public class MediaBrowserFragment extends Fragment {
+public class MediaBrowserFragment extends androidx.fragment.app.Fragment {
 
     private ListView mlistView;
     private ProgressBar mLoading;
