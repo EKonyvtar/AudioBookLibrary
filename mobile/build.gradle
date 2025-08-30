@@ -32,8 +32,8 @@ android {
         targetSdkVersion 36
         multiDexEnabled true
 
-        versionCode 128
-        versionName "0.73.${versionCode}"
+        versionCode 129
+        versionName "0.74.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -184,12 +184,12 @@ android {
         // Language Packs
         LangHun {
             dimension = 'language_pack'
-            resConfigs 'hu', 'en'
+            resourceConfigurations += ['hu', 'en']
         }
 
         LangMulti {
             dimension = 'language_pack'
-            resConfigs 'en', 'fr', 'es', 'de'
+            resourceConfigurations += ['en', 'fr', 'es', 'de']
         }
 
 
