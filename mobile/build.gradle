@@ -31,8 +31,8 @@ android {
         minSdkVersion 29
         targetSdkVersion 37
 
-        versionCode 132
-        versionName "0.82.${versionCode}"
+        versionCode 138
+        versionName "0.88.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
