@@ -15,6 +15,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -56,12 +57,21 @@ public class ModernDownloadService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String mediaId = intent.getStringExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
         if (mediaId != null) {
-            startForeground(NOTIFICATION_ID, buildNotification(getString(R.string.notification_download)));
+            startForeground(NOTIFICATION_ID, buildNotification(getString(R.string.notification_download)),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
             startDownload(mediaId);
         } else {
             stopSelf();
         }
         return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onTimeout(int startId, int fgsType) {
+        if (Build.VERSION.SDK_INT >= 35 && fgsType == ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC) {
+            Log.w(TAG, "Data sync foreground service timed out");
+            stopSelf();
+        }
     }
 
     private void startDownload(String mediaId) {

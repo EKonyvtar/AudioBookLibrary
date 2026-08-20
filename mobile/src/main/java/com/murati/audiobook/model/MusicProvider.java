@@ -251,6 +251,13 @@ public class MusicProvider {
         return mCurrentState == State.INITIALIZED;
     }
 
+    public static int getEbookCount() {
+        if (mCurrentState != State.INITIALIZED || mEbookList == null) {
+            return 0;
+        }
+        return mEbookList.size();
+    }
+
     /**
      * Get the list of music tracks from a server and caches the track information
      * for future reference, keying tracks by musicId and grouping by genre.

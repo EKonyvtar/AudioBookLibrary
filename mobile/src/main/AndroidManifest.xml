@@ -6,6 +6,7 @@
 
     <!-- Network access -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_LOOPBACK_INTERFACE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -53,10 +54,7 @@
         android:requestLegacyExternalStorage="true"
         >
 
-        <service
-            android:name=".OfflineBookService"
-            android:foregroundServiceType="dataSync"
-        />
+
 
         <!--AUTO
         <meta-data

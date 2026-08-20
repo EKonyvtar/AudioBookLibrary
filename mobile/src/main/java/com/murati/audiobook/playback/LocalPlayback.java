@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -284,7 +285,11 @@ public final class LocalPlayback implements Playback {
 
     private void registerAudioNoisyReceiver() {
         if (!mAudioNoisyReceiverRegistered) {
-            mContext.registerReceiver(mAudioNoisyReceiver, mAudioNoisyIntentFilter);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                mContext.registerReceiver(mAudioNoisyReceiver, mAudioNoisyIntentFilter, Context.RECEIVER_NOT_EXPORTED);
+            } else {
+                mContext.registerReceiver(mAudioNoisyReceiver, mAudioNoisyIntentFilter);
+            }
             mAudioNoisyReceiverRegistered = true;
         }
     }

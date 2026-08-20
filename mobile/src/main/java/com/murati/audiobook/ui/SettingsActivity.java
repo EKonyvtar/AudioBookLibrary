@@ -16,6 +16,7 @@
 package com.murati.audiobook.ui;
 
 import android.os.Bundle;
+import androidx.activity.EdgeToEdge;
 import com.murati.audiobook.R;
 import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.LogHelper;
@@ -30,6 +31,7 @@ public class SettingsActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         //https://firebase.google.com/docs/crashlytics/force-a-crash?authuser=0
 
         super.onCreate(savedInstanceState);

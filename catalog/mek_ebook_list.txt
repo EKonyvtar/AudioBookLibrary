@@ -444,3 +444,11 @@ https://mek.oszk.hu/24700/24799
 https://mek.oszk.hu/27000/27056
 https://mek.oszk.hu/27000/27055
 https://mek.oszk.hu/02400/02401
+https://mek.oszk.hu/27000/27004
+
+#2026
+https://mek.oszk.hu/28400/28405
+https://mek.oszk.hu/28600/28606
+https://mek.oszk.hu/28400/28474
+https://mek.oszk.hu/28400/28494
+https://mek.oszk.hu/26800/26868

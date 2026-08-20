@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
@@ -263,8 +264,13 @@ public class MediaBrowserFragment extends androidx.fragment.app.Fragment {
         }
 
         // Registers BroadcastReceiver to track network connection changes.
-        this.getActivity().registerReceiver(mConnectivityChangeReceiver,
-            new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.getActivity().registerReceiver(mConnectivityChangeReceiver,
+                    new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION), Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            this.getActivity().registerReceiver(mConnectivityChangeReceiver,
+                    new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
     }
 
     @Override
