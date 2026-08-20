@@ -31,8 +31,8 @@ android {
         minSdkVersion 29
         targetSdkVersion 37
 
-        versionCode 134
-        versionName "0.84.${versionCode}"
+        versionCode 136
+        versionName "0.86.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -53,6 +53,7 @@ android {
 
     buildFeatures {
         buildConfig true
+        resValues true
     }
 
     buildTypes {
@@ -206,7 +207,7 @@ android {
         //TODO: define paid and free dimensions
     }
     lint {
-        abortOnError false
+        abortOnError true
     }
     namespace 'com.murati.audiobook'
 }
