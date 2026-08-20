@@ -16,6 +16,7 @@
 package com.murati.audiobook.ui;
 
 import android.content.Intent;
+import androidx.activity.EdgeToEdge;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -48,6 +49,7 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         initializeToolbar();

@@ -29,7 +29,7 @@ android {
     defaultConfig {
         applicationId "com.murati.audiobook"
         minSdkVersion 29
-        targetSdkVersion 36
+        targetSdkVersion 37
         multiDexEnabled true
 
         versionCode 130
@@ -233,6 +233,7 @@ repositories {
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
+    implementation 'androidx.activity:activity:1.13.0'
 
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
     implementation 'com.google.android.support:wearable:2.9.0'

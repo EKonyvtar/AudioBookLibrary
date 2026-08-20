@@ -16,6 +16,7 @@
 package com.murati.audiobook.ui;
 
 import android.content.ComponentName;
+import androidx.activity.EdgeToEdge;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
@@ -148,6 +149,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_player);
         initializeToolbar();
