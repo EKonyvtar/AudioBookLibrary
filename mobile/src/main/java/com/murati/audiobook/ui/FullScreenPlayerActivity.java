@@ -356,6 +356,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     @Override
     public void onStop() {
         super.onStop();
+        stopSeekbarUpdate();
         if (mMediaBrowser != null) {
             mMediaBrowser.disconnect();
         }
@@ -394,16 +395,21 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         mExecutorService.shutdown();
     }
 
-    //TODO: merge with (holder.mImageView != null)
     private void fetchImageAsync(@NonNull MediaDescriptionCompat description) {
+        String artUrl;
         try {
-            mCurrentArtUrl = description.getIconUri().toString();
+            artUrl = description.getIconUri().toString();
         } catch (Exception ex) {
             Log.d(TAG, "Defaulting image due to Missing Uri: " + ex.getMessage());
-            mCurrentArtUrl = BitmapHelper.convertDrawabletoUri(
+            artUrl = BitmapHelper.convertDrawabletoUri(
                 null, R.drawable.default_book_cover
             ).toString();
         }
+
+        if (artUrl.equals(mCurrentArtUrl)) {
+            return;
+        }
+        mCurrentArtUrl = artUrl;
 
         GlideApp.
             with(this).
@@ -446,22 +452,36 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
         int durationSeconds = (int) metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
 
         if (durationSeconds == 0) {
-            try {
-                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-                String mediaUrl = OfflineBookService.getTrackSource(metadata);
-                if (mediaUrl != null && mediaUrl.startsWith("/"))
-                    retriever.setDataSource(mediaUrl);
-                else
-                    retriever.setDataSource(mediaUrl, new HashMap<String, String>());
-                String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-                durationSeconds = Integer.parseInt(time) / 1000;
-                retriever.release();
-            } catch (Exception ex) {
-                Log.e(TAG, "Error retrieving the length of the mediafile: \n" + ex.getMessage());
-            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                        String mediaUrl = OfflineBookService.getTrackSource(metadata);
+                        if (mediaUrl != null && mediaUrl.startsWith("/"))
+                            retriever.setDataSource(mediaUrl);
+                        else
+                            retriever.setDataSource(mediaUrl, new HashMap<String, String>());
+                        String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                        final int finalDurationSeconds = Integer.parseInt(time) / 1000;
+                        retriever.release();
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mSeekbar.setMax(finalDurationSeconds);
+                                mEnd.setText(DateUtils.formatElapsedTime(finalDurationSeconds));
+                            }
+                        });
+                    } catch (Exception ex) {
+                        Log.e(TAG, "Error retrieving the length of the mediafile: \n" + ex.getMessage());
+                    }
+                }
+            }).start();
+        } else {
+            mSeekbar.setMax(durationSeconds);
+            mEnd.setText(DateUtils.formatElapsedTime(durationSeconds));
         }
-        mSeekbar.setMax(durationSeconds);
-        mEnd.setText(DateUtils.formatElapsedTime(durationSeconds));
     }
 
     private void updatePlaybackState(PlaybackStateCompat state) {

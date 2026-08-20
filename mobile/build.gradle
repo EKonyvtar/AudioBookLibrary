@@ -31,8 +31,8 @@ android {
         minSdkVersion 29
         targetSdkVersion 37
 
-        versionCode 132
-        versionName "0.82.${versionCode}"
+        versionCode 134
+        versionName "0.84.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants
@@ -66,18 +66,6 @@ android {
     }
 
     flavorDimensions 'catalogue', 'language_pack', 'store'
-
-    variantFilter { variant ->
-        def catalogue = variant.getFlavors().get(0).name.toLowerCase()
-        def language_pack = variant.getFlavors().get(1).name.toLowerCase()
-
-        if (
-            catalogue.contains("hu") && !language_pack.contains("hu") // Not clearly Hun
-            || !catalogue.contains("hu") && language_pack.contains("hu") //Clearly multilingual
-        ) {
-            setIgnore(true)
-        }
-    }
 
     productFlavors {
 
@@ -286,5 +274,20 @@ allprojects {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+androidComponents.beforeVariants(androidComponents.selector().all()) { variantBuilder ->
+    def flavorMap = variantBuilder.productFlavors.collectEntries { [it.first, it.second] }
+    def catalogue = flavorMap['catalogue']?.toLowerCase()
+    def language_pack = flavorMap['language_pack']?.toLowerCase()
+
+    if (catalogue != null && language_pack != null) {
+        if (
+            (catalogue.contains("hu") && !language_pack.contains("hu"))
+            || (!catalogue.contains("hu") && language_pack.contains("hu"))
+        ) {
+            variantBuilder.enable = false
+        }
     }
 }
