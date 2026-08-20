@@ -176,7 +176,7 @@ android {
             addConstantTo(owner, "ADMOB_APP_ID", "ca-app-pub-2604838220069332~3034430096")
             addConstantTo(owner, "ADMOB_UNIT_ID_1", "ca-app-pub-2604838220069332/8178945564")
 
-            //Multidimension constants
+            //Multidimensional constants
             addConstantTo(owner, "APPSTORE_HUAWEI_ID", "101777037")
             addConstantTo(owner, "HUAWEI_BANNER_ID","p22w11h9q7")
         }
@@ -200,7 +200,7 @@ android {
             buildConfigField 'String', 'APPSTORE_URL', '"http://play.google.com/store/apps/details?id=%s"'
 
             dependencies {
-                implementation 'com.google.android.gms:play-services-ads:24.5.0'
+                implementation 'com.google.android.gms:play-services-ads:25.4.0'
 
             }
         }
@@ -232,21 +232,21 @@ repositories {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
 
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
     implementation 'com.google.android.support:wearable:2.9.0'
 
-    implementation 'com.google.android.gms:play-services-cast-framework:22.1.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:22.3.1'
 
-    implementation("androidx.core:core:1.17.0")
+    implementation("androidx.core:core:1.19.0")
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.mediarouter:mediarouter:1.8.1'
     implementation 'androidx.leanback:leanback:1.2.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
     //Exoplayer
