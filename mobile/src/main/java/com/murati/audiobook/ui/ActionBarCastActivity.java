@@ -105,55 +105,37 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                     ActionBarCastActivity.this, R.anim.fade_in, R.anim.fade_out).toBundle();
 
                 Intent intent = null;
-                switch (mItemToOpenWhenDrawerCloses) {
-                    case R.id.navigation_allmusic:
-                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
-                        break;
-                    case R.id.navigation_playlists:
-                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
-                        break;
+                int id = mItemToOpenWhenDrawerCloses;
+                if (id == R.id.navigation_allmusic) {
+                    intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_ROOT);
+                } else if (id == R.id.navigation_playlists) {
+                    intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_QUEUE);
+                } else if (id == R.id.navigation_favorites) {
+                    intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_FAVORITES);
+                } else if (id == R.id.navigation_downloads) {
+                    if (!DownloadHelper.isPermissionGranted(ActionBarCastActivity.this)) {
+                        Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                    case R.id.navigation_favorites:
-                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_FAVORITES);
-                        break;
-
-                    case R.id.navigation_downloads:
-
-                        if (!DownloadHelper.isPermissionGranted(ActionBarCastActivity.this)) {
-                            Toast.makeText(getBaseContext(), R.string.notification_storage_permission_required, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_DOWNLOADS);
-                        break;
-
-                    case R.id.navigation_settings:
-                        intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
-                        break;
-
-                    // case R.id.navigation_feedback:
-                    //    FeedbackHelper.showLikeDialog(ActionBarCastActivity.this);
-                    //    break;
-
-                    case R.id.navigation_about:
-                        intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
-                        break;
-                    case R.id.navigation_quit:
-                        //TODO: review notification bar cleanup
-
-                        stopService(new Intent(ActionBarCastActivity.this, MusicService.class));
-                        finish();
-
-                        System.exit(0);
-                        break;
+                    intent = new Intent(ActionBarCastActivity.this, MusicPlayerActivity.class);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.putExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY, MediaIDHelper.MEDIA_ID_BY_DOWNLOADS);
+                } else if (id == R.id.navigation_settings) {
+                    intent = new Intent(ActionBarCastActivity.this, SettingsActivity.class);
+                } else if (id == R.id.navigation_about) {
+                    intent = new Intent(ActionBarCastActivity.this, AboutActivity.class);
+                } else if (id == R.id.navigation_quit) {
+                    //TODO: review notification bar cleanup
+                    stopService(new Intent(ActionBarCastActivity.this, MusicService.class));
+                    finish();
+                    System.exit(0);
                 }
                 if (intent != null) {
                     startActivity(intent, bundle);

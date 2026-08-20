@@ -265,19 +265,18 @@ public class PlaybackControlsFragment extends Fragment {
             final int state = stateObj == null ?
                     PlaybackStateCompat.STATE_NONE : stateObj.getState();
             LogHelper.d(TAG, "Button pressed, in state " + state);
-            switch (v.getId()) {
-                case R.id.play_pause:
-                    LogHelper.d(TAG, "Play button pressed, in state " + state);
-                    if (state == PlaybackStateCompat.STATE_PAUSED ||
-                            state == PlaybackStateCompat.STATE_STOPPED ||
-                            state == PlaybackStateCompat.STATE_NONE) {
-                        playMedia();
-                    } else if (state == PlaybackStateCompat.STATE_PLAYING ||
-                            state == PlaybackStateCompat.STATE_BUFFERING ||
-                            state == PlaybackStateCompat.STATE_CONNECTING) {
-                        pauseMedia();
-                    }
-                    break;
+            int id = v.getId();
+            if (id == R.id.play_pause) {
+                LogHelper.d(TAG, "Play button pressed, in state " + state);
+                if (state == PlaybackStateCompat.STATE_PAUSED ||
+                        state == PlaybackStateCompat.STATE_STOPPED ||
+                        state == PlaybackStateCompat.STATE_NONE) {
+                    playMedia();
+                } else if (state == PlaybackStateCompat.STATE_PLAYING ||
+                        state == PlaybackStateCompat.STATE_BUFFERING ||
+                        state == PlaybackStateCompat.STATE_CONNECTING) {
+                    pauseMedia();
+                }
             }
         }
     };
