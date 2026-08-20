@@ -30,7 +30,6 @@ android {
         applicationId "com.murati.audiobook"
         minSdkVersion 29
         targetSdkVersion 37
-        multiDexEnabled true
 
         versionCode 132
         versionName "0.82.${versionCode}"
@@ -231,7 +230,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation 'androidx.activity:activity:1.13.0'
 
