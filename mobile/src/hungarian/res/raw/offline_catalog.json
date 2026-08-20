@@ -95311,6 +95311,116 @@
       "trackNumber": 35
     },
     {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 262,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/00-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Hangos katalóguscédula / Fülszöveg / Bevezető rész",
+      "trackNumber": 1
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 3699,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/01-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "A kezdetek",
+      "trackNumber": 2
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 6697,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/02-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Az ifjú miniszterelnök",
+      "trackNumber": 3
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 2768,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/03-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Keresztutak - Petya",
+      "trackNumber": 4
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 3150,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/04-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Rozika",
+      "trackNumber": 5
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 10293,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/05-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Készülődés",
+      "trackNumber": 6
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 3532,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/06-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "A tanya",
+      "trackNumber": 7
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 1672,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/07-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Brazil",
+      "trackNumber": 8
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 8205,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/08-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Tisztítótűz",
+      "trackNumber": 9
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 4164,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/09-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Végjáték",
+      "trackNumber": 10
+    },
+    {
+      "album": "Keleti végeken",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 688,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/26800/26868/borito.jpg",
+      "source": "https://mek.oszk.hu/26800/26868/mp3/10-Flower_Peter-Keleti_vegeken.mp3",
+      "title": "Epilógus",
+      "trackNumber": 11
+    },
+    {
       "album": "Az éneklő kutya",
       "artist": "Jack London,London Jack",
       "duration": 50,
@@ -95869,6 +95979,246 @@
       "source": "https://mek.oszk.hu/27000/27056/mp3/18-Szerb_Antal-A_kiralyne_nyaklanca.mp3",
       "title": "Epilógus",
       "trackNumber": 19
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 213,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/01_Brown-Olenka.mp3",
+      "title": "Hangos katalóguscédula / Fülszöveg",
+      "trackNumber": 1
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 352,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/02_Brown-Olenka.mp3",
+      "title": "Prológus",
+      "trackNumber": 2
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 1170,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/03_Brown-Olenka.mp3",
+      "title": "I. Két és fél évvel ezelőtt",
+      "trackNumber": 3
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 3356,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/04_Brown-Olenka.mp3",
+      "title": "II. Andrej",
+      "trackNumber": 4
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 2998,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/05_Brown-Olenka.mp3",
+      "title": "III. Olenka",
+      "trackNumber": 5
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 3795,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/06_Brown-Olenka.mp3",
+      "title": "IV. Olenka",
+      "trackNumber": 6
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 3132,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/07_Brown-Olenka.mp3",
+      "title": "V. Andrej",
+      "trackNumber": 7
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 3879,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/08_Brown-Olenka.mp3",
+      "title": "VI. Magda",
+      "trackNumber": 8
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 5349,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/09_Brown-Olenka.mp3",
+      "title": "VII. Magda",
+      "trackNumber": 9
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 1608,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/10_Brown-Olenka.mp3",
+      "title": "VIII. Olenka",
+      "trackNumber": 10
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 1764,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/11_Brown-Olenka.mp3",
+      "title": "IX. Olenka",
+      "trackNumber": 11
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 510,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/12_Brown-Olenka.mp3",
+      "title": "X. Olenka",
+      "trackNumber": 12
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 262,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/13_Brown-Olenka.mp3",
+      "title": "Utószó",
+      "trackNumber": 13
+    },
+    {
+      "album": "Olenka",
+      "artist": "C. C. Brown,Brown C. C.",
+      "duration": 112,
+      "genre": "kisregény",
+      "image": "https://mek.oszk.hu/28400/28474/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28474/mp3/14_Brown-Olenka.mp3",
+      "title": "A szerző gondolatai",
+      "trackNumber": 14
+    },
+    {
+      "album": "Álomgaléria a Montmartre fölött",
+      "artist": "José Alexander Nogueira,Nogueira José Alexander",
+      "duration": 3277,
+      "genre": "elbeszélés(ek)",
+      "image": "https://mek.oszk.hu/28400/28494/borito.jpg",
+      "source": "https://mek.oszk.hu/28400/28494/mp3/Nogueira_J_A-Alomgaleria_a_Montmartre_folott.mp3",
+      "title": "Álomgaléria a Montmartre fölött",
+      "trackNumber": 1
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 213,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/01_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "Hangos katalóguscédula / Fülszöveg",
+      "trackNumber": 1
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 116,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/02_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "Előszó",
+      "trackNumber": 2
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 1983,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/03_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "1. fejezet: Első lépések",
+      "trackNumber": 3
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 5732,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/04_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "2. fejezet: Út a csúcsra",
+      "trackNumber": 4
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 2172,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/05_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "3. fejezet: Anita",
+      "trackNumber": 5
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 10935,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/06_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "4. fejezet: A bankigazgató",
+      "trackNumber": 6
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 4648,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/07_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "5. fejezet: Cápák között",
+      "trackNumber": 7
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 3039,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/08_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "6. fejezet: Oktatás",
+      "trackNumber": 8
+    },
+    {
+      "album": "Egy ügynök élete",
+      "artist": "Peter Flower,Flower Peter",
+      "duration": 1627,
+      "genre": "regény",
+      "image": "https://mek.oszk.hu/28600/28606/borito.jpg",
+      "source": "https://mek.oszk.hu/28600/28606/mp3/09_Peter_Flower-Egy_ugynok_elete.mp3",
+      "title": "7. fejezet: Lezárás",
+      "trackNumber": 9
     }
   ]
 }
