@@ -30,6 +30,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.murati.audiobook.BuildConfig;
 import com.murati.audiobook.R;
 
+import com.murati.audiobook.model.MusicProvider;
 import com.murati.audiobook.utils.AdHelper;
 import com.murati.audiobook.utils.FeatureHelper;
 import com.murati.audiobook.utils.FeedbackHelper;
@@ -57,6 +58,13 @@ public class AboutActivity extends BaseActivity {
         // Version info
         final TextView versionText = findViewById(R.id.version);
         versionText.setText(getVersion());
+
+        final TextView buildTypeText = findViewById(R.id.build_type);
+        buildTypeText.setText(BuildConfig.BUILD_TYPE.toUpperCase());
+
+        final TextView bookCountText = findViewById(R.id.book_count);
+        int bookCount = MusicProvider.getEbookCount();
+        bookCountText.setText(getString(R.string.browse_title_count, String.valueOf(bookCount)));
 
         // Button
         final Button button = findViewById(R.id.feedback);

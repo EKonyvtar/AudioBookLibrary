@@ -68,6 +68,20 @@
                     android:gravity="center"
                     android:text="v0.0.0" />
 
+                <TextView
+                    android:id="@+id/build_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="DEBUG" />
+
+                <TextView
+                    android:id="@+id/book_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0 books" />
+
 
                 <TextView
                     android:id="@+id/about_content"
