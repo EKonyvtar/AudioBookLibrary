@@ -29,10 +29,10 @@ android {
     defaultConfig {
         applicationId "com.murati.audiobook"
         minSdkVersion 29
-        targetSdkVersion 37
+        targetSdkVersion 36
 
-        versionCode 138
-        versionName "0.88.${versionCode}"
+        versionCode 140
+        versionName "0.90.${versionCode}"
         // TODO: Auto-increment: https://stackoverflow.com/questions/21405457/autoincrement-versioncode-with-gradle-extra-properties
 
         //Universal App constants

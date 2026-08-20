@@ -57,12 +57,8 @@ public class ModernDownloadService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String mediaId = intent.getStringExtra(MediaIDHelper.EXTRA_MEDIA_ID_KEY);
         if (mediaId != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startForeground(NOTIFICATION_ID, buildNotification(getString(R.string.notification_download)),
-                        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
-            } else {
-                startForeground(NOTIFICATION_ID, buildNotification(getString(R.string.notification_download)));
-            }
+            startForeground(NOTIFICATION_ID, buildNotification(getString(R.string.notification_download)),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
             startDownload(mediaId);
         } else {
             stopSelf();
